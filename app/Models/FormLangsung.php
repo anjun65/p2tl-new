@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FormLangsung extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'works_id',
+        'users_id',
+        'no_ba',
+        'surat_tugas_p2tl',
+        'tanggal_surat_tugas_p2tl',
+        'surat_tugas_tni',
+        'tanggal_surat_tugas_tni',
+        'nama_tni',
+        'nip_tni',
+        'jabatan_tni',
+        'alamat_pelanggan',
+        'tarif',
+        'nama_saksi',
+        'alamat_saksi',
+        'nomor_identitas',
+        'no_telpon_saksi',
+    ];
+}
