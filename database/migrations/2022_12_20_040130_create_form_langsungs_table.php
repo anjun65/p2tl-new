@@ -26,8 +26,6 @@ return new class extends Migration
             $table->string('nama_tni');
             $table->string('nip_tni');
             $table->string('jabatan_tni');
-            $table->string('alamat_pelanggan');
-            $table->integer('tarif');
             $table->string('nama_saksi');
             $table->string('alamat_saksi');
             $table->string('nomor_identitas');
