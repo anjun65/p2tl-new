@@ -136,7 +136,7 @@
                     <x-input.select wire:model="editing.regus_id" id="regus_id">
                         <option value="">Pilih Regu</option>
                         @forelse ($regus as $regu)
-                            <option value="{{ $regu->id }}">{{ $regu->nama_regu }}</option>
+                            <option value="{{ $regu->id }}">{{ $regu->name }}</option>
                         @empty
                             <option value="">No Group Exist</option>
                         @endforelse
