@@ -28,7 +28,7 @@ class Regus extends Component
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
     public function rules() { return [
-        'editing.nama_regu' => 'required',
+        'editing.name' => 'required',
     ]; }
 
     public function mount() { $this->editing = $this->makeBlankTransaction(); }
