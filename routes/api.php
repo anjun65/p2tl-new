@@ -32,6 +32,6 @@ Route::get('work-order', [WorkOrderController::class, 'all']);
 Route::post('work-order', [WorkOrderController::class, 'store']);
 
 
-Route::post('form-langsung/', [FormLangsungController::class, 'store']);
+Route::post('form-langsung', [FormLangsungController::class, 'store']);
 Route::post('form-langsung/data-lama', [FormLangsungDataAppLamaController::class, 'store']);
 Route::post('form-langsung/data-baru', [FormLangsungDataAppBaruController::class, 'store']);

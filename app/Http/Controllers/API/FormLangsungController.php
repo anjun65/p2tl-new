@@ -23,13 +23,13 @@ class FormLangsungController extends Controller
         $form = FormLangsung::where('works_id', $request->works_id)->get();
         
         if ($form){
-            $form->update([
-                'nama_saksi' => $request->nama_saksi,
-                'alamat_saksi' => $request->alamat_saksi,
-                'nomor_identitas' => $request->nomor_identitas,
-                'file_nomor_identitas' => $request->file_nomor_identitas,
-                'no_telpon_saksi' => $request->no_telpon_saksi,
-            ]);
+            $form->nama_saksi = $request->nama_saksi;
+            $form->alamat_saksi = $request->alamat_saksi;
+            $form->nomor_identitas = $request->nomor_identitas;
+            $form->file_nomor_identitas = $request->file_nomor_identitas;
+            $form->no_telpon_saksi = $request->no_telpon_saksi;
+            
+            $form->save();
         } else {
             $form = FormLangsung::create([
                 'nama_saksi' => $request->nama_saksi,
