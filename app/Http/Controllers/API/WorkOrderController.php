@@ -11,7 +11,7 @@ class WorkOrderController extends Controller
 {
     public function all(Request $request)
     {
-        $work_order = WorkOrder::with('ba_pemeriksaan')->get();
+        $work_order = WorkOrder::all();
 
         if($work_order)
             return ResponseFormatter::success(
