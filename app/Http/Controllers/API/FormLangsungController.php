@@ -20,7 +20,7 @@ class FormLangsungController extends Controller
         ]);
 
         
-        $form = FormLangsung::where('works_id', $request->works_id)->get();
+        $form = FormLangsung::where('works_id', $request->works_id)->first();
         
         if ($form->isEmpty()){
             $form = FormLangsung::create([
