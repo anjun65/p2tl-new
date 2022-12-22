@@ -22,7 +22,7 @@ class FormLangsungController extends Controller
         
         $form = FormLangsung::where('works_id', $request->works_id)->first();
         
-        if ($form->isEmpty()){
+        if (empty($form)){
             $form = FormLangsung::create([
                 'works_id' => $request->works_id,
                 'regus_id' => $request->regus_id,
@@ -32,7 +32,6 @@ class FormLangsungController extends Controller
                 'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
-
         } else {
             $form->works_id = $request->works_id;
             $form->regus_id = $request->regus_id;
