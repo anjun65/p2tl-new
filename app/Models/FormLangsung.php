@@ -24,6 +24,7 @@ class FormLangsung extends Model
         'nama_saksi',
         'alamat_saksi',
         'nomor_identitas',
+        'file_nomor_identitas',
         'no_telpon_saksi',
     ];
 }

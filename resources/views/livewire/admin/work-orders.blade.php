@@ -130,7 +130,7 @@
                     </x-table.row>
                     @empty
                     <x-table.row>
-                        <x-table.cell colspan="12">
+                        <x-table.cell colspan="13">
                             <div class="flex justify-center items-center space-x-2">
                                 <x-icon.inbox class="h-8 w-8 text-gray-400" />
                                 <span class="font-medium py-8 text-gray-400 text-xl">No Work Order found...</span>

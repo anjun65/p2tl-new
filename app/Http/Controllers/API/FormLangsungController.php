@@ -12,20 +12,10 @@ class FormLangsungController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'regus_id' => ['required'],
-            'works_id' => ['required'],
-            'no_ba' => ['required'],
-            'surat_tugas_p2tl' => ['required'],
-            'tanggal_surat_tugas_p2tl' => ['required'],
-            'lembaga' => ['required'],
-            'surat_tugas_tni' => ['required'],
-            'tanggal_surat_tugas_tni' => ['required'],
-            'nama_tni' => ['required'],
-            'nip_tni' => ['required'],
-            'jabatan_tni' => ['required'],
             'nama_saksi' => ['required'],
             'alamat_saksi' => ['required'],
             'nomor_identitas' => ['required'],
+            'file_nomor_identitas' => ['required','image','max:2048'],
             'no_telpon_saksi' => ['required'],
         ]);
 
@@ -34,44 +24,22 @@ class FormLangsungController extends Controller
         
         if ($form){
             $form->update([
-                'regus_id' => $request->regus_id,
-                'works_id' => $request->works_id,
-                'no_ba' => $request->no_ba,
-                'surat_tugas_p2tl' => $request->surat_tugas_p2tl,
-                'tanggal_surat_tugas_p2tl' => $request->tanggal_surat_tugas_p2tl,
-                'lembaga' => $request->lembaga,
-                'surat_tugas_tni' => $request->surat_tugas_tni,
-                'tanggal_surat_tugas_tni' => $request->tanggal_surat_tugas_tni,
-                'nama_tni' => $request->nama_tni,
-                'nip_tni' => $request->nip_tni,
-                'jabatan_tni' => $request->jabatan_tni,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
+                'file_nomor_identitas' => $request->file_nomor_identitas,
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
             $form = FormLangsung::create([
-                'regus_id' => $request->regus_id,
-                'works_id' => $request->works_id,
-                'no_ba' => $request->no_ba,
-                'surat_tugas_p2tl' => $request->surat_tugas_p2tl,
-                'tanggal_surat_tugas_p2tl' => $request->tanggal_surat_tugas_p2tl,
-                'surat_tugas_tni' => $request->surat_tugas_tni,
-                'tanggal_surat_tugas_tni' => $request->tanggal_surat_tugas_tni,
-                'nama_tni' => $request->nama_tni,
-                'nip_tni' => $request->nip_tni,
-                'jabatan_tni' => $request->jabatan_tni,
-                'alamat_pelanggan' => $request->alamat_pelanggan,
-                'tarif' => $request->tarif,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
+                'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         }
         
-
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
 }
