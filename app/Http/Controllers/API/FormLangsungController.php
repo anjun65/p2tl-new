@@ -23,15 +23,7 @@ class FormLangsungController extends Controller
         $form = FormLangsung::where('works_id', $request->works_id)->get();
         dd($form);
         
-        if ($form){
-            $form->nama_saksi = $request->nama_saksi;
-            $form->alamat_saksi = $request->alamat_saksi;
-            $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = $request->file_nomor_identitas;
-            $form->no_telpon_saksi = $request->no_telpon_saksi;
-            
-            $form->save();
-        } else {
+        if ($form->isEmpty()){
             $form = FormLangsung::create([
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
@@ -39,6 +31,14 @@ class FormLangsungController extends Controller
                 'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
+
+        } else {
+            $form->nama_saksi = $request->nama_saksi;
+            $form->alamat_saksi = $request->alamat_saksi;
+            $form->nomor_identitas = $request->nomor_identitas;
+            $form->file_nomor_identitas = $request->file_nomor_identitas;
+            $form->no_telpon_saksi = $request->no_telpon_saksi;            
+            $form->save();
         }
         
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
