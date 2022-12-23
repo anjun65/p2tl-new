@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FormLangsung;
 use App\Helpers\ResponseFormatter;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class FormLangsungController extends Controller
 {
@@ -29,7 +31,8 @@ class FormLangsungController extends Controller
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
-                'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
+                // 'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
+                'file_nomor_identitas' => Storage::putFileAs($request->file_nomor_identitas, new File('assets/saksi'), 'identitas_saksi'.$request->nama_saksi.'.jpg'),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
@@ -38,7 +41,7 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = $request->file_nomor_identitas;
+            $form->file_nomor_identitas = Storage::putFileAs($request->file_nomor_identitas, new File('assets/saksi'), 'identitas_saksi'.$request->nama_saksi.'.jpg');
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();
         }
