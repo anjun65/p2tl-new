@@ -17,7 +17,7 @@ class FormLangsungController extends Controller
             'nama_saksi' => ['required'],
             'alamat_saksi' => ['required'],
             'nomor_identitas' => ['required'],
-            'file_nomor_identitas' => ['required','image','max:2048'],
+            // 'file_nomor_identitas' => ['required','image','max:2048'],
             'no_telpon_saksi' => ['required'],
         ]);
 
@@ -32,7 +32,7 @@ class FormLangsungController extends Controller
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
                 // 'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension()),
+                // 'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension()),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
@@ -41,11 +41,34 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension());
+            // $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension());
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();
         }
         
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
+    }
+
+
+    public function updateIdentitas(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|image|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Fails', 401);
+        }
+
+        if ($request->file('file')) {
+
+            $file = Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension());
+
+            //store your file into database
+            $user->profile_photo_path = $file;
+            $user->update();
+
+            return ResponseFormatter::success([$file],'File successfully uploaded');
+        }
     }
 }
