@@ -42,7 +42,7 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
+            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();
         }
