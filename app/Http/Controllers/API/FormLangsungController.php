@@ -18,7 +18,7 @@ class FormLangsungController extends Controller
             'nama_saksi' => ['required'],
             'alamat_saksi' => ['required'],
             'nomor_identitas' => ['required'],
-            // 'file_nomor_identitas' => ['required','image','max:2048'],
+            'file' => ['required','image','max:2048'],
             'no_telpon_saksi' => ['required'],
         ]);
 
@@ -32,8 +32,8 @@ class FormLangsungController extends Controller
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
-                // 'file_nomor_identitas' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                // 'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension()),
+                // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
+                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension()),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
@@ -42,7 +42,7 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
-            // $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension());
+            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();
         }
@@ -63,7 +63,7 @@ class FormLangsungController extends Controller
 
         if ($request->file('file')) {
 
-            $file = Storage::putFileAs('public/assets/saksi', $request->file_nomor_identitas, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file_nomor_identitas->getClientOriginalExtension());
+            $file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
 
             //store your file into database
             $user->profile_photo_path = $file;
