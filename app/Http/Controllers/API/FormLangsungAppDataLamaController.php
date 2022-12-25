@@ -32,7 +32,7 @@ class FormLangsungAppDataLamaController extends Controller
         ]);
 
         
-        $form = FormLangsungDataAppLama::where('forms_id', $request->forms_id)->get();
+        $form = FormLangsungDataAppLama::where('forms_id', $request->forms_id)->first();
         
         if ($form){
             $form->update([

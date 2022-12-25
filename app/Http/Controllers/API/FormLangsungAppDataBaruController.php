@@ -32,7 +32,7 @@ class FormLangsungAppDataBaruController extends Controller
         ]);
 
         
-        $form = FormLangsungDataAppBaru::where('forms_id', $request->forms_id)->get();
+        $form = FormLangsungDataAppBaru::where('forms_id', $request->forms_id)->first();
         
         if ($form){
             $form->update([
