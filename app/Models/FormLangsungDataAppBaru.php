@@ -20,8 +20,10 @@ class FormLangsungDataAppBaru extends Model
         'rating_arus',
         'tegangan_nominal',
         'stand_kwh_meter',
+        'foto_kwh_meter',
+        'rating_arus_2',
         'jenis_pembatas',
         'alat_pembatas_merk',
-        'rating_arus_2',
+        'foto_pembatas',
     ];
 }
