@@ -46,11 +46,11 @@ class FormLangsungAppDataBaruController extends Controller
                 'rating_arus' => $request->rating_arus,
                 'tegangan_nominal' => $request->tegangan_nominal,
                 'stand_kwh_meter' => $request->stand_kwh_meter,
-                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppLama/kwh', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
+                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppBaru/kwh', $request->foto_kwh_meter, 'foto_kwh_meter_'.$request->forms_id.'.'.$request->foto_kwh_meter->getClientOriginalExtension()),
                 'jenis_pembatas' => $request->jenis_pembatas,
                 'alat_pembatas_merk' => $request->alat_pembatas_merk,
                 'rating_arus_2' => $request->rating_arus_2,
-                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppLama/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
+                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppBaru/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
             ]);
         } else {
             $form = FormLangsungDataAppLama::create([
@@ -64,11 +64,11 @@ class FormLangsungAppDataBaruController extends Controller
                 'rating_arus' => $request->rating_arus,
                 'tegangan_nominal' => $request->tegangan_nominal,
                 'stand_kwh_meter' => $request->stand_kwh_meter,
-                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppLama/kwh', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
+                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppBaru/kwh', $request->foto_kwh_meter, 'foto_kwh_meter'.$request->forms_id.'.'.$request->foto_kwh_meter->getClientOriginalExtension()),
                 'jenis_pembatas' => $request->jenis_pembatas,
                 'alat_pembatas_merk' => $request->alat_pembatas_merk,
                 'rating_arus_2' => $request->rating_arus_2,
-                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppLama/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
+                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppBaru/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
             ]);
         }
         
