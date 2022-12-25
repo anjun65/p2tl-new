@@ -22,10 +22,11 @@ class FormLangsungAppDataLamaController extends Controller
             'rating_arus' => ['required'],
             'tegangan_nominal' => ['required'],
             'stand_kwh_meter' => ['required'],
+            'foto_kwh_meter' => ['required','image','max:2048'],
             'jenis_pembatas' => ['required'],
             'alat_pembatas_merk' => ['required'],
             'rating_arus_2' => ['required'],
-            'regus_id' => ['required'],
+            'foto_pembatas' => ['required','image','max:2048'],
         ]);
 
         
@@ -43,9 +44,11 @@ class FormLangsungAppDataLamaController extends Controller
                 'rating_arus' => $request->rating_arus,
                 'tegangan_nominal' => $request->tegangan_nominal,
                 'stand_kwh_meter' => $request->stand_kwh_meter,
+                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppLama/kwh', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
                 'jenis_pembatas' => $request->jenis_pembatas,
                 'alat_pembatas_merk' => $request->alat_pembatas_merk,
                 'rating_arus_2' => $request->rating_arus_2,
+                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppLama/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
             ]);
         } else {
             $form = FormLangsungDataAppLama::create([
@@ -59,9 +62,11 @@ class FormLangsungAppDataLamaController extends Controller
                 'rating_arus' => $request->rating_arus,
                 'tegangan_nominal' => $request->tegangan_nominal,
                 'stand_kwh_meter' => $request->stand_kwh_meter,
+                'foto_kwh_meter' => Storage::putFileAs('public/assets/dataAppLama/kwh', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
                 'jenis_pembatas' => $request->jenis_pembatas,
                 'alat_pembatas_merk' => $request->alat_pembatas_merk,
                 'rating_arus_2' => $request->rating_arus_2,
+                'foto_pembatas' => Storage::putFileAs('public/assets/dataAppLama/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
             ]);
         }
         
