@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\WorkOrderController;
 use App\Http\Controllers\API\FormLangsungController;
-use App\Http\Controllers\API\FormLangsungDataAppBaruController;
-use App\Http\Controllers\API\FormLangsungDataAppLamaController;
+use App\Http\Controllers\API\FormLangsungAppDataBaruController;
+use App\Http\Controllers\API\FormLangsungAppDataLamaController;
 
 /*
 |--------------------------------------------------------------------------
