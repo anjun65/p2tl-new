@@ -37,4 +37,4 @@ Route::post('form-langsung', [FormLangsungController::class, 'store']);
 Route::post('form-langsung/file', [FormLangsungController::class, 'updateIdentitas']);
 Route::post('form-langsung/data-lama', [FormLangsungAppDataLamaController::class, 'store']);
 Route::post('form-langsung/data-baru', [FormLangsungAppDataBaruController::class, 'store']);
-Route::post('form-langsung/data-pemeriksaan/kwh', [FormLangsungPemeriksaanKWHController::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan-kwh/', [FormLangsungPemeriksaanKWHController::class, 'store']);

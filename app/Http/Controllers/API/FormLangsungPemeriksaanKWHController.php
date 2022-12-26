@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Validator;
 
 class FormLangsungPemeriksaanKWHController extends Controller
 {
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'forms_id' => ['required'],
             'peralatan' => ['required'],
@@ -25,7 +26,6 @@ class FormLangsungPemeriksaanKWHController extends Controller
             'post_keterangan' => ['required'],
             'foto_sesudah' => ['required','image','max:2048'],
         ]);
-
         
         $form = FormLangsungPemeriksaanKwhMeter::where('forms_id', $request->forms_id)->first();
         
