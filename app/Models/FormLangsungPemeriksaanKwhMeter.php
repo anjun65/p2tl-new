@@ -10,7 +10,7 @@ class FormLangsungPemeriksaanKwhMeter extends Model
     use HasFactory;
 
     protected $fillable = [
-        'form1s_id',
+        'forms_id',
         'peralatan',
         'segel',
         'nomor_tahun_kode_segel',
