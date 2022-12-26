@@ -10,11 +10,11 @@ use App\Http\Controllers\API\FormLangsungAppDataBaruController;
 use App\Http\Controllers\API\FormLangsungAppDataLamaController;
 use App\Http\Controllers\API\FormLangsungPemeriksaanKWHController;
 
-use App\Http\Controllers\Api\FormLangsungPemeriksaanTerminalController;
-use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungKwh;
-use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungBusbar;
-use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungPapanOk;
-use App\Http\Controllers\Api\FormLangsungPemeriksaanTerminal;
+use App\Http\Controllers\API\FormLangsungPemeriksaanTerminalController;
+use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungKwh;
+use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungBusbar;
+use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungPapanOk;
+use App\Http\Controllers\API\FormLangsungPemeriksaanTerminal;
 
 /*
 |--------------------------------------------------------------------------
