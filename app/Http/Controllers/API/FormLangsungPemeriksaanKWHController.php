@@ -13,19 +13,18 @@ class FormLangsungPemeriksaanKWHController extends Controller
 {
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'forms_id' => ['required'],
-        //     'peralatan' => ['required'],
-        //     'segel' => ['required'],
-        //     'nomor_tahun_kode_segel' => ['required'],
-        //     'keterangan' => ['required'],
-        //     'foto_sebelum' => ['required','image','max:2048'],
-        //     'post_peralatan' => ['required'],
-        //     'post_segel' => ['required'],
-        //     'post_nomor_tahun_kode_segel' => ['required'],
-        //     'post_keterangan' => ['required'],
-        //     'foto_sesudah' => ['required','image','max:2048'],
-        // ]);
+        $request->validate([
+            'forms_id' => ['required'],
+            'peralatan' => ['required'],
+            'segel' => ['required'],
+            'nomor_tahun_kode_segel' => ['required'],
+            'keterangan' => ['required'],
+            'foto_sebelum' => ['required','image','max:2048'],
+            'post_peralatan' => ['required'],
+            'post_segel' => ['required'],
+            'post_nomor_tahun_kode_segel' => ['required'],
+            'foto_sesudah' => ['required','image','max:2048'],
+        ]);
 
 
         $form = FormLangsungPemeriksaanKwhMeter::where('forms_id', $request->forms_id)->first();
