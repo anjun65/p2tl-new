@@ -10,7 +10,6 @@ use App\Http\Controllers\API\FormLangsungAppDataBaruController;
 use App\Http\Controllers\API\FormLangsungAppDataLamaController;
 use App\Http\Controllers\API\FormLangsungPemeriksaanKWHController;
 
-use App\Http\Controllers\Api\FormLangsungPemeriksaanKWHController;
 use App\Http\Controllers\Api\FormLangsungPemeriksaanTerminalController;
 use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungKwh;
 use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungBusbar;
