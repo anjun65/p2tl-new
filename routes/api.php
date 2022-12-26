@@ -10,6 +10,13 @@ use App\Http\Controllers\API\FormLangsungAppDataBaruController;
 use App\Http\Controllers\API\FormLangsungAppDataLamaController;
 use App\Http\Controllers\API\FormLangsungPemeriksaanKWHController;
 
+use App\Http\Controllers\Api\FormLangsungPemeriksaanKWHController;
+use App\Http\Controllers\Api\FormLangsungPemeriksaanTerminalController;
+use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungKwh;
+use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungBusbar;
+use App\Http\Controllers\Api\FormLangsungPemeriksaanPelindungPapanOk;
+use App\Http\Controllers\Api\FormLangsungPemeriksaanTerminal;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +45,9 @@ Route::post('form-langsung/file', [FormLangsungController::class, 'updateIdentit
 Route::post('form-langsung/data-lama', [FormLangsungAppDataLamaController::class, 'store']);
 Route::post('form-langsung/data-baru', [FormLangsungAppDataBaruController::class, 'store']);
 Route::post('form-langsung/data-pemeriksaan/kwh', [FormLangsungPemeriksaanKWHController::class, 'store']);
+
+Route::post('form-langsung/data-pemeriksaan/terminal', [FormLangsungPemeriksaanTerminalController::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan/pelindung-kwh', [FormLangsungPemeriksaanPelindungKwh::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan/pelindung-busbar', [FormLangsungPemeriksaanPelindungBusbar::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan/papan-ok', [FormLangsungPemeriksaanPelindungPapanOk::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksaanTerminal::class, 'store']);
