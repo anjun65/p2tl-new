@@ -13,6 +13,5 @@ class Pendamping extends Model
         'name',
         'nip',
         'jabatan',
-        'regus_id',
     ];
 }

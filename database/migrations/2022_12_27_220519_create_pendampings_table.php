@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('pendampings', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignId('regus_id')->constrained('regus')->onDelete('cascade')->onUpdate('cascade');
+
             $table->string('name');
             $table->string('nip');
             $table->string('jabatan');

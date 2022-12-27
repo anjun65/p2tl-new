@@ -7,7 +7,6 @@ use App\Http\Livewire\DataTable\WithSorting;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
-use App\Models\Regu;
 use App\Models\Pendamping;
 
 class Pendampings extends Component
@@ -101,11 +100,9 @@ class Pendampings extends Component
 
     public function render()
     {
-        $regus = Regu::all();
 
         return view('livewire.admin.pendampings', [
             'items' => $this->rows,
-            'regus' => $regus,
         ]);
     }
 }

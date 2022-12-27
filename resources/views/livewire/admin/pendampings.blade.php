@@ -120,16 +120,6 @@
                     <x-input.text type="text" wire:model="jabatan" placeholder="Jabatan" />
                 </x-input.group>
 
-                <x-input.group for="regus_id" label="Group" :error="$errors->first('editing.regus_id')">
-                    <x-input.select wire:model="editing.regus_id" id="regus_id">
-                        <option value="">Pilih Regu</option>
-                        @forelse ($regus as $regu)
-                            <option value="{{ $regu->id }}">{{ $regu->name }}</option>
-                        @empty
-                            <option value="">No Group Exist</option>
-                        @endforelse
-                    </x-input.select>
-                </x-input.group>
             </x-slot>
 
             <x-slot name="footer">
