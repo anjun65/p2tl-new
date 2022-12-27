@@ -27,7 +27,7 @@ class FormLangsungWiringAppController extends Controller
             'keterangan_wiring_app' => ['required'],            
         ]);
         
-        $form = FormLangsungWiringApp::where('forms_id', $request->forms_id)->get();
+        $form = FormLangsungWiringApp::where('forms_id', $request->forms_id)->first();
         
         if ($form){
             $form->update([
