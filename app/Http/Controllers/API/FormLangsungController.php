@@ -15,7 +15,7 @@ class FormLangsungController extends Controller
 
     public function show($id)
     {
-        $form_langsung = FormLangsung::with('data_lama','data_baru')
+        $form_langsung = FormLangsung::with('data_lama','data_baru','kwh_meter','terminal','pelindung_kwh', 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
             ->where('works_id', $id)->get();
 
         if($form_langsung)

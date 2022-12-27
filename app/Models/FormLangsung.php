@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungKwh;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -38,5 +39,48 @@ class FormLangsung extends Model
         return $this->hasOne(FormLangsungDataAppBaru::class, 'forms_id', 'id');
     }
 
+    public function kwh_meter()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanKwhMeter::class, 'forms_id', 'id');
+    }
     
+    public function terminal()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanTerminal::class, 'forms_id', 'id');
+    }
+
+    public function pelindung_kwh()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanPelindungKwh::class, 'forms_id', 'id');
+    }
+
+    public function pelindung_busbar()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanPelindungBusBar::class, 'forms_id', 'id');
+    }
+
+    public function papan_ok()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanPapanOk::class, 'forms_id', 'id');
+    }
+
+    public function penutup_mcb()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanPenutupMcb::class, 'forms_id', 'id');
+    }
+
+    public function pemeriksaan_pengukuran()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanPengukuran::class, 'forms_id', 'id');
+    }
+
+    public function wiring_app()
+    {
+        return $this->hasOne(FormLangsungPemeriksaanWiringApp::class, 'forms_id', 'id');
+    }
+
+    public function hasil_pemeriksaan()
+    {
+        return $this->hasOne(FormLangsungHasilPemeriksaan::class, 'forms_id', 'id');
+    }
 }
