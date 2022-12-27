@@ -14,7 +14,7 @@ use App\Http\Controllers\API\FormLangsungPemeriksaanTerminalController;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungKwh;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungBusbar;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungPapanOk;
-use App\Http\Controllers\API\FormLangsungPemeriksaanTerminal;
+use App\Http\Controllers\API\FormLangsungPemeriksaanPenutupMCB;
 
 /*
 |--------------------------------------------------------------------------
