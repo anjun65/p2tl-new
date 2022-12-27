@@ -27,4 +27,16 @@ class FormLangsung extends Model
         'file_nomor_identitas',
         'no_telpon_saksi',
     ];
+
+    public function data_lama()
+    {
+        return $this->hasOne(FormLangsungDataAppLama::class, 'forms_id', 'id');
+    }
+
+    public function data_baru()
+    {
+        return $this->hasOne(FormLangsungDataAppBaru::class, 'forms_id', 'id');
+    }
+
+    
 }

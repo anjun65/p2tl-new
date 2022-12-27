@@ -12,6 +12,27 @@ use Illuminate\Support\Facades\Validator;
 
 class FormLangsungController extends Controller
 {
+
+    public function show($id)
+    {
+        $form_langsung = FormLangsung::with('data_lama','data_baru')
+            ->where('works_id', $id)->get();
+
+        if($form_langsung)
+            return ResponseFormatter::success(
+                $form_langsung,
+                'Data berhasil diambil'
+            );
+        else
+            return ResponseFormatter::error(
+                null,
+                'Data tidak ada',
+                404
+            );
+    }
+    
+
+
     public function store(Request $request)
     {
         $request->validate([
@@ -51,25 +72,25 @@ class FormLangsungController extends Controller
     }
 
 
-    public function updateIdentitas(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'file' => 'required|image|max:2048',
-        ]);
+    // public function updateIdentitas(Request $request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         'file' => 'required|image|max:2048',
+    //     ]);
 
-        if ($validator->fails()) {
-            return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Fails', 401);
-        }
+    //     if ($validator->fails()) {
+    //         return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Fails', 401);
+    //     }
 
-        if ($request->file('file')) {
+    //     if ($request->file('file')) {
 
-            $file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
+    //         $file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
 
-            //store your file into database
-            $user->profile_photo_path = $file;
-            $user->update();
+    //         //store your file into database
+    //         $user->profile_photo_path = $file;
+    //         $user->update();
 
-            return ResponseFormatter::success([$file],'File successfully uploaded');
-        }
-    }
+    //         return ResponseFormatter::success([$file],'File successfully uploaded');
+    //     }
+    // }
 }

@@ -26,6 +26,23 @@ class WorkOrderController extends Controller
             );
     }
 
+    public function show(Request $request)
+    {
+        $work_order = WorkOrder::find($request->id);
+
+        if($work_order)
+            return ResponseFormatter::success(
+                $work_order,
+                'Data berhasil diambil'
+            );
+        else
+            return ResponseFormatter::error(
+                null,
+                'Data tidak ada',
+                404
+            );
+    }
+
     public function store(Request $request)
     {
         $request->validate([

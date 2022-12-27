@@ -42,6 +42,8 @@ Route::post('register', [UserController::class, 'register']);
 Route::get('work-order', [WorkOrderController::class, 'all']);
 Route::post('work-order', [WorkOrderController::class, 'store']);
 
+Route::get('form-langsung/{id}', [FormLangsungController::class, 'show']);
+
 
 Route::post('form-langsung', [FormLangsungController::class, 'store']);
 Route::post('form-langsung/file', [FormLangsungController::class, 'updateIdentitas']);

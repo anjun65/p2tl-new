@@ -29,7 +29,7 @@ class FormLangsungHasilPemeriksaanController extends Controller
 
         if($request->foto_barang_bukti)
         {
-            $foto = Storage::putFileAs('public/assets/barang-bukti/kwh', $request->foto_barang_bukti, 'foto_kwh_meter_'.$request->forms_id.'.'.$request->foto_barang_bukti->getClientOriginalExtension());
+            $foto = Storage::putFileAs('public/assets/barang-bukti/kwh', $request->foto_barang_bukti, 'foto_bukti_'.$request->forms_id.'.'.$request->foto_barang_bukti->getClientOriginalExtension());
         }
 
 
