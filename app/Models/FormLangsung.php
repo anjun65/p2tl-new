@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungKwh;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,7 +48,7 @@ class FormLangsung extends Model
         return $this->hasOne(FormLangsungPemeriksaanTerminal::class, 'forms_id', 'id');
     }
 
-    public function pelindung_kwh()
+    public function pelindungkwh()
     {
         return $this->hasOne(FormLangsungPemeriksaanPelindungKwh::class, 'forms_id', 'id');
     }
@@ -76,7 +75,7 @@ class FormLangsung extends Model
 
     public function wiring_app()
     {
-        return $this->hasOne(FormLangsungPemeriksaanWiringApp::class, 'forms_id', 'id');
+        return $this->hasOne(FormLangsungWiringApp::class, 'forms_id', 'id');
     }
 
     public function hasil_pemeriksaan()
