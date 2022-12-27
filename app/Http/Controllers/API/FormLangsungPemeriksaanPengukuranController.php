@@ -30,7 +30,7 @@ class FormLangsungPemeriksaanPengukuranController extends Controller
         ]);
 
         
-        $form = FormLangsungPemeriksaanPengukuran::where('forms_id', $request->forms_id)->get();
+        $form = FormLangsungPemeriksaanPengukuran::where('forms_id', $request->forms_id)->first();
         
         if ($form){
             $form->update([
@@ -52,7 +52,7 @@ class FormLangsungPemeriksaanPengukuranController extends Controller
             ]);
         } else {
             $form = FormLangsungPemeriksaanPengukuran::create([
-                'forms_id' => $request->form1s_id,
+                'forms_id' => $request->forms_id,
                 'arus_1' => $request->arus_1,
                 'arus_2' => $request->arus_2,
                 'arus_3' => $request->arus_3,

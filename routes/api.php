@@ -15,6 +15,7 @@ use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungKwh;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungBusbar;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungPapanOk;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPenutupMCB;
+use App\Http\Controllers\API\FormLangsungPemeriksaanPengukuranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,6 @@ Route::post('form-langsung/data-pemeriksaan/pelindung-kwh', [FormLangsungPemerik
 Route::post('form-langsung/data-pemeriksaan/pelindung-busbar', [FormLangsungPemeriksaanPelindungBusbar::class, 'store']);
 Route::post('form-langsung/data-pemeriksaan/papan-ok', [FormLangsungPemeriksaanPelindungPapanOk::class, 'store']);
 Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksaanPenutupMCB::class, 'store']);
+
+
+Route::post('form-langsung/data-pengukuran', [FormLangsungPemeriksaanPengukuranController::class, 'store']);

@@ -10,7 +10,7 @@ class FormLangsungPemeriksaanPengukuran extends Model
     use HasFactory;
 
     protected $fillable = [
-        'form1s_id',
+        'forms_id',
         'arus_1',
         'arus_2',
         'arus_3',
