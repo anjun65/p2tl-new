@@ -49,4 +49,4 @@ Route::post('form-langsung/data-pemeriksaan/terminal', [FormLangsungPemeriksaanT
 Route::post('form-langsung/data-pemeriksaan/pelindung-kwh', [FormLangsungPemeriksaanPelindungKwh::class, 'store']);
 Route::post('form-langsung/data-pemeriksaan/pelindung-busbar', [FormLangsungPemeriksaanPelindungBusbar::class, 'store']);
 Route::post('form-langsung/data-pemeriksaan/papan-ok', [FormLangsungPemeriksaanPelindungPapanOk::class, 'store']);
-Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksaanTerminal::class, 'store']);
+Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksaanPenutupMCB::class, 'store']);
