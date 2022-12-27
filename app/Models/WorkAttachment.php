@@ -10,7 +10,7 @@ class WorkAttachment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
-        'id_pelanggan',
+        'works_id',
+        'path',
     ];
 }
