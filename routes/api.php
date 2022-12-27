@@ -18,6 +18,8 @@ use App\Http\Controllers\API\FormLangsungPemeriksaanPenutupMCB;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPengukuranController;
 use App\Http\Controllers\API\FormLangsungWiringAppController;
 
+use App\Http\Controllers\API\FormLangsungHasilPemeriksaanController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
