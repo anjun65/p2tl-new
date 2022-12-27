@@ -28,11 +28,9 @@ class Pendampings extends Component
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
     public function rules() { return [
-        'editing.name' => 'nullable',
-        'editing.email' => 'sometimes|nullable|email',
-        'password' => 'nullable',
-        'editing.roles' => 'required',
-        'editing.regus_id' => 'nullable',
+        'editing.name' => 'required',
+        'editing.nip' => 'required',
+        'editing.jabatan' => 'required',
     ]; }
 
     public function mount() { $this->editing = $this->makeBlankTransaction(); }

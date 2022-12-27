@@ -24,6 +24,13 @@ class WorkOrder extends Model
         'fkm',
         'keterangan_p2tl',
         'status',
+        'no_ba',
+        'surat_tugas_p2tl',
+        'tanggal_surat_tugas_p2tl',
+        'surat_tugas_tni',
+        'tanggal_surat_tugas_tni',
+        'pendamping1_id',
+        'pendamping2_id',
     ];
 
     const Keterangan = [

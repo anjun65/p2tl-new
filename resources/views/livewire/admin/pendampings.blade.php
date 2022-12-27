@@ -116,8 +116,8 @@
                     <x-input.text type="nip" wire:model="editing.nip" placeholder="NIP/NRP" />
                 </x-input.group>
 
-                <x-input.group for="jabatan" label="Jabatan" :error="$errors->first('jabatan')">
-                    <x-input.text type="text" wire:model="jabatan" placeholder="Jabatan" />
+                <x-input.group for="jabatan" label="Jabatan" :error="$errors->first('editing.jabatan')">
+                    <x-input.text type="text" wire:model="editing.jabatan" placeholder="Jabatan" />
                 </x-input.group>
 
             </x-slot>

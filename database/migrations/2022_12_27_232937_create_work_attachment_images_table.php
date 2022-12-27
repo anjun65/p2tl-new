@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('form_langsungs', function (Blueprint $table) {
+        Schema::create('work_attachment_images', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('works_id')->constrained('work_orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('regus_id')->constrained('regus')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('path');
             
-            $table->string('nama_saksi')->nullable();
-            $table->string('alamat_saksi')->nullable();
-            $table->string('nomor_identitas')->nullable();
-            $table->string('no_telpon_saksi')->nullable();
-
             $table->timestamps();
         });
     }
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_langsungs');
+        Schema::dropIfExists('work_attachment_images');
     }
 };

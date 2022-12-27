@@ -12,6 +12,7 @@ use App\Models\WorkOrder;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\JamNyala;
+use App\Models\Pendamping;
 use Illuminate\Support\Carbon;
 
 class WorkOrders extends Component
@@ -54,6 +55,13 @@ class WorkOrders extends Component
         'editing.keterangan_p2tl' => 'nullable',
         'nyala_model.tanggal' => 'nullable',
         'nyala_model.jumlah' => 'nullable',
+        'editing.no_ba' => 'required',
+        'editing.surat_tugas_p2tl' => 'required',
+        'editing.tanggal_surat_tugas_p2tl' => 'required',
+        'editing.surat_tugas_tni' => 'required',
+        'editing.tanggal_surat_tugas_tni' => 'required',
+        'editing.pendamping1_id' => 'required',
+        'editing.pendamping2_id' => 'nullable',
     ]; }
 
     public function mount() { $this->editing = $this->makeBlankTransaction();
@@ -143,6 +151,13 @@ class WorkOrders extends Component
         });
     }
 
+    public function exportSelected()
+    {
+        return response()->streamDownload(function () {
+            echo $this->selectedRowsQuery->toCsv();
+        }, 'work-orders.csv');
+    }
+
     // public function download_berita_acara($id){
     //     $berkas = BeritaAcara::where('works_id', $id)->first();
 
@@ -164,6 +179,7 @@ class WorkOrders extends Component
     public function render()
     {
         $regus = Regu::all();
+        $pendampings = Pendamping::all();
         $keterangan = WorkOrder::Keterangan;
         $statuses = WorkOrder::Status;
         
@@ -178,6 +194,7 @@ class WorkOrders extends Component
         return view('livewire.admin.work-orders', [
             'items' => $this->rows,
             'regus' => $regus,
+            'pendampings' => $pendampings,
             'keterangan' => $keterangan,
             'jam_nyala' => $jam_nyala,
             'statuses' => $statuses,

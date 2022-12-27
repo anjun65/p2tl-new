@@ -19,10 +19,17 @@
 
                 <x-dropdown label="Bulk Actions">
 
+                    <x-dropdown.item type="button" wire:click="exportSelected" class="flex items-center space-x-2">
+                        <x-icon.download class="text-cool-gray-400"/> <span>Export</span>
+                    </x-dropdown.item>
+
                     <x-dropdown.item type="button" wire:click="$toggle('showDeleteModal')" class="flex items-center space-x-2">
                         <x-icon.trash class="text-cool-gray-400"/> <span>Delete</span>
                     </x-dropdown.item>
+
                 </x-dropdown>
+
+                <livewire:import.work-orders />
 
                 <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary>
             </div>
@@ -35,6 +42,7 @@
                     <x-table.heading class="pr-0 w-8">
                         <x-input.checkbox wire:model="selectPage" />
                     </x-table.heading>
+                    <x-table.heading>Regu</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('id_pelanggan')" :direction="$sorts['id_pelanggan'] ?? null" class="w-full">ID Pelanggan</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('nama_pelanggan')" :direction="$sorts['nama_pelanggan'] ?? null">Nama Pelanggan</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('alamat')" :direction="$sorts['alamat'] ?? null">Alamat</x-table.heading>
@@ -44,7 +52,7 @@
                     <x-table.heading sortable multi-column wire:click="sortBy('rbm')" :direction="$sorts['rbm'] ?? null">RBM</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('lgkh')" :direction="$sorts['lgkh'] ?? null">LGKH</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('fkm')" :direction="$sorts['fkm'] ?? null">FKM</x-table.heading>
-                    <x-table.heading>Regu</x-table.heading>
+                    
                     <x-table.heading>Keterangan</x-table.heading>
                     <x-table.heading>Status</x-table.heading>
                     <x-table.heading />
@@ -73,6 +81,12 @@
                         </x-table.cell>
 
                         <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">
+                                {{ $item->regu->name }}
+                            </span>
+                        </x-table.cell>
+
+                        <x-table.cell>
                             <span class="text-gray-900 font-medium">{{ $item->id_pelanggan }} </span>
                         </x-table.cell>
 
@@ -88,7 +102,6 @@
                             </span>
                         </x-table.cell>
 
-                        
                         <x-table.cell>
                             <span class="text-gray-900 font-medium">{{ $item->jenis_p2tl }}</span>
                         </x-table.cell>
@@ -111,12 +124,6 @@
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">
-                                {{ $item->regu->name }}
-                            </span>
-                        </x-table.cell>
-
-                        <x-table.cell>
                             <span class="text-gray-900 font-medium">{{ $item->keterangan_p2tl }}</span>
                         </x-table.cell>
 
@@ -130,7 +137,7 @@
                     </x-table.row>
                     @empty
                     <x-table.row>
-                        <x-table.cell colspan="13">
+                        <x-table.cell colspan="14">
                             <div class="flex justify-center items-center space-x-2">
                                 <x-icon.inbox class="h-8 w-8 text-gray-400" />
                                 <span class="font-medium py-8 text-gray-400 text-xl">No Work Order found...</span>
@@ -153,6 +160,19 @@
             <x-slot name="title">Work Order</x-slot>
 
             <x-slot name="content">
+                
+                <x-input.group for="regus_id" label="Regu" :error="$errors->first('editing.regus_id')">
+                    <x-input.select wire:model="editing.regus_id" id="regus_id">
+                        <option value="">Pilih Regu</option>
+                        @forelse ($regus as $regu)
+                            <option value="{{ $regu->id }}">{{ $regu->name }}</option>
+                        @empty
+                            <option value="">No Group Exist</option>
+                        @endforelse
+                    </x-input.select>
+            </x-input.group>
+
+
                 <x-input.group for="id_pelanggan" label="ID Pelanggan" :error="$errors->first('editing.id_pelanggan')">
                     <x-input.text wire:model="editing.id_pelanggan" id="id_pelanggan" placeholder="ID Pelanggan" />
                 </x-input.group>
@@ -179,7 +199,7 @@
                         @forelse ($jenis_p2tl as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @empty
-                            <option value="">No Group Exist</option>
+                            <option value="">Tidak ada Jenis P2TL yang ditemukan</option>
                         @endforelse
                     </x-input.select>
                 </x-input.group>
@@ -253,17 +273,7 @@
                 @endif --}}
                 
 
-                <x-input.group for="regus_id" label="Regu" :error="$errors->first('editing.regus_id')">
-                        <x-input.select wire:model="editing.regus_id" id="regus_id">
-                            <option value="">Pilih Regu</option>
-                            @forelse ($regus as $regu)
-                                <option value="{{ $regu->id }}">{{ $regu->name }}</option>
-                            @empty
-                                <option value="">No Group Exist</option>
-                            @endforelse
-                        </x-input.select>
-                </x-input.group>
-
+                
                 
 
                 <x-input.group for="keterangan_p2tl" label="Keterangan" :error="$errors->first('editing.keterangan_p2tl')">
@@ -318,7 +328,64 @@
                     </x-input.group>
                 @endif
                 
+
+                <x-input.group for="" label="Keterangan Berita Acara">
+
+                </x-input.group>
+
+
+                <x-input.group for="no_ba" label="No BA" :error="$errors->first('editing.no_ba')">
+                    <x-input.text wire:model="editing.no_ba" id="no_ba" Placeholder="Nomor BA">
+                    </x-input.text>
+                </x-input.group>
+
+                <x-input.group for="surat_tugas_p2tl" label="Surat Tugas P2TL" :error="$errors->first('editing.surat_tugas_p2tl')">
+                    <x-input.text wire:model="editing.surat_tugas_p2tl" id="surat_tugas_p2tl" Placeholder="Surat Tugas P2TL">
+                    </x-input.text>
+                </x-input.group>
+
+                <x-input.group for="tanggal_surat_tugas_p2tl" label="Tanggal Surat Tugas P2TL" :error="$errors->first('editing.tanggal_surat_tugas_p2tl')">
+                    <x-datepicker wire:model="editing.tanggal_surat_tugas_p2tl" id="tanggal_surat_tugas_p2tl" Placeholder="Tanggal Surat Tugas P2TL">
+                    </x-datepicker>
+                </x-input.group>
+
+                <x-input.group for="surat_tugas_tni" label="Surat Tugas TNI" :error="$errors->first('editing.surat_tugas_tni')">
+                    <x-input.text wire:model="editing.surat_tugas_tni" id="surat_tugas_tni" Placeholder="Surat Tugas TNI">
+                    </x-input.text>
+                </x-input.group>
+
+
+                <x-input.group for="tanggal_surat_tugas_tni" label="Tanggal Surat Tugas TNI" :error="$errors->first('editing.tanggal_surat_tugas_tni')">
+                    <x-datepicker wire:model="editing.tanggal_surat_tugas_tni" id="surat_tugas_p2tl" Placeholder="Tanggal Surat Tugas P2TL">
+                    </x-datepicker>
+                </x-input.group>
+
+                <x-input.group for="pendamping1_id" label="Pendamping 1" :error="$errors->first('editing.pendamping1_id')">
+                    <x-input.select wire:model="editing.pendamping1_id" id="pendamping1_id">
+                        <option value="">Pilih Pendamping</option>
+                        @forelse ($pendampings as $pendamping)
+                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                        @empty
+                            <option value="">Tidak ada pendamping yang ditemukant</option>
+                        @endforelse
+                    </x-input.select>
+                 </x-input.group>
+
+                 <x-input.group for="pendamping2_id" label="Pendamping 2" :error="$errors->first('editing.pendamping2_id')">
+                    <x-input.select wire:model="editing.pendamping2_id" id="pendamping2_id">
+                        <option value="">Pilih Pendamping</option>
+                        @forelse ($pendampings as $pendamping)
+                            <option value="{{ $pendamping->id }}">{{ $pendamping->name }}</option>
+                        @empty
+                            <option value="">Tidak ada pendamping yang ditemukan</option>
+                        @endforelse
+                    </x-input.select>
+                 </x-input.group>
             </x-slot>
+
+
+
+            
 
             
 
