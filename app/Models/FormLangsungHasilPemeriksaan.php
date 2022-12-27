@@ -10,13 +10,12 @@ class FormLangsungHasilPemeriksaan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'form1s_id',
+        'forms_id',
         'hasil_pemeriksaan',
         'kesimpulan',
         'tindakan',
         'barang_bukti',
-        'tanggal_ba',
-        'tanggal_surat',
+        'tanggal_penyelesaian',
     ];
             
 }

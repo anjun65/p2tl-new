@@ -56,3 +56,5 @@ Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksa
 
 Route::post('form-langsung/data-pengukuran', [FormLangsungPemeriksaanPengukuranController::class, 'store']);
 Route::post('form-langsung/data-wiring-app', [FormLangsungWiringAppController::class, 'store']);
+
+Route::post('form-langsung/data-hasil-pemeriksaan', [FormLangsungHasilPemeriksaanController::class, 'store']);

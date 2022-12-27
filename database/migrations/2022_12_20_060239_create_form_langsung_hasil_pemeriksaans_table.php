@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('kesimpulan');
             $table->string('tindakan');
             $table->string('barang_bukti');
-            $table->date('tanggal_ba');
-            $table->date('tanggal_surat');
+            $table->date('tanggal_penyelesaian');
 
             $table->timestamps();
         });
