@@ -46,7 +46,7 @@ class FormLangsungWiringAppController extends Controller
             ]);
         } else {
             $form = FormLangsungWiringApp::create([
-                'forms_id' => $request->form1s_id,
+                'forms_id' => $request->forms_id,
                 'terminal1' => $request->terminal1,
                 'terminal2' => $request->terminal2,
                 'terminal3' => $request->terminal3,
