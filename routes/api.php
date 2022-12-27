@@ -16,6 +16,7 @@ use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungBusbar;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPelindungPapanOk;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPenutupMCB;
 use App\Http\Controllers\API\FormLangsungPemeriksaanPengukuranController;
+use App\Http\Controllers\API\FormLangsungWiringAppController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,4 @@ Route::post('form-langsung/data-pemeriksaan/penutup-mcb', [FormLangsungPemeriksa
 
 
 Route::post('form-langsung/data-pengukuran', [FormLangsungPemeriksaanPengukuranController::class, 'store']);
+Route::post('form-langsung/data-wiring-app', [FormLangsungWiringAppController::class, 'store']);
