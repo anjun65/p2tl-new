@@ -53,7 +53,7 @@ class FormLangsungAppDataBaruController extends Controller
                 'foto_pembatas' => Storage::putFileAs('public/assets/dataAppBaru/pembatas', $request->foto_pembatas, 'fotopembatas_'.$request->forms_id.'.'.$request->foto_pembatas->getClientOriginalExtension()),
             ]);
         } else {
-            $form = FormLangsungDataAppLama::create([
+            $form = FormLangsungDataAppBaru::create([
                 'forms_id' => $request->forms_id,
                 'merk' => $request->merk,
                 'no_reg' => $request->no_reg,

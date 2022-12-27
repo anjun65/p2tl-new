@@ -16,6 +16,7 @@ class FormLangsungHasilPemeriksaan extends Model
         'tindakan',
         'barang_bukti',
         'tanggal_penyelesaian',
+        'foto_barang_bukti',
     ];
             
 }
