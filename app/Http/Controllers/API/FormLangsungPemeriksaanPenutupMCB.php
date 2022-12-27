@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Storage;
-use App\Models\FormLangsungPemeriksaanPenutupMCB as form_model;
+use App\Models\FormLangsungPemeriksaanPenutupMcb as form_model;
 
 class FormLangsungPemeriksaanPenutupMCB extends Controller
 {
