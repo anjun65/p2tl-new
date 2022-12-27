@@ -35,11 +35,11 @@ class FormLangsungPemeriksaanPelindungPapanOk extends Controller
                 'nomor_tahun_kode_segel' => $request->nomor_tahun_kode_segel,
                 'keterangan' => $request->keterangan,
 
-                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/papanok/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
                 'post_peralatan' => $request->post_peralatan,
                 'post_segel' => $request->post_segel,
                 'post_nomor_tahun_kode_segel' => $request->post_nomor_tahun_kode_segel,
-                'foto_sesudah' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sesudah', $request->foto_sesudah, 'foto_sesudah_'.$request->forms_id.'.'.$request->foto_sesudah->getClientOriginalExtension()),
+                'foto_sesudah' => Storage::putFileAs('public/assets/dataPemeriksaan/papanok/sesudah', $request->foto_sesudah, 'foto_sesudah_'.$request->forms_id.'.'.$request->foto_sesudah->getClientOriginalExtension()),
             ]);
         } else {
             $form = form_model::create([
@@ -49,11 +49,11 @@ class FormLangsungPemeriksaanPelindungPapanOk extends Controller
                 'nomor_tahun_kode_segel' => $request->nomor_tahun_kode_segel,
                 'keterangan' => $request->keterangan,
 
-                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/papanok/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
                 'post_peralatan' => $request->post_peralatan,
                 'post_segel' => $request->post_segel,
                 'post_nomor_tahun_kode_segel' => $request->post_nomor_tahun_kode_segel,
-                'foto_sesudah' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sesudah', $request->foto_sesudah, 'foto_sesudah_'.$request->forms_id.'.'.$request->foto_sesudah->getClientOriginalExtension()),
+                'foto_sesudah' => Storage::putFileAs('public/assets/dataPemeriksaan/papanok/sesudah', $request->foto_sesudah, 'foto_sesudah_'.$request->forms_id.'.'.$request->foto_sesudah->getClientOriginalExtension()),
             ]);
         }
         
