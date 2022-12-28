@@ -28,11 +28,9 @@
                     <x-table.heading class="pr-0 w-8">
                         <x-input.checkbox wire:model="selectPage" />
                     </x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" class="w-full">Nama</x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('email')" :direction="$sorts['email'] ?? null">Email</x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('roles')" :direction="$sorts['roles'] ?? null">Roles</x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('regus_id')" :direction="$sorts['regus_id'] ?? null">Group</x-table.heading>
-                    
+                    <x-table.heading sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" class="w-full">Nama Pendamping</x-table.heading>
+                    <x-table.heading sortable multi-column wire:click="sortBy('nip')" :direction="$sorts['nip'] ?? null">NIP/NRK</x-table.heading>
+                    <x-table.heading sortable multi-column wire:click="sortBy('jabatan')" :direction="$sorts['jabatan'] ?? null">Jabatan</x-table.heading>
                     <x-table.heading />
                 </x-slot>
 
@@ -63,19 +61,11 @@
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">{{ $item->email }}</span>
+                            <span class="text-cool-gray-900 font-medium">{{ $item->nip }}</span>
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">{{ $item->roles }}</span>
-                        </x-table.cell>
-
-                        <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">
-                                @if (!empty($item->regu->nama_regu))
-                                    {{ $item->regu->nama_regu }}
-                                @endif
-                            </span>
+                            <span class="text-cool-gray-900 font-medium">{{ $item->jabatan }}</span>
                         </x-table.cell>
 
                         <x-table.cell>

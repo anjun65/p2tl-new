@@ -28,7 +28,7 @@
                     <x-table.heading class="pr-0 w-8">
                         <x-input.checkbox wire:model="selectPage" />
                     </x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" class="w-full">Nama</x-table.heading>
+                    <x-table.heading sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" class="w-full">Nama Petugas</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('email')" :direction="$sorts['email'] ?? null">Email</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('roles')" :direction="$sorts['roles'] ?? null">Roles</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('regus_id')" :direction="$sorts['regus_id'] ?? null">Group</x-table.heading>

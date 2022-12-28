@@ -16,7 +16,14 @@
                 </div>
                 @else
                 <div>
-
+                    <x-input.group for="regus_id" label="Regu ID" :error="$errors->first('fieldColumnMap.regus_id')">
+                        <x-input.select wire:model="fieldColumnMap.regus_id" id="regus_id">
+                            <option value="" disabled>Select Column...</option>
+                            @foreach ($columns as $column)
+                                <option>{{ $column }}</option>
+                            @endforeach
+                        </x-input.select>
+                    </x-input.group>
                     
                     <x-input.group for="id_pelanggan" label="ID Pelanggan" :error="$errors->first('fieldColumnMap.id_pelanggan')">
                         <x-input.select wire:model="fieldColumnMap.id_pelanggan" id="id_pelanggan">

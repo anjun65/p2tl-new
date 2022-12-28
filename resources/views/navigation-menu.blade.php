@@ -25,7 +25,7 @@
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
-                        {{ __('Users') }}
+                        {{ __('Manajemen Tim') }}
                     </x-jet-nav-link>
 
                     
@@ -164,7 +164,7 @@
             </x-jet-responsive-nav-link>
 
             <x-jet-responsive-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
-                {{ __('Users') }}
+                {{ __('Manajemen Tim') }}
             </x-jet-responsive-nav-link>
 
             

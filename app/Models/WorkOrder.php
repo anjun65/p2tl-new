@@ -10,7 +10,6 @@ class WorkOrder extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
         'id_pelanggan',
         'nama_pelanggan',
         'latitude',
@@ -22,6 +21,7 @@ class WorkOrder extends Model
         'rbm',
         'lgkh',
         'fkm',
+        'regus_id',
         'keterangan_p2tl',
         'status',
         'no_ba',

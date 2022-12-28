@@ -12,24 +12,26 @@ class Csv
     public function columns()
     {
         return $this->openFile(function ($handle) {
-            return array_filter(fgetcsv($handle, 1000, ","));
+            return array_filter(fgetcsv($handle, 1000, ";"));
         });
     }
 
     public function eachRow($callback)
     {
         $this->openFile(function ($handle) use ($callback) {
-            $columns = array_filter(fgetcsv($handle, 1000, ','));
+            $columns = array_filter(fgetcsv($handle, 1000, ';'));
 
-            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+            while (($data = fgetcsv($handle, 1000, ';')) !== false) {
                 $row = [];
-
                 for ($i = 0; $i < count($data); $i++) {
                     if (! isset($columns[$i])) continue;
 
                     $row[$columns[$i]] = $data[$i];
+
+                    
                 }
 
+                
                 $callback($row);
             }
         });

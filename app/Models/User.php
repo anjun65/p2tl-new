@@ -61,8 +61,10 @@ class User extends Authenticatable
     ];
 
     const ROLES = [
-        'USER' => 'USER',
+        'PETUGAS LAPANGAN' => 'PETUGAS LAPANGAN',
         'ADMIN' => 'ADMIN',
+        'ANEV' => 'ANEV',
+        'LABOR' => 'LABOR',
     ];
 
     public function regu()

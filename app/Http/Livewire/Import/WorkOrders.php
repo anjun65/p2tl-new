@@ -16,6 +16,7 @@ class WorkOrders extends Component
     public $upload;
     public $columns;
     public $fieldColumnMap = [
+        'regus_id' => '',
         'id_pelanggan' => '',
         'nama_pelanggan' => '',
         'latitude' => '',
@@ -39,29 +40,31 @@ class WorkOrders extends Component
     ];
 
     protected $rules = [
-        'fieldColumnMap.id_pelanggan' => 'required',
-        'fieldColumnMap.nama_pelanggan' => 'required',
-        'fieldColumnMap.latitude' => 'required',
-        'fieldColumnMap.longitude' => 'required',
-        'fieldColumnMap.alamat' => 'required',
-        'fieldColumnMap.jenis_p2tl' => 'required',
-        'fieldColumnMap.tarif' => 'required',
-        'fieldColumnMap.daya' => 'required',
-        'fieldColumnMap.rbm' => 'required',
-        'fieldColumnMap.lgkh' => 'required',
-        'fieldColumnMap.fkm' => 'required',
-        'fieldColumnMap.keterangan_p2tl' => 'required',
-        'fieldColumnMap.status' => 'required',
-        'fieldColumnMap.no_ba' => 'required',
-        'fieldColumnMap.surat_tugas_p2tl' => 'required',
-        'fieldColumnMap.tanggal_surat_tugas_p2tl' => 'required',
-        'fieldColumnMap.surat_tugas_tni' => 'required',
-        'fieldColumnMap.tanggal_surat_tugas_tni' => 'required',
-        'fieldColumnMap.pendamping1_id' => 'required',
-        'fieldColumnMap.pendamping2_id' => 'required',
+        'fieldColumnMap.regus_id' => 'nullable',
+        'fieldColumnMap.id_pelanggan' => 'nullable',
+        'fieldColumnMap.nama_pelanggan' => 'nullable',
+        'fieldColumnMap.latitude' => 'nullable',
+        'fieldColumnMap.longitude' => 'nullable',
+        'fieldColumnMap.alamat' => 'nullable',
+        'fieldColumnMap.jenis_p2tl' => 'nullable',
+        'fieldColumnMap.tarif' => 'nullable',
+        'fieldColumnMap.daya' => 'nullable',
+        'fieldColumnMap.rbm' => 'nullable',
+        'fieldColumnMap.lgkh' => 'nullable',
+        'fieldColumnMap.fkm' => 'nullable',
+        'fieldColumnMap.keterangan_p2tl' => 'nullable',
+        'fieldColumnMap.status' => 'nullable',
+        'fieldColumnMap.no_ba' => 'nullable',
+        'fieldColumnMap.surat_tugas_p2tl' => 'nullable',
+        'fieldColumnMap.tanggal_surat_tugas_p2tl' => 'nullable',
+        'fieldColumnMap.surat_tugas_tni' => 'nullable',
+        'fieldColumnMap.tanggal_surat_tugas_tni' => 'nullable',
+        'fieldColumnMap.pendamping1_id' => 'nullable',
+        'fieldColumnMap.pendamping2_id' => 'nullable',
     ];
 
     protected $customAttributes = [
+        'fieldColumnMap.regus_id' => 'regus_id',
         'fieldColumnMap.id_pelanggan' => 'id_pelanggan',
         'fieldColumnMap.nama_pelanggan' => 'nama_pelanggan',
         'fieldColumnMap.latitude' => 'latitude',
@@ -88,7 +91,7 @@ class WorkOrders extends Component
     {
         Validator::make(
             ['upload' => $value],
-            ['upload' => 'required|mimes:txt,csv'],
+            ['upload' => 'nullable|mimes:txt,csv'],
         )->validate();
     }
 
@@ -107,10 +110,11 @@ class WorkOrders extends Component
 
         Csv::from($this->upload)
             ->eachRow(function ($row) use (&$importCount) {
-                WorkOrder::create(
-                    $this->extractFieldsFromRow($row)
+                
+                $test = WorkOrder::create(
+                    $this->extractFieldsFromRow($row)                    
                 );
-
+        
                 $importCount++;
             });
 
@@ -136,7 +140,7 @@ class WorkOrders extends Component
     public function guessWhichColumnsMapToWhichFields()
     {
         $guesses = [
-
+            'regus_id' => ['regus_id'],
             'id_pelanggan' => ['id_pelanggan'],
             'nama_pelanggan' => ['nama_pelanggan'],
             'latitude' => ['latitude'],
