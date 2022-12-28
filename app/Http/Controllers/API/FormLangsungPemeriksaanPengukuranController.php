@@ -27,6 +27,7 @@ class FormLangsungPemeriksaanPengukuranController extends Controller
             'cos_2' => ['required'],
             'cos_3' => ['required'],
             'akurasi' => ['required'],
+            'foto_sebelum' => ['required','image']
         ]);
 
         

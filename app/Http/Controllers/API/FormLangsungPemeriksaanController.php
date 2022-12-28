@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FormLangsungHasilPemeriksaan;
 use App\Helpers\ResponseFormatter;
+use Illuminate\Support\Facades\Storage;
 
 class FormLangsungPemeriksaanController extends Controller
 {
@@ -27,6 +28,7 @@ class FormLangsungPemeriksaanController extends Controller
             'cos_2' => ['required'],
             'cos_3' => ['required'],
             'akurasi' => ['required'],
+            'foto_sebelum' =>['required','image'],
         ]);
 
         
@@ -49,6 +51,7 @@ class FormLangsungPemeriksaanController extends Controller
                 'cos_2' => $request->cos_2,
                 'cos_3' => $request->cos_3,
                 'akurasi' => $request->akurasi,
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         } else {
             $form = FormLangsungHasilPemeriksaan::create([
@@ -67,6 +70,7 @@ class FormLangsungPemeriksaanController extends Controller
                 'cos_2' => $request->cos_2,
                 'cos_3' => $request->cos_3,
                 'akurasi' => $request->akurasi,
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPemeriksaan/kwh/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         }
         

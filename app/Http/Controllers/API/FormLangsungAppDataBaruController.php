@@ -24,11 +24,11 @@ class FormLangsungAppDataBaruController extends Controller
             'rating_arus' => ['required'],
             'tegangan_nominal' => ['required'],
             'stand_kwh_meter' => ['required'],
-            'foto_kwh_meter' => ['required','image','max:2048'],
+            'foto_kwh_meter' => ['required','image'],
             'jenis_pembatas' => ['required'],
             'alat_pembatas_merk' => ['required'],
             'rating_arus_2' => ['required'],
-            'foto_pembatas' => ['required','image','max:2048'],
+            'foto_pembatas' => ['required','image'],
         ]);
 
         

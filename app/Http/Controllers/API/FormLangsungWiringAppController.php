@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Helpers\ResponseFormatter;
 use App\Models\FormLangsungWiringApp;
+use Illuminate\Support\Facades\Storage;
 
 class FormLangsungWiringAppController extends Controller
 {
@@ -24,7 +25,8 @@ class FormLangsungWiringAppController extends Controller
             'terminal8' => ['required'],
             'terminal9' => ['required'],
             'terminal11' => ['required'],
-            'keterangan_wiring_app' => ['required'],            
+            'keterangan_wiring_app' => ['required'], 
+            'foto_sebelum' => ['required','image'],         
         ]);
         
         $form = FormLangsungWiringApp::where('forms_id', $request->forms_id)->first();
@@ -43,6 +45,7 @@ class FormLangsungWiringAppController extends Controller
                 'terminal9' => $request->terminal9,
                 'terminal11' => $request->terminal11,
                 'keterangan_wiring_app' => $request->keterangan_wiring_app,
+                'foto_sebelum' => Storage::putFileAs('public/assets/datawiringapp', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         } else {
             $form = FormLangsungWiringApp::create([
@@ -58,6 +61,7 @@ class FormLangsungWiringAppController extends Controller
                 'terminal9' => $request->terminal9,
                 'terminal11' => $request->terminal11,
                 'keterangan_wiring_app' => $request->keterangan_wiring_app,
+                'foto_sebelum' => Storage::putFileAs('public/assets/datawiringapp', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         }
         

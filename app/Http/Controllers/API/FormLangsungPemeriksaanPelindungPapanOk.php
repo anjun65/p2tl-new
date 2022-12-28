@@ -18,11 +18,11 @@ class FormLangsungPemeriksaanPelindungPapanOk extends Controller
             'segel' => ['required'],
             'nomor_tahun_kode_segel' => ['required'],
             'keterangan' => ['required'],
-            'foto_sebelum' => ['required','image','max:2048'],
+            'foto_sebelum' => ['required','image'],
             'post_peralatan' => ['required'],
             'post_segel' => ['required'],
             'post_nomor_tahun_kode_segel' => ['required'],
-            'foto_sesudah' => ['required','image','max:2048'],
+            'foto_sesudah' => ['required','image'],
         ]);
 
         $form = form_model::where('forms_id', $request->forms_id)->first();
