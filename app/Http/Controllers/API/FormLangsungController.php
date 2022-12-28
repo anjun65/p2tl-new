@@ -52,7 +52,7 @@ class FormLangsungController extends Controller
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
                 // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension()),
+                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension()),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
