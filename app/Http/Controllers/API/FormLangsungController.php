@@ -37,7 +37,7 @@ class FormLangsungController extends Controller
             'nama_saksi' => ['required'],
             'alamat_saksi' => ['required'],
             'nomor_identitas' => ['required'],
-            'file' => ['required'],
+            'file' => ['required','image'],
             'no_telpon_saksi' => ['required'],
         ]);
 
