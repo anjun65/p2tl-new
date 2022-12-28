@@ -31,15 +31,13 @@ class FormLangsungController extends Controller
             );
     }
     
-
-
     public function store(Request $request)
     {
         $request->validate([
             'nama_saksi' => ['required'],
             'alamat_saksi' => ['required'],
             'nomor_identitas' => ['required'],
-            'file' => ['required','image','max:2048'],
+            'file' => ['required'],
             'no_telpon_saksi' => ['required'],
         ]);
 

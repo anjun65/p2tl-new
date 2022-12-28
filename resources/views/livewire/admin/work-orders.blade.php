@@ -1,3 +1,15 @@
+@push('addon-style')
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNjQ0xxvZuZSljlbol5QxG8Dh_HY3HCQ"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+    <style type="text/css">
+        #map {
+          width: 100%;
+          height: 480px;
+        }
+    </style>
+@endpush
+
+
 <div>
     <div class="py-4 space-y-4">
 
@@ -207,6 +219,14 @@
                 <x-input.group for="tarif" label="Tarif" :error="$errors->first('editing.tarif')">
                     <x-input.text wire:model="editing.tarif" id="tarif" placeholder="Tarif" />
                 </x-input.group>
+
+
+                <div id="map"></div>
+                <br>
+                <button id="confirmPosition">Confirm Position</button>
+                <br>
+                <p>On idle position: <span id="onIdlePositionView"></span></p>
+                <p>On click position: <span id="onClickPositionView"></span></p>
 
                 <x-input.group for="daya" label="Daya" :error="$errors->first('editing.daya')">
                     <x-input.text type="number" wire:model="editing.daya" id="daya" placeholder="Daya" />
@@ -421,3 +441,35 @@
         </x-modal.dialog>
     </form>
 </div>
+
+@push('addon-script')
+<script>
+    // Get element references
+    var confirmBtn = document.getElementById('confirmPosition');
+    var onClickPositionView = document.getElementById('onClickPositionView');
+    var onIdlePositionView = document.getElementById('onIdlePositionView');
+  
+    // Initialize locationPicker plugin
+    var lp = new locationPicker('map', {
+      setCurrentPosition: true,
+      lat: 45.5017,
+      lng: -73.5673, // You can omit this, defaults to true
+    }, {
+      zoom: 15 // You can set any google map options here, zoom defaults to 15
+    });
+  
+    // Listen to button onclick event
+    confirmBtn.onclick = function () {
+      // Get current location and show it in HTML
+      var location = lp.getMarkerPosition();
+      onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+    };
+  
+    // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
+    google.maps.event.addListener(lp.map, 'idle', function (event) {
+      // Get current location and show it in HTML
+      var location = lp.getMarkerPosition();
+      onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+    });
+  </script>
+@endpush
