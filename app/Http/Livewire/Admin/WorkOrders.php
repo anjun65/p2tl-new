@@ -20,6 +20,8 @@ class WorkOrders extends Component
     use WithPerPagePagination, WithSorting, WithBulkActions, WithCachedRows;
 
     public $showEditModal = false;
+    public $showDeleteModal = false;
+    
     public $jam_nyala_showEditModal = false;
     
     public $showFilters = false;
@@ -176,6 +178,17 @@ class WorkOrders extends Component
     //     return response()->download(storage_path('app/public/'.$berkas->path_video)); 
     // }
 
+    public function deleteSelected()
+    {
+        $deleteCount = $this->selectedRowsQuery->count();
+
+        $this->selectedRowsQuery->delete();
+
+        $this->showDeleteModal = false;
+
+        $this->notify('Anda telah menghapus ' . $deleteCount . ' data.');
+    }
+    
     public function render()
     {
         $regus = Regu::all();

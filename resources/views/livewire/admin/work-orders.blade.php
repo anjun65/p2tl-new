@@ -418,6 +418,22 @@
     </form>
 
 
+    <form wire:submit.prevent="deleteSelected">
+        <x-modal.confirmation wire:model.defer="showDeleteModal">
+            <x-slot name="title">Hapus Data</x-slot>
+
+            <x-slot name="content">
+                <div class="py-8 text-cool-gray-700">Anda yakin ingin menghapus data? Data yang terhapus tidak bisa dikembalikan.</div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-button.secondary wire:click="$set('showDeleteModal', false)">Batal</x-button.secondary>
+
+                <x-button.primary type="submit">Hapus</x-button.primary>
+            </x-slot>
+        </x-modal.confirmation>
+    </form>
+    
     <form wire:submit.prevent="jam_nyala_save">
         <x-modal.dialog wire:model.defer="jam_nyala_showEditModal">
             <x-slot name="title">Jam Nyala</x-slot>
