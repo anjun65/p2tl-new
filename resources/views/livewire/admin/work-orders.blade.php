@@ -1,4 +1,4 @@
-@push('addon-style')
+{{-- @push('addon-style')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVNjQ0xxvZuZSljlbol5QxG8Dh_HY3HCQ"></script>
     <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
     <style type="text/css">
@@ -7,7 +7,7 @@
           height: 480px;
         }
     </style>
-@endpush
+@endpush --}}
 
 
 <div>
@@ -442,7 +442,7 @@
     </form>
 </div>
 
-@push('addon-script')
+{{-- @push('addon-script')
 <script>
     // Get element references
     var confirmBtn = document.getElementById('confirmPosition');
@@ -472,4 +472,4 @@
       onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
     });
   </script>
-@endpush
+@endpush --}}
