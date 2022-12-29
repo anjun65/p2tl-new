@@ -31,13 +31,15 @@ class WorkOrder extends Model
         'tanggal_surat_tugas_tni',
         'pendamping1_id',
         'pendamping2_id',
+        'tanggal_inspeksi',
+        'jumlah_ts_rp',
+        'jumlah_ts_kwh',
     ];
 
     const Keterangan = [
         'BA' => 'Pemeriksaan Dengan BA',
         'RK' => 'Rumah Kosong/Bangunan tidak dihuni',
         'TO' => 'Tidak ada Orang',
-        'Normal' => 'Normal | Diperiksa Tanpa BA',
     ];
 
     const Status = [

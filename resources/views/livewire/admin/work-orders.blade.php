@@ -67,6 +67,7 @@
                     
                     <x-table.heading>Keterangan</x-table.heading>
                     <x-table.heading>Status</x-table.heading>
+                    <x-table.heading>Lihat BA</x-table.heading>
                     <x-table.heading />
                 </x-slot>
 
@@ -144,8 +145,13 @@
                         </x-table.cell>
 
                         <x-table.cell>
+                            <span class="text-gray-900 font-medium"><a href="{{ route('admin-form-langsung', $item->id) }}">Lihat BA</a></span>
+                        </x-table.cell>
+
+                        <x-table.cell>
                             <x-button.link wire:click="edit({{ $item->id }})">Edit</x-button.link>
                         </x-table.cell>
+
                     </x-table.row>
                     @empty
                     <x-table.row>
@@ -219,14 +225,6 @@
                 <x-input.group for="tarif" label="Tarif" :error="$errors->first('editing.tarif')">
                     <x-input.text wire:model="editing.tarif" id="tarif" placeholder="Tarif" />
                 </x-input.group>
-
-
-                <div id="map"></div>
-                <br>
-                <button id="confirmPosition">Confirm Position</button>
-                <br>
-                <p>On idle position: <span id="onIdlePositionView"></span></p>
-                <p>On click position: <span id="onClickPositionView"></span></p>
 
                 <x-input.group for="daya" label="Daya" :error="$errors->first('editing.daya')">
                     <x-input.text type="number" wire:model="editing.daya" id="daya" placeholder="Daya" />
@@ -348,6 +346,10 @@
                     </x-input.group>
                 @endif
                 
+                <x-input.group for="tanggal_inspeksi" label="Tanggal Inspeksi" :error="$errors->first('editing.tanggal_inspeksi')">
+                    <x-datepicker wire:model="editing.tanggal_inspeksi" id="tanggal_inspeksi" Placeholder="Tanggal Inspeksi">
+                    </x-datepicker>
+                </x-input.group>
 
                 <x-input.group for="" label="Keterangan Berita Acara">
 
@@ -401,13 +403,23 @@
                         @endforelse
                     </x-input.select>
                  </x-input.group>
+
+                 @if(!empty($editing->status_pelanggaran))
+                    @if($editing->status_pelanggaran != 'Normal')
+    
+                    <x-input.group for="jumlah_ts_rp" label="Jumlah TS (Rp)" :error="$errors->first('editing.jumlah_ts_rp')">
+                        <x-input.text wire:model="editing.jumlah_ts_rp" id="no_ba" Placeholder="Jumlah TS (Rp)">
+                        </x-input.text>
+                    </x-input.group>
+
+                    <x-input.group for="jumlah_ts_kwh" label="Jumlah TS (kWh)" :error="$errors->first('editing.jumlah_ts_kwh')">
+                        <x-input.text wire:model="editing.jumlah_ts_kwh" id="no_ba" Placeholder="Jumlah TS (kWh)">
+                        </x-input.text>
+                    </x-input.group>
+
+                    @endif
+                 @endif
             </x-slot>
-
-
-
-            
-
-            
 
             <x-slot name="footer">
                 <x-button.secondary wire:click="$set('showEditModal', false)">Cancel</x-button.secondary>
