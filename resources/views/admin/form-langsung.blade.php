@@ -764,7 +764,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
