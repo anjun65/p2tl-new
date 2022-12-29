@@ -41,7 +41,6 @@ class FormLangsungController extends Controller
             'no_telpon_saksi' => ['required'],
         ]);
 
-        
         $form = FormLangsung::where('works_id', $request->works_id)->first();
         
         if (empty($form)){

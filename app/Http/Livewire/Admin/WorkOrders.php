@@ -113,10 +113,9 @@ class WorkOrders extends Component
         $this->showEditModal = true;
     }
 
-    public function jam_nyala_save(JamNyala $nyala_mode)
+    public function jam_nyala_save(JamNyala $nyala_model)
     {
-        $this->validate();
-
+        
         $this->nyala_model->fill([
             'works_id' => $this->editing->id,
         ]);
