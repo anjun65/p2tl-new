@@ -13,21 +13,21 @@ class FormLangsungWiringAppController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
-            'forms_id' => ['required'],
-            'terminal1' => ['required'],
-            'terminal2' => ['required'],
-            'terminal3' => ['required'],
-            'terminal4' => ['required'],
-            'terminal5' => ['required'],
-            'terminal6' => ['required'],
-            'terminal7' => ['required'],
-            'terminal8' => ['required'],
-            'terminal9' => ['required'],
-            'terminal11' => ['required'],
-            'keterangan_wiring_app' => ['required'], 
-            'foto_sebelum' => ['required','image'],         
-        ]);
+        // $request->validate([
+        //     'forms_id' => ['required'],
+        //     'terminal1' => ['required'],
+        //     'terminal2' => ['required'],
+        //     'terminal3' => ['required'],
+        //     'terminal4' => ['required'],
+        //     'terminal5' => ['required'],
+        //     'terminal6' => ['required'],
+        //     'terminal7' => ['required'],
+        //     'terminal8' => ['required'],
+        //     'terminal9' => ['required'],
+        //     'terminal11' => ['required'],
+        //     'keterangan_wiring_app' => ['required'], 
+        //     'foto_sebelum' => ['required','image'],         
+        // ]);
         
         $form = FormLangsungWiringApp::where('forms_id', $request->forms_id)->first();
         
