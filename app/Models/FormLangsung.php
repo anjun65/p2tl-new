@@ -28,6 +28,12 @@ class FormLangsung extends Model
         'no_telpon_saksi',
     ];
 
+
+    public function work()
+    {
+        return $this->belongsTo(WorkOrder::class, 'works_id', 'id');
+    }
+
     public function data_lama()
     {
         return $this->hasOne(FormLangsungDataAppLama::class, 'forms_id', 'id');

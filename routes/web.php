@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\FormLangsungController;
+use App\Http\Controllers\Annev\FormLangsungController as annev;
 use App\Http\Controllers\Form1Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,9 @@ Route::middleware([
         return view('admin.pelanggaran');
     })->name('admin-pelanggaran');
     
+
+    Route::put('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+
 
     // Route::get('/user/work-orders', function () {
     //     return view('user.work-orders');

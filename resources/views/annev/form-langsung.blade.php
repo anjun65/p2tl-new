@@ -1407,6 +1407,43 @@
                                   
                               @endif
                                {{-- Data Hasil Pemeriksaan App --}}
+
+                                {{-- data status --}}
+                              <form action="{{ route('annev-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('PUT')
+                                @csrf
+                                
+                                <div class="grid grid-cols-2 gap-6">
+                                  <div class="col-span-3 sm:col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700">Status Pelanggaran</label>
+                                      <x-input.select name="status_pelanggaran">
+                                        <option value="{{ $item->work->status_pelanggaran }}">Normal</option>
+
+                                        <option value="" disabled>Pilih Status Pelanggaran</option>
+                                        <option value="Normal">Normal</option>
+                                        <option value="P1">P1</option>
+                                        <option value="P2">P2</option>
+                                        <option value="P3">P3</option>
+                                        <option value="P4">P4</option>
+
+                                        
+                                        <option value="K1">K1</option>
+                                        <option value="K2">K2</option>
+                                        <option value="K3">K3</option>
+                                      </x-input.select>
+                                    </div>
+                                </div>
+
+                                <div class="col text-right">
+                                
+                                
+                                <x-button type="submit" class="mt-5">
+                                    Save now
+                                </x-button>
+
+                              </form>
+
+                              {{-- data status pelanggaran --}}
                         </div>
                     </div>
                 </div>
