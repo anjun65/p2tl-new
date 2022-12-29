@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Annev;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FormLangsung;
+use App\Models\WorkOrder;
 
 class FormLangsungController extends Controller
 {
@@ -23,10 +24,13 @@ class FormLangsungController extends Controller
 
         $item = FormLangsung::where('works_id', $id)->first();
 
-        $item->update([
+        $work = WorkOrder::find($item->id)->first();
+
+
+        $work->update([
             'status_pelanggaran' => $status_pelanggaran,
         ]);
 
-        return redirect(route('annev-form-langsung'));
+        return redirect(route('annev-form-langsung', $id));
     }
 }

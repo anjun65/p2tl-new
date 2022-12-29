@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Models\FormLangsungPemeriksaanPengukuran;
+use Illuminate\Support\Facades\Storage;
 
 class FormLangsungPemeriksaanPengukuranController extends Controller
 {
@@ -50,6 +51,7 @@ class FormLangsungPemeriksaanPengukuranController extends Controller
                 'cos_2' => $request->cos_2,
                 'cos_3' => $request->cos_3,
                 'akurasi' => $request->akurasi,
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPengukuran', $request->foto_sebelum, 'foto_ukur_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         } else {
             $form = FormLangsungPemeriksaanPengukuran::create([
@@ -68,6 +70,7 @@ class FormLangsungPemeriksaanPengukuranController extends Controller
                 'cos_2' => $request->cos_2,
                 'cos_3' => $request->cos_3,
                 'akurasi' => $request->akurasi,
+                'foto_sebelum' => Storage::putFileAs('public/assets/dataPengukuran', $request->foto_sebelum, 'foto_ukur_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension()),
             ]);
         }
         

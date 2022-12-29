@@ -777,7 +777,7 @@
                             <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Pan</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Papan OK</h3>
                                     <p class="mt-1 text-sm text-gray-600"></p>
                                   </div>
                                 </div>
@@ -1415,7 +1415,7 @@
                                 <div class="grid grid-cols-2 gap-6">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Status Pelanggaran</label>
-                                      <x-input.select name="status_pelanggaran">
+                                      <x-input.select name="status_pelanggaran" id="status_pelanggaran">
                                         <option value="{{ $item->work->status_pelanggaran }}">Normal</option>
 
                                         <option value="" disabled>Pilih Status Pelanggaran</option>
