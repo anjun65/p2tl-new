@@ -22,5 +22,6 @@ class FormLangsungWiringApp extends Model
         'terminal9',
         'terminal11',
         'keterangan_wiring_app',
+        'foto_sebelum',
     ];
 }

@@ -25,5 +25,6 @@ class FormLangsungPemeriksaanPengukuran extends Model
         'cos_2',
         'cos_3',
         'akurasi',
+        'foto_sebelum',
     ];
 }
