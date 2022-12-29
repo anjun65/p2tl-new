@@ -638,7 +638,6 @@
                                       </div>
                                     </div>
                                 </div>
-                              </div>
                              
                             </div>
                               
@@ -764,7 +763,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -777,14 +775,12 @@
                             <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Pintu Box APP 
-                                        /Pelindung Busbar dan Pembatas</h3>
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Papan OK</h3>
                                     <p class="mt-1 text-sm text-gray-600"></p>
                                   </div>
                                 </div>
                                 <div class="mt-5 md:col-span-2 md:mt-0">
-                                  
-                                    <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
                                       <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
 
                                         <div class="grid grid-cols-3 gap-6">
@@ -802,7 +798,7 @@
                                           </div>
                                         </div>
 
-                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
                                               <label class="block text-sm font-medium text-gray-700">Segel</label>
                                               <div class="mt-1 flex rounded-md shadow-sm">
@@ -842,8 +838,8 @@
                                           <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
                                                 <label class="block text-sm font-large text-gray-700">Kondisi Setelah Pemeriksaan</label>
-                                            </div>
-                                        </div>
+                                              </div>
+                                          </div>
 
                                           <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
@@ -885,11 +881,10 @@
 
                                                             
                                       </div>
-                                    </div>
+                                  </div>
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
