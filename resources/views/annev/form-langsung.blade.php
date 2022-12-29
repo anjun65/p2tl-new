@@ -1408,7 +1408,7 @@
                                {{-- Data Hasil Pemeriksaan App --}}
 
                                 {{-- data status --}}
-                              <form action="{{ route('annev-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
+                              <form action="{{ route('annev-edit-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 

@@ -44,7 +44,9 @@ Route::middleware([
     })->name('admin-pelanggaran');
     
 
-    Route::put('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+    Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+
+    Route::put('/annev/form-langsung/edit/{id}', [annev::class, 'update'])->name('annev-edit-form-langsung');
 
 
     // Route::get('/user/work-orders', function () {

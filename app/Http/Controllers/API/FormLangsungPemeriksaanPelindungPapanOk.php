@@ -43,7 +43,7 @@ class FormLangsungPemeriksaanPelindungPapanOk extends Controller
             ]);
         } else {
             $form = form_model::create([
-                'forms_id' => 1,
+                'forms_id' => $request->forms_id,
                 'peralatan' => $request->peralatan,
                 'segel' => $request->segel,
                 'nomor_tahun_kode_segel' => $request->nomor_tahun_kode_segel,
