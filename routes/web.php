@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FormLangsungController;
 use App\Http\Controllers\Form1Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +35,8 @@ Route::middleware([
     Route::get('/admin/work-orders', function () {
         return view('admin.work-orders');
     })->name('admin-wo');
-    
+
+    Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
 
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
