@@ -22,11 +22,9 @@ class FormLangsungController extends Controller
     {
         $status_pelanggaran = $request->status_pelanggaran;
 
-        $item = FormLangsung::where('works_id', $id)->first();
+        $item = FormLangsung::find($id)->first();
 
-        dd($id);
         $work = WorkOrder::find($item->id)->first();
-
 
         $work->update([
             'status_pelanggaran' => $status_pelanggaran,
