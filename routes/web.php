@@ -5,6 +5,8 @@ use App\Http\Controllers\Annev\FormLangsungController as annev;
 use App\Http\Controllers\Form1Controller;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Livewire\Admin\ReguWoDetails;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +38,13 @@ Route::middleware([
     Route::get('/admin/work-orders', function () {
         return view('admin.work-orders');
     })->name('admin-wo');
+
+    Route::get('/admin/new', function () {
+        return view('admin.wo');
+    })->name('admin-new-wo');
+
+    Route::get('/admin/regu/{pass}', ReguWoDetails::class)->name('admin-new-wo');
+
 
     Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
 

@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('works_id')->constrained('work_orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('regus_id')->constrained('regus')->onDelete('cascade')->onUpdate('cascade');
-            
             $table->string('nama_saksi')->nullable();
             $table->string('alamat_saksi')->nullable();
             $table->string('nomor_identitas')->nullable();

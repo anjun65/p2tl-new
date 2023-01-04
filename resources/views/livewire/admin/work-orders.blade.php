@@ -145,7 +145,7 @@
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-gray-900 font-medium"><a href="{{ route('admin-form-langsung', $item->id) }}">Lihat BA</a></span>
+                            <span class="text-gray-900 font-medium"><a href="{{ route('admin-form-langsung', $item->form->id) }}">Lihat BA</a></span>
                         </x-table.cell>
 
                         <x-table.cell>
