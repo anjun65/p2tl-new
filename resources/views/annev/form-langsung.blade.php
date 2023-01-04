@@ -19,57 +19,56 @@
                                   <p class="mt-1 text-sm text-gray-600"></p>
                                 </div>
                               </div>
-                              <div class="mt-5 md:col-span-2 md:mt-0">
-                                
-                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
-                                    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                      <div class="grid grid-cols-2 gap-6">
-                                        <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
-                                          <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->nama_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                          </div>
+                              <div class="mt-5 md:col-span-2 md:mt-0">        
+                                <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                  <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                    <div class="grid grid-cols-2 gap-6">
+                                      <div class="col-span-3 sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
+                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                          <input type="text" disabled value="{{ $item->nama_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                         </div>
                                       </div>
-                          
-                                      <div class="grid grid-cols-3 gap-6">
-                                        <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
-                                          <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->alamat_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                          </div>
+                                    </div>
+                        
+                                    <div class="grid grid-cols-3 gap-6">
+                                      <div class="col-span-3 sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
+                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                          <input type="text" disabled value="{{ $item->alamat_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                         </div>
                                       </div>
-                                    
-                                      <div class="grid grid-cols-3 gap-6">
-                                        <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
-                                          <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->nomor_identitas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                          </div>
+                                    </div>
+                                  
+                                    <div class="grid grid-cols-3 gap-6">
+                                      <div class="col-span-3 sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
+                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                          <input type="text" disabled value="{{ $item->nomor_identitas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                         </div>
                                       </div>
+                                    </div>
 
 
-                                      <div class="grid grid-cols-3 gap-6">
-                                        <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
-                                          <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->no_telpon_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                          </div>
+                                    <div class="grid grid-cols-3 gap-6">
+                                      <div class="col-span-3 sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
+                                        <div class="mt-1 flex rounded-md shadow-sm">
+                                          <input type="text" disabled value="{{ $item->no_telpon_saksi }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                         </div>
                                       </div>
+                                    </div>
 
-                                      <div>
-                                        <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
-                                        <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                          <div class="space-y-1 text-center">
-                                            <img src="{{ Storage::url($item->file_nomor_identitas) }}"/>
-                                          </div>
+                                    <div>
+                                      <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
+                                      <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                        <div class="space-y-1 text-center">
+                                          <img src="{{ Storage::url($item->file_nomor_identitas) }}"/>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                </div>
                               </div>
                             </div>
                             {{-- Data Saksi --}}
@@ -84,158 +83,152 @@
                                   </div>
                                 </div>
                                 <div class="mt-5 md:col-span-2 md:mt-0">
-                                  
-                                    <div class="shadow sm:overflow-hidden sm:rounded-md">
-                                      <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                      <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                              <label class="block text-sm font-large text-gray-700">kWh Meter</label>
+                                          </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Merk/Type</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->data_lama->merk }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">No. Register</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->data_lama->no_reg }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
 
                                         <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-large text-gray-700">kWh Meter</label>
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">No. Seri</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->no_seri }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                             </div>
+                                          </div>
+                                        </div>
+
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->tahun_pembuatan }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
                                         </div>
 
                                         <div class="grid grid-cols-3 gap-6">
                                           <div class="col-span-3 sm:col-span-2">
-                                            <label class="block text-sm font-medium text-gray-700">Merk/Type</label>
+                                            <label class="block text-sm font-medium text-gray-700">Class</label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                              <input type="text" disabled value="{{ $item->data_lama->merk }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->class }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Konstanta</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->konstanta }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Rating Arus (In)</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->rating_arus }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Tegangan Nomimal</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->tegangan_nominal }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Stand kWh Meter</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->stand_kwh_meter }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div>
+                                          <label class="block text-sm font-medium text-gray-700">Foto KWH Meter</label>
+                                          <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                            <div class="space-y-1 text-center">
+                                              <img src="{{ Storage::url($item->data_lama->foto_kwh_meter) }}"/>
                                             </div>
                                           </div>
                                         </div>
 
                                         <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">No. Register</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->no_reg }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
+                                                <label class="block text-sm font-large text-gray-700">Alat Pembatas</label>
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Jenis pembatas</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->jenis_pembatas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                             </div>
                                           </div>
+                                        </div>
 
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">No. Seri</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->no_seri }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Merk /Type</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->alat_pembatas_merk }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                             </div>
                                           </div>
+                                        </div>
 
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->tahun_pembuatan }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_lama->rating_arus_2 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                             </div>
                                           </div>
+                                        </div>
 
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Class</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->class }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
+                                        <div>
+                                          <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
+                                          <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                            <div class="space-y-1 text-center">
+                                              <img src="{{ Storage::url($item->data_lama->foto_pembatas) }}"/>
                                             </div>
                                           </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Konstanta</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->konstanta }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Rating Arus (In)</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->rating_arus }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Tegangan Nomimal</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->tegangan_nominal }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Stand kWh Meter</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->stand_kwh_meter }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div>
-                                            <label class="block text-sm font-medium text-gray-700">Foto KWH Meter</label>
-                                            <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                              <div class="space-y-1 text-center">
-                                                <img src="{{ Storage::url($item->data_lama->foto_kwh_meter) }}"/>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                                <div class="col-span-3 sm:col-span-2">
-                                                    <label class="block text-sm font-large text-gray-700">Alat Pembatas</label>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="grid grid-cols-3 gap-6">
-                                                <div class="col-span-3 sm:col-span-2">
-                                                  <label class="block text-sm font-medium text-gray-700">Jenis pembatas</label>
-                                                  <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->data_lama->jenis_pembatas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                  </div>
-                                                </div>
-                                              </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Merk /Type</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->alat_pembatas_merk }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_lama->rating_arus_2 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div>
-                                            <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
-                                            <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                              <div class="space-y-1 text-center">
-                                                <img src="{{ Storage::url($item->data_lama->foto_pembatas) }}"/>
-                                              </div>
-                                            </div>
-                                          </div>                                        
-                                      </div>
+                                        </div>                                        
                                     </div>
+                                  </div>
                                 </div>
-                              </div>
-                             
                             </div>
-                              
-                                  
-                              @endif
-                               {{-- Data App Baru --}}
+                            @endif
+                            {{-- Data App Baru --}}
 
                             @if (!empty($item->data_lama))
                             <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
@@ -266,101 +259,101 @@
                                         </div>
 
                                         <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">No. Register</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->no_reg }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">No. Seri</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->no_seri }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->tahun_pembuatan }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Class</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->class }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Konstanta</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->konstanta }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Rating Arus (In)</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->rating_arus }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Tegangan Nomimal</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->tegangan_nominal }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Stand kWh Meter</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->stand_kwh_meter }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div>
+                                          <label class="block text-sm font-medium text-gray-700">Foto KWH Meter</label>
+                                          <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                            <div class="space-y-1 text-center">
+                                              <img src="{{ Storage::url($item->data_baru->foto_kwh_meter) }}"/>
+                                            </div>
+                                          </div>
+                                        </div>
+
+                                        <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">No. Register</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->no_reg }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
+                                                <label class="block text-sm font-large text-gray-700">Alat Pembatas</label>
                                             </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">No. Seri</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->no_seri }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->tahun_pembuatan }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Class</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->class }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Konstanta</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->konstanta }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Rating Arus (In)</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->rating_arus }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Tegangan Nomimal</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->tegangan_nominal }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                            <div class="col-span-3 sm:col-span-2">
-                                              <label class="block text-sm font-medium text-gray-700">Stand kWh Meter</label>
-                                              <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->data_baru->stand_kwh_meter }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div>
-                                            <label class="block text-sm font-medium text-gray-700">Foto KWH Meter</label>
-                                            <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
-                                              <div class="space-y-1 text-center">
-                                                <img src="{{ Storage::url($item->data_baru->foto_kwh_meter) }}"/>
-                                              </div>
-                                            </div>
-                                          </div>
-
-                                          <div class="grid grid-cols-3 gap-6">
-                                                <div class="col-span-3 sm:col-span-2">
-                                                    <label class="block text-sm font-large text-gray-700">Alat Pembatas</label>
-                                                </div>
-                                            </div>
+                                        </div>
                                         
-                                            <div class="grid grid-cols-3 gap-6">
-                                                <div class="col-span-3 sm:col-span-2">
-                                                  <label class="block text-sm font-medium text-gray-700">Jenis pembatas</label>
-                                                  <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->data_baru->jenis_pembatas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                  </div>
-                                                </div>
-                                              </div>
+                                        <div class="grid grid-cols-3 gap-6">
+                                          <div class="col-span-3 sm:col-span-2">
+                                            <label class="block text-sm font-medium text-gray-700">Jenis pembatas</label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                              <input type="text" disabled value="{{ $item->data_baru->jenis_pembatas }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            </div>
+                                          </div>
+                                        </div>
 
                                           <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
@@ -391,13 +384,10 @@
                                       </div>
                                     </div>
                                 </div>
-                              </div>
-                             
-                            </div>
-                              
+                            </div>                              
                                   
-                              @endif
-                               {{-- Data App Baru --}}
+                            @endif
+                            {{-- Data App Baru --}}
 
                             {{-- Data Pemeriksaan KWH Meter --}}
 
@@ -515,12 +505,11 @@
                                       </div>
                                     </div>
                                 </div>
-                              </div>
-                             
                             </div>
+                             
                               
                                   
-                              @endif
+                            @endif
                             {{-- Data Pemeriksaan KWH --}}
 
                             {{-- Data Pemeriksaan Terminal --}}
@@ -640,7 +629,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -764,7 +752,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -888,7 +875,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -1012,7 +998,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -1204,7 +1189,6 @@
                                 </div>
                               </div>
                              
-                            </div>
                               
                                   
                               @endif
@@ -1328,7 +1312,6 @@
                                     </div>
                                 </div>
                                 
-                                </div>
                               
                                   
                               @endif
@@ -1401,7 +1384,6 @@
                                     </div>
                                 </div>
                                 
-                                </div>
                               
                                   
                               @endif
@@ -1416,7 +1398,7 @@
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Status Pelanggaran</label>
                                       <x-input.select name="status_pelanggaran" id="status_pelanggaran">
-                                        <option value="{{ $item->work->status_pelanggaran }}">Normal</option>
+                                        <option value="{{ $item->work->status_pelanggaran }}">{{ $item->work->status_pelanggaran }}</option>
 
                                         <option value="" disabled>Pilih Status Pelanggaran</option>
                                         <option value="Normal">Normal</option>

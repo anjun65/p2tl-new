@@ -34,6 +34,7 @@ class WorkOrder extends Model
         'tanggal_inspeksi',
         'jumlah_ts_rp',
         'jumlah_ts_kwh',
+        'status_pelanggaran',
     ];
 
     const Keterangan = [
