@@ -34,8 +34,9 @@ class FormTidakLangsung extends Controller
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
-            'file' => ['nullable','image'],
+            'pekerjaan' => ['nullable'],
             'no_telpon_saksi' => ['nullable'],
+            'file' => ['nullable','image'],
         ]);
 
         $form = form_model::where('works_id', $request->works_id)->first();
@@ -47,16 +48,17 @@ class FormTidakLangsung extends Controller
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
+                'pekerjaan' => $request->pekerjaan,
                 // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
                 'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension()),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
             $form->works_id = $request->works_id;
-            $form->regus_id = $request->regus_id;
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
+            $form->pekerjaan = $request->pekerjaan;
             $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();

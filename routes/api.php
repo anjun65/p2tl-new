@@ -20,6 +20,8 @@ use App\Http\Controllers\API\FormLangsungWiringAppController;
 
 use App\Http\Controllers\API\FormLangsungHasilPemeriksaanController;
 
+use App\Http\Controllers\API\FormTidakLangsung;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -63,4 +65,4 @@ Route::post('form-langsung/data-wiring-app', [FormLangsungWiringAppController::c
 
 Route::post('form-langsung/hasil-pemeriksaan', [FormLangsungHasilPemeriksaanController::class, 'store']);
 
-Route::post('form-tidak-langsung', [FormLangsungController::class, 'store']);
+Route::post('form-tidak-langsung', [FormTidakLangsung::class, 'store']);
