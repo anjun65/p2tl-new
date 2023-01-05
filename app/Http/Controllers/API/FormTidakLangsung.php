@@ -42,7 +42,7 @@ class FormTidakLangsung extends Controller
         $form = form_model::where('works_id', $request->works_id)->first();
         
         $new_file = '';
-        
+
         if($request->file)
         {
             $new_file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension());
@@ -52,7 +52,6 @@ class FormTidakLangsung extends Controller
         if (empty($form)){
             $form = form_model::create([
                 'works_id' => $request->works_id,
-                'regus_id' => $request->regus_id,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
