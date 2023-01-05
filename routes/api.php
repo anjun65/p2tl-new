@@ -62,3 +62,5 @@ Route::post('form-langsung/data-pengukuran', [FormLangsungPemeriksaanPengukuranC
 Route::post('form-langsung/data-wiring-app', [FormLangsungWiringAppController::class, 'store']);
 
 Route::post('form-langsung/hasil-pemeriksaan', [FormLangsungHasilPemeriksaanController::class, 'store']);
+
+Route::post('form-tidak-langsung', [FormLangsungController::class, 'store']);

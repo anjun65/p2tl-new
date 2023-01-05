@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('form_tidak_langsungs', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('works_id')->constrained('work_orders')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('nama_saksi')->nullable();
+            $table->string('alamat_saksi')->nullable();
+            $table->string('nomor_identitas')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('no_telpon_saksi')->nullable();
+            
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('form_tidak_langsungs');
+    }
+};

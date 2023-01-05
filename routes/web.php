@@ -22,12 +22,23 @@ Route::get('/', function () {
     return Redirect::route('login');
 });
 
+
 Route::middleware([
-    'auth:sanctum',
+    'ANEV',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+    Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+});
+
+Route::middleware([
+    'ADMIN',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+
+    Route::get('/admin/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
@@ -53,15 +64,52 @@ Route::middleware([
     })->name('admin-pelanggaran');
     
 
-    Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
-
-    Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
-
-
-    // Route::get('/user/work-orders', function () {
-    //     return view('user.work-orders');
-    // })->name('user-wo');
-
     Route::get('admin/form1/', [Form1Controller::class, 'index']);
     Route::get('admin/form2/', [Form2Controller::class, 'index']);
 });
+
+
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+
+//     Route::get('/admin/users', function () {
+//         return view('admin.users');
+//     })->name('admin-user');
+
+//     Route::get('/admin/work-orders', function () {
+//         return view('admin.work-orders');
+//     })->name('admin-wo');
+
+//     Route::get('/admin/new', function () {
+//         return view('admin.wo');
+//     })->name('admin-new-wo');
+
+//     Route::get('/admin/regu/{pass}', ReguWoDetails::class)->name('admin-new-wo');
+
+
+//     Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
+
+//     Route::get('/admin/pelanggaran', function () {
+//         return view('admin.pelanggaran');
+//     })->name('admin-pelanggaran');
+    
+
+//     Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+
+//     Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+
+
+//     // Route::get('/user/work-orders', function () {
+//     //     return view('user.work-orders');
+//     // })->name('user-wo');
+
+//     Route::get('admin/form1/', [Form1Controller::class, 'index']);
+//     Route::get('admin/form2/', [Form2Controller::class, 'index']);
+// });

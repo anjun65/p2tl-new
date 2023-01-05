@@ -4,18 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\FormLangsung;
+use App\Models\FormTidakLangsung as form_model;
 use App\Helpers\ResponseFormatter;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
-class FormLangsungController extends Controller
+class FormTidakLangsung extends Controller
 {
-
     public function show($id)
     {
-        $form_langsung = FormLangsung::with('data_lama','data_baru','kwh_meter','terminal', 'pelindungkwh' , 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
+        $form_langsung = form_model::with('data_lama','data_baru','kwh_meter','terminal', 'pelindungkwh' , 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
             ->where('works_id', $id)->get();
 
         if($form_langsung)
@@ -41,10 +38,10 @@ class FormLangsungController extends Controller
             'no_telpon_saksi' => ['nullable'],
         ]);
 
-        $form = FormLangsung::where('works_id', $request->works_id)->first();
+        $form = form_model::where('works_id', $request->works_id)->first();
         
         if (empty($form)){
-            $form = FormLangsung::create([
+            $form = form_model::create([
                 'works_id' => $request->works_id,
                 'regus_id' => $request->regus_id,
                 'nama_saksi' => $request->nama_saksi,
@@ -67,27 +64,4 @@ class FormLangsungController extends Controller
         
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
-
-
-    // public function updateIdentitas(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'file' => 'required|image|max:2048',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return ResponseFormatter::error(['error'=>$validator->errors()], 'Update Fails', 401);
-    //     }
-
-    //     if ($request->file('file')) {
-
-    //         $file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
-
-    //         //store your file into database
-    //         $user->profile_photo_path = $file;
-    //         $user->update();
-
-    //         return ResponseFormatter::success([$file],'File successfully uploaded');
-    //     }
-    // }
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FormLangsung extends Model
+class FormTidakLangsung extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,7 @@ class FormLangsung extends Model
         'nama_saksi',
         'alamat_saksi',
         'nomor_identitas',
+        'pekerjaan',
         'file_nomor_identitas',
         'no_telpon_saksi',
     ];
