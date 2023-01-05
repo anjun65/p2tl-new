@@ -41,6 +41,14 @@ class FormTidakLangsung extends Controller
 
         $form = form_model::where('works_id', $request->works_id)->first();
         
+        $new_file = '';
+        
+        if($request->file)
+        {
+            $new_file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension());
+        }
+
+
         if (empty($form)){
             $form = form_model::create([
                 'works_id' => $request->works_id,
@@ -50,7 +58,7 @@ class FormTidakLangsung extends Controller
                 'nomor_identitas' => $request->nomor_identitas,
                 'pekerjaan' => $request->pekerjaan,
                 // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension()),
+                'file_nomor_identitas' => $new_file,
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
