@@ -66,7 +66,7 @@ class FormTidakLangsung extends Controller
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
             $form->pekerjaan = $request->pekerjaan;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
+            $form->file_nomor_identitas = $new_file;
             $form->no_telpon_saksi = $request->no_telpon_saksi;            
             $form->save();
         }

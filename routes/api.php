@@ -21,6 +21,14 @@ use App\Http\Controllers\API\FormLangsungWiringAppController;
 use App\Http\Controllers\API\FormLangsungHasilPemeriksaanController;
 
 use App\Http\Controllers\API\FormTidakLangsung;
+use App\Http\Controllers\API\FormTidakLangsungDataAppController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPelindungKwhController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPelindungCtController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPelindungSegelMetrologiController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanTutupTerminalController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanBoxAmrController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanKubikelController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPintuGarduController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +74,13 @@ Route::post('form-langsung/data-wiring-app', [FormLangsungWiringAppController::c
 Route::post('form-langsung/hasil-pemeriksaan', [FormLangsungHasilPemeriksaanController::class, 'store']);
 
 Route::post('form-tidak-langsung', [FormTidakLangsung::class, 'store']);
+
+Route::post('form-tidak-langsung/data-app', [FormTidakLangsungDataAppController::class, 'store']);
+
+Route::post('form-tidak-langsung/data-pemeriksaan/pelindung-kwh', [FormTidakLangsungDataPemeriksaanPelindungKwhController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/pelindung-ct', [FormTidakLangsungDataPemeriksaanPelindungCtController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/segel', [FormTidakLangsungDataPemeriksaanPelindungSegelMetrologiController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/tutup-terminal', [FormTidakLangsungDataPemeriksaanTutupTerminalController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/box-amr', [FormTidakLangsungDataPemeriksaanBoxAmrController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/kubikel', [FormTidakLangsungDataPemeriksaanKubikelController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/pintu-gardu', [FormTidakLangsungDataPemeriksaanPintuGarduController::class, 'store']);
