@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('post_segel');
             $table->string('post_nomor_tahun_kode_segel');
             $table->string('foto_sesudah');
-            $table->string('keterangan');
+            $table->string('all_keterangan');
             $table->timestamps();
         });
     }
