@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        
 
         Component::macro('notify', function ($message) {
             $this->dispatchBrowserEvent('notify', $message);
