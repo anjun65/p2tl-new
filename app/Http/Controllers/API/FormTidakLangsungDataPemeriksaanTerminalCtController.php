@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\FormTidakLangsungDataPemeriksaanKubikel as form_model;
+use App\Models\FormTidakLangsungDataPemeriksaanTerminalCt as form_model;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Storage;
 

@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\FormTidakLangsungDataPemeriksaanPelindungKwh as form_model;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class FormTidakLangsungDataPemeriksaanPelindungKwhController extends Controller
 {
