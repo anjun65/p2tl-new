@@ -24,7 +24,7 @@ Route::get('/', function () {
 
 
 Route::middleware([
-    'ANEV',
+    'anev',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
@@ -33,7 +33,7 @@ Route::middleware([
 });
 
 Route::middleware([
-    'ADMIN',
+    'admin',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
