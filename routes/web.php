@@ -23,14 +23,17 @@ Route::get('/', function () {
 });
 
 
-Route::middleware([
-    'anev',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
-    Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
-});
+// Route::middleware([
+//     'anev',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+//     Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+// });
+
+Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
 
 Route::middleware([
     'admin',
@@ -61,7 +64,7 @@ Route::middleware([
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
     })->name('admin-pelanggaran');
-    
+
 
     Route::get('admin/form1/', [Form1Controller::class, 'index']);
     Route::get('admin/form2/', [Form2Controller::class, 'index']);
