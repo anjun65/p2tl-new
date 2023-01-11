@@ -56,7 +56,6 @@ Route::middleware([
 
     Route::get('/admin/regu/{pass}', ReguWoDetails::class)->name('admin-new-wo');
 
-
     Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
 
     Route::get('/admin/pelanggaran', function () {
