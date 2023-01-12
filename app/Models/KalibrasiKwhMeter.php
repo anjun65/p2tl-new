@@ -17,5 +17,6 @@ class KalibrasiKwhMeter extends Model
         'nomor_identitas_saksi',
         'pekerjaan_saksi',
         'no_telp_saksi',
+        'file',
     ];
 }

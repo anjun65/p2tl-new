@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nomor_identitas_saksi');
             $table->string('pekerjaan_saksi');
             $table->string('no_telp_saksi');
+            $table->string('file');
             
             $table->timestamps();
         });

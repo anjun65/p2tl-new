@@ -9,11 +9,11 @@ use App\Helpers\ResponseFormatter;
 
 class WorkOrderController extends Controller
 {
-    public function all(Request $request)
+    public function regu(Request $request)
     {
-        $work_order = WorkOrder::all();
+        $work_order = WorkOrder::where('regus_id', $request->regus_id)->get();
 
-        if($work_order)
+        if ($work_order)
             return ResponseFormatter::success(
                 $work_order,
                 'Data work order berhasil diambil'
@@ -30,7 +30,7 @@ class WorkOrderController extends Controller
     {
         $work_order = WorkOrder::find($request->id);
 
-        if($work_order)
+        if ($work_order)
             return ResponseFormatter::success(
                 $work_order,
                 'Data berhasil diambil'
@@ -50,9 +50,9 @@ class WorkOrderController extends Controller
             'keterangan_p2tl' => ['required', 'string', 'max:255'],
         ]);
 
-        
+
         $workorder = WorkOrder::find($request->id);
-        
+
         $workorder->update([
             'keterangan_p2tl' => $request->keterangan_p2tl,
         ]);
