@@ -57,7 +57,7 @@ class WorkOrder extends Model
 
     public function jam_nyala()
     {
-        return $this->hasMany(WorkOrder::class, 'works_id', 'id');
+        return $this->hasMany(JamNyala::class, 'works_id', 'id');
     }
 
     public function regu()
