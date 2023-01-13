@@ -65,11 +65,11 @@ class User extends Authenticatable
         'ADMIN' => 'ADMIN',
         'ANEV' => 'ANEV',
         'LABOR' => 'LABOR',
+        'STRUKTURAL' => 'STRUKTURAL',
     ];
 
     public function regu()
     {
         return $this->belongsTo(Regu::class, 'regus_id', 'id');
     }
-
 }

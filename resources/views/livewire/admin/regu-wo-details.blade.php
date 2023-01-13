@@ -388,7 +388,13 @@
                                     </x-input.group>
                                 @endif --}}
                 
-                
+                                @if(!empty($editing->komentar))
+                                <x-input.group for="komentar" label="Komentar" :error="$errors->first('editing.komentar')">
+                                    <x-input.text wire:model="editing.komentar" id="komentar" Placeholder="Komentar">
+                                    </x-input.text>
+                                </x-input.group>
+                                @endif
+                                
                                 @if (!empty($this->editing->path_image))
                                     <x-input.group label="Image" for="upload_video" :error="$errors->first('upload_video')">
                                         <x-jet-button wire:click="download_image({{ $editing->id }})">

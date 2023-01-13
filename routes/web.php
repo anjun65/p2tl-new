@@ -32,15 +32,23 @@ Route::get('/', function () {
 //     Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
 // });
 
-Route::get('/annev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
-Route::put('/annev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+Route::middleware([
+    'anev',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(
+    function () {
+        Route::get('/anev/dashboard', [annev::class, 'show'])->name('annev-dashboard');
+        Route::get('/anev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
+        Route::put('/anev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+    }
+);
 
 Route::middleware([
     'admin',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-
     Route::get('/admin/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -49,13 +57,13 @@ Route::middleware([
         return view('admin.users');
     })->name('admin-user');
 
-    Route::get('/admin/work-orders', function () {
-        return view('admin.work-orders');
-    })->name('admin-wo');
+    // Route::get('/admin/work-orders', function () {
+    //     return view('admin.work-orders');
+    // })->name('admin-wo');
 
-    Route::get('/admin/new', function () {
+    Route::get('/admin/work-orders', function () {
         return view('admin.wo');
-    })->name('admin-new-wo');
+    })->name('admin-wo');
 
     Route::get('/admin/regu/{pass}', ReguWoDetails::class)->name('admin-new-wo');
 
@@ -71,6 +79,15 @@ Route::middleware([
 });
 
 
+Route::middleware([
+    'struktural',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/struktural/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 // Route::middleware([
 //     'auth:sanctum',

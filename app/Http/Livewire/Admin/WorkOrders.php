@@ -21,9 +21,9 @@ class WorkOrders extends Component
 
     public $showEditModal = false;
     public $showDeleteModal = false;
-    
+
     public $jam_nyala_showEditModal = false;
-    
+
     public $showFilters = false;
     public $filters = [
         'name' => '',
@@ -40,39 +40,48 @@ class WorkOrders extends Component
 
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
-    public function rules() { return [
-        'editing.regus_id' => 'required',
-        'editing.id_pelanggan' => 'required',
-        'editing.nama_pelanggan' => 'required',
-        'editing.latitude' => 'required',
-        'editing.longitude' => 'required',
-        'editing.alamat' => 'required',
-        'editing.jenis_p2tl' => 'required',
-        'editing.tarif' => 'required',
-        'editing.daya' => 'required',
-        'editing.rbm' => 'required',
-        'editing.lgkh' => 'required',
-        'editing.fkm' => 'required',
-        'editing.status' => 'nullable',
-        'editing.keterangan_p2tl' => 'nullable',
-        'nyala_model.tanggal' => 'nullable',
-        'nyala_model.jumlah' => 'nullable',
-        'editing.no_ba' => 'required',
-        'editing.surat_tugas_p2tl' => 'required',
-        'editing.tanggal_surat_tugas_p2tl' => 'required',
-        'editing.surat_tugas_tni' => 'required',
-        'editing.tanggal_surat_tugas_tni' => 'required',
-        'editing.pendamping1_id' => 'required',
-        'editing.pendamping2_id' => 'nullable',
-        'editing.tanggal_inspeksi' => 'nullable',
-        'editing.jumlah_ts_rp' => 'nullable',
-        'editing.jumlah_ts_kwh' => 'nullable',
-    ]; }
+    public function rules()
+    {
+        return [
+            'editing.regus_id' => 'required',
+            'editing.id_pelanggan' => 'required',
+            'editing.nama_pelanggan' => 'required',
+            'editing.latitude' => 'required',
+            'editing.longitude' => 'required',
+            'editing.alamat' => 'required',
+            'editing.jenis_p2tl' => 'required',
+            'editing.tarif' => 'required',
+            'editing.daya' => 'required',
+            'editing.rbm' => 'required',
+            'editing.lgkh' => 'required',
+            'editing.fkm' => 'required',
+            'editing.status' => 'nullable',
+            'editing.keterangan_p2tl' => 'nullable',
+            'nyala_model.tanggal' => 'nullable',
+            'nyala_model.jumlah' => 'nullable',
+            'editing.no_ba' => 'required',
+            'editing.surat_tugas_p2tl' => 'required',
+            'editing.tanggal_surat_tugas_p2tl' => 'required',
+            'editing.surat_tugas_tni' => 'required',
+            'editing.tanggal_surat_tugas_tni' => 'required',
+            'editing.pendamping1_id' => 'required',
+            'editing.pendamping2_id' => 'nullable',
+            'editing.tanggal_inspeksi' => 'nullable',
+            'editing.jumlah_ts_rp' => 'nullable',
+            'editing.jumlah_ts_kwh' => 'nullable',
+            'editing.komentar' => 'nullable',
+        ];
+    }
 
-    public function mount() { $this->editing = $this->makeBlankTransaction();
+    public function mount()
+    {
+        $this->editing = $this->makeBlankTransaction();
         $this->nyala_model = JamNyala::make();
     }
-    public function updatedFilters() { $this->resetPage(); }
+    public function updatedFilters()
+    {
+        $this->resetPage();
+    }
 
     public function makeBlankTransaction()
     {
@@ -83,7 +92,7 @@ class WorkOrders extends Component
     {
         $this->useCachedRows();
 
-        $this->showFilters = ! $this->showFilters;
+        $this->showFilters = !$this->showFilters;
     }
 
     public function jam_nyala_create()
@@ -115,7 +124,7 @@ class WorkOrders extends Component
 
     public function jam_nyala_save(JamNyala $nyala_model)
     {
-        
+
         $this->nyala_model->fill([
             'works_id' => $this->editing->id,
         ]);
@@ -138,12 +147,15 @@ class WorkOrders extends Component
         $this->showEditModal = false;
     }
 
-    public function resetFilters() { $this->reset('filters'); }
+    public function resetFilters()
+    {
+        $this->reset('filters');
+    }
 
     public function getRowsQueryProperty()
     {
         $query = WorkOrder::query()
-            ->when($this->filters['name'], fn($query, $name) => $query->where('name', 'like', '%'.$name.'%'));
+            ->when($this->filters['name'], fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
 
         return $this->applySorting($query);
     }
@@ -190,19 +202,19 @@ class WorkOrders extends Component
 
         $this->notify('Anda telah menghapus ' . $deleteCount . ' data.');
     }
-    
+
     public function render()
     {
         $regus = Regu::all();
         $pendampings = Pendamping::all();
         $keterangan = WorkOrder::Keterangan;
         $statuses = WorkOrder::Status;
-        
+
         $jenis_p2tl = WorkOrder::JenisP2TL;
 
         $jam_nyala = array();
 
-        if($this->editing->id){
+        if ($this->editing->id) {
             $jam_nyala = JamNyala::where('works_id', $this->editing->id)->get();
         }
 
