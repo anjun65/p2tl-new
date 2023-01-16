@@ -14,6 +14,7 @@ class KalibrasiDataKwhMeterLanjutanController extends Controller
     {
         $request->validate([
             'forms_id' => ['required'],
+            'atas_a' => ['required'],
             'atas_b' => ['required'],
             'atas_keterangan' => ['required'],
             'kanan_a' => ['required'],
@@ -22,7 +23,7 @@ class KalibrasiDataKwhMeterLanjutanController extends Controller
             'kiri_a' => ['required'],
             'kiri_b' => ['required'],
             'kiri_keterangan' => ['required'],
-            'file' => ['required', 'mimes:mp4,mov,ogg,qt'],
+            'file' => ['nullable', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
         $form = form_model::where('forms_id', $request->forms_id)->first();

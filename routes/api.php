@@ -31,7 +31,9 @@ use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanKubikelController;
 use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPintuGarduController;
 use App\Http\Controllers\API\KalibrasiDataKwhMeterController;
 use App\Http\Controllers\API\KalibrasiKwhMeterController;
+use App\Http\Controllers\API\KalibrasiDataKwhMeterLanjutanController;
 use App\Http\Controllers\API\KalibrasiUjiAkurasiController;
+
 
 /*
 |--------------------------------------------------------------------------
