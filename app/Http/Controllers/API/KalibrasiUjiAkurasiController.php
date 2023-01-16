@@ -30,7 +30,7 @@ class KalibrasiUjiAkurasiController extends Controller
             'alat_uji_type' => ['required'],
             'alat_uji_no_seri' => ['required'],
             'kesimpulan' => ['required'],
-            'file' => ['required', 'video'],
+            'file' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
         $form = form_model::where('forms_id', $request->forms_id)->first();
