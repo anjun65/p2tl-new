@@ -85,4 +85,58 @@ class WorkOrderController extends Controller
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
     }
+
+
+    public function petugas(Request $request)
+    {
+        $request->validate([
+            'id_pelanggan' => ['required'],
+            'keterangan_p2tl' => ['required', 'string', 'max:255'],
+            'alamat_pelanggan' => ['required', 'string', 'max:255'],
+            'jenis_p2tl' => ['required', 'string'],
+            'tarif' => ['required', 'string'],
+            'daya' => ['required', 'string'],
+            'rbm' => ['required', 'string'],
+            'lgkh' => ['required', 'string'],
+            'fkm' => ['required', 'string'],
+            'P1' => ['nullable', 'string'],
+            'P2' => ['nullable', 'string'],
+            'P3' => ['nullable', 'string'],
+            'P4' => ['nullable', 'string'],
+            'P5' => ['nullable', 'string'],
+            'P6' => ['nullable', 'string'],
+            'P7' => ['nullable', 'string'],
+            'P8' => ['nullable', 'string'],
+            'P9' => ['nullable', 'string'],
+            'P10' => ['nullable', 'string'],
+            'image' => ['required', 'image'],
+            'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
+        ]);
+
+        $workorder = WorkOrder::create([
+            'id_pelanggan' => $request->id_pelanggan,
+            'keterangan_p2tl' => $request->keterangan_p2tl,
+            'alamat_pelanggan' => $request->alamat_pelanggan,
+            'jenis_p2tl' => $request->jenis_p2tl,
+            'tarif' => $request->tarif,
+            'daya' => $request->daya,
+            'rbm' => $request->rbm,
+            'lgkh' => $request->lgkh,
+            'fkm' => $request->fkm,
+            'P1' => $request->P1,
+            'P2' => $request->P2,
+            'P3' => $request->P3,
+            'P4' => $request->P4,
+            'P5' => $request->P5,
+            'P6' => $request->P6,
+            'P7' => $request->P7,
+            'P8' => $request->P8,
+            'P9' => $request->P9,
+            'P10' => $request->P10,
+            'image' => $request->image,
+            'video' => $request->video,
+        ]);
+
+        return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
+    }
 }
