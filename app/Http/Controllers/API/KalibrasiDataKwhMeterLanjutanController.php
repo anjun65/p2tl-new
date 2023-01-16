@@ -22,7 +22,7 @@ class KalibrasiDataKwhMeterLanjutanController extends Controller
             'kiri_a' => ['required'],
             'kiri_b' => ['required'],
             'kiri_keterangan' => ['required'],
-            'file' => ['required', 'video'],
+            'file' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
         $form = form_model::where('forms_id', $request->forms_id)->first();
