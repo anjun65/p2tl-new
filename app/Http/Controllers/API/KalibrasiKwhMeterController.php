@@ -22,12 +22,12 @@ class KalibrasiKwhMeterController extends Controller
             'file' => ['nullable', 'image'],
         ]);
 
-        $form = form_model::where('works_id', $request->forms_id)->first();
+        $form = form_model::where('works_id', $request->works_id)->first();
 
         $new_file = '';
 
         if ($request->file) {
-            $new_file = Storage::putFileAs('public/assets/kalibrasi/', $request->file, 'foto_saksi_' . $request->forms_id . '.' . $request->file->getClientOriginalExtension());
+            $new_file = Storage::putFileAs('public/assets/kalibrasi/', $request->file, 'foto_saksi_' . $request->works_id . '.' . $request->file->getClientOriginalExtension());
         }
 
         if ($form) {
