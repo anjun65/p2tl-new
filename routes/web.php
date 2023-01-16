@@ -39,6 +39,9 @@ Route::middleware([
 ])->group(
     function () {
         Route::get('/anev/dashboard', [annev::class, 'show'])->name('annev-dashboard');
+        Route::get('/anev/work-orders', function () {
+            return view('annev.annev-wo');
+        })->name('annev-wo');
         Route::get('/anev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
         Route::put('/anev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
     }
@@ -86,7 +89,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/struktural/dashboard', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('struktural-dashboard');
 });
 
 // Route::middleware([

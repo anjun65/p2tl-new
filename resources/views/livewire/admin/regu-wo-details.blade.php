@@ -308,57 +308,159 @@
                                     <x-input.text type="number" wire:model="editing.fkm" id="fkm" placeholder="FKM" />
                                 </x-input.group>
                                 
-                                <x-button.primary class="m-5" wire:click="jam_nyala_create"><x-icon.plus/> Jam Nyala Baru</x-button.primary>
                                 
                                 <x-table>
                                     <x-slot name="head">
-                                        <x-table.heading>Tanggal</x-table.heading>
+                                        <x-table.heading>Periode</x-table.heading>
                                         <x-table.heading>Jumlah</x-table.heading>
                                         <x-table.heading />
                                     </x-slot>
                 
                                     <x-slot name="body">
-                                        @forelse ($jam_nyala as $nyala)
-                                        <x-table.row wire:loading.class.delay="opacity-50" wire:key="row-{{ $nyala->id }}">
-                                            {{-- <x-table.cell class="pr-0">
-                                                <x-input.checkbox wire:model="selected" value="{{ $nyala->id }}" />
-                                            </x-table.cell> --}}
-                
-                                            <x-table.cell>
-                                                @php
-                                                    $sebut = Illuminate\Support\Carbon::parse($nyala->tanggal)->format('F');
-                                                @endphp
-                                                <span class="text-gray-900 font-medium">{{ $sebut }} </span>
-                                            </x-table.cell>
-                
-                                            <x-table.cell>
-                                                <span class="text-gray-900 font-medium">{{ $nyala->jumlah }} </span>
-                                            </x-table.cell>
-                
-                                            <x-table.cell>
-                                                <x-button.link wire:click="edit({{ $nyala->id }})">Edit</x-button.link>
-                                            </x-table.cell>
-                                        </x-table.row>
-                                        @empty
                                         <x-table.row>
-                                            <x-table.cell colspan="12">
-                                                <div class="flex justify-center items-center space-x-2">
-                                                    <x-icon.inbox class="h-8 w-8 text-gray-400" />
-                                                    <span class="font-medium py-8 text-gray-400 text-xl">Tidak ada jam nyala yang ditemukan...</span>
-                                                </div>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    1
+                                                </span>
+                                            </x-table.cell>
+                
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                        <x-input.text type="number" wire:model="editing.P1" id="P1" placeholder="P1" />
+                                                    
+                                                </span>
                                             </x-table.cell>
                                         </x-table.row>
-                                        @endforelse
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    3
+                                                </span>
+                                            </x-table.cell>
+                                            
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                        <x-input.text type="number" wire:model="editing.P3" id="P3" placeholder="P3" />
+                                                    
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    4
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                        <x-input.text type="number" wire:model="editing.P4" id="P4" placeholder="P4" />
+                                                    
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    5
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                        <x-input.text type="number" wire:model="editing.P5" id="P5" placeholder="P5" />
+                                                    
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    6
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    
+                                                        <x-input.text type="number" wire:model="editing.P6" id="P6" placeholder="P6" />
+                                                    
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    7
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    
+                                                        <x-input.text type="number" wire:model="editing.P7" id="P7" placeholder="P7" />
+                                                    
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    8
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    <x-input.text type="number" wire:model="editing.P8" id="P8" placeholder="P8" />
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    9
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    <x-input.text type="number" wire:model="editing.P9" id="P9" placeholder="P9" />
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
+
+
+                                        <x-table.row>
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    10
+                                                </span>
+                                            </x-table.cell>
+                                        
+                                            <x-table.cell>
+                                                <span class="text-gray-900 font-medium">
+                                                    <x-input.text type="number" wire:model="editing.P10" id="P10" placeholder="P10" />
+                                                </span>
+                                            </x-table.cell>
+                                        </x-table.row>
                                     </x-slot>
                                 </x-table>
                 
                                 {{-- @if ($editing->id)
                                     @livewire('admin.jam-nyala', array($editing->id))
                                 @endif --}}
-                                
-                
-                                
-                                
+                            
                 
                                 <x-input.group for="keterangan_p2tl" label="Keterangan" :error="$errors->first('editing.keterangan_p2tl')">
                                     <x-input.text wire:model="editing.keterangan_p2tl" id="keterangan_p2tl" disabled>
@@ -518,28 +620,7 @@
                         </x-modal.confirmation>
                     </form>
                     
-                    <form wire:submit.prevent="jam_nyala_save">
-                        <x-modal.dialog wire:model.defer="jam_nyala_showEditModal">
-                            <x-slot name="title">Jam Nyala</x-slot>
-                
-                            <x-slot name="content">
-                
-                                <x-input.group for="tanggal" label="Tanggal" :error="$errors->first('editing.tanggal')">
-                                    <x-.datepicker wire:model="nyala_model.tanggal" placeholder="Tanggal" />
-                                </x-input.group>
-                
-                                <x-input.group for="jumlah" label="Jumlah" :error="$errors->first('editing.jumlah')">
-                                    <x-input.text wire:model="nyala_model.jumlah" placeholder="Jumlah" />
-                                </x-input.group>
-                            </x-slot>
-                
-                            <x-slot name="footer">
-                                <x-button.secondary wire:click="$set('jam_nyala_showEditModal', false)">Cancel</x-button.secondary>
-                
-                                <x-button.primary type="submit">Save</x-button.primary>
-                            </x-slot>
-                        </x-modal.dialog>
-                    </form>
+                    
             </div>
         </div>
     </div>

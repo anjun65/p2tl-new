@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Annev;
 
-use Livewire\Component;
 use App\Http\Livewire\DataTable\WithSorting;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 
-use App\Models\User;
+use Livewire\Component;
 use App\Models\WorkOrder;
-use App\Models\JamNyala;
 use App\Models\Pendamping;
 use App\Models\Regu;
 use Illuminate\Support\Carbon;
 
-class ReguWoDetails extends Component
+class Wo extends Component
 {
+
     use WithPerPagePagination, WithSorting, WithBulkActions, WithCachedRows;
 
     public $showEditModal = false;
@@ -39,8 +38,6 @@ class ReguWoDetails extends Component
 
     public WorkOrder $editing;
 
-    public JamNyala $nyala_model;
-
     public $upload_video;
     public $upload_image;
 
@@ -50,38 +47,37 @@ class ReguWoDetails extends Component
 
     public function rules()
     {
-        return [
-            'editing.regus_id' => 'required',
-            'editing.id_pelanggan' => 'required',
-            'editing.nama_pelanggan' => 'required',
-            'editing.latitude' => 'required',
-            'editing.longitude' => 'required',
-            'editing.alamat' => 'required',
-            'editing.jenis_p2tl' => 'required',
-            'editing.tarif' => 'required',
-            'editing.daya' => 'required',
-            'editing.rbm' => 'required',
-            'editing.lgkh' => 'required',
-            'editing.fkm' => 'required',
-            'editing.status' => 'nullable',
-            'editing.keterangan_p2tl' => 'nullable',
-            'nyala_model.tanggal' => 'nullable',
-            'nyala_model.jumlah' => 'nullable',
-            'editing.no_ba' => 'required',
-            'editing.surat_tugas_p2tl' => 'required',
-            'editing.tanggal_surat_tugas_p2tl' => 'required',
-            'editing.surat_tugas_tni' => 'required',
-            'editing.tanggal_surat_tugas_tni' => 'required',
-            'editing.pendamping1_id' => 'required',
-            'editing.pendamping2_id' => 'nullable',
-            'editing.tanggal_inspeksi' => 'nullable',
-        ];
+        // return [
+        //     'editing.regus_id' => 'required',
+        //     'editing.id_pelanggan' => 'required',
+        //     'editing.nama_pelanggan' => 'required',
+        //     'editing.latitude' => 'required',
+        //     'editing.longitude' => 'required',
+        //     'editing.alamat' => 'required',
+        //     'editing.jenis_p2tl' => 'required',
+        //     'editing.tarif' => 'required',
+        //     'editing.daya' => 'required',
+        //     'editing.rbm' => 'required',
+        //     'editing.lgkh' => 'required',
+        //     'editing.fkm' => 'required',
+        //     'editing.status' => 'nullable',
+        //     'editing.keterangan_p2tl' => 'nullable',
+        //     'nyala_model.tanggal' => 'nullable',
+        //     'nyala_model.jumlah' => 'nullable',
+        //     'editing.no_ba' => 'required',
+        //     'editing.surat_tugas_p2tl' => 'required',
+        //     'editing.tanggal_surat_tugas_p2tl' => 'required',
+        //     'editing.surat_tugas_tni' => 'required',
+        //     'editing.tanggal_surat_tugas_tni' => 'required',
+        //     'editing.pendamping1_id' => 'required',
+        //     'editing.pendamping2_id' => 'nullable',
+        //     'editing.tanggal_inspeksi' => 'nullable',
+        // ];
     }
 
-    public function mount($pass)
+    public function mount()
     {
         $this->editing = $this->makeBlankTransaction();
-        $this->nyala_model = JamNyala::make();
     }
 
     public function updatedFilters()
@@ -139,7 +135,7 @@ class ReguWoDetails extends Component
     public function getRowsQueryProperty()
     {
         $query = WorkOrder::query()
-            ->where('regus_id', '=', $this->pass)
+            ->where('keterangan_p2tl', '=', 'Pemeriksaan dengan BA')
             ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
             ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
             ->when($this->filters['nama_pelanggan'], fn ($query, $nama_pelanggan) => $query->where('nama_pelanggan', 'like', '%' . $nama_pelanggan . '%'))
@@ -188,7 +184,7 @@ class ReguWoDetails extends Component
         $jenis_p2tl = WorkOrder::JenisP2TL;
 
 
-        return view('livewire.admin.regu-wo-details', [
+        return view('livewire.annev.wo', [
             'items' => $this->rows,
             'regus' => $regus,
             'pendampings' => $pendampings,

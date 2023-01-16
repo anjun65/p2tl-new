@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WorkOrder;
 use App\Helpers\ResponseFormatter;
+use Illuminate\Support\Facades\Storage;
 
 class WorkOrderController extends Controller
 {
@@ -65,13 +66,21 @@ class WorkOrderController extends Controller
         $request->validate([
             'id' => ['required'],
             'keterangan_p2tl' => ['required', 'string', 'max:255'],
+
+            'image' => ['required', 'image'],
+            'video' => ['required', 'video'],
         ]);
 
 
         $workorder = WorkOrder::find($request->id);
 
+        $new_image = Storage::putFileAs('public/assets/TO/', $request->image, 'foto_tkp_' . $request->id . '.' . $request->image->getClientOriginalExtension());
+        $new_video = Storage::putFileAs('public/assets/TO/', $request->video, 'video_tkp_' . $request->id . '.' . $request->video->getClientOriginalExtension());
+
         $workorder->update([
             'keterangan_p2tl' => $request->keterangan_p2tl,
+            'image' => $new_image,
+            'video' => $new_video,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');

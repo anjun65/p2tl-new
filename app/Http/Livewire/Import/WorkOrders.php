@@ -37,6 +37,17 @@ class WorkOrders extends Component
         'tanggal_surat_tugas_tni' => '',
         'pendamping1_id' => '',
         'pendamping2_id' => '',
+
+        'P1' => '',
+        'P2' => '',
+        'P3' => '',
+        'P4' => '',
+        'P5' => '',
+        'P6' => '',
+        'P7' => '',
+        'P8' => '',
+        'P9' => '',
+        'P10' => '',
     ];
 
     protected $rules = [
@@ -61,6 +72,17 @@ class WorkOrders extends Component
         'fieldColumnMap.tanggal_surat_tugas_tni' => 'nullable',
         'fieldColumnMap.pendamping1_id' => 'nullable',
         'fieldColumnMap.pendamping2_id' => 'nullable',
+
+        'fieldColumnMap.P1' => 'nullable',
+        'fieldColumnMap.P2' => 'nullable',
+        'fieldColumnMap.P3' => 'nullable',
+        'fieldColumnMap.P4' => 'nullable',
+        'fieldColumnMap.P5' => 'nullable',
+        'fieldColumnMap.P6' => 'nullable',
+        'fieldColumnMap.P7' => 'nullable',
+        'fieldColumnMap.P8' => 'nullable',
+        'fieldColumnMap.P9' => 'nullable',
+        'fieldColumnMap.P10' => 'nullable',
     ];
 
     protected $customAttributes = [
@@ -85,6 +107,16 @@ class WorkOrders extends Component
         'fieldColumnMap.tanggal_surat_tugas_tni' => 'tanggal_surat_tugas_tni',
         'fieldColumnMap.pendamping1_id' => 'pendamping1_id',
         'fieldColumnMap.pendamping2_id' => 'pendamping2_id',
+        'fieldColumnMap.P1' => 'P1',
+        'fieldColumnMap.P2' => 'P2',
+        'fieldColumnMap.P3' => 'P3',
+        'fieldColumnMap.P4' => 'P4',
+        'fieldColumnMap.P5' => 'P5',
+        'fieldColumnMap.P6' => 'P6',
+        'fieldColumnMap.P7' => 'P7',
+        'fieldColumnMap.P8' => 'P8',
+        'fieldColumnMap.P9' => 'P9',
+        'fieldColumnMap.P10' => 'P10',
     ];
 
     public function updatingUpload($value)
@@ -110,11 +142,11 @@ class WorkOrders extends Component
 
         Csv::from($this->upload)
             ->eachRow(function ($row) use (&$importCount) {
-                
+
                 $test = WorkOrder::create(
-                    $this->extractFieldsFromRow($row)                    
+                    $this->extractFieldsFromRow($row)
                 );
-        
+
                 $importCount++;
             });
 
@@ -122,14 +154,14 @@ class WorkOrders extends Component
 
         $this->emit('refreshTransactions');
 
-        $this->notify('Imported '.$importCount.' transactions!');
+        $this->notify('Imported ' . $importCount . ' transactions!');
     }
 
     public function extractFieldsFromRow($row)
     {
         $attributes = collect($this->fieldColumnMap)
             ->filter()
-            ->mapWithKeys(function($heading, $field) use ($row) {
+            ->mapWithKeys(function ($heading, $field) use ($row) {
                 return [$field => $row[$heading]];
             })
             ->toArray();
@@ -161,10 +193,20 @@ class WorkOrders extends Component
             'tanggal_surat_tugas_tni' => ['tanggal_surat_tugas_tni'],
             'pendamping1_id' => ['pendamping1_id'],
             'pendamping2_id' => ['pendamping2_id'],
+            'P1' => ['P1'],
+            'P2' => ['P2'],
+            'P3' => ['P3'],
+            'P4' => ['P4'],
+            'P5' => ['P5'],
+            'P6' => ['P6'],
+            'P7' => ['P7'],
+            'P8' => ['P8'],
+            'P9' => ['P9'],
+            'P10' => ['P10'],
         ];
 
         foreach ($this->columns as $column) {
-            $match = collect($guesses)->search(fn($options) => in_array(strtolower($column), $options));
+            $match = collect($guesses)->search(fn ($options) => in_array(strtolower($column), $options));
 
             if ($match) $this->fieldColumnMap[$match] = $column;
         }
