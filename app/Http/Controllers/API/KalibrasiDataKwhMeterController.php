@@ -24,7 +24,7 @@ class KalibrasiDataKwhMeterController extends Controller
             'tegangan_nominal' => ['required'],
             'stand_kwh_meter' => ['required'],
             'keterangan' => ['required'],
-            'file' => ['required', 'video'],
+            'file' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
         $form = form_model::where('forms_id', $request->forms_id)->first();
