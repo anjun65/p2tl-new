@@ -99,4 +99,4 @@ Route::post('kalibrasi/data-kwh', [KalibrasiDataKwhMeterController::class, 'stor
 Route::post('kalibrasi/data-kwh-lanjutan', [KalibrasiDataKwhMeterLanjutanController::class, 'store']);
 Route::post('kalibrasi/akurasi', [KalibrasiUjiAkurasiController::class, 'store']);
 
-Route::get('<labor>work-order', [WorkOrderController::class, 'labor']);
+Route::get('labor/work-order', [WorkOrderController::class, 'labor']);
