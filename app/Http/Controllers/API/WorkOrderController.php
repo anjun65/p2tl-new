@@ -141,4 +141,22 @@ class WorkOrderController extends Controller
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
     }
+
+
+    public function labor(Request $request)
+    {
+        $work_order = WorkOrder::where('labor', true)->get();
+
+        if ($work_order)
+            return ResponseFormatter::success(
+                $work_order,
+                'Data work order berhasil diambil'
+            );
+        else
+            return ResponseFormatter::error(
+                null,
+                'Data work order tidak ada',
+                404
+            );
+    }
 }

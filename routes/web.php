@@ -6,6 +6,7 @@ use App\Http\Controllers\Form1Controller;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\ReguWoDetails;
+use App\Http\Controllers\Admin\SerahTerimaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,8 @@ Route::middleware([
     Route::get('/admin/regu/{pass}', ReguWoDetails::class)->name('admin-new-wo');
 
     Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
+
+    Route::get('/admin/serah-terima/{id}', [SerahTerimaController::class, 'show'])->name('admin-serah-terima');
 
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
