@@ -145,7 +145,7 @@ class WorkOrderController extends Controller
 
     public function labor(Request $request)
     {
-        $work_order = WorkOrder::where('labor', true)->get();
+        $work_order = WorkOrder::where('labor', true)->where('status', 'OPEN')->get();
 
         if ($work_order)
             return ResponseFormatter::success(

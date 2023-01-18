@@ -75,6 +75,12 @@ Route::middleware([
 
     Route::get('/admin/serah-terima/{id}', [SerahTerimaController::class, 'show'])->name('admin-serah-terima');
 
+    Route::put('/admin/serah-terima/new', [SerahTerimaController::class, 'store'])->name('annev-edit-form-langsung');
+    Route::put('/admin/serah-terima/update', [SerahTerimaController::class, 'update'])->name('annev-edit-form-langsung');
+
+
+    Route::get('/admin/serah-terima/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
+
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
     })->name('admin-pelanggaran');
