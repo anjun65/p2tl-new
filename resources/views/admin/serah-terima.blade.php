@@ -31,29 +31,47 @@
                                             </div>
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                    
-
-
-                                                    <form action="{{ route('annev-edit-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                                    @if (($item->isEmpty()))
+                                                        <form action="{{ route('serah-terima-post') }}" method="POST">
+                                                            @csrf
+                                                            <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                                <input type="text" name='no_ba'
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            </div>
                                                         
-                                                    @csrf
-                                                        <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
-                                                        <div class="mt-1 flex rounded-md shadow-sm">
-                                                            <input type="text" name='no_ba'
-                                                                class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                        </div>
-
-                                                        <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
-                                                        <div class="mt-1 flex rounded-md shadow-sm">
-                                                            <x-datepicker2 name='tanggal_serah_terima'>
-                                                            </x-datepicker2>
-                                                        </div>
-
-                                                        <x-button type="submit" class="mt-5">
-                                                            Save now
-                                                        </x-button>
-                                                    
-                                                    </form>
+                                                            <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                                <x-datepicker2 name='tanggal_serah_terima'>
+                                                                </x-datepicker2>
+                                                            </div>
+                                                        
+                                                            <x-button type="submit" class="mt-5">
+                                                                Save now
+                                                            </x-button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('annev-edit-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                                <input type="text" name='no_ba'
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            </div>
+                                                        
+                                                            <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                                <x-datepicker2 name='tanggal_serah_terima'>
+                                                                </x-datepicker2>
+                                                            </div>
+                                                        
+                                                            <x-button type="submit" class="mt-5">
+                                                                Save now
+                                                            </x-button>
+                                                        
+                                                        </form>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

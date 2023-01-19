@@ -14,4 +14,9 @@ class SerahTerima extends Model
         'no_ba',
         'tanggal_serah_terima',
     ];
+
+    public function work()
+    {
+        return $this->belongsTo(WorkOrder::class, 'works_id', 'id');
+    }
 }
