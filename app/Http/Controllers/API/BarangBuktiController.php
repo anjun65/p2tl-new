@@ -19,6 +19,8 @@ class BarangBuktiController extends Controller
 
         $form = BarangBukti::where('works_id', $request->works_id)->first();
 
+        dd($form);
+
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
 
