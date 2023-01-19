@@ -81,6 +81,8 @@ Route::middleware([
 
     Route::get('/admin/serah-terima/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
 
+    Route::get('/admin/pembukaan-barang-bukti/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
+
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
     })->name('admin-pelanggaran');

@@ -11,6 +11,17 @@ use App\Helpers\ResponseFormatter;
 
 class BarangBuktiController extends Controller
 {
+    public function show(Request $request)
+    {
+        $request->validate([
+            'works_id' => ['required'],
+        ]);
+
+        $form = BarangBukti::where('works_id', $request->works_id)->first();
+
+        return ResponseFormatter::success($form, 'Berhasil ditambahkan');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
