@@ -13,23 +13,23 @@ class BarangBuktiController extends Controller
 {
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'works_id' => ['required'],
-        //     'nama_saksi' => ['nullable'],
-        //     'alamat_saksi' => ['nullable'],
-        //     'nomor_identitas' => ['nullable'],
-        //     'no_telpon_saksi' => ['nullable'],
-        //     'file_identitas' => ['nullable', 'image'],
-        //     'jenis_kabel' => ['nullable'],
-        //     'panjang_kabel' => ['nullable'],
-        //     'tera' => ['nullable'],
-        //     'terminal_kwh_meter' => ['nullable'],
-        //     'box_ok' => ['nullable'],
-        //     'box_app' => ['nullable'],
-        //     'alat_pembatas' => ['nullable'],
-        //     'alat_bantu_ukur' => ['nullable'],
-        //     'file_barang_bukti' => ['nullable', 'image'],
-        // ]);
+        $request->validate([
+            'works_id' => ['required'],
+            'nama_saksi' => ['nullable'],
+            'alamat_saksi' => ['nullable'],
+            'nomor_identitas' => ['nullable'],
+            'no_telpon_saksi' => ['nullable'],
+            'file_identitas' => ['nullable', 'image'],
+            'jenis_kabel' => ['nullable'],
+            'panjang_kabel' => ['nullable'],
+            'tera' => ['nullable'],
+            'terminal_kwh_meter' => ['nullable'],
+            'box_ok' => ['nullable'],
+            'box_app' => ['nullable'],
+            'alat_pembatas' => ['nullable'],
+            'alat_bantu_ukur' => ['nullable'],
+            'file_barang_bukti' => ['nullable', 'image'],
+        ]);
 
         $form = BarangBukti::where('works_id', $request->works_id)->first();
 
