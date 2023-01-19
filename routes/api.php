@@ -35,6 +35,11 @@ use App\Http\Controllers\API\KalibrasiDataKwhMeterLanjutanController;
 use App\Http\Controllers\API\KalibrasiUjiAkurasiController;
 
 
+use App\Http\Controllers\API\BarangBuktiController;
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -100,3 +105,5 @@ Route::post('kalibrasi/data-kwh-lanjutan', [KalibrasiDataKwhMeterLanjutanControl
 Route::post('kalibrasi/akurasi', [KalibrasiUjiAkurasiController::class, 'store']);
 
 Route::get('labor/work-order', [WorkOrderController::class, 'labor']);
+
+Route::get('barang-bukti', [BarangBuktiController::class, 'store']);
