@@ -108,6 +108,6 @@ Route::post('kalibrasi/akurasi', [KalibrasiUjiAkurasiController::class, 'store']
 Route::get('labor/work-order', [WorkOrderController::class, 'labor']);
 
 Route::post('barang-bukti', [BarangBuktiController::class, 'store']);
-Route::post('barang-bukti/get', [BarangBuktiController::class, 'store']);
+Route::post('barang-bukti/get', [BarangBuktiController::class, 'show']);
 
 Route::post('barang-bukti/pembukaan', [PembukaanBarangBuktiController::class, 'store']);
