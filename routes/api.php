@@ -67,7 +67,7 @@ Route::post('work-order', [WorkOrderController::class, 'store']);
 
 Route::post('work-order/petugas', [WorkOrderController::class, 'petugas']);
 
-Route::get('form-langsung/{id}', [FormLangsungController::class, 'show']);
+Route::post('form-langsung/spesifik', [FormLangsungController::class, 'show']);
 
 
 Route::post('form-langsung', [FormLangsungController::class, 'store']);

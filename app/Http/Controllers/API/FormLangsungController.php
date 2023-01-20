@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class FormLangsungController extends Controller
 {
 
-    public function show($id)
+    public function show(Request $request)
     {
-        $form_langsung = FormLangsung::with('data_lama','data_baru','kwh_meter','terminal', 'pelindungkwh' , 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
-            ->where('works_id', $id)->get();
+        $form_langsung = FormLangsung::with('data_lama', 'data_baru', 'kwh_meter', 'terminal', 'pelindungkwh', 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
+            ->where('works_id', $request->id)->get();
 
-        if($form_langsung)
+        if ($form_langsung)
             return ResponseFormatter::success(
                 $form_langsung,
                 'Data berhasil diambil'
@@ -30,20 +30,20 @@ class FormLangsungController extends Controller
                 404
             );
     }
-    
+
     public function store(Request $request)
     {
         $request->validate([
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
-            'file' => ['nullable','image'],
+            'file' => ['nullable', 'image'],
             'no_telpon_saksi' => ['nullable'],
         ]);
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
-        
-        if (empty($form)){
+
+        if (empty($form)) {
             $form = FormLangsung::create([
                 'works_id' => $request->works_id,
                 'regus_id' => $request->regus_id,
@@ -51,7 +51,7 @@ class FormLangsungController extends Controller
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
                 // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_'.$request->nama_saksi.'|'.$request->identitas_saksi.'.'.$request->file->getClientOriginalExtension()),
+                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_' . $request->nama_saksi . '|' . $request->identitas_saksi . '.' . $request->file->getClientOriginalExtension()),
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
@@ -60,11 +60,11 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_'.$request->nama_saksi.'.'.$request->file->getClientOriginalExtension());
-            $form->no_telpon_saksi = $request->no_telpon_saksi;            
+            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_' . $request->nama_saksi . '.' . $request->file->getClientOriginalExtension());
+            $form->no_telpon_saksi = $request->no_telpon_saksi;
             $form->save();
         }
-        
+
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
 
