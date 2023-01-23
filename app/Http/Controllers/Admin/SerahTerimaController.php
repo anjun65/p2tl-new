@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\SerahTerima;
 use Illuminate\Http\Request;
+use resources\lang\id\date;
 use PDF;
 
 class SerahTerimaController extends Controller
@@ -45,6 +46,10 @@ class SerahTerimaController extends Controller
     public function generatePDF($id)
     {
         $item = SerahTerima::with('work')->where('id', $id)->first();
+
+        // return view('admin.serah-terima.pdf', [
+        //     'item' => $item,
+        // ]);
 
 
         view()->share([
