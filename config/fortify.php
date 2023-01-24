@@ -66,7 +66,7 @@ return [
         if (Auth::user()->roles == 'ADMIN') {
             return route('dashboard');
         } elseif (Auth::user()->roles == 'ANEV') {
-            return route('annev-dashboard');
+            return route('annev-wo');
         }
     },
 

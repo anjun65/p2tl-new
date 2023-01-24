@@ -43,7 +43,7 @@ Route::middleware([
     'verified'
 ])->group(
     function () {
-        Route::get('/anev/dashboard', [annev::class, 'show'])->name('annev-dashboard');
+        // Route::get('/anev/dashboard', [annev::class, 'show'])->name('annev-dashboard');
         Route::get('/anev/work-orders', function () {
             return view('annev.annev-wo');
         })->name('annev-wo');
