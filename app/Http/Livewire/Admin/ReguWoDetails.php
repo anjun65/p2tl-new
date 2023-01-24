@@ -187,6 +187,20 @@ class ReguWoDetails extends Component
         $this->notify('Anda telah menghapus ' . $deleteCount . ' data.');
     }
 
+    public function download_image($id)
+    {
+        $berkas = WorkOrder::find($id);
+
+        return response()->download(storage_path('app/public/' . $berkas->path_image));
+    }
+
+    public function download_video($id)
+    {
+        $berkas = WorkOrder::find($id);
+
+        return response()->download(storage_path('app/public/' . $berkas->path_video));
+    }
+
     public function render()
     {
 
