@@ -5,7 +5,7 @@
         <!-- Top Bar -->
         <div class="flex justify-between">
             <div class="w-2/4 flex space-x-4">
-                <x-input.text wire:model="filters.name" placeholder="Search Users..." />
+                <x-input.text wire:model="filters.name" placeholder="Cari Pendamping..." />
             </div>
 
             <div class="space-x-2 flex items-center">
@@ -17,7 +17,18 @@
                     </x-input.select>
                 </x-input.group>
 
-                <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary>
+                <x-dropdown label="Aksi">
+                
+                    <x-dropdown.item type="button" wire:click="$toggle('showDeleteModal')" class="flex items-center space-x-2">
+                        <x-icon.trash class="text-cool-gray-400" /> <span>Hapus</span>
+                    </x-dropdown.item>
+                
+                </x-dropdown>
+                
+                <x-button.primary wire:click="create">
+                    <x-icon.plus /> New
+                </x-button.primary>
+                
             </div>
         </div>
 
@@ -77,7 +88,7 @@
                         <x-table.cell colspan="8">
                             <div class="flex justify-center items-center space-x-2">
                                 <x-icon.inbox class="h-8 w-8 text-cool-gray-400" />
-                                <span class="font-medium py-8 text-cool-gray-400 text-xl">No User found...</span>
+                                <span class="font-medium py-8 text-cool-gray-400 text-xl">Tidak ada pendamping yang ditemukan ...</span>
                             </div>
                         </x-table.cell>
                     </x-table.row>
@@ -118,5 +129,22 @@
                 <x-button.primary type="submit">Save</x-button.primary>
             </x-slot>
         </x-modal.dialog>
+    </form>
+
+    <form wire:submit.prevent="deleteSelected">
+        <x-modal.confirmation wire:model.defer="showDeleteModal">
+            <x-slot name="title">Hapus Data</x-slot>
+    
+            <x-slot name="content">
+                <div class="py-8 text-cool-gray-700">Anda yakin ingin menghapus data? Data yang terhapus tidak bisa
+                    dikembalikan.</div>
+            </x-slot>
+    
+            <x-slot name="footer">
+                <x-button.secondary wire:click="$set('showDeleteModal', false)">Batal</x-button.secondary>
+    
+                <x-button.primary type="submit">Hapus</x-button.primary>
+            </x-slot>
+        </x-modal.confirmation>
     </form>
 </div>

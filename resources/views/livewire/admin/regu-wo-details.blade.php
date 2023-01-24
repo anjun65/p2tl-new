@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Work Orders ') }}
+        {{ __('Target Operasi ') }}
 
         @php
             $regu = App\Models\Regu::findorFail($this->pass);
@@ -224,7 +224,7 @@
                                         <x-table.cell colspan="14">
                                             <div class="flex justify-center items-center space-x-2">
                                                 <x-icon.inbox class="h-8 w-8 text-gray-400" />
-                                                <span class="font-medium py-8 text-gray-400 text-xl">No Work Order found...</span>
+                                                <span class="font-medium py-8 text-gray-400 text-xl">Tidak ada target operasi yang ditemukan</span>
                                             </div>
                                         </x-table.cell>
                                     </x-table.row>

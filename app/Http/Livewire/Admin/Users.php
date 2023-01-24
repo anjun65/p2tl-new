@@ -17,29 +17,39 @@ class Users extends Component
     use WithPerPagePagination, WithSorting, WithBulkActions, WithCachedRows;
 
     public $showEditModal = false;
+    public $showDeleteModal = false;
     public $showFilters = false;
     public $filters = [
         'name' => '',
     ];
 
     public User $editing;
-    
+
     public $password;
 
     protected $queryString = ['sorts'];
 
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
-    public function rules() { return [
-        'editing.name' => 'nullable',
-        'editing.email' => 'sometimes|nullable|email',
-        'password' => 'nullable',
-        'editing.roles' => 'required',
-        'editing.regus_id' => 'nullable',
-    ]; }
+    public function rules()
+    {
+        return [
+            'editing.name' => 'nullable',
+            'editing.email' => 'sometimes|nullable|email',
+            'password' => 'nullable',
+            'editing.roles' => 'required',
+            'editing.regus_id' => 'nullable',
+        ];
+    }
 
-    public function mount() { $this->editing = $this->makeBlankTransaction(); }
-    public function updatedFilters() { $this->resetPage(); }
+    public function mount()
+    {
+        $this->editing = $this->makeBlankTransaction();
+    }
+    public function updatedFilters()
+    {
+        $this->resetPage();
+    }
 
     public function makeBlankTransaction()
     {
@@ -50,7 +60,7 @@ class Users extends Component
     {
         $this->useCachedRows();
 
-        $this->showFilters = ! $this->showFilters;
+        $this->showFilters = !$this->showFilters;
     }
 
     public function create()
@@ -71,13 +81,23 @@ class Users extends Component
         $this->showEditModal = true;
     }
 
+    public function deleteSelected()
+    {
+        $deleteCount = $this->selectedRowsQuery->count();
+
+        $this->selectedRowsQuery->delete();
+
+        $this->showDeleteModal = false;
+
+        $this->notify('Anda telah menghapus ' . $deleteCount . ' data.');
+    }
 
 
     public function save()
     {
         $this->validate();
 
-        if ($this->password){
+        if ($this->password) {
 
             $this->editing->password = Hash::make($this->password);
         }
@@ -89,12 +109,15 @@ class Users extends Component
         $this->showEditModal = false;
     }
 
-    public function resetFilters() { $this->reset('filters'); }
+    public function resetFilters()
+    {
+        $this->reset('filters');
+    }
 
     public function getRowsQueryProperty()
     {
         $query = User::query()
-            ->when($this->filters['name'], fn($query, $name) => $query->where('name', 'like', '%'.$name.'%'));
+            ->when($this->filters['name'], fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
 
         return $this->applySorting($query);
     }

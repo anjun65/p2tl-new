@@ -4,7 +4,7 @@
         <!-- Top Bar -->
         <div class="flex justify-between">
             <div class="w-2/4 flex space-x-4">
-                <x-input.text wire:model="filters.name" placeholder="Search Group..." />
+                <x-input.text wire:model="filters.name" placeholder="Cari Regu..." />
             </div>
 
             <div class="space-x-2 flex items-center">
@@ -27,6 +27,9 @@
                     <x-table.heading class="pr-0 w-8">
                         <x-input.checkbox wire:model="selectPage" />
                     </x-table.heading>
+                    <x-table.heading sortable multi-column wire:click="sortBy('name_regu')" :direction="$sorts['name_regu'] ?? null"
+                        >ID</x-table.heading>
+
                     <x-table.heading sortable multi-column wire:click="sortBy('name_regu')" :direction="$sorts['name_regu'] ?? null" class="w-full">Nama Regu</x-table.heading>
                     
                     <x-table.heading />
@@ -53,6 +56,11 @@
                         <x-table.cell class="pr-0">
                             <x-input.checkbox wire:model="selected" value="{{ $item->id }}" />
                         </x-table.cell>
+
+                        <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">{{ $item->id }} </span>
+                        </x-table.cell>
+
                         <x-table.cell>
                             <span class="text-cool-gray-900 font-medium">{{ $item->name }} </span>
                         </x-table.cell>

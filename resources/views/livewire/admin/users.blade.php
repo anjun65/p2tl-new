@@ -5,7 +5,7 @@
         <!-- Top Bar -->
         <div class="flex justify-between">
             <div class="w-2/4 flex space-x-4">
-                <x-input.text wire:model="filters.name" placeholder="Search Users..." />
+                <x-input.text wire:model="filters.name" placeholder="Cari User..." />
             </div>
 
             <div class="space-x-2 flex items-center">
@@ -16,6 +16,14 @@
                         <option value="50">50</option>
                     </x-input.select>
                 </x-input.group>
+
+                <x-dropdown label="Aksi">
+                
+                    <x-dropdown.item type="button" wire:click="$toggle('showDeleteModal')" class="flex items-center space-x-2">
+                        <x-icon.trash class="text-cool-gray-400" /> <span>Hapus</span>
+                    </x-dropdown.item>
+                
+                </x-dropdown>
 
                 <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary>
             </div>
@@ -31,7 +39,7 @@
                     <x-table.heading sortable multi-column wire:click="sortBy('name')" :direction="$sorts['name'] ?? null" class="w-full">Nama Petugas</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('email')" :direction="$sorts['email'] ?? null">Email</x-table.heading>
                     <x-table.heading sortable multi-column wire:click="sortBy('roles')" :direction="$sorts['roles'] ?? null">Roles</x-table.heading>
-                    <x-table.heading sortable multi-column wire:click="sortBy('regus_id')" :direction="$sorts['regus_id'] ?? null">Group</x-table.heading>
+                    <x-table.heading sortable multi-column wire:click="sortBy('regus_id')" :direction="$sorts['regus_id'] ?? null">Regu</x-table.heading>
                     
                     <x-table.heading />
                 </x-slot>
@@ -132,13 +140,13 @@
                 </x-input.group>
 
 
-                <x-input.group for="regus_id" label="Group" :error="$errors->first('editing.regus_id')">
+                <x-input.group for="regus_id" label="Regu" :error="$errors->first('editing.regus_id')">
                     <x-input.select wire:model="editing.regus_id" id="regus_id">
                         <option value="">Pilih Regu</option>
                         @forelse ($regus as $regu)
                             <option value="{{ $regu->id }}">{{ $regu->name }}</option>
                         @empty
-                            <option value="">No Group Exist</option>
+                            <option value="">Tidak ada regu yang ditemukan</option>
                         @endforelse
                     </x-input.select>
                 </x-input.group>
@@ -150,5 +158,22 @@
                 <x-button.primary type="submit">Save</x-button.primary>
             </x-slot>
         </x-modal.dialog>
+    </form>
+
+    <form wire:submit.prevent="deleteSelected">
+        <x-modal.confirmation wire:model.defer="showDeleteModal">
+            <x-slot name="title">Hapus Data</x-slot>
+    
+            <x-slot name="content">
+                <div class="py-8 text-cool-gray-700">Anda yakin ingin menghapus data? Data yang terhapus tidak bisa
+                    dikembalikan.</div>
+            </x-slot>
+    
+            <x-slot name="footer">
+                <x-button.secondary wire:click="$set('showDeleteModal', false)">Batal</x-button.secondary>
+    
+                <x-button.primary type="submit">Hapus</x-button.primary>
+            </x-slot>
+        </x-modal.confirmation>
     </form>
 </div>

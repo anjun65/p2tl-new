@@ -14,27 +14,37 @@ class Pendampings extends Component
     use WithPerPagePagination, WithSorting, WithBulkActions, WithCachedRows;
 
     public $showEditModal = false;
+    public $showDeleteModal = false;
     public $showFilters = false;
     public $filters = [
         'name' => '',
     ];
 
     public Pendamping $editing;
-    
+
     public $password;
 
     protected $queryString = ['sorts'];
 
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
-    public function rules() { return [
-        'editing.name' => 'required',
-        'editing.nip' => 'required',
-        'editing.jabatan' => 'required',
-    ]; }
+    public function rules()
+    {
+        return [
+            'editing.name' => 'required',
+            'editing.nip' => 'required',
+            'editing.jabatan' => 'required',
+        ];
+    }
 
-    public function mount() { $this->editing = $this->makeBlankTransaction(); }
-    public function updatedFilters() { $this->resetPage(); }
+    public function mount()
+    {
+        $this->editing = $this->makeBlankTransaction();
+    }
+    public function updatedFilters()
+    {
+        $this->resetPage();
+    }
 
     public function makeBlankTransaction()
     {
@@ -45,7 +55,7 @@ class Pendampings extends Component
     {
         $this->useCachedRows();
 
-        $this->showFilters = ! $this->showFilters;
+        $this->showFilters = !$this->showFilters;
     }
 
     public function create()
@@ -66,7 +76,16 @@ class Pendampings extends Component
         $this->showEditModal = true;
     }
 
+    public function deleteSelected()
+    {
+        $deleteCount = $this->selectedRowsQuery->count();
 
+        $this->selectedRowsQuery->delete();
+
+        $this->showDeleteModal = false;
+
+        $this->notify('Anda telah menghapus ' . $deleteCount . ' data.');
+    }
 
     public function save()
     {
@@ -79,12 +98,15 @@ class Pendampings extends Component
         $this->showEditModal = false;
     }
 
-    public function resetFilters() { $this->reset('filters'); }
+    public function resetFilters()
+    {
+        $this->reset('filters');
+    }
 
     public function getRowsQueryProperty()
     {
         $query = Pendamping::query()
-            ->when($this->filters['name'], fn($query, $name) => $query->where('name', 'like', '%'.$name.'%'));
+            ->when($this->filters['name'], fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
 
         return $this->applySorting($query);
     }
@@ -98,7 +120,6 @@ class Pendampings extends Component
 
     public function render()
     {
-
         return view('livewire.admin.pendampings', [
             'items' => $this->rows,
         ]);

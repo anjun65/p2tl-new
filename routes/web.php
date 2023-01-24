@@ -65,10 +65,6 @@ Route::middleware([
         return view('admin.users');
     })->name('admin-user');
 
-    // Route::get('/admin/work-orders', function () {
-    //     return view('admin.work-orders');
-    // })->name('admin-wo');
-
     Route::get('/admin/work-orders', function () {
         return view('admin.wo');
     })->name('admin-wo');

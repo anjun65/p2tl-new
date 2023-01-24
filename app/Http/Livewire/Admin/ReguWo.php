@@ -27,14 +27,21 @@ class ReguWo extends Component
 
     protected $listeners = ['refreshTransactions' => '$refresh'];
 
-    public function rules() { return [
-        'editing.name' => 'required',
-    ]; }
-
-    public function mount() {
-        $this->editing = $this->makeBlankTransaction(); 
+    public function rules()
+    {
+        return [
+            'editing.name' => 'required',
+        ];
     }
-    public function updatedFilters() { $this->resetPage(); }
+
+    public function mount()
+    {
+        $this->editing = $this->makeBlankTransaction();
+    }
+    public function updatedFilters()
+    {
+        $this->resetPage();
+    }
 
     public function makeBlankTransaction()
     {
@@ -45,7 +52,7 @@ class ReguWo extends Component
     {
         $this->useCachedRows();
 
-        $this->showFilters = ! $this->showFilters;
+        $this->showFilters = !$this->showFilters;
     }
 
     public function create()
@@ -66,7 +73,7 @@ class ReguWo extends Component
         $this->showEditModal = true;
     }
 
-    
+
 
     public function save()
     {
@@ -79,12 +86,16 @@ class ReguWo extends Component
         $this->showEditModal = false;
     }
 
-    public function resetFilters() { $this->reset('filters'); }
+    public function resetFilters()
+    {
+        $this->reset('filters');
+    }
 
     public function getRowsQueryProperty()
     {
         $query = Regu::query()
-            ->when($this->filters['name'], fn($query, $name) => $query->where('name', 'like', '%'.$name.'%'));
+            ->where('id', '!=', 1)
+            ->when($this->filters['name'], fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
 
         return $this->applySorting($query);
     }

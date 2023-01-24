@@ -64,7 +64,7 @@ class WorkOrders extends Component
             'editing.tanggal_surat_tugas_p2tl' => 'required',
             'editing.surat_tugas_tni' => 'required',
             'editing.tanggal_surat_tugas_tni' => 'required',
-            'editing.pendamping1_id' => 'required',
+            'editing.pendamping1_id' => 'nullable',
             'editing.pendamping2_id' => 'nullable',
             'editing.tanggal_inspeksi' => 'nullable',
             'editing.jumlah_ts_rp' => 'nullable',

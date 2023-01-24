@@ -23,5 +23,67 @@ class DatabaseSeeder extends Seeder
         \App\Models\Regu::create([
             'name' => 'Tidak Ada Regu',
         ]);
+
+        \App\Models\Regu::create([
+            'name' => 'Regu 1',
+        ]);
+
+
+        \App\Models\User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'ADMIN',
+            'Jabatan' => 'ADMIN',
+            'NIP' => '1234567',
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Petugas 1',
+            'email' => 'petugas1@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'PETUGAS LAPANGAN',
+            'Jabatan' => 'PETUGAS LAPANGAN',
+            'NIP' => '1111111',
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Petugas 2',
+            'email' => 'petugas2@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'PETUGAS LAPANGAN',
+            'Jabatan' => 'PETUGAS LAPANGAN',
+            'NIP' => '2222222',
+        ]);
+
+
+        \App\Models\User::create([
+            'name' => 'ANNEV',
+            'email' => 'annev@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'ANNEV',
+            'Jabatan' => 'PETUGAS LAPANGAN',
+            'NIP' => '8888888',
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'LABOR',
+            'email' => 'labor@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'LABOR',
+            'Jabatan' => 'LABORATORIUM',
+            'NIP' => '9999999',
+        ]);
+
+        \App\Models\Pendamping::create([
+            'name' => 'Pendamping 1',
+            'nip' => '123123123123',
+            'jabatan' => 'Sapta',
+        ]);
     }
 }

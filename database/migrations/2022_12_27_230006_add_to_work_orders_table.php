@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tanggal_surat_tugas_p2tl')->nullable();
             $table->string('surat_tugas_tni')->nullable();
             $table->date('tanggal_surat_tugas_tni')->nullable();
-            $table->integer('pendamping1_id');
+            $table->integer('pendamping1_id')->nullable();
             $table->integer('pendamping2_id')->nullable();
         });
     }
