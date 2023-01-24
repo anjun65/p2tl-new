@@ -82,4 +82,9 @@ class WorkOrder extends Model
     {
         return $this->hasOne(FormLangsung::class, 'works_id', 'id');
     }
+
+    public function kalibrasi()
+    {
+        return $this->hasOne(KalibrasiKwhMeter::class, 'works_id', 'id');
+    }
 }
