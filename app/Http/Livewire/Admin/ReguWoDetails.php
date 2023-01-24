@@ -14,6 +14,7 @@ use App\Models\JamNyala;
 use App\Models\Pendamping;
 use App\Models\Regu;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class ReguWoDetails extends Component
 {
@@ -191,14 +192,14 @@ class ReguWoDetails extends Component
     {
         $berkas = WorkOrder::find($id);
 
-        return response()->download(storage_path('app/' . $berkas->path_image));
+        return response()->download(Storage::url($berkas->path_image));
     }
 
     public function download_video($id)
     {
         $berkas = WorkOrder::find($id);
 
-        return response()->download(storage_path('app/' . $berkas->path_video));
+        return response()->download(Storage::url($berkas->path_image));
     }
 
     public function render()
