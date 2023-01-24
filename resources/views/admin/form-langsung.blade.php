@@ -1814,75 +1814,133 @@
                                         </div>
                                       </div>
                               
+                                      <div class="grid grid-cols-2 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Beban Tegangan (50)</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_50_tegangan }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kanan A</label>
+                                          <label class="block text-sm font-medium text-gray-700">Beban Arus (50)</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->atas_keterangan }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_50_arus }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Akurasi (50)</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_50_akurasi }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Keterangan (50)</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_50_keterangan }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
                               
-                                      <div class="grid grid-cols-3 gap-6">
+                                      <div class="grid grid-cols-2 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kanan B</label>
+                                          <label class="block text-sm font-medium text-gray-700">Beban Tegangan (5)</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->kanan_b }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_5_tegangan }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
-                              
-                              
+                                      
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kanan Keterangan</label>
+                                          <label class="block text-sm font-medium text-gray-700">Beban Arus (5)</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->kanan_keterangan }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_5_arus }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
-                              
+                                      
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kiri A</label>
+                                          <label class="block text-sm font-medium text-gray-700">Akurasi (5)</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->kiri_a }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_5_akurasi }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
-                              
+                                      
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kiri B</label>
+                                          <label class="block text-sm font-medium text-gray-700">Keterangan (5)</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->kiri_b }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->beban_5_keterangan }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
-                              
+
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Kiri Keterangan</label>
+                                          <label class="block text-sm font-medium text-gray-700">Merk alat Uji</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh_lanjutan->kiri_keterangan }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->alat_uji_merk }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Type alat Uji</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->alat_uji_type }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">No Seri alat Uji</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_uji_akurasi->alat_uji_no_seri }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Kesimpulan</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <textarea rows="3"
+                                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ $item->work->kalibrasi->data_uji_akurasi->kesimpulan }}</textarea>
+                                          </div>
+                                        </div>
+                                      </div>
                               
-                              
-                              
-                                      @if ($item->work->kalibrasi->data_kwh_lanjutan->file)
+                                      @if ($item->work->kalibrasi->data_uji_akurasi->file)
                                       <div>
                                         <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
                                         <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                           <div class="space-y-1 text-center">
-                                            <a href="{{ Storage::url($item->work->kalibrasi->data_kwh_lanjutan->file) }}">Download Video</a>
+                                            <a href="{{ Storage::url($item->work->kalibrasi->data_uji_akurasi->file) }}">Download Video</a>
                               
                               
                                           </div>
