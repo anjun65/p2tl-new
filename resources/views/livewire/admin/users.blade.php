@@ -80,9 +80,7 @@
 
                         <x-table.cell>
                             <span class="text-cool-gray-900 font-medium">
-                                @if (!empty($item->regu->nama_regu))
-                                    {{ $item->regu->nama_regu }}
-                                @endif
+                                {{ $item->regu->name }}
                             </span>
                         </x-table.cell>
 
@@ -95,7 +93,7 @@
                         <x-table.cell colspan="8">
                             <div class="flex justify-center items-center space-x-2">
                                 <x-icon.inbox class="h-8 w-8 text-cool-gray-400" />
-                                <span class="font-medium py-8 text-cool-gray-400 text-xl">No User found...</span>
+                                <span class="font-medium py-8 text-cool-gray-400 text-xl">Tidak ada User yang ditemukan...</span>
                             </div>
                         </x-table.cell>
                     </x-table.row>

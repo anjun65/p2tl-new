@@ -77,7 +77,6 @@ class WorkOrder extends Model
         return $this->belongsTo(Regu::class, 'regus_id', 'id');
     }
 
-
     public function form()
     {
         return $this->hasOne(FormLangsung::class, 'works_id', 'id');
