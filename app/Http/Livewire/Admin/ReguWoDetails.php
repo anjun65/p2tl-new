@@ -84,6 +84,7 @@ class ReguWoDetails extends Component
             'editing.P8' => 'nullable',
             'editing.P9' => 'nullable',
             'editing.P10' => 'nullable',
+            'editing.komentar' => 'nullable',
         ];
     }
 

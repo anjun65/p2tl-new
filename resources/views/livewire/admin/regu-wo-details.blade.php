@@ -241,7 +241,7 @@
                     <!-- Save Product Modal -->
                     <form wire:submit.prevent="save">
                         <x-modal.dialog wire:model.defer="showEditModal">
-                            <x-slot name="title">Work Order</x-slot>
+                            <x-slot name="title">Target Operasi</x-slot>
                 
                             <x-slot name="content">
                                 
@@ -487,14 +487,13 @@
                                     </x-input.group>
                                 @endif --}}
                 
-                                @if(!empty($editing->komentar))
+                                
                                 <x-input.group for="komentar" label="Komentar" :error="$errors->first('editing.komentar')">
                                     <x-input.text wire:model="editing.komentar" id="komentar" Placeholder="Komentar">
                                     </x-input.text>
                                 </x-input.group>
-                                @endif
                                 
-                                @if (!empty($this->editing->path_image))
+                                @if (!empty($this->editing->image))
                                     <x-input.group label="Image" for="upload_video" :error="$errors->first('upload_video')">
                                         <x-jet-button wire:click="download_image({{ $editing->id }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 pr-1">
@@ -506,7 +505,7 @@
                                 @endif
                 
                 
-                                @if (!empty($this->editing->path_video))
+                                @if (!empty($this->editing->video))
                                     <x-input.group label="Video" for="upload_video" :error="$errors->first('upload_video')">
                                         <x-jet-button wire:click="download_video({{ $editing->id }})">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 pr-1">
