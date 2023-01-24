@@ -44,6 +44,13 @@ class FormLangsungController extends Controller
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
 
+
+        $new_file = null;
+
+        if ($request->file) {
+            $new_file = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_' . $request->nama_saksi . '|' . $request->identitas_saksi . '.' . $request->file->getClientOriginalExtension());
+        }
+
         if (empty($form)) {
             $form = FormLangsung::create([
                 'works_id' => $request->works_id,
@@ -51,7 +58,7 @@ class FormLangsungController extends Controller
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
                 // 'file' => $request->file_nomor_identitas->store('assets/saksi', 'public'),
-                'file_nomor_identitas' => Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksi_' . $request->nama_saksi . '|' . $request->identitas_saksi . '.' . $request->file->getClientOriginalExtension()),
+                'file_nomor_identitas' => $new_file,
                 'no_telpon_saksi' => $request->no_telpon_saksi,
             ]);
         } else {
@@ -59,7 +66,7 @@ class FormLangsungController extends Controller
             $form->nama_saksi = $request->nama_saksi ?? $form->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi ?? $form->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas ?? $form->nomor_identitas;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_' . $request->nama_saksi . '.' . $request->file->getClientOriginalExtension()) ?? $form->file_nomor_identitas;
+            $form->file_nomor_identitas = $new_file ?? $form->file_nomor_identitas;
             $form->no_telpon_saksi = $request->no_telpon_saksi ?? $form->nomor_identitas;
             $form->save();
         }
