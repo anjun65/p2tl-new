@@ -65,8 +65,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'annev@gmail.com',
             'password' => bcrypt('123123123'),
             'regus_id' => 2,
-            'roles' => 'ANNEV',
-            'Jabatan' => 'PETUGAS LAPANGAN',
+            'roles' => 'ANEV',
+            'Jabatan' => 'ANEV',
             'NIP' => '8888888',
         ]);
 
