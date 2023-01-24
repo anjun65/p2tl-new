@@ -37,6 +37,7 @@ class FormLangsungHasilPemeriksaanController extends Controller
 
         if ($request->labor == 'Teruskan') {
             $form_langsung = FormLangsung::find($request->forms_id)->get();
+            dd($form_langsung);
             $work = WorkOrder::find($form_langsung->works_id);
 
             $work->update([
