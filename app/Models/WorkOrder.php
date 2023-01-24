@@ -48,6 +48,7 @@ class WorkOrder extends Model
         'P8',
         'P9',
         'P10',
+        'labor',
     ];
 
     const Keterangan = [
