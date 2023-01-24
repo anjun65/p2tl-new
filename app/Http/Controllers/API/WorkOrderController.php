@@ -12,7 +12,7 @@ class WorkOrderController extends Controller
 {
     public function all(Request $request)
     {
-        $work_order = WorkOrder::with('jam_nyala')->get();
+        $work_order = WorkOrder::all();
 
         if ($work_order)
             return ResponseFormatter::success(
@@ -29,7 +29,7 @@ class WorkOrderController extends Controller
 
     public function regu(Request $request)
     {
-        $work_order = WorkOrder::with('jam_nyala')->where('regus_id', $request->regus_id)->get();
+        $work_order = WorkOrder::where('regus_id', $request->regus_id)->get();
 
         if ($work_order)
             return ResponseFormatter::success(
