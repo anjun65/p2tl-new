@@ -1505,6 +1505,87 @@
                                 </div>
                               </div>
                               {{-- Data Saksi --}}
+
+                              {{-- Data kWh Meter --}}
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                                <div class="md:col-span-1">
+                                  <div class="px-4 sm:px-0">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Data kWh Meter</h3>
+                                    <p class="mt-1 text-sm text-gray-600"></p>
+                                  </div>
+                                </div>
+                                <div class="mt-5 md:col-span-2 md:mt-0">
+                              
+                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                      <div class="grid grid-cols-2 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Merk</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nama_saksi }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->merk }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nomor_identitas }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->no_telpon_saksi }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Pekerjaan Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->pekerjaan_saksi }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      @if ($item->work->kalibrasi->file_nomor_identitas)
+                                      <div>
+                                        <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
+                                        <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                          <div class="space-y-1 text-center">
+                                            <img src="{{ Storage::url($item->work->kalibrasi->file_nomor_identitas) }}" />
+                              
+                              
+                                          </div>
+                                        </div>
+                                      </div>
+                                      @endif
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {{-- Data kWh Meter --}}
                         </div>
                     </div>
                     </div>

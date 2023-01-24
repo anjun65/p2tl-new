@@ -19,4 +19,18 @@ class KalibrasiKwhMeter extends Model
         'no_telp_saksi',
         'file',
     ];
+
+    public function data_kwh()
+    {
+        return $this->hasOne(KalibrasiDataKwhMeter::class, 'forms_id', 'id');
+    }
+    public function data_kwh_lanjutan()
+    {
+        return $this->hasOne(KalibrasiDataKwhMeterLanjutan::class, 'forms_id', 'id');
+    }
+
+    public function data_uji_akurasi()
+    {
+        return $this->hasOne(KalibrasiUjiAkurasi::class, 'forms_id', 'id');
+    }
 }
