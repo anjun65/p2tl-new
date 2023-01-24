@@ -11,6 +11,17 @@
                 <div class="py-4 space-y-4">
                     <div class="flex-col space-y-4">
                         <div>
+                            <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                              <div class="md:col-span-1">
+                                <div class="px-4 sm:px-0">
+                                  <h3 class="text-lg font-medium leading-6 text-gray-900">Data Petugas Lapangan</h3>
+                                  <p class="mt-1 text-sm text-gray-600"></p>
+                                </div>
+                              </div>
+                              <div class="mt-5 md:col-span-2 md:mt-0">
+                            
+                              </div>
+                            </div>
                             {{-- Data Saksi --}}
                             <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                               <div class="md:col-span-1">
@@ -60,17 +71,18 @@
                                         </div>
                                       </div>
 
+                                      @if ($item->file_nomor_identitas)
                                       <div>
                                         <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
                                         <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                           <div class="space-y-1 text-center">
-                                            @if ($item->file_nomor_identitas)
                                               <img src="{{ Storage::url($item->file_nomor_identitas) }}" />
-                                            @endif
+                                            
                                             
                                           </div>
                                         </div>
                                       </div>
+                                      @endif
                                     </div>
                                   </div>
                               </div>
