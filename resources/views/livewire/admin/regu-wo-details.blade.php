@@ -245,7 +245,7 @@
                 
                             <x-slot name="content">
                                 
-                                {{-- <x-input.group for="regus_id" label="Regu" :error="$errors->first('editing.regus_id')">
+                                <x-input.group for="regus_id" label="Regu" :error="$errors->first('editing.regus_id')">
                                     <x-input.select wire:model="editing.regus_id" id="regus_id">
                                         <option value="">Pilih Regu</option>
                                         @forelse ($regus as $regu)
@@ -254,7 +254,7 @@
                                             <option value="">No Group Exist</option>
                                         @endforelse
                                     </x-input.select>
-                                </x-input.group> --}}
+                                </x-input.group>
                 
                 
                                 <x-input.group for="id_pelanggan" label="ID Pelanggan" :error="$errors->first('editing.id_pelanggan')">
@@ -307,8 +307,7 @@
                                 <x-input.group for="fkm" label="FKM" :error="$errors->first('editing.fkm')">
                                     <x-input.text type="number" wire:model="editing.fkm" id="fkm" placeholder="FKM" />
                                 </x-input.group>
-                                
-                                
+
                                 <x-table>
                                     <x-slot name="head">
                                         <x-table.heading>Periode</x-table.heading>
@@ -326,8 +325,7 @@
                 
                                             <x-table.cell>
                                                 <span class="text-gray-900 font-medium">
-                                                        <x-input.text type="number" wire:model="editing.P1" id="P1" placeholder="P1" />
-                                                    
+                                                    <x-input.text type="number" wire:model="editing.P1" id="P1" placeholder="P1" />
                                                 </span>
                                             </x-table.cell>
                                         </x-table.row>
@@ -340,8 +338,7 @@
                                             
                                             <x-table.cell>
                                                 <span class="text-gray-900 font-medium">
-                                                        <x-input.text type="number" wire:model="editing.P3" id="P3" placeholder="P3" />
-                                                    
+                                                    <x-input.text type="number" wire:model="editing.P3" id="P3" placeholder="P3" />
                                                 </span>
                                             </x-table.cell>
                                         </x-table.row>
@@ -529,11 +526,7 @@
                 
                                 </x-input.group>
                 
-                
-                                <x-input.group for="no_ba" label="No BA" :error="$errors->first('editing.no_ba')">
-                                    <x-input.text wire:model="editing.no_ba" id="no_ba" Placeholder="Nomor BA">
-                                    </x-input.text>
-                                </x-input.group>
+            
                 
                                 <x-input.group for="surat_tugas_p2tl" label="Surat Tugas P2TL" :error="$errors->first('editing.surat_tugas_p2tl')">
                                     <x-input.text wire:model="editing.surat_tugas_p2tl" id="surat_tugas_p2tl" Placeholder="Surat Tugas P2TL">

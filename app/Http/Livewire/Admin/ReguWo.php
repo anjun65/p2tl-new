@@ -94,7 +94,6 @@ class ReguWo extends Component
     public function getRowsQueryProperty()
     {
         $query = Regu::query()
-            ->where('id', '!=', 1)
             ->when($this->filters['name'], fn ($query, $name) => $query->where('name', 'like', '%' . $name . '%'));
 
         return $this->applySorting($query);

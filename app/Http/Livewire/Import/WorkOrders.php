@@ -37,7 +37,6 @@ class WorkOrders extends Component
         'tanggal_surat_tugas_tni' => '',
         'pendamping1_id' => '',
         'pendamping2_id' => '',
-
         'P1' => '',
         'P2' => '',
         'P3' => '',
@@ -72,7 +71,6 @@ class WorkOrders extends Component
         'fieldColumnMap.tanggal_surat_tugas_tni' => 'nullable',
         'fieldColumnMap.pendamping1_id' => 'nullable',
         'fieldColumnMap.pendamping2_id' => 'nullable',
-
         'fieldColumnMap.P1' => 'nullable',
         'fieldColumnMap.P2' => 'nullable',
         'fieldColumnMap.P3' => 'nullable',
@@ -186,6 +184,16 @@ class WorkOrders extends Component
             'fkm' => ['fkm'],
             'keterangan_p2tl' => ['keterangan_p2tl'],
             'status' => ['status'],
+            'P1' => ['p1'],
+            'P2' => ['p2'],
+            'P3' => ['p3'],
+            'P4' => ['p4'],
+            'P5' => ['p5'],
+            'P6' => ['p6'],
+            'P7' => ['p7'],
+            'P8' => ['p8'],
+            'P9' => ['p9'],
+            'P10' => ['p10'],
             'no_ba' => ['no_ba'],
             'surat_tugas_p2tl' => ['surat_tugas_p2tl'],
             'tanggal_surat_tugas_p2tl' => ['tanggal_surat_tugas_p2tl'],
@@ -193,16 +201,7 @@ class WorkOrders extends Component
             'tanggal_surat_tugas_tni' => ['tanggal_surat_tugas_tni'],
             'pendamping1_id' => ['pendamping1_id'],
             'pendamping2_id' => ['pendamping2_id'],
-            'P1' => ['P1'],
-            'P2' => ['P2'],
-            'P3' => ['P3'],
-            'P4' => ['P4'],
-            'P5' => ['P5'],
-            'P6' => ['P6'],
-            'P7' => ['P7'],
-            'P8' => ['P8'],
-            'P9' => ['P9'],
-            'P10' => ['P10'],
+
         ];
 
         foreach ($this->columns as $column) {
