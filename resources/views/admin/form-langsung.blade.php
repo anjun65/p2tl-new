@@ -1522,16 +1522,6 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Merk</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nama_saksi }}"
-                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                          </div>
-                                        </div>
-                                      </div>
-                              
-                                      <div class="grid grid-cols-3 gap-6">
-                                        <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
-                                          <div class="mt-1 flex rounded-md shadow-sm">
                                             <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->merk }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
@@ -1540,9 +1530,19 @@
                               
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
+                                          <label class="block text-sm font-medium text-gray-700">No. Register</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nomor_identitas }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->no_register }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">No. Seri</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->no_seri }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1551,9 +1551,9 @@
                               
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
+                                          <label class="block text-sm font-medium text-gray-700">Tahun Pembuatan</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->no_telpon_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->tahun_pembuatan }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1561,22 +1561,73 @@
                               
                                       <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
-                                          <label class="block text-sm font-medium text-gray-700">Pekerjaan Saksi</label>
+                                          <label class="block text-sm font-medium text-gray-700">Class</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->pekerjaan_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->class }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
                                       </div>
+
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Konstanta</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->konstanta }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Rating Arus</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->rating_arus }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Tegangan Nomimal</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->tegangan_nomimal }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Stand Kwh Meter</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->data_kwh->stand_kwh_meter }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Keterangan</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <textarea rows="3"
+                                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">{{ $item->work->kalibrasi->data_kwh->keterangan }}</textarea>
+                                          </div>
+                                        </div>
+                                      </div>
                               
-                                      @if ($item->work->kalibrasi->file_nomor_identitas)
+                                      @if ($item->work->kalibrasi->data_kwh->file)
                                       <div>
                                         <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
                                         <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                           <div class="space-y-1 text-center">
-                                            <img src="{{ Storage::url($item->work->kalibrasi->file_nomor_identitas) }}" />
-                              
-                              
+                                            <a href="{{ Storage::url($item->work->kalibrasi->data_kwh->file) }}">Download Video</a>
+                                            
+                                  
                                           </div>
                                         </div>
                                       </div>
