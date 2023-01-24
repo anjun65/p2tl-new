@@ -588,6 +588,11 @@
                             </x-slot>
                 
                             <x-slot name="footer">
+
+                                @if ($this->editing->labor == 1)
+                                    <a href="{{ route('admin-serah-terima', $this->editing->id) }}">Tambah Borang Serah Terima</a>
+                                @endif
+
                                 <x-button.secondary wire:click="$set('showEditModal', false)">Cancel</x-button.secondary>
                 
                                 <x-button.primary type="submit">Save</x-button.primary>
