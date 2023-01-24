@@ -14,6 +14,8 @@ class SerahTerimaController extends Controller
     {
         $item = SerahTerima::where('works_id', $id)->get();
 
+
+
         return view('admin.serah-terima', [
             'item' => $item,
         ]);

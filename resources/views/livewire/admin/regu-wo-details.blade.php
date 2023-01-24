@@ -590,7 +590,7 @@
                             <x-slot name="footer">
 
                                 @if ($this->editing->labor == 1)
-                                    <a class="border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500" href="{{ route('admin-serah-terima', $this->editing->id) }}">Tambah Borang Serah Terima</a>
+                                    <a class="py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500" href="{{ route('admin-serah-terima', $this->editing->id) }}">Tambah BA Serah Terima</a>
                                 @endif
 
                                 <x-button.secondary wire:click="$set('showEditModal', false)">Cancel</x-button.secondary>
