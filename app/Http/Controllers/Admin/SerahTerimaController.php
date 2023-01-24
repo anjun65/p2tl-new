@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BarangBukti;
 use App\Models\SerahTerima;
 use Illuminate\Http\Request;
 use resources\lang\id\date;
@@ -12,7 +13,7 @@ class SerahTerimaController extends Controller
 {
     public function show($id)
     {
-        $item = SerahTerima::where('works_id', $id)->get();
+        $item = BarangBukti::where('works_id', $id)->get();
 
 
 
