@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\JamNyala;
 use App\Models\Pendamping;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class WorkOrders extends Component
 {
@@ -180,17 +181,19 @@ class WorkOrders extends Component
     //     return response()->download(storage_path('app/public/'.$berkas->path_ba_pemeriksaan)); 
     // }
 
-    // public function download_image($id){
-    //     $berkas = WorkOrder::find($id);
+    public function download_image($id)
+    {
+        $berkas = WorkOrder::find($id);
 
-    //     return response()->download(storage_path('app/public/'.$berkas->path_image)); 
-    // }
+        return response()->download(Storage::url($berkas->path_image));
+    }
 
-    // public function download_video($id){
-    //     $berkas = WorkOrder::find($id);
+    public function download_video($id)
+    {
+        $berkas = WorkOrder::find($id);
 
-    //     return response()->download(storage_path('app/public/'.$berkas->path_video)); 
-    // }
+        return response()->download(Storage::url($berkas->path_image));
+    }
 
     public function deleteSelected()
     {
