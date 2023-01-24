@@ -200,7 +200,7 @@
 
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                    @if (($item->isEmpty()))
+                                                    @if (($serah->isEmpty()))
                                                         <form action="{{ route('serah-terima-post') }}" method="POST">
                                                             @csrf
                                                             <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
@@ -220,7 +220,7 @@
                                                             </x-button>
                                                         </form>
                                                     @else
-                                                        <form action="{{ route('annev-edit-form-langsung', $item->id) }}" method="POST" enctype="multipart/form-data">
+                                                        <form action="{{ route('annev-edit-form-langsung', $serah->id) }}" method="POST" enctype="multipart/form-data">
                                                             @method('PUT')
                                                             @csrf
                                                             <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
