@@ -34,6 +34,7 @@ class FormLangsungController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'works_id' => ['required'],
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
@@ -46,7 +47,6 @@ class FormLangsungController extends Controller
         if (empty($form)) {
             $form = FormLangsung::create([
                 'works_id' => $request->works_id,
-                'regus_id' => $request->regus_id,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
@@ -56,12 +56,11 @@ class FormLangsungController extends Controller
             ]);
         } else {
             $form->works_id = $request->works_id;
-            $form->regus_id = $request->regus_id;
-            $form->nama_saksi = $request->nama_saksi;
-            $form->alamat_saksi = $request->alamat_saksi;
-            $form->nomor_identitas = $request->nomor_identitas;
-            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_' . $request->nama_saksi . '.' . $request->file->getClientOriginalExtension());
-            $form->no_telpon_saksi = $request->no_telpon_saksi;
+            $form->nama_saksi = $request->nama_saksi ?? $form->nama_saksi;
+            $form->alamat_saksi = $request->alamat_saksi ?? $form->alamat_saksi;
+            $form->nomor_identitas = $request->nomor_identitas ?? $form->nomor_identitas;
+            $form->file_nomor_identitas = Storage::putFileAs('public/assets/saksi', $request->file, 'identitas_saksiii_' . $request->nama_saksi . '.' . $request->file->getClientOriginalExtension()) ?? $form->file_nomor_identitas;
+            $form->no_telpon_saksi = $request->no_telpon_saksi ?? $form->nomor_identitas;
             $form->save();
         }
 
