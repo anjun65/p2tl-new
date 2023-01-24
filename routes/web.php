@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\FormLangsungController;
 use App\Http\Controllers\Admin\Kalibrasi;
+use App\Http\Controllers\Admin\LangsungController;
 use App\Http\Controllers\Admin\PengambilanBarangBukti;
 use App\Http\Controllers\Annev\FormLangsungController as annev;
 use App\Http\Controllers\Form1Controller;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Admin\ReguWoDetails;
 use App\Http\Controllers\Admin\SerahTerimaController;
+use App\Http\Controllers\Admin\TidakLangsungController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,12 +85,15 @@ Route::middleware([
 
     Route::get('/admin/serah-terima/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
 
-    Route::get('/admin/pembukaan-barang-bukti/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
+    Route::get('/admin/pembukaan-barang-bukti/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('pembukaan-pdf');
 
-    Route::get('/admin/pengambilan-barang-bukti/pdf/{id}', [PengambilanBarangBukti::class, 'generatePDF'])->name('serah-terima-pdf');
+    Route::get('/admin/pengambilan-barang-bukti/pdf/{id}', [PengambilanBarangBukti::class, 'generatePDF'])->name('pengambilan-pdf');
 
-    Route::get('/admin/kalibrasi/pdf/{id}', [Kalibrasi::class, 'generatePDF'])->name('serah-terima-pdf');
+    Route::get('/admin/kalibrasi/pdf/{id}', [Kalibrasi::class, 'generatePDF'])->name('kalibrasi-pdf');
 
+    Route::get('/admin/langsung/pdf/{id}', [LangsungController::class, 'generatePDF'])->name('langsung-pdf');
+
+    Route::get('/admin/tidak-langsung/pdf/{id}', [TidakLangsungController::class, 'generatePDF'])->name('langsung-pdf');
 
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');
