@@ -13,7 +13,7 @@ class SerahTerimaController extends Controller
 {
     public function show($id)
     {
-        $item = BarangBukti::where('works_id', $id)->get();
+        $item = BarangBukti::where('works_id', $id)->first();
 
 
 

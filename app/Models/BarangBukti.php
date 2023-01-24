@@ -26,4 +26,9 @@ class BarangBukti extends Model
         'alat_bantu_ukur',
         'file_barang_bukti',
     ];
+
+    public function work()
+    {
+        return $this->belongsTo(WorkOrder::class, 'works_id', 'id');
+    }
 }
