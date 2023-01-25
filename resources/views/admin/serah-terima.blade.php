@@ -78,7 +78,7 @@
                                                                 <div
                                                                     class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                                                     <div class="space-y-1 text-center">
-                                                                        <img src="{{ Storage::url($item->file_nomor_identitas) }}" />
+                                                                        <img src="{{ Storage::url($item->file_identitas) }}" />
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -187,7 +187,7 @@
                                                                 <div
                                                                     class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                                                                     <div class="space-y-1 text-center">
-                                                                        <img src="{{ Storage::url($item->file_batang_bukti) }}" />
+                                                                        <img src="{{ Storage::url($item->file_barang_bukti) }}" />
                                                                     </div>
                                                                 </div>
                                                             </div>
