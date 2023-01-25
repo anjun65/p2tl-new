@@ -23,6 +23,7 @@ class FormTidakLangsungDataPemeriksaanPintuGarduCtController extends Controller
             'post_segel' => ['required'],
             'post_nomor_tahun_kode_segel' => ['required'],
             'foto_sesudah' => ['required', 'image'],
+            'all_keterangan' => ['required'],
         ]);
 
 
@@ -51,6 +52,7 @@ class FormTidakLangsungDataPemeriksaanPintuGarduCtController extends Controller
                 'post_segel' => $request->post_segel,
                 'post_nomor_tahun_kode_segel' => $request->post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $new_foto_sesudah,
+                'all_keterangan' => $request->all_keterangan,
             ]);
         } else {
             $form = form_model::create([
@@ -64,6 +66,7 @@ class FormTidakLangsungDataPemeriksaanPintuGarduCtController extends Controller
                 'post_segel' => $request->post_segel,
                 'post_nomor_tahun_kode_segel' => $request->post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $new_foto_sesudah,
+                'all_keterangan' => $request->all_keterangan,
             ]);
         }
 
