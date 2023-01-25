@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\FormTidakLangsungDataPemeriksaanKubikel as form_model;
+use App\Models\FormTidakLangsungDataPemeriksaanPelindungCt as form_model;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,28 +18,28 @@ class FormTidakLangsungDataPemeriksaanPelindungCtController extends Controller
             'segel' => ['required'],
             'nomor_tahun_kode_segel' => ['required'],
             'keterangan' => ['required'],
-            'foto_sebelum' => ['required','image'],
+            'foto_sebelum' => ['required', 'image'],
             'post_peralatan' => ['required'],
             'post_segel' => ['required'],
             'post_nomor_tahun_kode_segel' => ['required'],
-            'foto_sesudah' => ['required','image'],
+            'foto_sesudah' => ['required', 'image'],
         ]);
 
 
         $form = form_model::where('forms_id', $request->forms_id)->first();
-        
+
         $new_foto_sebelum = '';
         $new_foto_sesudah = '';
 
-        if ($request->foto_sebelum){
-            $new_foto_sebelum = Storage::putFileAs('public/assets/form-tidak-langsung/dataPemeriksaan/pelindungkwh/sebelum', $request->foto_sebelum, 'foto_sebelum_'.$request->forms_id.'.'.$request->foto_sebelum->getClientOriginalExtension());
+        if ($request->foto_sebelum) {
+            $new_foto_sebelum = Storage::putFileAs('public/assets/form-tidak-langsung/dataPemeriksaan/pelindungkwh/sebelum', $request->foto_sebelum, 'foto_sebelum_' . $request->forms_id . '.' . $request->foto_sebelum->getClientOriginalExtension());
         }
 
-        if ($request->foto_sesudah){
-            $new_foto_sesudah = Storage::putFileAs('public/assets/form-tidak-langsung/dataPemeriksaan/pelindungkwh/sebelum', $request->foto_sesudah, 'foto_sesudah_'.$request->forms_id.'.'.$request->foto_sesudah->getClientOriginalExtension());
+        if ($request->foto_sesudah) {
+            $new_foto_sesudah = Storage::putFileAs('public/assets/form-tidak-langsung/dataPemeriksaan/pelindungkwh/sebelum', $request->foto_sesudah, 'foto_sesudah_' . $request->forms_id . '.' . $request->foto_sesudah->getClientOriginalExtension());
         }
-        
-        if ($form){
+
+        if ($form) {
             $form->update([
                 'forms_id' => $request->forms_id,
                 'peralatan' => $request->peralatan,
@@ -66,8 +66,8 @@ class FormTidakLangsungDataPemeriksaanPelindungCtController extends Controller
                 'foto_sesudah' => $new_foto_sesudah,
             ]);
         }
-        
+
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
-}
+    }
 }
