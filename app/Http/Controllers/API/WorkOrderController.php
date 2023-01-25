@@ -91,6 +91,7 @@ class WorkOrderController extends Controller
     {
         $request->validate([
             'id_pelanggan' => ['required'],
+            'regus_id' => ['required'],
             'nama_pelanggan' => ['required', 'string', 'max:255'],
             'keterangan_p2tl' => ['required', 'string', 'max:255'],
             'alamat_pelanggan' => ['required', 'string', 'max:255'],
@@ -116,6 +117,7 @@ class WorkOrderController extends Controller
 
         $workorder = WorkOrder::create([
             'id_pelanggan' => $request->id_pelanggan,
+            'regus_id' => ['required'],
             'nama_pelanggan' => $request->nama_pelanggan,
             'keterangan_p2tl' => $request->keterangan_p2tl,
             'alamat_pelanggan' => $request->alamat_pelanggan,
