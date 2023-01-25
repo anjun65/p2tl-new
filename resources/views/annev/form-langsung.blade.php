@@ -1957,7 +1957,7 @@
                                 <div class="grid grid-cols-2 gap-6 pb-2">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Jumlah TS (Rp)</label>
-                                    <input type="text" value="{{ $item->work->jumlah_ts_rp }}"
+                                    <input type="text" name="jumlah_ts_rp" value="{{ $item->work->jumlah_ts_rp }}"
                                       class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                   </div>
                                 </div>
@@ -1965,7 +1965,7 @@
                                 <div class="grid grid-cols-2 gap-6 pb-2">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Jumlah TS (kWh)</label>
-                                    <input type="text" value="{{ $item->work->jumlah_ts_kwh }}"
+                                    <input type="text" name="jumlah_ts_kwh" value="{{ $item->work->jumlah_ts_kwh }}"
                                       class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                   </div>
                                 </div>
