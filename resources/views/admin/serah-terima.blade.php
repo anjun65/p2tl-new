@@ -202,7 +202,7 @@
 
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                    @if (($serah->isEmpty()))
+                                                    {{-- @if (($serah->isEmpty())) --}}
                                                         <form action="{{ route('serah-terima-post', $id)  }}" method="POST">
                                                             @csrf
                                                             
@@ -212,25 +212,6 @@
                                                                 {{-- <x-datepicker2 name='tanggal_serah_terima' id='tanggal_serah_terima'>
                                                                 </x-datepicker2> --}}
 
-                                                                <input type="text" name="tanggal_serah_terima"
-                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                            </div>
-                                                        
-                                                            <x-button type="submit" class="mt-5">
-                                                                Save now
-                                                            </x-button>
-                                                        </form>
-                                                    @else
-                                                        <form action="{{ route('serah-terima-update', $id) }}" method="POST" enctype="multipart/form-data">
-                                                            @method('PUT')
-                                                            @csrf
-                                                            
-                                                        
-                                                            <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
-                                                            <div class="mt-1 flex rounded-md shadow-sm">
-                                                                {{-- <x-datepicker2 name='tanggal_serah_terima'>
-                                                                </x-datepicker2> --}}
-
                                                                 <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima }}"
                                                                     class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                             </div>
@@ -238,9 +219,28 @@
                                                             <x-button type="submit" class="mt-5">
                                                                 Save now
                                                             </x-button>
+                                                        </form>
+                                                    {{-- @else
+                                                        <form action="{{ route('serah-terima-update', $id) }}" method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            
+                                                        
+                                                            <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
+                                                            <div class="mt-1 flex rounded-md shadow-sm"> --}}
+                                                                {{-- <x-datepicker2 name='tanggal_serah_terima'>
+                                                                </x-datepicker2> --}}
+
+                                                                {{-- <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima }}"
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                            </div>
+                                                        
+                                                            <x-button type="submit" class="mt-5">
+                                                                Save now
+                                                            </x-button>
                                                         
                                                         </form>
-                                                    @endif
+                                                    @endif --}}
                                                 </div>
                                             </div>
                                         </div>
