@@ -15,7 +15,7 @@ class SerahTerimaController extends Controller
     {
         $item = BarangBukti::where('works_id', $id)->first();
 
-        $serah = SerahTerima::where('works_id', $id)->first();
+        $serah = SerahTerima::where('works_id', $id)->get();
 
         return view('admin.serah-terima', [
             'item' => $item,

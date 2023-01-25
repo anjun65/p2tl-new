@@ -203,11 +203,7 @@
                                                     @if (($serah->isEmpty()))
                                                         <form action="{{ route('serah-terima-post') }}" method="POST">
                                                             @csrf
-                                                            <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
-                                                            <div class="mt-1 flex rounded-md shadow-sm">
-                                                                <input type="text" name='no_ba'
-                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                            </div>
+                                                            
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
                                                             <div class="mt-1 flex rounded-md shadow-sm">
@@ -223,11 +219,7 @@
                                                         <form action="{{ route('annev-edit-form-langsung', $serah->id) }}" method="POST" enctype="multipart/form-data">
                                                             @method('PUT')
                                                             @csrf
-                                                            <label class="block text-sm font-medium text-gray-700">No Berita Acara Serah Terima</label>
-                                                            <div class="mt-1 flex rounded-md shadow-sm">
-                                                                <input type="text" name='no_ba'
-                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                                            </div>
+                                                            
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
                                                             <div class="mt-1 flex rounded-md shadow-sm">
