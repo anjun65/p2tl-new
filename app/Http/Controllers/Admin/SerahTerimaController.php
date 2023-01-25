@@ -20,6 +20,8 @@ class SerahTerimaController extends Controller
         return view('admin.serah-terima', [
             'item' => $item,
             'serah' => $serah,
+
+            'id' => $id,
         ]);
     }
 
