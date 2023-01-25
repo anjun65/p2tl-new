@@ -150,7 +150,7 @@
                                 <x-table.heading>Keterangan</x-table.heading>
                                 <x-table.heading>Status</x-table.heading>
                                 <x-table.heading>Lihat BA</x-table.heading>
-                                <x-table.heading />
+                                {{-- <x-table.heading /> --}}
                             </x-slot>
 
                             <x-slot name="body">
@@ -234,9 +234,9 @@
                                                 href="{{ route('annev-form-langsung', $item->id) }}">Lihat BA</a></span>
                                     </x-table.cell>
 
-                                    <x-table.cell>
+                                    {{-- <x-table.cell>
                                         <x-button.link wire:click="edit({{ $item->id }})">Edit</x-button.link>
-                                    </x-table.cell>
+                                    </x-table.cell> --}}
 
                                 </x-table.row>
                                 @empty

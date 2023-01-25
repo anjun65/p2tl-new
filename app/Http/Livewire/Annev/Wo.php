@@ -47,32 +47,32 @@ class Wo extends Component
 
     public function rules()
     {
-        // return [
-        //     'editing.regus_id' => 'required',
-        //     'editing.id_pelanggan' => 'required',
-        //     'editing.nama_pelanggan' => 'required',
-        //     'editing.latitude' => 'required',
-        //     'editing.longitude' => 'required',
-        //     'editing.alamat' => 'required',
-        //     'editing.jenis_p2tl' => 'required',
-        //     'editing.tarif' => 'required',
-        //     'editing.daya' => 'required',
-        //     'editing.rbm' => 'required',
-        //     'editing.lgkh' => 'required',
-        //     'editing.fkm' => 'required',
-        //     'editing.status' => 'nullable',
-        //     'editing.keterangan_p2tl' => 'nullable',
-        //     'nyala_model.tanggal' => 'nullable',
-        //     'nyala_model.jumlah' => 'nullable',
-        //     'editing.no_ba' => 'required',
-        //     'editing.surat_tugas_p2tl' => 'required',
-        //     'editing.tanggal_surat_tugas_p2tl' => 'required',
-        //     'editing.surat_tugas_tni' => 'required',
-        //     'editing.tanggal_surat_tugas_tni' => 'required',
-        //     'editing.pendamping1_id' => 'required',
-        //     'editing.pendamping2_id' => 'nullable',
-        //     'editing.tanggal_inspeksi' => 'nullable',
-        // ];
+        return [
+            'editing.regus_id' => 'required',
+            'editing.id_pelanggan' => 'required',
+            'editing.nama_pelanggan' => 'required',
+            'editing.latitude' => 'required',
+            'editing.longitude' => 'required',
+            'editing.alamat' => 'required',
+            'editing.jenis_p2tl' => 'required',
+            'editing.tarif' => 'required',
+            'editing.daya' => 'required',
+            'editing.rbm' => 'required',
+            'editing.lgkh' => 'required',
+            'editing.fkm' => 'required',
+            'editing.status' => 'nullable',
+            'editing.keterangan_p2tl' => 'nullable',
+            'nyala_model.tanggal' => 'nullable',
+            'nyala_model.jumlah' => 'nullable',
+            'editing.no_ba' => 'required',
+            'editing.surat_tugas_p2tl' => 'required',
+            'editing.tanggal_surat_tugas_p2tl' => 'required',
+            'editing.surat_tugas_tni' => 'required',
+            'editing.tanggal_surat_tugas_tni' => 'required',
+            'editing.pendamping1_id' => 'required',
+            'editing.pendamping2_id' => 'nullable',
+            'editing.tanggal_inspeksi' => 'nullable',
+        ];
     }
 
     public function mount()
