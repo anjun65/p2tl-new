@@ -203,7 +203,7 @@
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
                                                     @if (($serah->isEmpty()))
-                                                        <form action="{{ route('serah-terima-post',$serah->id)  }}" method="POST">
+                                                        <form action="{{ route('serah-terima-post', $id)  }}" method="POST">
                                                             @csrf
                                                             
                                                         
