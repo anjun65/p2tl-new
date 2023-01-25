@@ -1933,7 +1933,7 @@
                                 @method('PUT')
                                 @csrf
                                 
-                                <div class="grid grid-cols-2 gap-6">
+                                <div class="grid grid-cols-2 gap-6 pb-2">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Status Pelanggaran</label>
                                       <x-input.select name="status_pelanggaran" id="status_pelanggaran">
@@ -1954,7 +1954,7 @@
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-6">
+                                <div class="grid grid-cols-2 gap-6 pb-2">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Jumlah TS (Rp)</label>
                                     <input type="text" value="{{ $item->work->jumlah_ts_rp }}"
@@ -1962,7 +1962,7 @@
                                   </div>
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-6">
+                                <div class="grid grid-cols-2 gap-6 pb-2">
                                   <div class="col-span-3 sm:col-span-2">
                                     <label class="block text-sm font-medium text-gray-700">Jumlah TS (kWh)</label>
                                     <input type="text" value="{{ $item->work->jumlah_ts_kwh }}"
