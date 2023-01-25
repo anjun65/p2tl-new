@@ -29,6 +29,8 @@ use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanTutupTerminalContro
 use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanBoxAmrController;
 use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanKubikelController;
 use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanPintuGarduController;
+use App\Http\Controllers\API\FormTidakLangsungDataPemeriksaanTerminalCtController;
+
 use App\Http\Controllers\API\KalibrasiDataKwhMeterController;
 use App\Http\Controllers\API\KalibrasiKwhMeterController;
 use App\Http\Controllers\API\KalibrasiDataKwhMeterLanjutanController;
@@ -98,6 +100,7 @@ Route::post('form-tidak-langsung/data-pemeriksaan/segel', [FormTidakLangsungData
 Route::post('form-tidak-langsung/data-pemeriksaan/tutup-terminal', [FormTidakLangsungDataPemeriksaanTutupTerminalController::class, 'store']);
 Route::post('form-tidak-langsung/data-pemeriksaan/box-amr', [FormTidakLangsungDataPemeriksaanBoxAmrController::class, 'store']);
 Route::post('form-tidak-langsung/data-pemeriksaan/kubikel', [FormTidakLangsungDataPemeriksaanKubikelController::class, 'store']);
+Route::post('form-tidak-langsung/data-pemeriksaan/terminal-ct', [FormTidakLangsungDataPemeriksaanTerminalCtController::class, 'store']);
 Route::post('form-tidak-langsung/data-pemeriksaan/pintu-gardu', [FormTidakLangsungDataPemeriksaanPintuGarduController::class, 'store']);
 
 Route::post('kalibrasi/saksi', [KalibrasiKwhMeterController::class, 'store']);
