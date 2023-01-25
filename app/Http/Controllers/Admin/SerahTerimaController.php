@@ -15,12 +15,11 @@ class SerahTerimaController extends Controller
     {
         $item = BarangBukti::where('works_id', $id)->first();
 
-        $serah = SerahTerima::where('works_id', $id)->get();
+        $serah = SerahTerima::where('works_id', $id)->first();
 
         return view('admin.serah-terima', [
             'item' => $item,
             'serah' => $serah,
-
             'id' => $id,
         ]);
     }
@@ -32,22 +31,22 @@ class SerahTerimaController extends Controller
             'tanggal_serah_terima' => $request->tanggal_serah_terima,
         ]);
 
-        return route('admin-serah-terima', $id);
+        return redirect()->route('admin-serah-terima', $id);
     }
 
-    // public function update($id, Request $request)
-    // {
-    //     $item = SerahTerima::where('works_id', $id);
+    public function update($id, Request $request)
+    {
+        $item = SerahTerima::where('works_id', $id);
 
-    //     $item->update([
-    //         'works_id' => $request->works_id,
-    //         'tanggal_serah_terima' => $request->tanggal_serah_terima,
-    //     ]);
+        $item->update([
+            'works_id' => $id,
+            'tanggal_serah_terima' => $request->tanggal_serah_terima,
+        ]);
 
-    //     return view('admin.serah-terima', [
-    //         'item' => $item,
-    //     ]);
-    // }
+        return view('admin.serah-terima', [
+            'item' => $item,
+        ]);
+    }
 
     public function generatePDF($id)
     {

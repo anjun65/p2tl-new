@@ -221,7 +221,7 @@
                                                             </x-button>
                                                         </form>
                                                     @else
-                                                        <form action="{{ route('serah-terima-update', $serah->id) }}" method="POST" enctype="multipart/form-data">
+                                                        <form action="{{ route('serah-terima-update', $id) }}" method="POST" enctype="multipart/form-data">
                                                             @method('PUT')
                                                             @csrf
                                                             
