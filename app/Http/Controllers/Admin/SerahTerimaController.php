@@ -23,15 +23,15 @@ class SerahTerimaController extends Controller
         ]);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $item = SerahTerima::create([
-    //         'works_id' => $request->works_id,
-    //         'tanggal_serah_terima' => $request->tanggal_serah_terima,
-    //     ]);
+    public function store($id, Request $request)
+    {
+        $item = SerahTerima::create([
+            'works_id' => $id,
+            'tanggal_serah_terima' => $request->tanggal_serah_terima,
+        ]);
 
-    //     return route('admin-serah-terima', $request->works_id);
-    // }
+        return route('admin-serah-terima', $id);
+    }
 
     // public function update($id, Request $request)
     // {

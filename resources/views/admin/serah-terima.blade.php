@@ -203,7 +203,7 @@
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
                                                     @if (($serah->isEmpty()))
-                                                        <form action="{{ route('serah-terima-post') }}" method="POST">
+                                                        <form action="{{ route('serah-terima-post'), $serah->id }}" method="POST">
                                                             @csrf
                                                             
                                                         
@@ -218,7 +218,7 @@
                                                             </x-button>
                                                         </form>
                                                     @else
-                                                        <form action="{{ route('annev-edit-form-langsung', $serah->id) }}" method="POST" enctype="multipart/form-data">
+                                                        <form action="{{ route('serah-terima-update', $serah->id) }}" method="POST" enctype="multipart/form-data">
                                                             @method('PUT')
                                                             @csrf
                                                             

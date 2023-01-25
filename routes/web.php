@@ -75,7 +75,7 @@ Route::middleware([
 
     Route::get('/admin/serah-terima/{id}', [SerahTerimaController::class, 'show'])->name('admin-serah-terima');
 
-    Route::post('/admin/serah-terima/new', [SerahTerimaController::class, 'store'])->name('serah-terima-post');
+    Route::post('/admin/serah-terima/new/{id}', [SerahTerimaController::class, 'store'])->name('serah-terima-post');
     Route::put('/admin/serah-terima/update/{id}', [SerahTerimaController::class, 'update'])->name('serah-terima-update');
 
 
