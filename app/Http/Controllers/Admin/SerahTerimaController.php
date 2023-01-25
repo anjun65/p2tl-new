@@ -27,6 +27,7 @@ class SerahTerimaController extends Controller
 
     public function store($id, Request $request)
     {
+        dd($request->all());
         $item = SerahTerima::create([
             'works_id' => $id,
             'tanggal_serah_terima' => $request->tanggal_serah_terima,

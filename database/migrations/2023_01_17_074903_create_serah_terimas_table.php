@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('works_id')->constrained('work_orders')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('no_ba');
+
             $table->date('tanggal_serah_terima');
             $table->timestamps();
         });

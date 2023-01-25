@@ -11,7 +11,6 @@ class SerahTerima extends Model
 
     protected $fillable = [
         'works_id',
-        'no_ba',
         'tanggal_serah_terima',
     ];
 
