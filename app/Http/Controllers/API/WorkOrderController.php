@@ -118,6 +118,18 @@ class WorkOrderController extends Controller
             'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
+
+        $new_file_image = '';
+        $new_file_video = '';
+
+        if ($request->new_file_image) {
+            $new_file_image = Storage::putFileAs('public/assets/WO/image', $request->image, 'image_' . $request->image . '.' . $request->image->getClientOriginalExtension());
+        }
+
+        if ($request->new_file_video) {
+            $new_file_video = Storage::putFileAs('public/assets/WO/video', $request->video, 'video_' . $request->video . '.' . $request->video->getClientOriginalExtension());
+        }
+
         $workorder = WorkOrder::create([
             'id_pelanggan' => $request->id_pelanggan,
             'regus_id' => $request->regus_id,
@@ -143,8 +155,8 @@ class WorkOrderController extends Controller
             'P9' => $request->P9,
             'P10' => $request->P10,
             // 'pendamping1_id' => $request->pendamping,
-            'image' => $request->image,
-            'video' => $request->video,
+            'image' => $new_file_image,
+            'video' => $new_file_video,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
