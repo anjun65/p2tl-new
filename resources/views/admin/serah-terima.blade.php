@@ -209,8 +209,11 @@
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
                                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                                <x-datepicker2 name='tanggal_serah_terima'>
-                                                                </x-datepicker2>
+                                                                {{-- <x-datepicker2 name='tanggal_serah_terima' id='tanggal_serah_terima'>
+                                                                </x-datepicker2> --}}
+
+                                                                <input type="text" name="tanggal_serah_terima"
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                             </div>
                                                         
                                                             <x-button type="submit" class="mt-5">
@@ -225,8 +228,11 @@
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
                                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                                <x-datepicker2 name='tanggal_serah_terima'>
-                                                                </x-datepicker2>
+                                                                {{-- <x-datepicker2 name='tanggal_serah_terima'>
+                                                                </x-datepicker2> --}}
+
+                                                                <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima }}"
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                             </div>
                                                         
                                                             <x-button type="submit" class="mt-5">
