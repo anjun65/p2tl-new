@@ -24,6 +24,7 @@ class FormLangsungHasilPemeriksaanController extends Controller
             'tanggal_penyelesaian' => ['required'],
             'foto_barang_bukti' => ['nullable'],
             'labor' => ['nullable'],
+            'temuan' => ['nullable'],
         ]);
 
 
@@ -41,6 +42,15 @@ class FormLangsungHasilPemeriksaanController extends Controller
 
             $work->update([
                 'labor' => 1,
+            ]);
+        }
+
+        if ($request->temuan == 'Ada') {
+            $form_langsung = FormLangsung::find($request->forms_id);
+            $work = WorkOrder::find($form_langsung->works_id);
+
+            $work->update([
+                'temuan' => 1,
             ]);
         }
 
