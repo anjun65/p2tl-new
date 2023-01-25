@@ -28,6 +28,8 @@ class FormLangsungController extends Controller
 
         $work->update([
             'status_pelanggaran' => $status_pelanggaran,
+            'jumlah_ts_rp' => $request->jumlah_ts_rp,
+            'jumlah_ts_kwh' => $request->jumlah_ts_kwh,
         ]);
 
         return redirect(route('annev-form-langsung', $id));
