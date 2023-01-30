@@ -54,12 +54,19 @@ use App\Http\Controllers\API\PembukaanBarangBuktiController;
 |
 */
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('logout', [UserController::class, 'logout']);
+});
+
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::post('login', [UserController::class, 'login']);
-Route::post('logout', [UserController::class, 'logout']);
+
 Route::post('register', [UserController::class, 'register']);
 
 
