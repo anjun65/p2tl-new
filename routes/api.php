@@ -41,6 +41,10 @@ use App\Http\Controllers\API\BarangBuktiController;
 use App\Http\Controllers\API\PembukaanBarangBuktiController;
 
 
+use App\Http\Controllers\API\NewFormLangsungController;
+use App\Http\Controllers\API\NewFormTidakLangsungController;
+
+
 
 
 /*
@@ -57,8 +61,6 @@ use App\Http\Controllers\API\PembukaanBarangBuktiController;
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('logout', [UserController::class, 'logout']);
 });
-
-
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -121,3 +123,7 @@ Route::post('barang-bukti/get', [BarangBuktiController::class, 'show']);
 Route::post('barang-bukti/pembukaan', [PembukaanBarangBuktiController::class, 'store']);
 
 Route::get('labor/work-order', [WorkOrderController::class, 'labor']);
+
+
+Route::post('new-form-langsung', [NewFormLangsungController::class, 'store']);
+Route::post('new-form-tidak-langsung', [NewFormTidakLangsungController::class, 'store']);
