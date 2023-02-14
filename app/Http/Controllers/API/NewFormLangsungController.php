@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Models\FormLangsung;
+use App\Models\FormLangsungDataAppBaru;
+use App\Models\FormLangsungDataAppLama;
 
 class NewFormLangsungController extends Controller
 {
@@ -18,10 +20,40 @@ class NewFormLangsungController extends Controller
             'nomor_identitas' => ['nullable'],
             'no_telpon_saksi' => ['nullable'],
             'file_nomor_identitas' => ['nullable'],
+            'data_lama_merk' => ['required'],
+            'data_lama_no_reg' => ['required'],
+            'data_lama_no_seri' => ['required'],
+            'data_lama_tahun_pembuatan' => ['required'],
+            'data_lama_class' => ['required'],
+            'data_lama_konstanta' => ['required'],
+            'data_lama_rating_arus' => ['required'],
+            'data_lama_tegangan_nominal' => ['required'],
+            'data_lama_stand_kwh_meter' => ['required'],
+            'data_lama_jenis_pembatas' => ['required'],
+            'data_lama_alat_pembatas_merk' => ['required'],
+            'data_lama_rating_arus_2' => ['required'],
+            'data_lama_foto_kwh_meter' => ['required'],
+            'data_lama_foto_pembatas' => ['required'],
+            'data_baru_merk' => ['required'],
+            'data_baru_no_reg' => ['required'],
+            'data_baru_no_seri' => ['required'],
+            'data_baru_tahun_pembuatan' => ['required'],
+            'data_baru_class' => ['required'],
+            'data_baru_konstanta' => ['required'],
+            'data_baru_rating_arus' => ['required'],
+            'data_baru_tegangan_nominal' => ['required'],
+            'data_baru_stand_kwh_meter' => ['required'],
+            'data_baru_jenis_pembatas' => ['required'],
+            'data_baru_alat_pembatas_merk' => ['required'],
+            'data_baru_rating_arus_2' => ['required'],
+            'data_baru_foto_kwh_meter' => ['required'],
+            'data_baru_foto_pembatas' => ['required'],
         ]);
 
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
+        $form_lama = FormLangsungDataAppLama::where('works_id', $request->works_id)->first();
+        $form_baru = FormLangsungDataAppBaru::where('works_id', $request->works_id)->first();
 
         $nama_saksi = null;
 
@@ -46,7 +78,7 @@ class NewFormLangsungController extends Controller
         }
 
         if (empty($form)) {
-            $form = FormLangsung::create([
+            $form = FormLangsungDataAppLama::create([
                 'works_id' => $request->works_id,
                 'nama_saksi' => $nama_saksi,
                 'alamat_saksi' => $alamat_saksi,
@@ -65,6 +97,81 @@ class NewFormLangsungController extends Controller
             $form->save();
         }
 
+        if (empty($form_lama)) {
+            $form_lama = FormLangsungDataAppLama::create([
+                'forms_id' => $form->id,
+                'merk' => $request->data_lama_merk,
+                'no_reg' => $request->data_lama_no_reg,
+                'no_seri' => $request->data_lama_no_seri,
+                'tahun_pembuatan' => $request->data_lama_tahun_pembuatan,
+                'class' => $request->data_lama_class,
+                'konstanta' => $request->data_lama_konstanta,
+                'rating_arus' => $request->data_lama_rating_arus,
+                'tegangan_nominal' => $request->data_lama_tegangan_nominal,
+                'stand_kwh_meter' => $request->data_lama_stand_kwh_meter,
+                'foto_kwh_meter' => $request->data_lama_jenis_pembatas,
+                'rating_arus_2' => $request->data_lama_alat_pembatas_merk,
+                'jenis_pembatas' => $request->data_lama_rating_arus_2,
+                'alat_pembatas_merk' => $request->data_lama_foto_kwh_meter,
+                'foto_pembatas' => $request->data_lama_foto_pembatas,
+            ]);
+        } else {
+            $form_lama->forms_id = $form->id;
+            $form_lama->merk = $request->data_lama_merk;
+            $form_lama->no_reg = $request->data_lama_no_reg;
+            $form_lama->no_seri = $request->data_lama_no_seri;
+            $form_lama->tahun_pembuatan = $request->data_lama_tahun_pembuatan;
+            $form_lama->class = $request->data_lama_class;
+            $form_lama->konstanta = $request->data_lama_konstanta;
+            $form_lama->rating_arus = $request->data_lama_rating_arus;
+            $form_lama->tegangan_nominal = $request->data_lama_tegangan_nominal;
+            $form_lama->stand_kwh_meter = $request->data_lama_stand_kwh_meter;
+            $form_lama->foto_kwh_meter = $request->data_lama_jenis_pembatas;
+            $form_lama->rating_arus_2 = $request->data_lama_alat_pembatas_merk;
+            $form_lama->jenis_pembatas = $request->data_lama_rating_arus_2;
+            $form_lama->alat_pembatas_merk = $request->data_lama_foto_kwh_meter;
+            $form_lama->foto_pembatas = $request->data_lama_foto_pembatas;
+
+            $form_lama->save();
+        }
+
+        if (empty($form_baru)) {
+            $form_baru = FormLangsungDataAppBaru::create([
+                'forms_id' => $form->id,
+                'merk' => $request->data_baru_merk,
+                'no_reg' => $request->data_baru_no_reg,
+                'no_seri' => $request->data_baru_no_seri,
+                'tahun_pembuatan' => $request->data_baru_tahun_pembuatan,
+                'class' => $request->data_baru_class,
+                'konstanta' => $request->data_baru_konstanta,
+                'rating_arus' => $request->data_baru_rating_arus,
+                'tegangan_nominal' => $request->data_baru_tegangan_nominal,
+                'stand_kwh_meter' => $request->data_baru_stand_kwh_meter,
+                'foto_kwh_meter' => $request->data_baru_jenis_pembatas,
+                'rating_arus_2' => $request->data_baru_alat_pembatas_merk,
+                'jenis_pembatas' => $request->data_baru_rating_arus_2,
+                'alat_pembatas_merk' => $request->data_baru_foto_kwh_meter,
+                'foto_pembatas' => $request->data_baru_foto_pembatas,
+            ]);
+        } else {
+            $form_baru->forms_id = $form->id;
+            $form_baru->merk = $request->data_baru_merk;
+            $form_baru->no_reg = $request->data_baru_no_reg;
+            $form_baru->no_seri = $request->data_baru_no_seri;
+            $form_baru->tahun_pembuatan = $request->data_baru_tahun_pembuatan;
+            $form_baru->class = $request->data_baru_class;
+            $form_baru->konstanta = $request->data_baru_konstanta;
+            $form_baru->rating_arus = $request->data_baru_rating_arus;
+            $form_baru->tegangan_nominal = $request->data_baru_tegangan_nominal;
+            $form_baru->stand_kwh_meter = $request->data_baru_stand_kwh_meter;
+            $form_baru->foto_kwh_meter = $request->data_baru_jenis_pembatas;
+            $form_baru->rating_arus_2 = $request->data_baru_alat_pembatas_merk;
+            $form_baru->jenis_pembatas = $request->data_baru_rating_arus_2;
+            $form_baru->alat_pembatas_merk = $request->data_baru_foto_kwh_meter;
+            $form_baru->foto_pembatas = $request->data_baru_foto_pembatas;
+
+            $form_baru->save();
+        }
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
