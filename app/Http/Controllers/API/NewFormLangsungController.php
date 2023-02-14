@@ -78,7 +78,7 @@ class NewFormLangsungController extends Controller
         }
 
         if (empty($form)) {
-            $form = FormLangsungDataAppLama::create([
+            $form = FormLangsung::create([
                 'works_id' => $request->works_id,
                 'nama_saksi' => $nama_saksi,
                 'alamat_saksi' => $alamat_saksi,
