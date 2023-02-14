@@ -53,7 +53,7 @@ class NewFormLangsungController extends Controller
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
         $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
-        $form_baru = FormLangsungDataAppBaru::where('works_id', $form->id)->first();
+        $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
 
         $nama_saksi = null;
 
