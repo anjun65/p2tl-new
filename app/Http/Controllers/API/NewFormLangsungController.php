@@ -21,8 +21,6 @@ class NewFormLangsungController extends Controller
         ]);
 
 
-        return ResponseFormatter::success($request->akhir_labor, 'Berhasil ditambahkan');
-
         $form = FormLangsung::where('works_id', $request->works_id)->first();
 
         if (empty($form)) {
@@ -44,5 +42,9 @@ class NewFormLangsungController extends Controller
 
             $form->save();
         }
+
+
+
+        return ResponseFormatter::success($request->akhir_labor, 'Berhasil ditambahkan');
     }
 }
