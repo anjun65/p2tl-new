@@ -13,6 +13,7 @@ class NewFormLangsungController extends Controller
     {
         $request->validate([
             'works_id' => ['required'],
+            'regus_id' => ['required'],
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
@@ -146,6 +147,7 @@ class NewFormLangsungController extends Controller
         if (empty($form)) {
             $form = NewFormLangsung::create([
                 'works_id' => $request->works_id,
+                'regus_id' => $request->regus_id,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
@@ -155,6 +157,7 @@ class NewFormLangsungController extends Controller
             ]);
         } else {
             $form->works_id = $request->works_id;
+            $form->regus_id = $request->regus_id;
             $form->nama_saksi = $request->nama_saksi;
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
