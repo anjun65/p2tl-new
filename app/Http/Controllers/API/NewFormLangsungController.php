@@ -34,7 +34,7 @@ class NewFormLangsungController extends Controller
             ]);
         } else {
             $form->works_id = $request->works_id;
-            $form->nama_saksi = $request->nama_saksi;
+            $form->nama_saksi = '$request->nama_saksi';
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
             $form->no_telpon_saksi = $request->no_telpon_saksi;
