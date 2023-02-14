@@ -62,7 +62,7 @@ class NewFormLangsungController extends Controller
         $locate_file_nomor_identitas = "";
         if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
             $image_64 = $request->file_nomor_identitas;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1]);
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
