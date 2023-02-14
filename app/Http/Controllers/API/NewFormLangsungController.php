@@ -61,29 +61,35 @@ class NewFormLangsungController extends Controller
 
         $locate_file_nomor_identitas = "";
         if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
-
-            $image = str_replace('data:image/png;base64,', '', $request->file_nomor_identitas);
+            $image_64 = $request->file_nomor_identitas;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . 'png';
-
-            dd($image);
+            $imageName = Str::random(10) . '.' . $extension;
             $locate_file_nomor_identitas = Storage::putFileAs('public/assets/saksi', base64_decode($image), $imageName);
         }
 
         $locate_data_lama_foto_kwh_meter = "";
         if ($request->data_lama_foto_kwh_meter != 'null' || $request->data_lama_foto_kwh_meter != NULL) {
-            $image = str_replace('data:image/png;base64,', '', $request->data_lama_foto_kwh_meter);
+            $image_64 = $request->data_lama_foto_kwh_meter;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . 'png';
-            $locate_data_lama_foto_kwh_meter = Storage::putFileAs('public/assets/dataAppLama/pembatas', base64_decode($image), $imageName);
+            $imageName = Str::random(10) . '.' . $extension;
+            $locate_data_lama_foto_kwh_meter = Storage::putFileAs('public/assets/dataAppLama/kwh', base64_decode($image), $imageName);
         }
 
         $locate_data_lama_foto_pembatas = "";
         if ($request->data_lama_foto_pembatas != 'null' || $request->data_lama_foto_pembatas != NULL) {
-            $image = str_replace('data:image/png;base64,', '', $request->data_lama_foto_pembatas);
+            $image_64 = $request->locate_data_lama_foto_pembatas;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . 'png';
-            $locate_data_lama_foto_pembatas = Storage::putFileAs('public/assets/dataAppLama/pembatas', $imageName, base64_decode($image));
+            $imageName = Str::random(10) . '.' . $extension;
+            $locate_data_lama_foto_pembatas = Storage::putFileAs('public/assets/dataAppLama/pembatas', base64_decode($image), $imageName);
         }
 
 
