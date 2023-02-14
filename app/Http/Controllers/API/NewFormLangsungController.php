@@ -84,7 +84,6 @@ class NewFormLangsungController extends Controller
             $locate_data_baru_foto_kwh_meter = Storage::disk('public')->put($fileName, $imageData);
         }
 
-
         $nama_saksi = null;
 
         if ($request->nama_saksi != 'null' || $request->nama_saksi != NULL) {
