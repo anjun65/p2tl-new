@@ -158,7 +158,7 @@ class NewFormLangsungController extends Controller
         } else {
             $form->works_id = $request->works_id;
             $form->regus_id = $request->regus_id;
-            $form->nama_saksi = $request->nama_saksi;
+            $form->nama_saksi = '$request->nama_saksi';
             $form->alamat_saksi = $request->alamat_saksi;
             $form->nomor_identitas = $request->nomor_identitas;
             $form->pekerjaan = $request->pekerjaan;
