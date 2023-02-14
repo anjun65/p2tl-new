@@ -57,16 +57,16 @@ class NewFormLangsungController extends Controller
         $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
         $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
 
+
+
         $locate_file_nomor_identitas = "";
         if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
-            // list($type, $data) = explode(';', $request->file_nomor_identitas);
-            // list(, $data) = explode(',', $data);
-            // $imageData = base64_decode($data);
-            // $fileName = Str::random(10) . '.' . $type;
-            // $locate_file_nomor_identitas = Storage::disk('public')->put($fileName, $imageData);
+
             $image = str_replace('data:image/png;base64,', '', $request->file_nomor_identitas);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . 'png';
+
+            dd($image);
             $locate_file_nomor_identitas = Storage::putFileAs('public/assets/saksi', base64_decode($image), $imageName);
         }
 
