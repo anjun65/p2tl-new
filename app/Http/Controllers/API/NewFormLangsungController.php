@@ -23,27 +23,49 @@ class NewFormLangsungController extends Controller
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
 
+        $nama_saksi = null;
+
+        if ($request->nama_saksi != 'null' || $request->nama_saksi != NULL) {
+            $nama_saksi = $request->nama_saksi;
+        }
+
+        if ($request->alamat_saksi != 'null' || $request->alamat_saksi != NULL) {
+            $alamat_saksi = $request->alamat_saksi;
+        }
+
+        if ($request->nomor_identitas != 'null' || $request->nomor_identitas != NULL) {
+            $nomor_identitas = $request->nomor_identitas;
+        }
+
+        if ($request->no_telpon_saksi != 'null' || $request->no_telpon_saksi != NULL) {
+            $no_telpon_saksi = $request->no_telpon_saksi;
+        }
+
+        if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
+            $file_nomor_identitas = $request->file_nomor_identitas;
+        }
+
         if (empty($form)) {
             $form = FormLangsung::create([
                 'works_id' => $request->works_id,
-                'nama_saksi' => $request->nama_saksi,
-                'alamat_saksi' => $request->alamat_saksi,
-                'nomor_identitas' => $request->nomor_identitas,
-                'no_telpon_saksi' => $request->no_telpon_saksi,
-                'file_nomor_identitas' => $request->file_nomor_identitas,
+                'nama_saksi' => $nama_saksi,
+                'alamat_saksi' => $alamat_saksi,
+                'nomor_identitas' => $nomor_identitas,
+                'no_telpon_saksi' => $no_telpon_saksi,
+                'file_nomor_identitas' => $file_nomor_identitas,
             ]);
         } else {
             $form->works_id = $request->works_id;
-            $form->nama_saksi = '$request->nama_saksi';
-            $form->alamat_saksi = $request->alamat_saksi;
-            $form->nomor_identitas = $request->nomor_identitas;
-            $form->no_telpon_saksi = $request->no_telpon_saksi;
-            $form->file_nomor_identitas = $request->file_nomor_identitas;
+            $form->nama_saksi = $nama_saksi;
+            $form->alamat_saksi = $alamat_saksi;
+            $form->nomor_identitas = $nomor_identitas;
+            $form->no_telpon_saksi = $no_telpon_saksi;
+            $form->file_nomor_identitas = $file_nomor_identitas;
 
             $form->save();
         }
 
 
-        return ResponseFormatter::success($request->akhir_labor, 'Berhasil ditambahkan');
+        return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
 }
