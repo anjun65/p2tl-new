@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\NewFormTidakLangsung;
+use App\Models\FormTidakLangsung;
 use App\Helpers\ResponseFormatter;
 
 class NewFormTidakLangsungController extends Controller
@@ -13,6 +13,7 @@ class NewFormTidakLangsungController extends Controller
     {
         $request->validate([
             'works_id' => ['required'],
+            'regus_id' => ['required'],
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
@@ -179,17 +180,20 @@ class NewFormTidakLangsungController extends Controller
             'akhir_labor' => ['required'],
         ]);
 
-        $form = NewFormTidakLangsung::where('works_id', $request->works_id)->first();
+        $form = FormTidakLangsung::where('works_id', $request->works_id)->first();
 
         if (empty($form)) {
-            $form = NewFormTidakLangsung::create([
+            $form = FormTidakLangsung::create([
                 'works_id' => $request->works_id,
+                'regus_id' => $request->regus_id,
                 'nama_saksi' => $request->nama_saksi,
                 'alamat_saksi' => $request->alamat_saksi,
                 'nomor_identitas' => $request->nomor_identitas,
                 'pekerjaan' => $request->pekerjaan,
-                'no_telpon_saksi' => $request->no_telpon_saksi,
-                'file_nomor_identitas' => $request->file_nomor_identitas,
+                'file_nomor_identitas' => $request->no_telpon_saksi,
+                'no_telpon_saksi' => $request->file_nomor_identitas,
+
+
                 'data_tegangan_tersambung' => $request->data_tegangan_tersambung,
                 'data_jenis_pengukuran' => $request->data_jenis_pengukuran,
                 'data_tempat_kedudukan' => $request->data_tempat_kedudukan,
