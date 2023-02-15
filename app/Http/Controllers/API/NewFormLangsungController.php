@@ -53,8 +53,7 @@ class NewFormLangsungController extends Controller
         ]);
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
-        $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
-        $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
+
 
         $locate_file_nomor_identitas = "";
         if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
@@ -173,6 +172,9 @@ class NewFormLangsungController extends Controller
 
             $form->save();
         }
+
+        $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
+        $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
 
         if (empty($form_lama)) {
             $form_lama = FormLangsungDataAppLama::create([
