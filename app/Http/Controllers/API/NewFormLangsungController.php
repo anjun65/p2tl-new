@@ -248,7 +248,6 @@ class NewFormLangsungController extends Controller
                 'foto_pembatas' => $locate_data_baru_foto_pembatas,
             ]);
         } else {
-            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
             $form_baru->forms_id = $form->id;
             $form_baru->merk = $request->data_baru_merk;
             $form_baru->no_reg = $request->data_baru_no_reg;
@@ -265,6 +264,7 @@ class NewFormLangsungController extends Controller
             $form_baru->alat_pembatas_merk = $request->data_baru_alat_pembatas_merk;
             $form_baru->foto_pembatas = $locate_data_baru_foto_pembatas;
 
+            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
             $form_baru->save();
         }
 
