@@ -134,6 +134,9 @@ class NewFormLangsungController extends Controller
 
 
         $nama_saksi = null;
+        $alamat_saksi = null;
+        $nomor_identitas = null;
+        $no_telpon_saksi = null;
 
         if ($request->nama_saksi !== 'null' && $request->nama_saksi != NULL) {
             $nama_saksi = $request->nama_saksi;
