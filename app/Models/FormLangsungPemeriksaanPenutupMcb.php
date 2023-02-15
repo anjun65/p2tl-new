@@ -20,5 +20,6 @@ class FormLangsungPemeriksaanPenutupMcb extends Model
         'post_segel',
         'post_nomor_tahun_kode_segel',
         'foto_sesudah',
+        'all_keterangan',
     ];
 }

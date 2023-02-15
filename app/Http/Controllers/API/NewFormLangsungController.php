@@ -9,6 +9,11 @@ use App\Models\FormLangsung;
 use App\Models\FormLangsungDataAppBaru;
 use App\Models\FormLangsungDataAppLama;
 use App\Models\FormLangsungPemeriksaanKwhMeter;
+use App\Models\FormLangsungPemeriksaanPapanOk;
+use App\Models\FormLangsungPemeriksaanPelindungBusBar;
+use App\Models\FormLangsungPemeriksaanPelindungKwh;
+use App\Models\FormLangsungPemeriksaanPenutupMcb;
+use App\Models\FormLangsungPemeriksaanTerminal;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -60,6 +65,58 @@ class NewFormLangsungController extends Controller
             'kwh_post_segel' => ['required'],
             'kwh_post_nomor_tahun_kode_segel' => ['required'],
             'kwh_foto_sesudah' => ['required'],
+
+            'terminal_peralatan' => ['required'],
+            'terminal_segel' => ['required'],
+            'terminal_nomor_tahun_kode_segel' => ['required'],
+            'terminal_keterangan' => ['required'],
+            'terminal_foto_sebelum' => ['required'],
+            'terminal_post_peralatan' => ['required'],
+            'terminal_post_segel' => ['required'],
+            'terminal_post_nomor_tahun_kode_segel' => ['required'],
+            'terminal_foto_sesudah' => ['required'],
+
+            'pelindung_kwh_peralatan' => ['required'],
+            'pelindung_kwh_segel' => ['required'],
+            'pelindung_kwh_nomor_tahun_kode_segel' => ['required'],
+            'pelindung_kwh_keterangan' => ['required'],
+            'pelindung_kwh_foto_sebelum' => ['required'],
+            'pelindung_kwh_post_peralatan' => ['required'],
+            'pelindung_kwh_post_segel' => ['required'],
+            'pelindung_kwh_post_nomor_tahun_kode_segel' => ['required'],
+            'pelindung_kwh_foto_sesudah' => ['required'],
+
+            'busbar_peralatan' => ['required'],
+            'busbar_segel' => ['required'],
+            'busbar_nomor_tahun_kode_segel' => ['required'],
+            'busbar_keterangan' => ['required'],
+            'busbar_foto_sebelum' => ['required'],
+            'busbar_post_peralatan' => ['required'],
+            'busbar_post_segel' => ['required'],
+            'busbar_post_nomor_tahun_kode_segel' => ['required'],
+            'busbar_foto_sesudah' => ['required'],
+
+            'papan_ok_peralatan' => ['required'],
+            'papan_ok_segel' => ['required'],
+            'papan_ok_nomor_tahun_kode_segel' => ['required'],
+            'papan_ok_keterangan' => ['required'],
+            'papan_ok_foto_sebelum' => ['required'],
+            'papan_ok_post_peralatan' => ['required'],
+            'papan_ok_post_segel' => ['required'],
+            'papan_ok_post_nomor_tahun_kode_segel' => ['required'],
+            'papan_ok_foto_sesudah' => ['required'],
+
+            'mcb_peralatan' => ['required'],
+            'mcb_segel' => ['required'],
+            'mcb_nomor_tahun_kode_segel' => ['required'],
+            'mcb_keterangan' => ['required'],
+            'mcb_foto_sebelum' => ['required'],
+            'mcb_post_peralatan' => ['required'],
+            'mcb_post_segel' => ['required'],
+            'mcb_post_nomor_tahun_kode_segel' => ['required'],
+            'mcb_foto_sesudah' => ['required'],
+
+            'pemeriksaan_keterangan' => ['required'],
         ]);
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
@@ -267,6 +324,7 @@ class NewFormLangsungController extends Controller
             $form_baru->save();
         }
 
+        // Pemeriksaan KWH
         $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
 
         $locate_kwh_foto_sebelum = "";
@@ -277,10 +335,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sebelum/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_kwh_foto_sebelum = 'assets/dataAppBaru/pembatas/' . $imageName;
+                $locate_kwh_foto_sebelum = 'assets/dataPemeriksaan/kwh/sebelum/' . $imageName;
             }
         }
 
@@ -292,10 +350,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sesudah/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_kwh_foto_sesudah = 'assets/dataAppBaru/pembatas/' . $imageName;
+                $locate_kwh_foto_sesudah = 'assets/dataPemeriksaan/kwh/sesudah/' . $imageName;
             }
         }
 
@@ -326,6 +384,323 @@ class NewFormLangsungController extends Controller
 
             $form_baru->save();
         }
+
+        //Terminal
+        $form_pemeriksaan_terminal = FormLangsungPemeriksaanTerminal::where('forms_id', $form->id)->first();
+
+        $locate_terminal_foto_sebelum = "";
+        if ($request->terminal_foto_sebelum !== 'null' && $request->terminal_foto_sebelum != NULL) {
+            $image_64 = $request->terminal_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_terminal_foto_sebelum = 'assets/dataPemeriksaan/terminal/sebelum/' . $imageName;
+            }
+        }
+
+        $locate_terminal_foto_sesudah = "";
+        if ($request->terminal_foto_sesudah !== 'null' && $request->terminal_foto_sesudah != NULL) {
+            $image_64 = $request->terminal_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_terminal_foto_sesudah = 'assets/dataPemeriksaan/terminal/sesudah/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_terminal)) {
+            $form_pemeriksaan_terminal = FormLangsungPemeriksaanTerminal::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->terminal_peralatan,
+                'segel' => $request->terminal_segel,
+                'nomor_tahun_kode_segel' => $request->terminal_nomor_tahun_kode_segel,
+                'keterangan' => $request->terminal_keterangan,
+                'foto_sebelum' => $locate_terminal_foto_sebelum,
+                'post_peralatan' => $request->terminal_post_peralatan,
+                'post_segel' => $request->terminal_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->terminal_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_terminal_foto_sesudah,
+            ]);
+        } else {
+            $form_pemeriksaan_terminal->forms_id = $form->id;
+            $form_pemeriksaan_terminal->peralatan = $request->terminal_peralatan;
+            $form_pemeriksaan_terminal->segel = $request->terminal_segel;
+            $form_pemeriksaan_terminal->nomor_tahun_kode_segel = $request->terminal_nomor_tahun_kode_segel;
+            $form_pemeriksaan_terminal->keterangan = $request->terminal_keterangan;
+            $form_pemeriksaan_terminal->foto_sebelum = $locate_terminal_foto_sebelum;
+            $form_pemeriksaan_terminal->post_peralatan = $request->terminal_post_peralatan;
+            $form_pemeriksaan_terminal->post_segel = $request->terminal_post_segel;
+            $form_pemeriksaan_terminal->post_nomor_tahun_kode_segel = $request->terminal_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_terminal->foto_sesudah = $locate_terminal_foto_sesudah;
+
+            $form_baru->save();
+        }
+
+        // Pemeriksaan Pelindung KWH Meter
+        $form_pemeriksaan_pelindung_kwh = FormLangsungPemeriksaanPelindungKwh::where('forms_id', $form->id)->first();
+
+        $locate_pelindung_kwh_foto_sebelum = "";
+        if ($request->pelindung_kwh_foto_sebelum !== 'null' && $request->pelindung_kwh_foto_sebelum != NULL) {
+            $image_64 = $request->pelindung_kwh_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sebelum/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_pelindung_kwh_foto_sebelum = 'assets/dataPemeriksaan/pelindungkwh/sebelum/' . $imageName;
+            }
+        }
+
+        $locate_pelindung_kwh_foto_sesudah = "";
+        if ($request->pelindung_kwh_foto_sesudah !== 'null' && $request->pelindung_kwh_foto_sesudah != NULL) {
+            $image_64 = $request->pelindung_kwh_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sesudah/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_pelindung_kwh_foto_sesudah = 'assets/dataPemeriksaan/pelindungkwh/sesudah/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_pelindung_kwh)) {
+            $form_pemeriksaan_pelindung_kwh = FormLangsungPemeriksaanPelindungKwh::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->pelindung_kwh_peralatan,
+                'segel' => $request->pelindung_kwh_segel,
+                'nomor_tahun_kode_segel' => $request->pelindung_kwh_nomor_tahun_kode_segel,
+                'keterangan' => $request->pelindung_kwh_keterangan,
+                'foto_sebelum' => $locate_pelindung_kwh_foto_sebelum,
+                'post_peralatan' => $request->pelindung_kwh_post_peralatan,
+                'post_segel' => $request->pelindung_kwh_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->pelindung_kwh_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_pelindung_kwh_foto_sesudah,
+            ]);
+        } else {
+            $form_pemeriksaan_pelindung_kwh->forms_id = $form->id;
+            $form_pemeriksaan_pelindung_kwh->peralatan = $request->pelindung_kwh_peralatan;
+            $form_pemeriksaan_pelindung_kwh->segel = $request->pelindung_kwh_segel;
+            $form_pemeriksaan_pelindung_kwh->nomor_tahun_kode_segel = $request->pelindung_kwh_nomor_tahun_kode_segel;
+            $form_pemeriksaan_pelindung_kwh->keterangan = $request->pelindung_kwh_keterangan;
+            $form_pemeriksaan_pelindung_kwh->foto_sebelum = $locate_pelindung_kwh_foto_sebelum;
+            $form_pemeriksaan_pelindung_kwh->post_peralatan = $request->pelindung_kwh_post_peralatan;
+            $form_pemeriksaan_pelindung_kwh->post_segel = $request->pelindung_kwh_post_segel;
+            $form_pemeriksaan_pelindung_kwh->post_nomor_tahun_kode_segel = $request->pelindung_kwh_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_pelindung_kwh->foto_sesudah = $locate_pelindung_kwh_foto_sesudah;
+
+            $form_baru->save();
+        }
+
+        // Pemeriksaan Pelindung Busbar
+        $form_pemeriksaan_pelindung_busbar = FormLangsungPemeriksaanPelindungBusBar::where('forms_id', $form->id)->first();
+
+        $locate_busbar_foto_sebelum = "";
+        if ($request->busbar_foto_sebelum !== 'null' && $request->busbar_foto_sebelum != NULL) {
+            $image_64 = $request->busbar_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_busbar_foto_sebelum = 'assets/dataPemeriksaan/terminal/sebelum/' . $imageName;
+            }
+        }
+
+        $locate_busbar_foto_sesudah = "";
+        if ($request->busbar_foto_sesudah !== 'null' && $request->busbar_foto_sesudah != NULL) {
+            $image_64 = $request->busbar_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_busbar_foto_sesudah = 'assets/dataPemeriksaan/terminal/sesudah/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_pelindung_busbar)) {
+            $form_pemeriksaan_pelindung_busbar = FormLangsungPemeriksaanPelindungKwh::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->busbar_peralatan,
+                'segel' => $request->busbar_segel,
+                'nomor_tahun_kode_segel' => $request->busbar_nomor_tahun_kode_segel,
+                'keterangan' => $request->busbar_keterangan,
+                'foto_sebelum' => $locate_busbar_foto_sebelum,
+                'post_peralatan' => $request->busbar_post_peralatan,
+                'post_segel' => $request->busbar_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->busbar_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_busbar_foto_sesudah,
+            ]);
+        } else {
+            $form_pemeriksaan_pelindung_busbar->forms_id = $form->id;
+            $form_pemeriksaan_pelindung_busbar->peralatan = $request->busbar_peralatan;
+            $form_pemeriksaan_pelindung_busbar->segel = $request->busbar_segel;
+            $form_pemeriksaan_pelindung_busbar->nomor_tahun_kode_segel = $request->busbar_nomor_tahun_kode_segel;
+            $form_pemeriksaan_pelindung_busbar->keterangan = $request->busbar_keterangan;
+            $form_pemeriksaan_pelindung_busbar->foto_sebelum = $locate_busbar_foto_sebelum;
+            $form_pemeriksaan_pelindung_busbar->post_peralatan = $request->busbar_post_peralatan;
+            $form_pemeriksaan_pelindung_busbar->post_segel = $request->busbar_post_segel;
+            $form_pemeriksaan_pelindung_busbar->post_nomor_tahun_kode_segel = $request->busbar_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_pelindung_busbar->foto_sesudah = $locate_busbar_foto_sesudah;
+
+            $form_baru->save();
+        }
+
+        // Pemeriksaan Papan OK
+        $form_pemeriksaan_papan_ok = FormLangsungPemeriksaanPapanOk::where('forms_id', $form->id)->first();
+
+        $locate_papan_ok_foto_sebelum = "";
+        if ($request->papan_ok_foto_sebelum !== 'null' && $request->papan_ok_foto_sebelum != NULL) {
+            $image_64 = $request->papan_ok_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_papan_ok_foto_sebelum = 'assets/dataPemeriksaan/papan/sebelum/' . $imageName;
+            }
+        }
+
+        $locate_papan_ok_foto_sesudah = "";
+        if ($request->papan_ok_foto_sesudah !== 'null' && $request->papan_ok_foto_sesudah != NULL) {
+            $image_64 = $request->papan_ok_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_papan_ok_foto_sesudah = 'assets/dataPemeriksaan/papan/sesudah/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_papan_ok)) {
+            $form_pemeriksaan_papan_ok = FormLangsungPemeriksaanPelindungKwh::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->papan_ok_peralatan,
+                'segel' => $request->papan_ok_segel,
+                'nomor_tahun_kode_segel' => $request->papan_ok_nomor_tahun_kode_segel,
+                'keterangan' => $request->papan_ok_keterangan,
+                'foto_sebelum' => $locate_papan_ok_foto_sebelum,
+                'post_peralatan' => $request->papan_ok_post_peralatan,
+                'post_segel' => $request->papan_ok_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->papan_ok_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_papan_ok_foto_sesudah,
+            ]);
+        } else {
+            $form_pemeriksaan_papan_ok->forms_id = $form->id;
+            $form_pemeriksaan_papan_ok->peralatan = $request->papan_ok_peralatan;
+            $form_pemeriksaan_papan_ok->segel = $request->papan_ok_segel;
+            $form_pemeriksaan_papan_ok->nomor_tahun_kode_segel = $request->papan_ok_nomor_tahun_kode_segel;
+            $form_pemeriksaan_papan_ok->keterangan = $request->papan_ok_keterangan;
+            $form_pemeriksaan_papan_ok->foto_sebelum = $locate_papan_ok_foto_sebelum;
+            $form_pemeriksaan_papan_ok->post_peralatan = $request->papan_ok_post_peralatan;
+            $form_pemeriksaan_papan_ok->post_segel = $request->papan_ok_post_segel;
+            $form_pemeriksaan_papan_ok->post_nomor_tahun_kode_segel = $request->papan_ok_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_papan_ok->foto_sesudah = $locate_papan_ok_foto_sesudah;
+
+            $form_baru->save();
+        }
+
+        // Pemeriksaan MCB
+        $form_pemeriksaan_mcb = FormLangsungPemeriksaanPenutupMcb::where('forms_id', $form->id)->first();
+
+        $locate_mcb_foto_sebelum = "";
+        if ($request->mcb_foto_sebelum !== 'null' && $request->mcb_foto_sebelum != NULL) {
+            $image_64 = $request->mcb_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_mcb_foto_sebelum = 'assets/dataPemeriksaan/papan/sebelum/' . $imageName;
+            }
+        }
+
+        $locate_mcb_foto_sesudah = "";
+        if ($request->mcb_foto_sesudah !== 'null' && $request->mcb_foto_sesudah != NULL) {
+            $image_64 = $request->mcb_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_mcb_foto_sesudah = 'assets/dataPemeriksaan/papan/sesudah/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_mcb)) {
+            $form_pemeriksaan_mcb = FormLangsungPemeriksaanPenutupMcb::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->mcb_peralatan,
+                'segel' => $request->mcb_segel,
+                'nomor_tahun_kode_segel' => $request->mcb_nomor_tahun_kode_segel,
+                'keterangan' => $request->mcb_keterangan,
+                'foto_sebelum' => $locate_mcb_foto_sebelum,
+                'post_peralatan' => $request->mcb_post_peralatan,
+                'post_segel' => $request->mcb_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->mcb_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_mcb_foto_sesudah,
+                'all_keterangan' => $request->pemeriksaan_keterangan,
+            ]);
+        } else {
+            $form_pemeriksaan_mcb->forms_id = $form->id;
+            $form_pemeriksaan_mcb->peralatan = $request->mcb_peralatan;
+            $form_pemeriksaan_mcb->segel = $request->mcb_segel;
+            $form_pemeriksaan_mcb->nomor_tahun_kode_segel = $request->mcb_nomor_tahun_kode_segel;
+            $form_pemeriksaan_mcb->keterangan = $request->mcb_keterangan;
+            $form_pemeriksaan_mcb->foto_sebelum = $locate_mcb_foto_sebelum;
+            $form_pemeriksaan_mcb->post_peralatan = $request->mcb_post_peralatan;
+            $form_pemeriksaan_mcb->post_segel = $request->mcb_post_segel;
+            $form_pemeriksaan_mcb->post_nomor_tahun_kode_segel = $request->mcb_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_mcb->foto_sesudah = $locate_mcb_foto_sesudah;
+            $form_pemeriksaan_mcb->all_keterangan = $request->pemeriksaan_keterangan;
+
+
+            $form_baru->save();
+        }
+
+
+
+
+
+
+
+
+
 
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
