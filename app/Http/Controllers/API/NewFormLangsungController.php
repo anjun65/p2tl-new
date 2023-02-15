@@ -189,9 +189,9 @@ class NewFormLangsungController extends Controller
                 'tegangan_nominal' => $request->data_lama_tegangan_nominal,
                 'stand_kwh_meter' => $request->data_lama_stand_kwh_meter,
                 'foto_kwh_meter' => $locate_data_lama_foto_kwh_meter,
-                'rating_arus_2' => $request->data_lama_alat_pembatas_merk,
-                'jenis_pembatas' => $request->data_lama_rating_arus_2,
-                'alat_pembatas_merk' => $request->data_lama_foto_kwh_meter,
+                'rating_arus_2' => $request->data_lama_rating_arus_2,
+                'jenis_pembatas' => $request->data_lama_jenis_pembatas,
+                'alat_pembatas_merk' => $request->data_lama_alat_pembatas_merk,
                 'foto_pembatas' => $locate_data_lama_foto_pembatas,
             ]);
         } else {
@@ -206,9 +206,9 @@ class NewFormLangsungController extends Controller
             $form_lama->tegangan_nominal = $request->data_lama_tegangan_nominal;
             $form_lama->stand_kwh_meter = $request->data_lama_stand_kwh_meter;
             $form_lama->foto_kwh_meter = $locate_data_lama_foto_kwh_meter;
-            $form_lama->rating_arus_2 = $request->data_lama_alat_pembatas_merk;
-            $form_lama->jenis_pembatas = $request->data_lama_rating_arus_2;
-            $form_lama->alat_pembatas_merk = $request->data_lama_foto_kwh_meter;
+            $form_lama->rating_arus_2 = $request->data_lama_rating_arus_2;
+            $form_lama->jenis_pembatas = $request->data_lama_jenis_pembatas;
+            $form_lama->alat_pembatas_merk = $request->data_lama_alat_pembatas_merk;
             $form_lama->foto_pembatas = $locate_data_lama_foto_pembatas;
 
             $form_lama->save();
@@ -227,9 +227,9 @@ class NewFormLangsungController extends Controller
                 'tegangan_nominal' => $request->data_baru_tegangan_nominal,
                 'stand_kwh_meter' => $request->data_baru_stand_kwh_meter,
                 'foto_kwh_meter' => $locate_data_baru_foto_kwh_meter,
-                'rating_arus_2' => $request->data_baru_alat_pembatas_merk,
-                'jenis_pembatas' => $request->data_baru_rating_arus_2,
-                'alat_pembatas_merk' => $request->data_baru_foto_kwh_meter,
+                'rating_arus_2' => $request->data_baru_rating_arus_2,
+                'jenis_pembatas' => $request->data_baru_jenis_pembatas,
+                'alat_pembatas_merk' => $request->data_baru_alat_pembatas_merk,
                 'foto_pembatas' => $locate_data_baru_foto_pembatas,
             ]);
         } else {
@@ -244,9 +244,9 @@ class NewFormLangsungController extends Controller
             $form_baru->tegangan_nominal = $request->data_baru_tegangan_nominal;
             $form_baru->stand_kwh_meter = $request->data_baru_stand_kwh_meter;
             $form_baru->foto_kwh_meter = $locate_data_baru_foto_kwh_meter;
-            $form_baru->rating_arus_2 = $request->data_baru_alat_pembatas_merk;
-            $form_baru->jenis_pembatas = $request->data_baru_rating_arus_2;
-            $form_baru->alat_pembatas_merk = $request->data_baru_foto_kwh_meter;
+            $form_baru->rating_arus_2 = $request->data_baru_rating_arus_2;
+            $form_baru->jenis_pembatas = $request->data_baru_jenis_pembatas;
+            $form_baru->alat_pembatas_merk = $request->data_baru_alat_pembatas_merk;
             $form_baru->foto_pembatas = $locate_data_baru_foto_pembatas;
 
             $form_baru->save();
