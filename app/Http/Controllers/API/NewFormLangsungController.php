@@ -8,6 +8,7 @@ use App\Helpers\ResponseFormatter;
 use App\Models\FormLangsung;
 use App\Models\FormLangsungDataAppBaru;
 use App\Models\FormLangsungDataAppLama;
+use App\Models\FormLangsungPemeriksaanKwhMeter;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -50,6 +51,15 @@ class NewFormLangsungController extends Controller
             'data_baru_rating_arus_2' => ['required'],
             'data_baru_foto_kwh_meter' => ['required'],
             'data_baru_foto_pembatas' => ['required'],
+            'kwh_peralatan' => ['required'],
+            'kwh_segel' => ['required'],
+            'kwh_nomor_tahun_kode_segel' => ['required'],
+            'kwh_keterangan' => ['required'],
+            'kwh_foto_sebelum' => ['required'],
+            'kwh_post_peralatan' => ['required'],
+            'kwh_post_segel' => ['required'],
+            'kwh_post_nomor_tahun_kode_segel' => ['required'],
+            'kwh_foto_sesudah' => ['required'],
         ]);
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
@@ -254,6 +264,69 @@ class NewFormLangsungController extends Controller
 
             $form_baru->save();
         }
+
+
+
+        $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
+
+        $locate_kwh_foto_sebelum = "";
+        if ($request->kwh_foto_sebelum !== 'null' && $request->kwh_foto_sebelum != NULL) {
+            $image_64 = $request->kwh_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_kwh_foto_sebelum = 'assets/dataAppBaru/pembatas/' . $imageName;
+            }
+        }
+
+        $locate_kwh_foto_sesudah = "";
+        if ($request->kwh_foto_sesudah !== 'null' && $request->kwh_foto_sesudah != NULL) {
+            $image_64 = $request->kwh_foto_sesudah;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_kwh_foto_sesudah = 'assets/dataAppBaru/pembatas/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_kwh)) {
+            $form_pemeriksaan_kwh = FormLangsungDataAppBaru::create([
+                'forms_id' => $form->id,
+                'peralatan' => $request->kwh_peralatan,
+                'segel' => $request->kwh_segel,
+                'nomor_tahun_kode_segel' => $request->kwh_nomor_tahun_kode_segel,
+                'keterangan' => $request->kwh_keterangan,
+                'foto_sebelum' => $locate_kwh_foto_sebelum,
+                'post_peralatan' => $request->kwh_post_peralatan,
+                'post_segel' => $request->kwh_post_segel,
+                'post_nomor_tahun_kode_segel' => $request->kwh_post_nomor_tahun_kode_segel,
+                'foto_sesudah' => $locate_kwh_foto_sesudah,
+            ]);
+        } else {
+            $form_pemeriksaan_kwh->forms_id = $form->id;
+            $form_pemeriksaan_kwh->peralatan = $request->kwh_peralatan;
+            $form_pemeriksaan_kwh->segel = $request->kwh_segel;
+            $form_pemeriksaan_kwh->nomor_tahun_kode_segel = $request->kwh_nomor_tahun_kode_segel;
+            $form_pemeriksaan_kwh->keterangan = $request->kwh_keterangan;
+            $form_pemeriksaan_kwh->foto_sebelum = $locate_kwh_foto_sebelum;
+            $form_pemeriksaan_kwh->post_peralatan = $request->kwh_post_peralatan;
+            $form_pemeriksaan_kwh->post_segel = $request->kwh_post_segel;
+            $form_pemeriksaan_kwh->post_nomor_tahun_kode_segel = $request->kwh_post_nomor_tahun_kode_segel;
+            $form_pemeriksaan_kwh->foto_sesudah = $locate_kwh_foto_sesudah;
+
+            $form_baru->save();
+        }
+
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
