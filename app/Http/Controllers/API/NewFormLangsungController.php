@@ -187,7 +187,6 @@ class NewFormLangsungController extends Controller
         }
 
         $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
-        $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
 
         if (empty($form_lama)) {
             $form_lama = FormLangsungDataAppLama::create([
@@ -227,6 +226,9 @@ class NewFormLangsungController extends Controller
             $form_lama->save();
         }
 
+
+        $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
+
         if (empty($form_baru)) {
             $form_baru = FormLangsungDataAppBaru::create([
                 'forms_id' => $form->id,
@@ -246,6 +248,7 @@ class NewFormLangsungController extends Controller
                 'foto_pembatas' => $locate_data_baru_foto_pembatas,
             ]);
         } else {
+            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
             $form_baru->forms_id = $form->id;
             $form_baru->merk = $request->data_baru_merk;
             $form_baru->no_reg = $request->data_baru_no_reg;
@@ -264,8 +267,6 @@ class NewFormLangsungController extends Controller
 
             $form_baru->save();
         }
-
-
 
         $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
 
