@@ -8,12 +8,16 @@ use App\Helpers\ResponseFormatter;
 use App\Models\FormLangsung;
 use App\Models\FormLangsungDataAppBaru;
 use App\Models\FormLangsungDataAppLama;
+use App\Models\FormLangsungHasilPemeriksaan;
 use App\Models\FormLangsungPemeriksaanKwhMeter;
 use App\Models\FormLangsungPemeriksaanPapanOk;
 use App\Models\FormLangsungPemeriksaanPelindungBusBar;
 use App\Models\FormLangsungPemeriksaanPelindungKwh;
+use App\Models\FormLangsungPemeriksaanPengukuran;
 use App\Models\FormLangsungPemeriksaanPenutupMcb;
 use App\Models\FormLangsungPemeriksaanTerminal;
+use App\Models\FormLangsungWiringApp;
+use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -117,6 +121,43 @@ class NewFormLangsungController extends Controller
             'mcb_foto_sesudah' => ['required'],
 
             'pemeriksaan_keterangan' => ['required'],
+
+            'pemeriksaan_arus_1' => ['required'],
+            'pemeriksaan_arus_2' => ['required'],
+            'pemeriksaan_arus_3' => ['required'],
+            'pemeriksaan_arus_netral' => ['required'],
+            'pemeriksaan_voltase_netral_1' => ['required'],
+            'pemeriksaan_voltase_netral_2' => ['required'],
+            'pemeriksaan_voltase_netral_3' => ['required'],
+            'pemeriksaan_voltase_phase_1' => ['required'],
+            'pemeriksaan_voltase_phase_2' => ['required'],
+            'pemeriksaan_voltase_phase_3' => ['required'],
+            'pemeriksaan_cos_1' => ['required'],
+            'pemeriksaan_cos_2' => ['required'],
+            'pemeriksaan_cos_3' => ['required'],
+            'pemeriksaan_akurasi' => ['required'],
+            'pemeriksaan_foto_sebelum' => ['required'],
+
+            'wiring_terminal1' => ['required'],
+            'wiring_terminal2' => ['required'],
+            'wiring_terminal3' => ['required'],
+            'wiring_terminal4' => ['required'],
+            'wiring_terminal5' => ['required'],
+            'wiring_terminal6' => ['required'],
+            'wiring_terminal7' => ['required'],
+            'wiring_terminal8' => ['required'],
+            'wiring_terminal9' => ['required'],
+            'wiring_terminal11' => ['required'],
+            'wiring_keterangan_wiring_app' => ['required'],
+            'wiring_foto' => ['required'],
+
+            'akhir_hasil_pemeriksaan' => ['required'],
+            'akhir_kesimpulan' => ['required'],
+            'akhir_tindakan' => ['required'],
+            'akhir_barang_bukti' => ['required'],
+            'akhir_tanggal_penyelesaian' => ['required'],
+            'akhir_foto_barang_bukti' => ['required'],
+            'akhir_labor' => ['required'],
         ]);
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
@@ -518,10 +559,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sebelum/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_busbar_foto_sebelum = 'assets/dataPemeriksaan/terminal/sebelum/' . $imageName;
+                $locate_busbar_foto_sebelum = 'assets/dataPemeriksaan/busbar/sebelum/' . $imageName;
             }
         }
 
@@ -533,10 +574,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sesudah/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_busbar_foto_sesudah = 'assets/dataPemeriksaan/terminal/sesudah/' . $imageName;
+                $locate_busbar_foto_sesudah = 'assets/dataPemeriksaan/busbar/sesudah/' . $imageName;
             }
         }
 
@@ -640,10 +681,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sebelum/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_mcb_foto_sebelum = 'assets/dataPemeriksaan/papan/sebelum/' . $imageName;
+                $locate_mcb_foto_sebelum = 'assets/dataPemeriksaan/mcb/sebelum/' . $imageName;
             }
         }
 
@@ -655,10 +696,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sesudah/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_mcb_foto_sesudah = 'assets/dataPemeriksaan/papan/sesudah/' . $imageName;
+                $locate_mcb_foto_sesudah = 'assets/dataPemeriksaan/mcb/sesudah/' . $imageName;
             }
         }
 
@@ -695,13 +736,167 @@ class NewFormLangsungController extends Controller
 
 
 
+        // Pemeriksaan dan Pengukuran
+        $form_pemeriksaan_pengukuran = FormLangsungPemeriksaanPengukuran::where('forms_id', $form->id)->first();
+
+        $locate_pemeriksaan_foto_sebelum = "";
+        if ($request->pemeriksaan_foto_sebelum !== 'null' && $request->pemeriksaan_foto_sebelum != NULL) {
+            $image_64 = $request->pemeriksaan_foto_sebelum;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pengukuran/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_pemeriksaan_foto_sebelum = 'assets/dataPemeriksaan/pengukuran/' . $imageName;
+            }
+        }
+
+        if (empty($form_pemeriksaan_pengukuran)) {
+            $form_pemeriksaan_pengukuran = FormLangsungPemeriksaanPengukuran::create([
+                'forms_id' => $form->id,
+                'arus_1' => $request->pemeriksaan_arus_1,
+                'arus_2' => $request->pemeriksaan_arus_2,
+                'arus_3' => $request->pemeriksaan_arus_3,
+                'arus_netral' => $request->pemeriksaan_arus_netral,
+                'voltase_netral_1' => $request->pemeriksaan_voltase_netral_1,
+                'voltase_netral_2' => $request->pemeriksaan_voltase_netral_2,
+                'voltase_netral_3' => $request->pemeriksaan_voltase_netral_3,
+                'voltase_phase_1' => $request->pemeriksaan_voltase_phase_1,
+                'voltase_phase_2' => $request->pemeriksaan_voltase_phase_2,
+                'voltase_phase_3' => $request->pemeriksaan_voltase_phase_3,
+                'cos_1' => $request->pemeriksaan_cos_1,
+                'cos_2' => $request->pemeriksaan_cos_2,
+                'cos_3' => $request->pemeriksaan_cos_3,
+                'akurasi' => $request->pemeriksaan_akurasi,
+                'foto_sebelum' => $locate_pemeriksaan_foto_sebelum,
+            ]);
+        } else {
+
+            $form_pemeriksaan_pengukuran->forms_id = $form->id;
+            $form_pemeriksaan_pengukuran->arus_1 = $request->pemeriksaan_arus_1;
+            $form_pemeriksaan_pengukuran->arus_2 = $request->pemeriksaan_arus_2;
+            $form_pemeriksaan_pengukuran->arus_3 = $request->pemeriksaan_arus_3;
+            $form_pemeriksaan_pengukuran->arus_netral = $request->pemeriksaan_arus_netral;
+            $form_pemeriksaan_pengukuran->voltase_netral_1 = $request->pemeriksaan_voltase_netral_1;
+            $form_pemeriksaan_pengukuran->voltase_netral_2 = $request->pemeriksaan_voltase_netral_2;
+            $form_pemeriksaan_pengukuran->voltase_netral_3 = $request->pemeriksaan_voltase_netral_3;
+            $form_pemeriksaan_pengukuran->voltase_phase_1 = $request->pemeriksaan_voltase_phase_1;
+            $form_pemeriksaan_pengukuran->voltase_phase_2 = $request->pemeriksaan_voltase_phase_2;
+            $form_pemeriksaan_pengukuran->voltase_phase_3 = $request->pemeriksaan_voltase_phase_3;
+            $form_pemeriksaan_pengukuran->cos_1 = $request->pemeriksaan_cos_1;
+            $form_pemeriksaan_pengukuran->cos_2 = $request->pemeriksaan_cos_2;
+            $form_pemeriksaan_pengukuran->cos_3 = $request->pemeriksaan_cos_3;
+            $form_pemeriksaan_pengukuran->akurasi = $request->pemeriksaan_akurasi;
+            $form_pemeriksaan_pengukuran->foto_sebelum = $locate_pemeriksaan_foto_sebelum;
 
 
+            $form_baru->save();
+        }
 
+        // Wiring APP
+        $form_wiring_app = FormLangsungWiringApp::where('forms_id', $form->id)->first();
 
+        $locate_wiring_foto = "";
+        if ($request->wiring_foto !== 'null' && $request->wiring_foto != NULL) {
+            $image_64 = $request->wiring_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/datawiringapp' . $imageName, base64_decode($image));
 
+            if ($file) {
+                $locate_wiring_foto = 'assets/datawiringapp' . $imageName;
+            }
+        }
 
+        if (empty($form_wiring_app)) {
+            $form_wiring_app = FormLangsungWiringApp::create([
+                'forms_id' => $form->id,
+                'terminal1' => $request->wiring_terminal1,
+                'terminal2' => $request->wiring_terminal2,
+                'terminal3' => $request->wiring_terminal3,
+                'terminal4' => $request->wiring_terminal4,
+                'terminal5' => $request->wiring_terminal5,
+                'terminal6' => $request->wiring_terminal6,
+                'terminal7' => $request->wiring_terminal7,
+                'terminal8' => $request->wiring_terminal8,
+                'terminal9' => $request->wiring_terminal9,
+                'terminal11' => $request->wiring_terminal11,
+                'keterangan_wiring_app' => $request->wiring_keterangan_wiring_app,
+                'foto_sebelum' => $locate_wiring_foto,
 
+            ]);
+        } else {
+            $form_wiring_app->forms_id = $form->id;
+            $form_wiring_app->terminal1 = $request->wiring_terminal1;
+            $form_wiring_app->terminal2 = $request->wiring_terminal2;
+            $form_wiring_app->terminal3 = $request->wiring_terminal3;
+            $form_wiring_app->terminal4 = $request->wiring_terminal4;
+            $form_wiring_app->terminal5 = $request->wiring_terminal5;
+            $form_wiring_app->terminal6 = $request->wiring_terminal6;
+            $form_wiring_app->terminal7 = $request->wiring_terminal7;
+            $form_wiring_app->terminal8 = $request->wiring_terminal8;
+            $form_wiring_app->terminal9 = $request->wiring_terminal9;
+            $form_wiring_app->terminal11 = $request->wiring_terminal11;
+            $form_wiring_app->keterangan_wiring_app = $request->wiring_keterangan_wiring_app;
+            $form_wiring_app->foto_sebelum = $locate_wiring_foto;
+
+            $form_baru->save();
+        }
+
+        // Wiring APP
+        $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
+
+        $locate_akhir_foto_barang_bukti = "";
+        if ($request->akhir_foto_barang_bukti !== 'null' && $request->akhir_foto_barang_bukti != NULL) {
+            $image_64 = $request->akhir_foto_barang_bukti;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/barang-bukti/kwh' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_akhir_foto_barang_bukti = 'assets/hasilakhir/' . $imageName;
+            }
+        }
+
+        if (empty($form_hasil_pemeriksaan)) {
+            $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::create([
+                'forms_id' => $form->id,
+                'hasil_pemeriksaan' => $request->akhir_hasil_pemeriksaan,
+                'kesimpulan' => $request->akhir_kesimpulan,
+                'tindakan' => $request->akhir_tindakan,
+                'barang_bukti' => $request->akhir_barang_bukti,
+                'tanggal_penyelesaian' => $request->akhir_tanggal_penyelesaian,
+                'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
+            ]);
+        } else {
+            $form_hasil_pemeriksaan->forms_id = $form->id;
+            $form_hasil_pemeriksaan->hasil_pemeriksaan = $request->akhir_hasil_pemeriksaan;
+            $form_hasil_pemeriksaan->kesimpulan = $request->akhir_tindakan;
+            $form_hasil_pemeriksaan->tindakan = $request->akhir_barang_bukti;
+            $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
+            $form_hasil_pemeriksaan->tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
+            $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
+
+            $form_baru->save();
+        }
+
+        $akhir_labor = 0;
+        if ($request->akhir_labor == 1) {
+            $akhir_labor = 1;
+        }
+
+        $work = WorkOrder::where('id', $form->works_id)->first();
+        $work->labor = $akhir_labor;
+        $work->save();
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
