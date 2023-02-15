@@ -77,7 +77,7 @@ class NewFormLangsungController extends Controller
             // $locate_file_nomor_identitas = Storage::putFileAs('public/assets/saksi', base64_decode($image), $imageName);
         }
 
-        dd($locate_file_nomor_identitas);
+        return $locate_file_nomor_identitas;
 
         // $locate_data_lama_foto_kwh_meter = "";
         // if ($request->data_lama_foto_kwh_meter != 'null' || $request->data_lama_foto_kwh_meter != NULL) {
