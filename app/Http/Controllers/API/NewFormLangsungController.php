@@ -69,7 +69,8 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $locate_file_nomor_identitas = Storage::disk('public')->put('assets/saksi/' . $imageName, base64_decode($image));
+            $locate_file_nomor_identitas = Storage::putFile('assets/saksi/' . $imageName, base64_decode($image));
+
             // $locate_file_nomor_identitas = Storage::putFileAs('public/assets/saksi', base64_decode($image), $imageName);
         }
 
