@@ -69,15 +69,14 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            // $file = Storage::disk('public')->put('assets/saksi/' . $imageName, base64_decode($image));
-            $file = Storage::putFile('public/assets/saksi/', base64_decode($image));
-            // if($file) {
-            $locate_file_nomor_identitas = Storage::url($file);
-            // }
-            // $locate_file_nomor_identitas = Storage::putFileAs('public/assets/saksi', base64_decode($image), $imageName);
+            $file = Storage::disk('public')->put('assets/saksi/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_file_nomor_identitas = 'assets/saksi/' . $imageName;
+            }
         }
 
-        return $locate_file_nomor_identitas;
+        dd($locate_file_nomor_identitas);
 
         // $locate_data_lama_foto_kwh_meter = "";
         // if ($request->data_lama_foto_kwh_meter != 'null' || $request->data_lama_foto_kwh_meter != NULL) {
