@@ -56,7 +56,7 @@ class NewFormLangsungController extends Controller
 
 
         $locate_file_nomor_identitas = "";
-        if ($request->file_nomor_identitas != 'null' || $request->file_nomor_identitas != NULL) {
+        if ($request->file_nomor_identitas !== 'null' || $request->file_nomor_identitas != NULL) {
             $image_64 = $request->file_nomor_identitas;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
@@ -71,83 +71,83 @@ class NewFormLangsungController extends Controller
         }
 
         $locate_data_lama_foto_kwh_meter = "";
-        if ($request->data_lama_foto_kwh_meter != 'null' || $request->data_lama_foto_kwh_meter != NULL) {
+        if ($request->data_lama_foto_kwh_meter !== 'null' || $request->data_lama_foto_kwh_meter != NULL) {
             $image_64 = $request->data_lama_foto_kwh_meter;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppLama/kwh' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataAppLama/kwh/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_data_lama_foto_kwh_meter = 'assets/dataAppLama/kwh' . $imageName;
+                $locate_data_lama_foto_kwh_meter = 'assets/dataAppLama/kwh/' . $imageName;
             }
         }
 
         $locate_data_lama_foto_pembatas = "";
-        if ($request->data_lama_foto_pembatas != 'null' || $request->data_lama_foto_pembatas != NULL) {
+        if ($request->data_lama_foto_pembatas !== 'null' || $request->data_lama_foto_pembatas != NULL) {
             $image_64 = $request->data_lama_foto_pembatas;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppLama/pembatas' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataAppLama/pembatas/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_data_lama_foto_pembatas = 'assets/dataAppLama/pembatas' . $imageName;
+                $locate_data_lama_foto_pembatas = 'assets/dataAppLama/pembatas/' . $imageName;
             }
         }
 
 
         $locate_data_baru_foto_kwh_meter = "";
-        if ($request->data_baru_foto_kwh_meter != 'null' || $request->data_baru_foto_kwh_meter != NULL) {
+        if ($request->data_baru_foto_kwh_meter !== 'null' || $request->data_baru_foto_kwh_meter != NULL) {
             $image_64 = $request->data_lama_foto_pembatas;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/kwh' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataAppBaru/kwh/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_data_baru_foto_kwh_meter = 'assets/dataAppBaru/kwh' . $imageName;
+                $locate_data_baru_foto_kwh_meter = 'assets/dataAppBaru/kwh/' . $imageName;
             }
         }
 
 
         $locate_data_baru_foto_pembatas = "";
-        if ($request->data_baru_foto_pembatas != 'null' || $request->data_baru_foto_pembatas != NULL) {
+        if ($request->data_baru_foto_pembatas !== 'null' || $request->data_baru_foto_pembatas != NULL) {
             $image_64 = $request->data_lama_foto_pembatas;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_data_baru_foto_kwh_meter = 'assets/dataAppBaru/pembatas' . $imageName;
+                $locate_data_baru_foto_pembatas = 'assets/dataAppBaru/pembatas/' . $imageName;
             }
         }
 
 
         $nama_saksi = null;
 
-        if ($request->nama_saksi != 'null' || $request->nama_saksi != NULL) {
+        if ($request->nama_saksi !== 'null' || $request->nama_saksi != NULL) {
             $nama_saksi = $request->nama_saksi;
         }
 
-        if ($request->alamat_saksi != 'null' || $request->alamat_saksi != NULL) {
+        if ($request->alamat_saksi !== 'null' || $request->alamat_saksi != NULL) {
             $alamat_saksi = $request->alamat_saksi;
         }
 
-        if ($request->nomor_identitas != 'null' || $request->nomor_identitas != NULL) {
+        if ($request->nomor_identitas !== 'null' || $request->nomor_identitas != NULL) {
             $nomor_identitas = $request->nomor_identitas;
         }
 
-        if ($request->no_telpon_saksi != 'null' || $request->no_telpon_saksi != NULL) {
+        if ($request->no_telpon_saksi !== 'null' || $request->no_telpon_saksi != NULL) {
             $no_telpon_saksi = $request->no_telpon_saksi;
         }
 
