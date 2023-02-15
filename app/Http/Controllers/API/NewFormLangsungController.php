@@ -133,10 +133,10 @@ class NewFormLangsungController extends Controller
         }
 
 
-        $nama_saksi = 'test';
-        $alamat_saksi = 'test';
-        $nomor_identitas = 'test';
-        $no_telpon_saksi = 'test';
+        $nama_saksi = '';
+        $alamat_saksi = '';
+        $nomor_identitas = '';
+        $no_telpon_saksi = '';
 
         if ($request->nama_saksi !== 'null' && $request->nama_saksi != NULL) {
             $nama_saksi = $request->nama_saksi;
