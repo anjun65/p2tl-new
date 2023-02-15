@@ -807,10 +807,10 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/datawiringapp' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/datawiringapp/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_wiring_foto = 'assets/datawiringapp' . $imageName;
+                $locate_wiring_foto = 'assets/datawiringapp/' . $imageName;
             }
         }
 
@@ -860,11 +860,16 @@ class NewFormLangsungController extends Controller
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/barang-bukti/kwh' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/hasilakhir/' . $imageName, base64_decode($image));
 
             if ($file) {
                 $locate_akhir_foto_barang_bukti = 'assets/hasilakhir/' . $imageName;
             }
+        }
+
+        $akhir_tanggal_penyelesaian = null;
+        if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
+            $akhir_tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
         }
 
         if (empty($form_hasil_pemeriksaan)) {

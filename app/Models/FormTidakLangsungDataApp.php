@@ -39,7 +39,16 @@ class FormTidakLangsungDataApp extends Model
         'file_trafo_tegangan',
         'file_kubikel',
         'file_box_app',
+        'data_tegangan_tersambung',
+        'data_jenis_pengukuran',
+        'data_tempat_kedudukan',
+        'kubikel_merk',
+        'kubikel_type',
+        'kubikel_no_seri',
+        'kubikel_tahun',
+        'box_app_merk',
+        'box_app_type',
+        'box_app_no_seri',
+        'box_app_tahun',
     ];
-
-    
 }

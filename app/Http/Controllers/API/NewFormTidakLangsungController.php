@@ -5,7 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FormTidakLangsung;
+use App\Models\FormTidakLangsungDataApp;
 use App\Helpers\ResponseFormatter;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewFormTidakLangsungController extends Controller
 {
@@ -13,13 +17,13 @@ class NewFormTidakLangsungController extends Controller
     {
         $request->validate([
             'works_id' => ['required'],
-            'regus_id' => ['required'],
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
             'pekerjaan' => ['nullable'],
             'no_telpon_saksi' => ['nullable'],
             'file_nomor_identitas' => ['nullable'],
+
             'data_tegangan_tersambung' => ['required'],
             'data_jenis_pengukuran' => ['required'],
             'data_tempat_kedudukan' => ['required'],
@@ -40,6 +44,7 @@ class NewFormTidakLangsungController extends Controller
             'kwh_total' => ['required'],
             'kwh_kvarh' => ['required'],
             'kwh_foto' => ['required'],
+
             'ct_merk' => ['required'],
             'ct_cls' => ['required'],
             'ct_rasio' => ['required'],
@@ -50,477 +55,273 @@ class NewFormTidakLangsungController extends Controller
             'pt_rasio' => ['required'],
             'pt_burden' => ['required'],
             'pt_foto' => ['required'],
+
             'kubikel_merk' => ['required'],
             'kubikel_type' => ['required'],
             'kubikel_no_seri' => ['required'],
             'kubikel_tahun' => ['required'],
             'kubikel_foto' => ['required'],
+
             'box_app_merk' => ['required'],
             'box_app_type' => ['required'],
             'box_app_no_seri' => ['required'],
             'box_app_tahun' => ['required'],
             'box_app_foto' => ['required'],
-            'pelindung_kwh_peralatan' => ['required'],
-            'pelindung_kwh_segel' => ['required'],
-            'pelindung_kwh_nomor_tahun_kode_segel' => ['required'],
-            'pelindung_kwh_keterangan' => ['required'],
-            'pelindung_kwh_foto_sebelum' => ['required'],
-            'pelindung_kwh_post_peralatan' => ['required'],
-            'pelindung_kwh_post_segel' => ['required'],
-            'pelindung_kwh_post_nomor_tahun_kode_segel' => ['required'],
-            'pelindung_kwh_foto_sesudah' => ['required'],
-            'pelindung_ct_peralatan' => ['required'],
-            'pelindung_ct_segel' => ['required'],
-            'pelindung_ct_nomor_tahun_kode_segel' => ['required'],
-            'pelindung_ct_keterangan' => ['required'],
-            'pelindung_ct_foto_sebelum' => ['required'],
-            'pelindung_ct_post_peralatan' => ['required'],
-            'pelindung_ct_post_segel' => ['required'],
-            'pelindung_ct_post_nomor_tahun_kode_segel' => ['required'],
-            'pelindung_ct_foto_sesudah' => ['required'],
-            'segel_peralatan' => ['required'],
-            'segel_segel' => ['required'],
-            'segel_nomor_tahun_kode_segel' => ['required'],
-            'segel_keterangan' => ['required'],
-            'segel_foto_sebelum' => ['required'],
-            'segel_post_peralatan' => ['required'],
-            'segel_post_segel' => ['required'],
-            'segel_post_nomor_tahun_kode_segel' => ['required'],
-            'segel_foto_sesudah' => ['required'],
-            'tutup_terminal_peralatan' => ['required'],
-            'tutup_terminal_segel' => ['required'],
-            'tutup_terminal_nomor_tahun_kode_segel' => ['required'],
-            'tutup_terminal_keterangan' => ['required'],
-            'tutup_terminal_foto_sebelum' => ['required'],
-            'tutup_terminal_post_peralatan' => ['required'],
-            'tutup_terminal_post_segel' => ['required'],
-            'tutup_terminal_post_nomor_tahun_kode_segel' => ['required'],
-            'tutup_terminal_foto_sesudah' => ['required'],
-            'amr_peralatan' => ['required'],
-            'amr_segel' => ['required'],
-            'amr_nomor_tahun_kode_segel' => ['required'],
-            'amr_keterangan' => ['required'],
-            'amr_foto_sebelum' => ['required'],
-            'amr_post_peralatan' => ['required'],
-            'amr_post_segel' => ['required'],
-            'amr_post_nomor_tahun_kode_segel' => ['required'],
-            'amr_foto_sesudah' => ['required'],
-            'terminal_vt_peralatan' => ['required'],
-            'terminal_vt_segel' => ['required'],
-            'terminal_vt_nomor_tahun_kode_segel' => ['required'],
-            'terminal_vt_keterangan' => ['required'],
-            'terminal_vt_foto_sebelum' => ['required'],
-            'terminal_vt_post_peralatan' => ['required'],
-            'terminal_vt_post_segel' => ['required'],
-            'terminal_vt_post_nomor_tahun_kode_segel' => ['required'],
-            'terminal_vt_foto_sesudah' => ['required'],
-            'terminal_ct_peralatan' => ['required'],
-            'terminal_ct_segel' => ['required'],
-            'terminal_ct_nomor_tahun_kode_segel' => ['required'],
-            'terminal_ct_keterangan' => ['required'],
-            'terminal_ct_foto_sebelum' => ['required'],
-            'terminal_ct_post_peralatan' => ['required'],
-            'terminal_ct_post_segel' => ['required'],
-            'terminal_ct_post_nomor_tahun_kode_segel' => ['required'],
-            'terminal_ct_foto_sesudah' => ['required'],
-            'pintu_peralatan' => ['required'],
-            'pintu_segel' => ['required'],
-            'pintu_nomor_tahun_kode_segel' => ['required'],
-            'pintu_keterangan' => ['required'],
-            'pintu_foto_sebelum' => ['required'],
-            'pintu_post_peralatan' => ['required'],
-            'pintu_post_segel' => ['required'],
-            'pintu_post_nomor_tahun_kode_segel' => ['required'],
-            'pintu_foto_sesudah' => ['required'],
-            'pintu_keterangan_all' => ['required'],
-            'wiring_terminal1' => ['required'],
-            'wiring_terminal2' => ['required'],
-            'wiring_terminal3' => ['required'],
-            'wiring_terminal4' => ['required'],
-            'wiring_terminal5' => ['required'],
-            'wiring_terminal6' => ['required'],
-            'wiring_terminal7' => ['required'],
-            'wiring_terminal8' => ['required'],
-            'wiring_terminal9' => ['required'],
-            'wiring_terminal11' => ['required'],
-            'wiring_grounding' => ['required'],
-            'wiring_keterangan' => ['required'],
-            'wiring_diagram' => ['required'],
-            'wiring_foto' => ['required'],
-            'pengukuran_arus_primer_r' => ['required'],
-            'pengukuran_arus_primer_s' => ['required'],
-            'pengukuran_arus_primer_t' => ['required'],
-            'pengukuran_arus_sekunder_r' => ['required'],
-            'pengukuran_arus_sekunder_s' => ['required'],
-            'pengukuran_arus_sekunder_t' => ['required'],
-            'pengukuran_ct_r' => ['required'],
-            'pengukuran_ct_s' => ['required'],
-            'pengukuran_ct_t' => ['required'],
-            'pengukuran_akurasi_r' => ['required'],
-            'pengukuran_akurasi_s' => ['required'],
-            'pengukuran_akurasi_t' => ['required'],
-            'pengukuran_voltase_primer_r' => ['required'],
-            'pengukuran_voltase_primer_s' => ['required'],
-            'pengukuran_voltase_primer_t' => ['required'],
-            'pengukuran_voltase_sekunder_r' => ['required'],
-            'pengukuran_voltase_sekunder_s' => ['required'],
-            'pengukuran_voltase_sekunder_t' => ['required'],
-            'pengukuran_cos_r' => ['required'],
-            'pengukuran_cos_s' => ['required'],
-            'pengukuran_cos_t' => ['required'],
-            'pengukuran_akurasi' => ['required'],
-            'pengukuran_keterangan' => ['required'],
-            'pengukuran_foto' => ['required'],
-            'akhir_hasil_pemeriksaan' => ['required'],
-            'akhir_kesimpulan' => ['required'],
-            'akhir_tindakan' => ['required'],
-            'akhir_barang_bukti' => ['required'],
-            'akhir_tanggal_penyelesaian' => ['required'],
-            'akhir_foto_barang_bukti' => ['required'],
-            'akhir_labor' => ['required'],
+
         ]);
 
+        //Saksi
+
         $form = FormTidakLangsung::where('works_id', $request->works_id)->first();
+
+        $locate_file_nomor_identitas = "";
+        if ($request->file_nomor_identitas !== 'null' && $request->file_nomor_identitas != NULL) {
+            $image_64 = $request->file_nomor_identitas;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/saksi/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_file_nomor_identitas = 'assets/tidaklangsung/saksi/' . $imageName;
+            }
+        }
+
+        $nama_saksi = '';
+        $alamat_saksi = '';
+        $nomor_identitas = '';
+        $no_telpon_saksi = '';
+
+        if ($request->nama_saksi !== 'null' && $request->nama_saksi != NULL) {
+            $nama_saksi = $request->nama_saksi;
+        }
+
+        if ($request->alamat_saksi !== 'null' && $request->alamat_saksi != NULL) {
+            $alamat_saksi = $request->alamat_saksi;
+        }
+
+        if ($request->nomor_identitas !== 'null' && $request->nomor_identitas != NULL) {
+            $nomor_identitas = $request->nomor_identitas;
+        }
+
+        if ($request->no_telpon_saksi !== 'null' && $request->no_telpon_saksi != NULL) {
+            $no_telpon_saksi = $request->no_telpon_saksi;
+        }
 
         if (empty($form)) {
             $form = FormTidakLangsung::create([
                 'works_id' => $request->works_id,
-                'regus_id' => $request->regus_id,
-                'nama_saksi' => $request->nama_saksi,
-                'alamat_saksi' => $request->alamat_saksi,
-                'nomor_identitas' => $request->nomor_identitas,
-                'pekerjaan' => $request->pekerjaan,
-                'file_nomor_identitas' => $request->no_telpon_saksi,
-                'no_telpon_saksi' => $request->file_nomor_identitas,
+                'nama_saksi' => $nama_saksi,
+                'alamat_saksi' => $alamat_saksi,
+                'nomor_identitas' => $nomor_identitas,
+                'no_telpon_saksi' => $no_telpon_saksi,
+                'file_nomor_identitas' => $locate_file_nomor_identitas,
+            ]);
+        } else {
+            $form->works_id = $request->works_id;
+            $form->nama_saksi = $nama_saksi;
+            $form->alamat_saksi = $alamat_saksi;
+            $form->nomor_identitas = $nomor_identitas;
+            $form->no_telpon_saksi = $no_telpon_saksi;
+            $form->file_nomor_identitas = $locate_file_nomor_identitas;
+
+            $form->save();
+        }
 
 
+        //Form Data App
+
+        $form_app = FormTidakLangsungDataApp::where('works_id', $request->works_id)->first();
+
+        $locate_pembatas_foto_pembatas = "";
+        if ($request->pembatas_foto_pembatas !== 'null' && $request->pembatas_foto_pembatas != NULL) {
+            $image_64 = $request->pembatas_foto_pembatas;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pembatas/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_pembatas_foto_pembatas = 'assets/tidaklangsung/dataapp/pembatas/' . $imageName;
+            }
+        }
+
+
+        $locate_kwh_foto = "";
+        if ($request->kwh_foto !== 'null' && $request->kwh_foto != NULL) {
+            $image_64 = $request->kwh_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pembatas/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_kwh_foto = 'assets/tidaklangsung/dataapp/pembatas/' . $imageName;
+            }
+        }
+
+        $locate_ct_foto = "";
+        if ($request->ct_foto !== 'null' && $request->ct_foto != NULL) {
+            $image_64 = $request->ct_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/ct/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_ct_foto = 'assets/tidaklangsung/dataapp/ct/' . $imageName;
+            }
+        }
+
+        $locate_pt_foto = "";
+        if ($request->pt_foto !== 'null' && $request->pt_foto != NULL) {
+            $image_64 = $request->pt_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pt/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_pt_foto = 'assets/tidaklangsung/dataapp/pt/' . $imageName;
+            }
+        }
+
+        $locate_kubikel_foto = "";
+        if ($request->kubikel_foto !== 'null' && $request->kubikel_foto != NULL) {
+            $image_64 = $request->kubikel_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pt/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_kubikel_foto = 'assets/tidaklangsung/dataapp/pt/' . $imageName;
+            }
+        }
+
+        $locate_box_app_foto = "";
+        if ($request->box_app_foto !== 'null' && $request->box_app_foto != NULL) {
+            $image_64 = $request->box_app_foto;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pt/' . $imageName, base64_decode($image));
+
+            if ($file) {
+                $locate_box_app_foto = 'assets/tidaklangsung/dataapp/pt/' . $imageName;
+            }
+        }
+
+
+        if (empty($form)) {
+            $form = FormTidakLangsungDataApp::create([
+                'works_id' => $request->works_id,
                 'data_tegangan_tersambung' => $request->data_tegangan_tersambung,
                 'data_jenis_pengukuran' => $request->data_jenis_pengukuran,
                 'data_tempat_kedudukan' => $request->data_tempat_kedudukan,
-                'pembatas_jenis' => $request->pembatas_jenis,
-                'pembatas_merk' => $request->pembatas_merk,
-                'pembatas_rating_arus' => $request->pembatas_rating_arus,
-                'pembatas_foto_pembatas' => $request->pembatas_foto_pembatas,
+                'merk' => $request->pembatas_merk,
+                'no_seri' => $request->pembatas_jenis,
+                'rating_arus' => $request->pembatas_rating_arus,
                 'kwh_merk' => $request->kwh_merk,
                 'kwh_no_reg' => $request->kwh_no_reg,
                 'kwh_no_seri' => $request->kwh_no_seri,
-                'kwh_tahun' => $request->kwh_tahun,
+                'kwh_tahun_buat' => $request->kwh_tahun,
                 'kwh_konstanta' => $request->kwh_konstanta,
                 'kwh_class' => $request->kwh_class,
                 'kwh_rating_arus' => $request->kwh_rating_arus,
-                'kwh_tegangan' => $request->kwh_tegangan,
-                'kwh_lbp' => $request->kwh_lbp,
-                'kwh_bp' => $request->kwh_bp,
-                'kwh_total' => $request->kwh_total,
-                'kwh_kvarh' => $request->kwh_kvarh,
-                'kwh_foto' => $request->kwh_foto,
+                'kwh_tegangan_nominal' => $request->kwh_tegangan,
+                'kwh_stand_mtr_lbp' => $request->kwh_lbp,
+                'kwh_stand_mtr_bp' => $request->kwh_bp,
+                'kwh_stand_total' => $request->kwh_total,
+                'kwh_stand_kvarh' => $request->kwh_kvarh,
                 'ct_merk' => $request->ct_merk,
                 'ct_cls' => $request->ct_cls,
                 'ct_rasio' => $request->ct_rasio,
                 'ct_burden' => $request->ct_burden,
-                'ct_foto' => $request->ct_foto,
                 'pt_merk' => $request->pt_merk,
                 'pt_cls' => $request->pt_cls,
                 'pt_rasio' => $request->pt_rasio,
                 'pt_burden' => $request->pt_burden,
-                'pt_foto' => $request->pt_foto,
                 'kubikel_merk' => $request->kubikel_merk,
                 'kubikel_type' => $request->kubikel_type,
                 'kubikel_no_seri' => $request->kubikel_no_seri,
                 'kubikel_tahun' => $request->kubikel_tahun,
-                'kubikel_foto' => $request->kubikel_foto,
                 'box_app_merk' => $request->box_app_merk,
                 'box_app_type' => $request->box_app_type,
                 'box_app_no_seri' => $request->box_app_no_seri,
                 'box_app_tahun' => $request->box_app_tahun,
-                'box_app_foto' => $request->box_app_foto,
-                'pelindung_kwh_peralatan' => $request->pelindung_kwh_peralatan,
-                'pelindung_kwh_segel' => $request->pelindung_kwh_segel,
-                'pelindung_kwh_nomor_tahun_kode_segel' => $request->pelindung_kwh_nomor_tahun_kode_segel,
-                'pelindung_kwh_keterangan' => $request->pelindung_kwh_keterangan,
-                'pelindung_kwh_foto_sebelum' => $request->pelindung_kwh_foto_sebelum,
-                'pelindung_kwh_post_peralatan' => $request->pelindung_kwh_post_peralatan,
-                'pelindung_kwh_post_segel' => $request->pelindung_kwh_post_segel,
-                'pelindung_kwh_post_nomor_tahun_kode_segel' => $request->pelindung_kwh_post_nomor_tahun_kode_segel,
-                'pelindung_kwh_foto_sesudah' => $request->pelindung_kwh_foto_sesudah,
-                'pelindung_ct_peralatan' => $request->pelindung_ct_peralatan,
-                'pelindung_ct_segel' => $request->pelindung_ct_segel,
-                'pelindung_ct_nomor_tahun_kode_segel' => $request->pelindung_ct_nomor_tahun_kode_segel,
-                'pelindung_ct_keterangan' => $request->pelindung_ct_keterangan,
-                'pelindung_ct_foto_sebelum' => $request->pelindung_ct_foto_sebelum,
-                'pelindung_ct_post_peralatan' => $request->pelindung_ct_post_peralatan,
-                'pelindung_ct_post_segel' => $request->pelindung_ct_post_segel,
-                'pelindung_ct_post_nomor_tahun_kode_segel' => $request->pelindung_ct_post_nomor_tahun_kode_segel,
-                'pelindung_ct_foto_sesudah' => $request->pelindung_ct_foto_sesudah,
-                'segel_peralatan' => $request->segel_peralatan,
-                'segel_segel' => $request->segel_segel,
-                'segel_nomor_tahun_kode_segel' => $request->segel_nomor_tahun_kode_segel,
-                'segel_keterangan' => $request->segel_keterangan,
-                'segel_foto_sebelum' => $request->segel_foto_sebelum,
-                'segel_post_peralatan' => $request->segel_post_peralatan,
-                'segel_post_segel' => $request->segel_post_segel,
-                'segel_post_nomor_tahun_kode_segel' => $request->segel_post_nomor_tahun_kode_segel,
-                'segel_foto_sesudah' => $request->segel_foto_sesudah,
-                'tutup_terminal_peralatan' => $request->tutup_terminal_peralatan,
-                'tutup_terminal_segel' => $request->tutup_terminal_segel,
-                'tutup_terminal_nomor_tahun_kode_segel' => $request->tutup_terminal_nomor_tahun_kode_segel,
-                'tutup_terminal_keterangan' => $request->tutup_terminal_keterangan,
-                'tutup_terminal_foto_sebelum' => $request->tutup_terminal_foto_sebelum,
-                'tutup_terminal_post_peralatan' => $request->tutup_terminal_post_peralatan,
-                'tutup_terminal_post_segel' => $request->tutup_terminal_post_segel,
-                'tutup_terminal_post_nomor_tahun_kode_segel' => $request->tutup_terminal_post_nomor_tahun_kode_segel,
-                'tutup_terminal_foto_sesudah' => $request->tutup_terminal_foto_sesudah,
-                'amr_peralatan' => $request->amr_peralatan,
-                'amr_segel' => $request->amr_segel,
-                'amr_nomor_tahun_kode_segel' => $request->amr_nomor_tahun_kode_segel,
-                'amr_keterangan' => $request->amr_keterangan,
-                'amr_foto_sebelum' => $request->amr_foto_sebelum,
-                'amr_post_peralatan' => $request->amr_post_peralatan,
-                'amr_post_segel' => $request->amr_post_segel,
-                'amr_post_nomor_tahun_kode_segel' => $request->amr_post_nomor_tahun_kode_segel,
-                'amr_foto_sesudah' => $request->amr_foto_sesudah,
-                'terminal_vt_peralatan' => $request->terminal_vt_peralatan,
-                'terminal_vt_segel' => $request->terminal_vt_segel,
-                'terminal_vt_nomor_tahun_kode_segel' => $request->terminal_vt_nomor_tahun_kode_segel,
-                'terminal_vt_keterangan' => $request->terminal_vt_keterangan,
-                'terminal_vt_foto_sebelum' => $request->terminal_vt_foto_sebelum,
-                'terminal_vt_post_peralatan' => $request->terminal_vt_post_peralatan,
-                'terminal_vt_post_segel' => $request->terminal_vt_post_segel,
-                'terminal_vt_post_nomor_tahun_kode_segel' => $request->terminal_vt_post_nomor_tahun_kode_segel,
-                'terminal_vt_foto_sesudah' => $request->terminal_vt_foto_sesudah,
-                'terminal_ct_peralatan' => $request->terminal_ct_peralatan,
-                'terminal_ct_segel' => $request->terminal_ct_segel,
-                'terminal_ct_nomor_tahun_kode_segel' => $request->terminal_ct_nomor_tahun_kode_segel,
-                'terminal_ct_keterangan' => $request->terminal_ct_keterangan,
-                'terminal_ct_foto_sebelum' => $request->terminal_ct_foto_sebelum,
-                'terminal_ct_post_peralatan' => $request->terminal_ct_post_peralatan,
-                'terminal_ct_post_segel' => $request->terminal_ct_post_segel,
-                'terminal_ct_post_nomor_tahun_kode_segel' => $request->terminal_ct_post_nomor_tahun_kode_segel,
-                'terminal_ct_foto_sesudah' => $request->terminal_ct_foto_sesudah,
-                'pintu_peralatan' => $request->pintu_peralatan,
-                'pintu_segel' => $request->pintu_segel,
-                'pintu_nomor_tahun_kode_segel' => $request->pintu_nomor_tahun_kode_segel,
-                'pintu_keterangan' => $request->pintu_keterangan,
-                'pintu_foto_sebelum' => $request->pintu_foto_sebelum,
-                'pintu_post_peralatan' => $request->pintu_post_peralatan,
-                'pintu_post_segel' => $request->pintu_post_segel,
-                'pintu_post_nomor_tahun_kode_segel' => $request->pintu_post_nomor_tahun_kode_segel,
-                'pintu_foto_sesudah' => $request->pintu_foto_sesudah,
-                'pintu_keterangan_all' => $request->pintu_keterangan_all,
-                'wiring_terminal1' => $request->wiring_terminal1,
-                'wiring_terminal2' => $request->wiring_terminal2,
-                'wiring_terminal3' => $request->wiring_terminal3,
-                'wiring_terminal4' => $request->wiring_terminal4,
-                'wiring_terminal5' => $request->wiring_terminal5,
-                'wiring_terminal6' => $request->wiring_terminal6,
-                'wiring_terminal7' => $request->wiring_terminal7,
-                'wiring_terminal8' => $request->wiring_terminal8,
-                'wiring_terminal9' => $request->wiring_terminal9,
-                'wiring_terminal11' => $request->wiring_terminal11,
-                'wiring_grounding' => $request->wiring_grounding,
-                'wiring_keterangan' => $request->wiring_keterangan,
-                'wiring_diagram' => $request->wiring_diagram,
-                'wiring_foto' => $request->wiring_foto,
-                'pengukuran_arus_primer_r' => $request->pengukuran_arus_primer_r,
-                'pengukuran_arus_primer_s' => $request->pengukuran_arus_primer_s,
-                'pengukuran_arus_primer_t' => $request->pengukuran_arus_primer_t,
-                'pengukuran_arus_sekunder_r' => $request->pengukuran_arus_sekunder_r,
-                'pengukuran_arus_sekunder_s' => $request->pengukuran_arus_sekunder_s,
-                'pengukuran_arus_sekunder_t' => $request->pengukuran_arus_sekunder_t,
-                'pengukuran_ct_r' => $request->pengukuran_ct_r,
-                'pengukuran_ct_s' => $request->pengukuran_ct_s,
-                'pengukuran_ct_t' => $request->pengukuran_ct_t,
-                'pengukuran_akurasi_r' => $request->pengukuran_akurasi_r,
-                'pengukuran_akurasi_s' => $request->pengukuran_akurasi_s,
-                'pengukuran_akurasi_t' => $request->pengukuran_akurasi_t,
-                'pengukuran_voltase_primer_r' => $request->pengukuran_voltase_primer_r,
-                'pengukuran_voltase_primer_s' => $request->pengukuran_voltase_primer_s,
-                'pengukuran_voltase_primer_t' => $request->pengukuran_voltase_primer_t,
-                'pengukuran_voltase_sekunder_r' => $request->pengukuran_voltase_sekunder_r,
-                'pengukuran_voltase_sekunder_s' => $request->pengukuran_voltase_sekunder_s,
-                'pengukuran_voltase_sekunder_t' => $request->pengukuran_voltase_sekunder_t,
-                'pengukuran_cos_r' => $request->pengukuran_cos_r,
-                'pengukuran_cos_s' => $request->pengukuran_cos_s,
-                'pengukuran_cos_t' => $request->pengukuran_cos_t,
-                'pengukuran_akurasi' => $request->pengukuran_akurasi,
-                'pengukuran_keterangan' => $request->pengukuran_keterangan,
-                'pengukuran_foto' => $request->pengukuran_foto,
-                'akhir_hasil_pemeriksaan' => $request->akhir_hasil_pemeriksaan,
-                'akhir_kesimpulan' => $request->akhir_kesimpulan,
-                'akhir_tindakan' => $request->akhir_tindakan,
-                'akhir_barang_bukti' => $request->akhir_barang_bukti,
-                'akhir_tanggal_penyelesaian' => $request->akhir_tanggal_penyelesaian,
-                'akhir_foto_barang_bukti' => $request->akhir_foto_barang_bukti,
-                'akhir_labor' => $request->akhir_labor,
+                'file_alat_pembatas' => $locate_pembatas_foto_pembatas,
+                'file_kwh_meter' => $locate_kwh_foto,
+                'file_trafo_arus' => $locate_ct_foto,
+                'file_trafo_tegangan' => $locate_pt_foto,
+                'file_kubikel' => $locate_kubikel_foto,
+                'file_box_app' => $locate_box_app_foto,
+
             ]);
         } else {
             $form->works_id = $request->works_id;
-            $form->nama_saksi = $request->nama_saksi;
-            $form->alamat_saksi = $request->alamat_saksi;
-            $form->nomor_identitas = $request->nomor_identitas;
-            $form->pekerjaan = $request->pekerjaan;
-            $form->no_telpon_saksi = $request->no_telpon_saksi;
-            $form->file_nomor_identitas = $request->file_nomor_identitas;
+
             $form->data_tegangan_tersambung = $request->data_tegangan_tersambung;
             $form->data_jenis_pengukuran = $request->data_jenis_pengukuran;
             $form->data_tempat_kedudukan = $request->data_tempat_kedudukan;
-            $form->pembatas_jenis = $request->pembatas_jenis;
-            $form->pembatas_merk = $request->pembatas_merk;
-            $form->pembatas_rating_arus = $request->pembatas_rating_arus;
-            $form->pembatas_foto_pembatas = $request->pembatas_foto_pembatas;
+            $form->merk = $request->pembatas_merk;
+            $form->no_seri = $request->pembatas_jenis;
+            $form->rating_arus = $request->pembatas_rating_arus;
             $form->kwh_merk = $request->kwh_merk;
             $form->kwh_no_reg = $request->kwh_no_reg;
             $form->kwh_no_seri = $request->kwh_no_seri;
-            $form->kwh_tahun = $request->kwh_tahun;
+            $form->kwh_tahun_buat = $request->kwh_tahun;
             $form->kwh_konstanta = $request->kwh_konstanta;
             $form->kwh_class = $request->kwh_class;
             $form->kwh_rating_arus = $request->kwh_rating_arus;
-            $form->kwh_tegangan = $request->kwh_tegangan;
-            $form->kwh_lbp = $request->kwh_lbp;
-            $form->kwh_bp = $request->kwh_bp;
-            $form->kwh_total = $request->kwh_total;
-            $form->kwh_kvarh = $request->kwh_kvarh;
-            $form->kwh_foto = $request->kwh_foto;
+            $form->kwh_tegangan_nominal = $request->kwh_tegangan;
+            $form->kwh_stand_mtr_lbp = $request->kwh_lbp;
+            $form->kwh_stand_mtr_bp = $request->kwh_bp;
+            $form->kwh_stand_total = $request->kwh_total;
+            $form->kwh_stand_kvarh = $request->kwh_kvarh;
             $form->ct_merk = $request->ct_merk;
             $form->ct_cls = $request->ct_cls;
             $form->ct_rasio = $request->ct_rasio;
             $form->ct_burden = $request->ct_burden;
-            $form->ct_foto = $request->ct_foto;
             $form->pt_merk = $request->pt_merk;
             $form->pt_cls = $request->pt_cls;
             $form->pt_rasio = $request->pt_rasio;
             $form->pt_burden = $request->pt_burden;
-            $form->pt_foto = $request->pt_foto;
             $form->kubikel_merk = $request->kubikel_merk;
             $form->kubikel_type = $request->kubikel_type;
             $form->kubikel_no_seri = $request->kubikel_no_seri;
             $form->kubikel_tahun = $request->kubikel_tahun;
-            $form->kubikel_foto = $request->kubikel_foto;
             $form->box_app_merk = $request->box_app_merk;
             $form->box_app_type = $request->box_app_type;
             $form->box_app_no_seri = $request->box_app_no_seri;
             $form->box_app_tahun = $request->box_app_tahun;
-            $form->box_app_foto = $request->box_app_foto;
-            $form->pelindung_kwh_peralatan = $request->pelindung_kwh_peralatan;
-            $form->pelindung_kwh_segel = $request->pelindung_kwh_segel;
-            $form->pelindung_kwh_nomor_tahun_kode_segel = $request->pelindung_kwh_nomor_tahun_kode_segel;
-            $form->pelindung_kwh_keterangan = $request->pelindung_kwh_keterangan;
-            $form->pelindung_kwh_foto_sebelum = $request->pelindung_kwh_foto_sebelum;
-            $form->pelindung_kwh_post_peralatan = $request->pelindung_kwh_post_peralatan;
-            $form->pelindung_kwh_post_segel = $request->pelindung_kwh_post_segel;
-            $form->pelindung_kwh_post_nomor_tahun_kode_segel = $request->pelindung_kwh_post_nomor_tahun_kode_segel;
-            $form->pelindung_kwh_foto_sesudah = $request->pelindung_kwh_foto_sesudah;
-            $form->pelindung_ct_peralatan = $request->pelindung_ct_peralatan;
-            $form->pelindung_ct_segel = $request->pelindung_ct_segel;
-            $form->pelindung_ct_nomor_tahun_kode_segel = $request->pelindung_ct_nomor_tahun_kode_segel;
-            $form->pelindung_ct_keterangan = $request->pelindung_ct_keterangan;
-            $form->pelindung_ct_foto_sebelum = $request->pelindung_ct_foto_sebelum;
-            $form->pelindung_ct_post_peralatan = $request->pelindung_ct_post_peralatan;
-            $form->pelindung_ct_post_segel = $request->pelindung_ct_post_segel;
-            $form->pelindung_ct_post_nomor_tahun_kode_segel = $request->pelindung_ct_post_nomor_tahun_kode_segel;
-            $form->pelindung_ct_foto_sesudah = $request->pelindung_ct_foto_sesudah;
-            $form->segel_peralatan = $request->segel_peralatan;
-            $form->segel_segel = $request->segel_segel;
-            $form->segel_nomor_tahun_kode_segel = $request->segel_nomor_tahun_kode_segel;
-            $form->segel_keterangan = $request->segel_keterangan;
-            $form->segel_foto_sebelum = $request->segel_foto_sebelum;
-            $form->segel_post_peralatan = $request->segel_post_peralatan;
-            $form->segel_post_segel = $request->segel_post_segel;
-            $form->segel_post_nomor_tahun_kode_segel = $request->segel_post_nomor_tahun_kode_segel;
-            $form->segel_foto_sesudah = $request->segel_foto_sesudah;
-            $form->tutup_terminal_peralatan = $request->tutup_terminal_peralatan;
-            $form->tutup_terminal_segel = $request->tutup_terminal_segel;
-            $form->tutup_terminal_nomor_tahun_kode_segel = $request->tutup_terminal_nomor_tahun_kode_segel;
-            $form->tutup_terminal_keterangan = $request->tutup_terminal_keterangan;
-            $form->tutup_terminal_foto_sebelum = $request->tutup_terminal_foto_sebelum;
-            $form->tutup_terminal_post_peralatan = $request->tutup_terminal_post_peralatan;
-            $form->tutup_terminal_post_segel = $request->tutup_terminal_post_segel;
-            $form->tutup_terminal_post_nomor_tahun_kode_segel = $request->tutup_terminal_post_nomor_tahun_kode_segel;
-            $form->tutup_terminal_foto_sesudah = $request->tutup_terminal_foto_sesudah;
-            $form->amr_peralatan = $request->amr_peralatan;
-            $form->amr_segel = $request->amr_segel;
-            $form->amr_nomor_tahun_kode_segel = $request->amr_nomor_tahun_kode_segel;
-            $form->amr_keterangan = $request->amr_keterangan;
-            $form->amr_foto_sebelum = $request->amr_foto_sebelum;
-            $form->amr_post_peralatan = $request->amr_post_peralatan;
-            $form->amr_post_segel = $request->amr_post_segel;
-            $form->amr_post_nomor_tahun_kode_segel = $request->amr_post_nomor_tahun_kode_segel;
-            $form->amr_foto_sesudah = $request->amr_foto_sesudah;
-            $form->terminal_vt_peralatan = $request->terminal_vt_peralatan;
-            $form->terminal_vt_segel = $request->terminal_vt_segel;
-            $form->terminal_vt_nomor_tahun_kode_segel = $request->terminal_vt_nomor_tahun_kode_segel;
-            $form->terminal_vt_keterangan = $request->terminal_vt_keterangan;
-            $form->terminal_vt_foto_sebelum = $request->terminal_vt_foto_sebelum;
-            $form->terminal_vt_post_peralatan = $request->terminal_vt_post_peralatan;
-            $form->terminal_vt_post_segel = $request->terminal_vt_post_segel;
-            $form->terminal_vt_post_nomor_tahun_kode_segel = $request->terminal_vt_post_nomor_tahun_kode_segel;
-            $form->terminal_vt_foto_sesudah = $request->terminal_vt_foto_sesudah;
-            $form->terminal_ct_peralatan = $request->terminal_ct_peralatan;
-            $form->terminal_ct_segel = $request->terminal_ct_segel;
-            $form->terminal_ct_nomor_tahun_kode_segel = $request->terminal_ct_nomor_tahun_kode_segel;
-            $form->terminal_ct_keterangan = $request->terminal_ct_keterangan;
-            $form->terminal_ct_foto_sebelum = $request->terminal_ct_foto_sebelum;
-            $form->terminal_ct_post_peralatan = $request->terminal_ct_post_peralatan;
-            $form->terminal_ct_post_segel = $request->terminal_ct_post_segel;
-            $form->terminal_ct_post_nomor_tahun_kode_segel = $request->terminal_ct_post_nomor_tahun_kode_segel;
-            $form->terminal_ct_foto_sesudah = $request->terminal_ct_foto_sesudah;
-            $form->pintu_peralatan = $request->pintu_peralatan;
-            $form->pintu_segel = $request->pintu_segel;
-            $form->pintu_nomor_tahun_kode_segel = $request->pintu_nomor_tahun_kode_segel;
-            $form->pintu_keterangan = $request->pintu_keterangan;
-            $form->pintu_foto_sebelum = $request->pintu_foto_sebelum;
-            $form->pintu_post_peralatan = $request->pintu_post_peralatan;
-            $form->pintu_post_segel = $request->pintu_post_segel;
-            $form->pintu_post_nomor_tahun_kode_segel = $request->pintu_post_nomor_tahun_kode_segel;
-            $form->pintu_foto_sesudah = $request->pintu_foto_sesudah;
-            $form->pintu_keterangan_all = $request->pintu_keterangan_all;
-            $form->wiring_terminal1 = $request->wiring_terminal1;
-            $form->wiring_terminal2 = $request->wiring_terminal2;
-            $form->wiring_terminal3 = $request->wiring_terminal3;
-            $form->wiring_terminal4 = $request->wiring_terminal4;
-            $form->wiring_terminal5 = $request->wiring_terminal5;
-            $form->wiring_terminal6 = $request->wiring_terminal6;
-            $form->wiring_terminal7 = $request->wiring_terminal7;
-            $form->wiring_terminal8 = $request->wiring_terminal8;
-            $form->wiring_terminal9 = $request->wiring_terminal9;
-            $form->wiring_terminal11 = $request->wiring_terminal11;
-            $form->wiring_grounding = $request->wiring_grounding;
-            $form->wiring_keterangan = $request->wiring_keterangan;
-            $form->wiring_diagram = $request->wiring_diagram;
-            $form->wiring_foto = $request->wiring_foto;
-            $form->pengukuran_arus_primer_r = $request->pengukuran_arus_primer_r;
-            $form->pengukuran_arus_primer_s = $request->pengukuran_arus_primer_s;
-            $form->pengukuran_arus_primer_t = $request->pengukuran_arus_primer_t;
-            $form->pengukuran_arus_sekunder_r = $request->pengukuran_arus_sekunder_r;
-            $form->pengukuran_arus_sekunder_s = $request->pengukuran_arus_sekunder_s;
-            $form->pengukuran_arus_sekunder_t = $request->pengukuran_arus_sekunder_t;
-            $form->pengukuran_ct_r = $request->pengukuran_ct_r;
-            $form->pengukuran_ct_s = $request->pengukuran_ct_s;
-            $form->pengukuran_ct_t = $request->pengukuran_ct_t;
-            $form->pengukuran_akurasi_r = $request->pengukuran_akurasi_r;
-            $form->pengukuran_akurasi_s = $request->pengukuran_akurasi_s;
-            $form->pengukuran_akurasi_t = $request->pengukuran_akurasi_t;
-            $form->pengukuran_voltase_primer_r = $request->pengukuran_voltase_primer_r;
-            $form->pengukuran_voltase_primer_s = $request->pengukuran_voltase_primer_s;
-            $form->pengukuran_voltase_primer_t = $request->pengukuran_voltase_primer_t;
-            $form->pengukuran_voltase_sekunder_r = $request->pengukuran_voltase_sekunder_r;
-            $form->pengukuran_voltase_sekunder_s = $request->pengukuran_voltase_sekunder_s;
-            $form->pengukuran_voltase_sekunder_t = $request->pengukuran_voltase_sekunder_t;
-            $form->pengukuran_cos_r = $request->pengukuran_cos_r;
-            $form->pengukuran_cos_s = $request->pengukuran_cos_s;
-            $form->pengukuran_cos_t = $request->pengukuran_cos_t;
-            $form->pengukuran_akurasi = $request->pengukuran_akurasi;
-            $form->pengukuran_keterangan = $request->pengukuran_keterangan;
-            $form->pengukuran_foto = $request->pengukuran_foto;
-            $form->akhir_hasil_pemeriksaan = $request->akhir_hasil_pemeriksaan;
-            $form->akhir_kesimpulan = $request->akhir_kesimpulan;
-            $form->akhir_tindakan = $request->akhir_tindakan;
-            $form->akhir_barang_bukti = $request->akhir_barang_bukti;
-            $form->akhir_tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
-            $form->akhir_foto_barang_bukti = $request->akhir_foto_barang_bukti;
-            $form->akhir_labor = $request->akhir_labor;
+
+            $form->file_alat_pembatas = $locate_pembatas_foto_pembatas;
+            $form->file_kwh_meter = $locate_kwh_foto;
+            $form->file_trafo_arus = $locate_ct_foto;
+            $form->file_trafo_tegangan = $locate_pt_foto;
+            $form->file_kubikel = $locate_kubikel_foto;
+            $form->file_box_app = $locate_box_app_foto;
+
             $form->save();
         }
+
+
+
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }

@@ -1079,7 +1079,7 @@
                                             <div class="col-span-3 sm:col-span-2">
                                               <label class="block text-sm font-medium text-gray-700">Netral</label>
                                               <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input type="text" disabled value="{{ $item->pemeriksaan_pengukuran->netral }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                <input type="text" disabled value="{{ $item->pemeriksaan_pengukuran->arus_netral }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                               </div>
                                             </div>
                                           </div>
@@ -1234,7 +1234,7 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 1 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 1 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                 <input type="text" disabled value="{{ $item->wiring_app->terminal1 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
@@ -1243,7 +1243,7 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 2 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 2 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" disabled value="{{ $item->wiring_app->terminal2 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
@@ -1252,7 +1252,7 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 3 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 3 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" disabled value="{{ $item->wiring_app->terminal3 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
@@ -1261,7 +1261,7 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 4 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 4 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" disabled value="{{ $item->wiring_app->terminal4 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
@@ -1270,7 +1270,7 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 5 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 5 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" disabled value="{{ $item->wiring_app->terminal5 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
@@ -1279,40 +1279,40 @@
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 6 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 6 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal5 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal6 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
                                                 </div>
                                             </div>
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 7 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 7 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal5 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal7 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
                                                 </div>
                                             </div>
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 8 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 8 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal5 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal8 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
                                                 </div>
                                             </div>
 
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 9 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 9 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
-                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal5 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                    <input type="text" disabled value="{{ $item->wiring_app->terminal9 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
                                                 </div>
                                             </div>
                                             <div class="grid grid-cols-3 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                <label class="block text-sm font-medium text-gray-700">Terminal 11 kWh Meter Terhubungn dengan</label>
+                                                <label class="block text-sm font-medium text-gray-700">Terminal 11 kWh Meter Terhubung dengan</label>
                                                 <div class="mt-1 flex rounded-md shadow-sm">
                                                     <input type="text" disabled value="{{ $item->wiring_app->terminal11 }}" class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                                 </div>
