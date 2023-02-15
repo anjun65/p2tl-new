@@ -52,7 +52,7 @@ class NewFormLangsungController extends Controller
             'data_baru_foto_pembatas' => ['required'],
         ]);
 
-
+        dd($request->file_nomor_identitas);
         $form = FormLangsung::where('works_id', $request->works_id)->first();
         $form_lama = FormLangsungDataAppLama::where('forms_id', $form->id)->first();
         $form_baru = FormLangsungDataAppBaru::where('forms_id', $form->id)->first();
