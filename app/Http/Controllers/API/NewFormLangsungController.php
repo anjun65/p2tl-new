@@ -265,8 +265,6 @@ class NewFormLangsungController extends Controller
             $form_baru->foto_pembatas = $locate_data_baru_foto_pembatas;
 
             $form_baru->save();
-
-            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
         }
 
         $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
@@ -302,7 +300,7 @@ class NewFormLangsungController extends Controller
         }
 
         if (empty($form_pemeriksaan_kwh)) {
-            $form_pemeriksaan_kwh = FormLangsungDataAppBaru::create([
+            $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::create([
                 'forms_id' => $form->id,
                 'peralatan' => $request->kwh_peralatan,
                 'segel' => $request->kwh_segel,
