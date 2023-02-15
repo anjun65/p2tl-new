@@ -264,8 +264,9 @@ class NewFormLangsungController extends Controller
             $form_baru->alat_pembatas_merk = $request->data_baru_alat_pembatas_merk;
             $form_baru->foto_pembatas = $locate_data_baru_foto_pembatas;
 
-            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
             $form_baru->save();
+
+            dd('ASDGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG');
         }
 
         $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
