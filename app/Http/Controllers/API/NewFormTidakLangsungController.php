@@ -854,32 +854,32 @@ class NewFormTidakLangsungController extends Controller
 
 
         $locate_ct_foto_sebelum = "";
-        if ($request->ct_foto_sebelum !== 'null' && $request->ct_foto_sebelum != NULL) {
-            $image_64 = $request->ct_foto_sebelum;
+        if ($request->terminal_ct_foto_sebelum !== 'null' && $request->terminal_ct_foto_sebelum != NULL) {
+            $image_64 = $request->terminal_ct_foto_sebelum;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sebelum/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sebelum/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_ct_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/kubikel/sebelum/' . $imageName;
+                $locate_ct_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/terminalct/sebelum/' . $imageName;
             }
         }
 
         $locate_ct_foto_sesudah = "";
-        if ($request->ct_foto_sesudah !== 'null' && $request->ct_foto_sesudah != NULL) {
-            $image_64 = $request->ct_foto_sesudah;
+        if ($request->terminal_ct_foto_sesudah !== 'null' && $request->terminal_ct_foto_sesudah != NULL) {
+            $image_64 = $request->terminal_ct_foto_sesudah;
             $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
             $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
             $image = str_replace($replace, '', $image_64);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sesudah/' . $imageName, base64_decode($image));
+            $file = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sesudah/' . $imageName, base64_decode($image));
 
             if ($file) {
-                $locate_ct_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/kubikel/sesudah/' . $imageName;
+                $locate_ct_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/terminalct/sesudah/' . $imageName;
             }
         }
 
