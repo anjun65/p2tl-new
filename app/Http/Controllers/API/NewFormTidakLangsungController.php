@@ -1045,8 +1045,8 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_wiring->terminal11 = $request->wiring_terminal11;
             $form_pemeriksaan_wiring->grounding = $request->wiring_grounding;
             $form_pemeriksaan_wiring->keterangan_wiring_app = $request->wiring_keterangan;
-            $form_pemeriksaan_wiring->wiring_diagram = $request->locate_wiring_diagram;
-            $form_pemeriksaan_wiring->wiring_foto = $request->locate_wiring_foto;
+            $form_pemeriksaan_wiring->wiring_diagram = $locate_wiring_diagram;
+            $form_pemeriksaan_wiring->wiring_foto = $locate_wiring_foto;
             $form_pemeriksaan_wiring->save();
         }
 
