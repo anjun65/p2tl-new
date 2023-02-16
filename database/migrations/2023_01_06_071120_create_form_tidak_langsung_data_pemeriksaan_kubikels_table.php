@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('form_tidak_langsung_data_pemeriksaan_kubikels', function (Blueprint $table) {
             $table->id();
-            $table->integer('forms_id');$table->string('peralatan');
+            $table->integer('forms_id');
+            $table->string('peralatan');
             $table->string('segel');
             $table->string('nomor_tahun_kode_segel');
             $table->string('keterangan');

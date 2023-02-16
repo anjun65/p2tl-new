@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('form_tidak_langsung_data_apps', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('forms_id')->constrained('form_langsungs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('forms_id')->constrained('form_tidak_langsungs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('merk');
             $table->string('no_seri');
             $table->string('rating_arus');

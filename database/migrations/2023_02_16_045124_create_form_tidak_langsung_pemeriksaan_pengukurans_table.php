@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('form_tidak_langsung_pemeriksaan_pengukurans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('forms_id')->constrained('form_langsungs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('forms_id')->constrained('form_tidak_langsungs')->onDelete('cascade')->onUpdate('cascade');
             $table->string('arus_primer_r');
             $table->string('arus_primer_s');
             $table->string('arus_primer_t');

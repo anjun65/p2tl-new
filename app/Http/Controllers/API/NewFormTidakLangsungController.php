@@ -233,6 +233,7 @@ class NewFormTidakLangsungController extends Controller
         $alamat_saksi = '';
         $nomor_identitas = '';
         $no_telpon_saksi = '';
+        $pekerjaan = '';
 
         if ($request->nama_saksi !== 'null' && $request->nama_saksi != NULL) {
             $nama_saksi = $request->nama_saksi;
@@ -246,6 +247,10 @@ class NewFormTidakLangsungController extends Controller
             $nomor_identitas = $request->nomor_identitas;
         }
 
+        if ($request->pekerjaan !== 'null' && $request->pekerjaan != NULL) {
+            $pekerjaan = $request->pekerjaan;
+        }
+
         if ($request->no_telpon_saksi !== 'null' && $request->no_telpon_saksi != NULL) {
             $no_telpon_saksi = $request->no_telpon_saksi;
         }
@@ -257,6 +262,7 @@ class NewFormTidakLangsungController extends Controller
                 'alamat_saksi' => $alamat_saksi,
                 'nomor_identitas' => $nomor_identitas,
                 'no_telpon_saksi' => $no_telpon_saksi,
+                'pekerjaan' => $pekerjaan,
                 'file_nomor_identitas' => $locate_file_nomor_identitas,
             ]);
         } else {
