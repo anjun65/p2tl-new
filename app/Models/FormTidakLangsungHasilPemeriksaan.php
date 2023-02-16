@@ -10,6 +10,7 @@ class FormTidakLangsungHasilPemeriksaan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'forms_id',
         'hasil_pemeriksaan',
         'kesimpulan',
         'tindakan',

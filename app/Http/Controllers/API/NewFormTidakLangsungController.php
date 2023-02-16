@@ -977,7 +977,6 @@ class NewFormTidakLangsungController extends Controller
         }
 
 
-        return "test";
         //Wiring
 
         $form_pemeriksaan_wiring = FormTidakLangsungWiringApp::where('forms_id', $form->id)->first();
