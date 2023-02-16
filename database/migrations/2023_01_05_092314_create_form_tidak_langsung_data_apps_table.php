@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('pt_merk')->nullable();
             $table->string('pt_cls')->nullable();
             $table->string('pt_rasio')->nullable();
+            $table->string('pt_burden')->nullable();
 
 
             $table->timestamps();
