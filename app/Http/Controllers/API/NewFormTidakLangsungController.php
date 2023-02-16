@@ -783,7 +783,6 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_amr->save();
         }
 
-        return "test";
         //Terminal VT
 
         $form_pemeriksaan_kubikel = FormTidakLangsungDataPemeriksaanKubikel::where('forms_id', $form->id)->first();
@@ -978,6 +977,7 @@ class NewFormTidakLangsungController extends Controller
         }
 
 
+        return "test";
         //Wiring
 
         $form_pemeriksaan_wiring = FormTidakLangsungWiringApp::where('forms_id', $form->id)->first();
