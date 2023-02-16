@@ -270,7 +270,7 @@ class NewFormTidakLangsungController extends Controller
             $form->save();
         }
 
-
+        return $form;
         //Form Data App
 
         $form_app = FormTidakLangsungDataApp::where('forms_id', $form->id)->first();
