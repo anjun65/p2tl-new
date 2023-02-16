@@ -423,7 +423,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_kwh->post_nomor_tahun_kode_segel = $request->kwh_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_kwh->foto_sesudah = $locate_kwh_foto_sesudah;
 
-            $form_baru->save();
+            $form_pemeriksaan_kwh->save();
         }
 
         //Terminal
@@ -484,7 +484,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_terminal->post_nomor_tahun_kode_segel = $request->terminal_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_terminal->foto_sesudah = $locate_terminal_foto_sesudah;
 
-            $form_baru->save();
+            $form_pemeriksaan_terminal->save();
         }
 
         // Pemeriksaan Pelindung KWH Meter
@@ -545,7 +545,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_pelindung_kwh->post_nomor_tahun_kode_segel = $request->pelindung_kwh_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_pelindung_kwh->foto_sesudah = $locate_pelindung_kwh_foto_sesudah;
 
-            $form_baru->save();
+            $form_pemeriksaan_pelindung_kwh->save();
         }
 
         // Pemeriksaan Pelindung Busbar
@@ -606,7 +606,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_pelindung_busbar->post_nomor_tahun_kode_segel = $request->busbar_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_pelindung_busbar->foto_sesudah = $locate_busbar_foto_sesudah;
 
-            $form_baru->save();
+            $form_pemeriksaan_pelindung_busbar->save();
         }
 
         // Pemeriksaan Papan OK
@@ -667,7 +667,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_papan_ok->post_nomor_tahun_kode_segel = $request->papan_ok_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_papan_ok->foto_sesudah = $locate_papan_ok_foto_sesudah;
 
-            $form_baru->save();
+            $form_pemeriksaan_papan_ok->save();
         }
 
         // Pemeriksaan MCB
@@ -731,7 +731,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_mcb->all_keterangan = $request->pemeriksaan_keterangan;
 
 
-            $form_baru->save();
+            $form_pemeriksaan_mcb->save();
         }
 
 
@@ -793,7 +793,7 @@ class NewFormLangsungController extends Controller
             $form_pemeriksaan_pengukuran->foto_sebelum = $locate_pemeriksaan_foto_sebelum;
 
 
-            $form_baru->save();
+            $form_pemeriksaan_pengukuran->save();
         }
 
         // Wiring APP
@@ -846,7 +846,7 @@ class NewFormLangsungController extends Controller
             $form_wiring_app->keterangan_wiring_app = $request->wiring_keterangan_wiring_app;
             $form_wiring_app->foto_sebelum = $locate_wiring_foto;
 
-            $form_baru->save();
+            $form_wiring_app->save();
         }
 
         // Wiring APP
@@ -891,7 +891,7 @@ class NewFormLangsungController extends Controller
             $form_hasil_pemeriksaan->tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
             $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
 
-            $form_baru->save();
+            $form_hasil_pemeriksaan->save();
         }
 
         $akhir_labor = 0;
