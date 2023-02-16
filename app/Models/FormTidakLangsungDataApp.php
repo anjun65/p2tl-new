@@ -33,6 +33,7 @@ class FormTidakLangsungDataApp extends Model
         'pt_merk',
         'pt_cls',
         'pt_rasio',
+        'pt_burden',
         'file_alat_pembatas',
         'file_kwh_meter',
         'file_trafo_arus',
