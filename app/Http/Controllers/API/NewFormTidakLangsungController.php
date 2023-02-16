@@ -783,7 +783,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_amr->save();
         }
 
-
+        return "test";
         //Terminal VT
 
         $form_pemeriksaan_kubikel = FormTidakLangsungDataPemeriksaanKubikel::where('forms_id', $form->id)->first();
