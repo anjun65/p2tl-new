@@ -509,7 +509,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_pelindung_kwh_foto_sebelum,
                 'post_peralatan' => $request->pelindung_kwh_post_peralatan,
                 'post_segel' => $request->pelindung_kwh_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->pelindung_kwh_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->pelindung_kwh_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_pelindung_kwh_foto_sesudah,
             ]);
         } else {
@@ -521,7 +521,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_pelindung_kwh->foto_sebelum = $locate_pelindung_kwh_foto_sebelum;
             $form_pemeriksaan_pelindung_kwh->post_peralatan = $request->pelindung_kwh_post_peralatan;
             $form_pemeriksaan_pelindung_kwh->post_segel = $request->pelindung_kwh_post_segel;
-            $form_pemeriksaan_pelindung_kwh->post_nomor_tahun_kode_segel = $request->pelindung_kwh_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_pelindung_kwh->post_nomor_tahun_kode_segel = $request->pelindung_kwh_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_pelindung_kwh->foto_sesudah = $locate_pelindung_kwh_foto_sesudah;
 
             $form_pemeriksaan_pelindung_kwh->save();
@@ -573,7 +573,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_pelindung_ct_foto_sebelum,
                 'post_peralatan' => $request->pelindung_ct_post_peralatan,
                 'post_segel' => $request->pelindung_ct_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->pelindung_ct_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->pelindung_ct_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_pelindung_ct_foto_sesudah,
             ]);
         } else {
@@ -585,7 +585,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_pelindung_ct->foto_sebelum = $locate_pelindung_ct_foto_sebelum;
             $form_pemeriksaan_pelindung_ct->post_peralatan = $request->pelindung_ct_post_peralatan;
             $form_pemeriksaan_pelindung_ct->post_segel = $request->pelindung_ct_post_segel;
-            $form_pemeriksaan_pelindung_ct->post_nomor_tahun_kode_segel = $request->pelindung_ct_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_pelindung_ct->post_nomor_tahun_kode_segel = $request->pelindung_ct_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_pelindung_ct->foto_sesudah = $locate_pelindung_ct_foto_sesudah;
 
             $form_pemeriksaan_pelindung_ct->save();
@@ -636,7 +636,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_segel_foto_sebelum,
                 'post_peralatan' => $request->segel_post_peralatan,
                 'post_segel' => $request->segel_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->segel_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->segel_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_segel_foto_sesudah,
             ]);
         } else {
@@ -648,7 +648,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_segel->foto_sebelum = $locate_segel_foto_sebelum;
             $form_pemeriksaan_segel->post_peralatan = $request->segel_post_peralatan;
             $form_pemeriksaan_segel->post_segel = $request->segel_post_segel;
-            $form_pemeriksaan_segel->post_nomor_tahun_kode_segel = $request->segel_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_segel->post_nomor_tahun_kode_segel = $request->segel_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_segel->foto_sesudah = $locate_segel_foto_sesudah;
 
             $form_pemeriksaan_segel->save();
@@ -700,7 +700,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_tutup_terminal_foto_sebelum,
                 'post_peralatan' => $request->tutup_terminal_post_peralatan,
                 'post_segel' => $request->tutup_terminal_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->tutup_terminal_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->tutup_terminal_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_tutup_terminal_foto_sesudah,
             ]);
         } else {
@@ -712,7 +712,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_terminal->foto_sebelum = $locate_tutup_terminal_foto_sebelum;
             $form_pemeriksaan_terminal->post_peralatan = $request->tutup_terminal_post_peralatan;
             $form_pemeriksaan_terminal->post_segel = $request->tutup_terminal_post_segel;
-            $form_pemeriksaan_terminal->post_nomor_tahun_kode_segel = $request->tutup_terminal_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_terminal->post_nomor_tahun_kode_segel = $request->tutup_terminal_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_terminal->foto_sesudah = $locate_tutup_terminal_foto_sesudah;
 
             $form_pemeriksaan_terminal->save();
@@ -765,7 +765,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_amr_foto_sebelum,
                 'post_peralatan' => $request->amr_post_peralatan,
                 'post_segel' => $request->amr_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->amr_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->amr_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_amr_foto_sesudah,
             ]);
         } else {
@@ -777,7 +777,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_amr->foto_sebelum = $locate_amr_foto_sebelum;
             $form_pemeriksaan_amr->post_peralatan = $request->amr_post_peralatan;
             $form_pemeriksaan_amr->post_segel = $request->amr_post_segel;
-            $form_pemeriksaan_amr->post_nomor_tahun_kode_segel = $request->amr_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_amr->post_nomor_tahun_kode_segel = $request->amr_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_amr->foto_sesudah = $locate_amr_foto_sesudah;
 
             $form_pemeriksaan_amr->save();
@@ -830,7 +830,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_terminal_vt_foto_sebelum,
                 'post_peralatan' => $request->terminal_vt_post_peralatan,
                 'post_segel' => $request->terminal_vt_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->terminal_vt_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->terminal_vt_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_terminal_vt_foto_sesudah,
             ]);
         } else {
@@ -842,7 +842,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_kubikel->foto_sebelum = $locate_terminal_vt_foto_sebelum;
             $form_pemeriksaan_kubikel->post_peralatan = $request->terminal_vt_post_peralatan;
             $form_pemeriksaan_kubikel->post_segel = $request->terminal_vt_post_segel;
-            $form_pemeriksaan_kubikel->post_nomor_tahun_kode_segel = $request->terminal_vt_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_kubikel->post_nomor_tahun_kode_segel = $request->terminal_vt_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_kubikel->foto_sesudah = $locate_terminal_vt_foto_sesudah;
 
             $form_pemeriksaan_kubikel->save();
@@ -895,7 +895,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_ct_foto_sebelum,
                 'post_peralatan' => $request->terminal_ct_post_peralatan,
                 'post_segel' => $request->terminal_ct_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->terminal_ct_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->terminal_ct_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_ct_foto_sesudah,
             ]);
         } else {
@@ -907,7 +907,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_terminal_ct->foto_sebelum = $locate_ct_foto_sebelum;
             $form_pemeriksaan_terminal_ct->post_peralatan = $request->terminal_ct_post_peralatan;
             $form_pemeriksaan_terminal_ct->post_segel = $request->terminal_ct_post_segel;
-            $form_pemeriksaan_terminal_ct->post_nomor_tahun_kode_segel = $request->terminal_ct_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_terminal_ct->post_nomor_tahun_kode_segel = $request->terminal_ct_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_terminal_ct->foto_sesudah = $locate_ct_foto_sesudah;
             $form_pemeriksaan_terminal_ct->save();
         }
@@ -958,7 +958,7 @@ class NewFormTidakLangsungController extends Controller
                 'foto_sebelum' => $locate_pintu_foto_sebelum,
                 'post_peralatan' => $request->pintu_post_peralatan,
                 'post_segel' => $request->pintu_post_segel,
-                'post_nomor_tahun_kode_segel' => $request->pintu_post_nomor_tahun_kode_segels,
+                'post_nomor_tahun_kode_segel' => $request->pintu_post_nomor_tahun_kode_segel,
                 'foto_sesudah' => $locate_pintu_foto_sesudah,
                 'all_keterangan' => $request->pintu_keterangan_all,
             ]);
@@ -971,7 +971,7 @@ class NewFormTidakLangsungController extends Controller
             $form_pemeriksaan_pintu->foto_sebelum = $locate_pintu_foto_sebelum;
             $form_pemeriksaan_pintu->post_peralatan = $request->pintu_post_peralatan;
             $form_pemeriksaan_pintu->post_segel = $request->pintu_post_segel;
-            $form_pemeriksaan_pintu->post_nomor_tahun_kode_segel = $request->pintu_post_nomor_tahun_kode_segels;
+            $form_pemeriksaan_pintu->post_nomor_tahun_kode_segel = $request->pintu_post_nomor_tahun_kode_segel;
             $form_pemeriksaan_pintu->foto_sesudah = $locate_pintu_foto_sesudah;
             $form_pemeriksaan_pintu->all_keterangan = $request->pintu_keterangan_all;
             $form_pemeriksaan_pintu->save();
