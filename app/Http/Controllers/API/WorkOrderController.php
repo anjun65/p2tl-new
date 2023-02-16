@@ -29,7 +29,7 @@ class WorkOrderController extends Controller
 
     public function regu(Request $request)
     {
-        $work_order = WorkOrder::where('regus_id', $request->regus_id)->get();
+        $work_order = WorkOrder::where('regus_id', $request->regus_id)->where('status', '=', 'OPEN')->get();
 
         if ($work_order)
             return ResponseFormatter::success(
