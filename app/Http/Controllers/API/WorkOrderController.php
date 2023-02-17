@@ -48,7 +48,7 @@ class WorkOrderController extends Controller
     {
 
         if ($request->regus_id) {
-            $work_order = WorkOrder::where('regus_id', $request->regus_id)->where('status', '=', 'Close')->query();
+            $work_order = WorkOrder::query()->where('regus_id', $request->regus_id)->where('status', '=', 'Close');
 
             if ($work_order)
                 return ResponseFormatter::success(
