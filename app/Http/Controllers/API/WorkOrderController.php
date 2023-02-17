@@ -44,6 +44,23 @@ class WorkOrderController extends Controller
             );
     }
 
+    public function historyRegu(Request $request)
+    {
+        $work_order = WorkOrder::where('regus_id', $request->regus_id)->where('status', '=', 'Close')->get();
+
+        if ($work_order)
+            return ResponseFormatter::success(
+                $work_order,
+                'Data work order berhasil diambil'
+            );
+        else
+            return ResponseFormatter::error(
+                null,
+                'Data work order tidak ada',
+                404
+            );
+    }
+
     public function show(Request $request)
     {
         $work_order = WorkOrder::find($request->id);
