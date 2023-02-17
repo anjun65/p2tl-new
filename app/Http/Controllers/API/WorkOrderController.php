@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\WorkOrder;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Storage;
+use Pagina
 
 class WorkOrderController extends Controller
 {
@@ -48,7 +49,7 @@ class WorkOrderController extends Controller
     {
 
         if ($request->regus_id) {
-            $work_order = WorkOrder::where('regus_id', $request->regus_id)->where('status', '=', 'Close')->get();
+            $work_order = WorkOrder::where('regus_id', $request->regus_id)->where('status', '=', 'Close')->query();
 
             if ($work_order)
                 return ResponseFormatter::success(
