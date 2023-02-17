@@ -13,12 +13,17 @@ class Dashboard extends Component
     ];
 
 
-    public function resetFilters() { $this->reset('filters'); }
-    
+    public function resetFilters()
+    {
+        $this->reset('filters');
+    }
+
     public function render()
     {
-        
-        $all_regu = Regu::whereNot('id', 1)->get();
+
+        // $all_regu = Regu::whereNot('id', 1)->get();
+
+        $all_regu = Regu::all();
 
         return view('livewire.admin.dashboard', [
             'all_regu' => $all_regu,

@@ -1,3 +1,10 @@
+@push('addon-script')
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+
+@endpush
+
 <div>
     <div class="p-4 space-y-4">
         <label for="time-range">Time Range:</label>
@@ -77,6 +84,7 @@
                             <span class="text-cool-gray-900 font-medium">0</span>
                         </x-table.cell>
                     </x-table.row>
+
                     @empty
                     <x-table.row>
                         <x-table.cell colspan="8">
@@ -90,12 +98,98 @@
                 </x-slot>
             </x-table>
         </div>
+
+        <div class="flex-col space-y-4">    
+            @foreach ($all_regu as $regu)
+                <br/>
+                <br />
+                <div class="grid grid-cols-3 gap-4 text-center">
+                    <div></div>
+                    {{ $regu->name }}
+                    <div></div>
+                </div>
+                
+                <canvas id="myChart{{ $regu->id }}"></canvas>
+                <br>
+                
+                @php
+                $count_wo = App\Models\WorkOrder::query()
+                    ->where("regus_id", $regu->id)
+                    ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->count();
+                
+                $count_diperiksa = App\Models\WorkOrder::query()
+                    ->where("regus_id", $regu->id)
+                    ->whereIn('keterangan_p2tl', ['Pemeriksaan dengan BA','Rumah Kosong','Tidak Ada Orang'])
+                    ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->count();
+                
+                $count_temuan= App\Models\WorkOrder::query()
+                    ->where("regus_id", $regu->id)
+                    ->whereIn('status_pelanggaran', ['P1','P2','P3','P4','K1','K2','K3',])
+                    ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) =>$query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->count();
+                
+                @endphp
+                
+                
+                            @push('addon-script')
+                
+                            <script>
+                                var ctx = document.getElementById('myChart{{ $regu->id }}').getContext('2d');
+                                    var chart = new Chart(ctx, {
+                                    type: 'polarArea',
+                                    data: {
+                                        labels: ['TO', 'Luar TO', 'Diperiksa', 'Jumlah Temuan'],
+                                        datasets: [
+                                        {
+                                            // label: '{{ $regu->name }}',
+                                            data: [{{ $count_wo }}, 0, {{ $count_diperiksa }}, {{ $count_temuan }}],
+                                            backgroundColor: [
+                                            'rgba(255, 99, 132, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(75, 192, 192, 0.2)'
+                                            ],
+                                            borderColor: [
+                                            'rgba(255, 99, 132, 1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+                                            'rgba(75, 192, 192, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }
+                                        ]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                        r: {
+                                            pointLabels: {
+                                            display: true,
+                                            centerPointLabels: true,
+                                            font: {
+                                                size: 18
+                                                 }
+                                            }
+                                        }
+                                    },
+                                    },
+                                    });
+                            </script>
+                
+                            @endpush
+                            @endforeach
+        </div>
     </div>
 </div>
 
 
-{{-- 
-@push('addon-script')
+
+{{-- @push('addon-script')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
@@ -142,10 +236,11 @@
 
 
             @push('addon-script')
+            
                 <script>
                     var ctx = document.getElementById('myChart{{ $regu->id }}').getContext('2d');
                     var chart = new Chart(ctx, {
-                    type: 'bar',
+                    type: 'polarArea',
                     data: {
                         labels: ['TO', 'Luar TO', 'Diperiksa', 'Jumlah Temuan'],
                         datasets: [
@@ -169,16 +264,28 @@
                         ]
                     },
                     options: {
-                        scales: {
-                        yAxes: [
-                            {
-                            ticks: {
-                                beginAtZero: true
-                            }
-                            }
-                        ]
-                        }
+                    responsive: true,
+                    scales: {
+                    r: {
+                    pointLabels: {
+                    display: true,
+                    centerPointLabels: true,
+                    font: {
+                    size: 18
                     }
+                    }
+                    }
+                    },
+                    plugins: {
+                    legend: {
+                    position: 'top',
+                    },
+                    title: {
+                    display: true,
+                    text: 'Chart.js Polar Area Chart With Centered Point Labels'
+                    }
+                    }
+                    },
                     });
                 </script>
 
