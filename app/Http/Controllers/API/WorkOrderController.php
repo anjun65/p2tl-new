@@ -113,8 +113,8 @@ class WorkOrderController extends Controller
         //     $new_video = Storage::putFileAs('', $request->video, 'video_' . $request->id .  '.' . $request->video->getClientOriginalExtension());
         // }
 
-        if ($request->file) {
-            $new_video = Storage::putFileAs('public/assets/TO/video/', $request->file, 'video_to_' . $request->id . '.' . $request->file->getClientOriginalExtension());
+        if ($request->video) {
+            $new_video = Storage::putFileAs('public/assets/TO/video/', $request->video, 'video_to_' . $request->id . '.' . $request->video->getClientOriginalExtension());
         }
 
         // $locate_video = "";
