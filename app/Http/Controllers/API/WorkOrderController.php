@@ -91,7 +91,6 @@ class WorkOrderController extends Controller
             'video' => ['required'],
         ]);
 
-        dd($request->video);
         $workorder = WorkOrder::find($request->id);
 
         $locate_image = "";
@@ -111,7 +110,7 @@ class WorkOrderController extends Controller
 
 
         if ($request->video) {
-            $new_video = Storage::putFileAs('assets/TO/video', $request->video, 'video_' . $request->id .  '.' . $request->file->getClientOriginalExtension());
+            $new_video = Storage::putFileAs('assets/TO/video', $request->video, 'video_' . $request->id .  '.' . $request->video->getClientOriginalExtension());
         }
 
         // $locate_video = "";
