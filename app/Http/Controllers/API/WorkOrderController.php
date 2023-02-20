@@ -87,9 +87,8 @@ class WorkOrderController extends Controller
         $request->validate([
             'id' => ['required'],
             'keterangan_p2tl' => ['required', 'string', 'max:255'],
-
-            'image' => ['required', 'image'],
-            'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
+            'image' => ['required'],
+            'video' => ['required'],
         ]);
 
 
