@@ -109,25 +109,30 @@ class WorkOrderController extends Controller
             }
         }
 
-        $locate_video = "";
-        if ($request->video !== 'null' && $request->video != NULL) {
-            $image_64 = $request->video;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/TO/video/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_video = 'assets/TO/video/' . $imageName;
-            }
+        if ($request->video) {
+            $new_video = Storage::putFileAs('assets/TO/video', $request->video, 'video_' . $request->id .  '.' . $request->file->getClientOriginalExtension());
         }
+
+        // $locate_video = "";
+        // if ($request->video !== 'null' && $request->video != NULL) {
+        //     $image_64 = $request->video;
+        //     $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+        //     $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+        //     $image = str_replace($replace, '', $image_64);
+        //     $image = str_replace(' ', '+', $image);
+        //     $imageName = Str::random(10) . '.' . $extension;
+        //     $file = Storage::disk('public')->put('assets/TO/video/' . $imageName, base64_decode($image));
+
+        //     if ($file) {
+        //         $locate_video = 'assets/TO/video/' . $imageName;
+        //     }
+        // }
 
         $workorder->update([
             'keterangan_p2tl' => $request->keterangan_p2tl,
             'image' => $locate_image,
-            'video' => $locate_video,
+            'video' => $new_video,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
