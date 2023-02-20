@@ -51,10 +51,7 @@ class WorkOrderController extends Controller
             $work_order = WorkOrder::query()->where('regus_id', $request->regus_id)->where('status', '=', 'Close');
 
             if ($work_order)
-                return ResponseFormatter::success(
-                    $work_order->paginate(1),
-                    'Data work order berhasil diambil'
-                );
+                return $work_order->paginate(5);
             else
                 return ResponseFormatter::error(
                     null,
