@@ -168,21 +168,36 @@ class WorkOrderController extends Controller
             'P8' => ['nullable', 'string'],
             'P9' => ['nullable', 'string'],
             'P10' => ['nullable', 'string'],
-            // 'pendamping' => ['nullable', 'string'],
-            'image' => ['required', 'image'],
+            'image' => ['required'],
             'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
 
-        $new_file_image = '';
-        $new_file_video = '';
+        $locate_image = "";
+        if ($request->image !== 'null' && $request->image != NULL) {
+            $image_64 = $request->image;
+            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
+            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
+            $image = str_replace($replace, '', $image_64);
+            $image = str_replace(' ', '+', $image);
+            $imageName = Str::random(10) . '.' . $extension;
+            $file = Storage::disk('public')->put('assets/TO/image/' . $imageName, base64_decode($image));
 
-        if ($request->new_file_image) {
-            $new_file_image = Storage::putFileAs('public/assets/WO/image', $request->image, 'image_' . $request->image . '.' . $request->image->getClientOriginalExtension());
+            if ($file) {
+                $locate_image = 'assets/TO/image/' . $imageName;
+            }
         }
 
-        if ($request->new_file_video) {
-            $new_file_video = Storage::putFileAs('public/assets/WO/video', $request->video, 'video_' . $request->video . '.' . $request->video->getClientOriginalExtension());
+        $locate_video = "";
+        if ($request->video) {
+
+            $videoName = Str::random(10) . '.' . $request->video->getClientOriginalExtension();
+
+            $new_video = Storage::disk('public')->put('assets/TO/video/' . $videoName, $request->video);
+
+            if ($new_video) {
+                $locate_video = 'assets/TO/video/' . $videoName;
+            }
         }
 
         $workorder = WorkOrder::create([
@@ -209,9 +224,8 @@ class WorkOrderController extends Controller
             'P8' => $request->P8,
             'P9' => $request->P9,
             'P10' => $request->P10,
-            // 'pendamping1_id' => $request->pendamping,
-            'image' => $new_file_image,
-            'video' => $new_file_video,
+            'image' => $locate_image,
+            'video' => $locate_video,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');

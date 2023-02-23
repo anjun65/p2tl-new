@@ -26,7 +26,7 @@ class NewFormLangsungController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'works_id' => ['required'],
+            'works_id' => ['nullable'],
             'nama_saksi' => ['nullable'],
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
@@ -159,6 +159,7 @@ class NewFormLangsungController extends Controller
             'akhir_foto_barang_bukti' => ['required'],
             'akhir_labor' => ['required'],
         ]);
+
 
         $form = FormLangsung::where('works_id', $request->works_id)->first();
 
