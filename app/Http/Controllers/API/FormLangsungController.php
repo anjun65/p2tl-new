@@ -18,6 +18,9 @@ class FormLangsungController extends Controller
         $form_langsung = FormLangsung::with('data_lama', 'data_baru', 'kwh_meter', 'terminal', 'pelindungkwh', 'pelindung_busbar', 'papan_ok', 'penutup_mcb', 'pemeriksaan_pengukuran', 'wiring_app', 'hasil_pemeriksaan')
             ->where('works_id', $request->works_id)->get();
 
+
+
+
         if ($form_langsung)
             return ResponseFormatter::success(
                 $form_langsung,

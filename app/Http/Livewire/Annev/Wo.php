@@ -135,7 +135,7 @@ class Wo extends Component
     public function getRowsQueryProperty()
     {
         $query = WorkOrder::query()
-            ->where('temuan', '=', 1)
+            ->where('is_temuan', '=', 1)
             ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
             ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
             ->when($this->filters['nama_pelanggan'], fn ($query, $nama_pelanggan) => $query->where('nama_pelanggan', 'like', '%' . $nama_pelanggan . '%'))

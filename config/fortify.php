@@ -64,9 +64,11 @@ return [
 
     'home' => function () {
         if (Auth::user()->roles == 'ADMIN') {
-            return route('dashboard');
+            return redirect()->route('dashboard');
         } elseif (Auth::user()->roles == 'ANEV') {
-            return route('annev-wo');
+            return redirect()->route('annev-wo');
+        } elseif (Auth::user()->roles == 'STRUKTURAL') {
+            return redirect()->route('struktural-dashboard');
         }
     },
 

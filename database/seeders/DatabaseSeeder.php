@@ -61,8 +61,8 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\User::create([
-            'name' => 'ANNEV',
-            'email' => 'annev@gmail.com',
+            'name' => 'ANEV',
+            'email' => 'anev@gmail.com',
             'password' => bcrypt('123123123'),
             'regus_id' => 2,
             'roles' => 'ANEV',
@@ -78,6 +78,16 @@ class DatabaseSeeder extends Seeder
             'roles' => 'LABOR',
             'Jabatan' => 'LABORATORIUM',
             'NIP' => '9999999',
+        ]);
+
+        \App\Models\User::create([
+            'name' => 'Struktural',
+            'email' => 'struktural@gmail.com',
+            'password' => bcrypt('123123123'),
+            'regus_id' => 2,
+            'roles' => 'Struktural',
+            'Jabatan' => 'Struktural',
+            'NIP' => '99898989',
         ]);
 
         \App\Models\Pendamping::create([

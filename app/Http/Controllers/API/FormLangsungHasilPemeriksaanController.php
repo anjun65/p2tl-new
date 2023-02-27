@@ -50,7 +50,7 @@ class FormLangsungHasilPemeriksaanController extends Controller
             $work = WorkOrder::find($form_langsung->works_id);
 
             $work->update([
-                'temuan' => 1,
+                'is_temuan' => 1,
             ]);
         }
 
