@@ -99,11 +99,20 @@ class WorkOrderController extends Controller
         $videoName = Str::random(10);
 
         if ($request->video) {
-            $new_video = Storage::putFileAs('public/assets/TO/video/', $request->video, $videoName . $request->id . '.' . $request->video->getClientOriginalExtension());
+            $new_video = Storage::disk('public')->put('assets/TO/video/' . $videoName . $request->video->getClientOriginalExtension(), $request->video);
+
+            if ($new_video) {
+                $locate_video = 'assets/TO/video/' . $videoName;
+            }
         }
 
         if ($request->image) {
-            $new_image = Storage::putFileAs('public/assets/TO/image/', $request->image, $imageName . $request->id . '.' . $request->image->getClientOriginalExtension());
+
+            $new_image = Storage::disk('public')->put('assets/TO/image/' . $imageName . $request->image->getClientOriginalExtension(), $request->image);
+
+            if ($new_image) {
+                $locate_image = 'assets/TO/image/' . $imageName;
+            }
         }
 
         // $locate_video = "";
@@ -124,7 +133,7 @@ class WorkOrderController extends Controller
         $workorder->update([
             'keterangan_p2tl' => $request->keterangan_p2tl,
             'image' => $new_image,
-            'video' => $new_video,
+            'video' => $locate_video,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
