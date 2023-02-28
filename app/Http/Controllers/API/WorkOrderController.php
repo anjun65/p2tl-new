@@ -88,7 +88,7 @@ class WorkOrderController extends Controller
             'id' => ['required'],
             'keterangan_p2tl' => ['required', 'string', 'max:255'],
             'image' => ['required'],
-            'video' => ['required'],
+            'video' => ['nullable'],
         ]);
 
         $workorder = WorkOrder::find($request->id);
