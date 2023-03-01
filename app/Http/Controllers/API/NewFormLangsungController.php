@@ -32,6 +32,7 @@ class NewFormLangsungController extends Controller
             'nomor_identitas' => ['nullable'],
             'no_telpon_saksi' => ['nullable'],
             'file_nomor_identitas' => ['nullable'],
+
             'data_lama_merk' => ['required'],
             'data_lama_no_reg' => ['required'],
             'data_lama_no_seri' => ['required'],
@@ -46,6 +47,7 @@ class NewFormLangsungController extends Controller
             'data_lama_rating_arus_2' => ['required'],
             'data_lama_foto_kwh_meter' => ['required'],
             'data_lama_foto_pembatas' => ['required'],
+
             'data_baru_merk' => ['required'],
             'data_baru_no_reg' => ['required'],
             'data_baru_no_seri' => ['required'],
@@ -165,79 +167,68 @@ class NewFormLangsungController extends Controller
 
 
         $locate_file_nomor_identitas = "";
-        if ($request->file_nomor_identitas !== 'null' && $request->file_nomor_identitas != NULL) {
-            $image_64 = $request->file_nomor_identitas;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/saksi/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_file_nomor_identitas = 'assets/saksi/' . $imageName;
+        if ($request->file_nomor_identitas) {
+
+            $identitasName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/TO/image/' . $identitasName . $request->file_nomor_identitas->getClientOriginalExtension(), $request->file_nomor_identitas);
+
+            if ($new_image) {
+                $locate_file_nomor_identitas = 'assets/saksi/' . $identitasName;
             }
         }
 
         $locate_data_lama_foto_kwh_meter = "";
-        if ($request->data_lama_foto_kwh_meter !== 'null' && $request->data_lama_foto_kwh_meter != NULL) {
-            $image_64 = $request->data_lama_foto_kwh_meter;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppLama/kwh/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_data_lama_foto_kwh_meter = 'assets/dataAppLama/kwh/' . $imageName;
+        if ($request->data_lama_foto_kwh_meter) {
+
+            $data_lama_foto_kwh_meterName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataAppLama/kwh/' . $data_lama_foto_kwh_meterName . $request->data_lama_foto_kwh_meter->getClientOriginalExtension(), $request->data_lama_foto_kwh_meter);
+
+            if ($new_image) {
+                $locate_data_lama_foto_kwh_meter = 'assets/dataAppLama/kwh/' . $data_lama_foto_kwh_meterName;
             }
         }
 
         $locate_data_lama_foto_pembatas = "";
-        if ($request->data_lama_foto_pembatas !== 'null' && $request->data_lama_foto_pembatas != NULL) {
-            $image_64 = $request->data_lama_foto_pembatas;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppLama/pembatas/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_data_lama_foto_pembatas = 'assets/dataAppLama/pembatas/' . $imageName;
+        if ($request->data_lama_foto_pembatas) {
+
+            $data_lama_foto_pembatasName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataAppLama/pembatas/' . $data_lama_foto_pembatasName . $request->data_lama_foto_pembatas->getClientOriginalExtension(), $request->data_lama_foto_pembatas);
+
+            if ($new_image) {
+                $locate_data_lama_foto_pembatas = 'assets/dataAppLama/pembatas/' . $data_lama_foto_pembatasName;
             }
         }
 
 
         $locate_data_baru_foto_kwh_meter = "";
-        if ($request->data_baru_foto_kwh_meter !== 'null' && $request->data_baru_foto_kwh_meter != NULL) {
-            $image_64 = $request->data_lama_foto_pembatas;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/kwh/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_data_baru_foto_kwh_meter = 'assets/dataAppBaru/kwh/' . $imageName;
+        if ($request->data_baru_foto_kwh_meter) {
+
+            $data_baru_foto_kwh_meterName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataAppBaru/kwh/' . $data_baru_foto_kwh_meterName . $request->data_baru_foto_kwh_meter->getClientOriginalExtension(), $request->data_baru_foto_kwh_meter);
+
+            if ($new_image) {
+                $locate_data_baru_foto_kwh_meter = 'assets/dataAppBaru/kwh/' . $data_baru_foto_kwh_meterName;
             }
         }
 
-
         $locate_data_baru_foto_pembatas = "";
-        if ($request->data_baru_foto_pembatas !== 'null' && $request->data_baru_foto_pembatas != NULL) {
-            $image_64 = $request->data_lama_foto_pembatas;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_data_baru_foto_pembatas = 'assets/dataAppBaru/pembatas/' . $imageName;
+        if ($request->data_baru_foto_pembatas) {
+
+            $data_baru_foto_pembatasName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $data_baru_foto_pembatasName . $request->data_baru_foto_pembatas->getClientOriginalExtension(), $request->data_baru_foto_pembatas);
+
+            if ($new_image) {
+                $locate_data_baru_foto_pembatas = 'assets/dataAppBaru/pembatas/' . $data_baru_foto_pembatasName;
             }
         }
 
@@ -370,34 +361,30 @@ class NewFormLangsungController extends Controller
         $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::where('forms_id', $form->id)->first();
 
         $locate_kwh_foto_sebelum = "";
-        if ($request->kwh_foto_sebelum !== 'null' && $request->kwh_foto_sebelum != NULL) {
-            $image_64 = $request->kwh_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sebelum/' . $imageName, base64_decode($image));
+        if ($request->kwh_foto_sebelum) {
 
-            if ($file) {
-                $locate_kwh_foto_sebelum = 'assets/dataPemeriksaan/kwh/sebelum/' . $imageName;
+            $kwh_foto_sebelumName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sebelum/' . $kwh_foto_sebelumName . $request->kwh_foto_sebelum->getClientOriginalExtension(), $request->kwh_foto_sebelum);
+
+            if ($new_image) {
+                $locate_kwh_foto_sebelum = 'assets/dataPemeriksaan/kwh/sebelum/' . $kwh_foto_sebelumName;
             }
         }
+
 
         $locate_kwh_foto_sesudah = "";
-        if ($request->kwh_foto_sesudah !== 'null' && $request->kwh_foto_sesudah != NULL) {
-            $image_64 = $request->kwh_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sesudah/' . $imageName, base64_decode($image));
+        if ($request->kwh_foto_sesudah) {
 
-            if ($file) {
-                $locate_kwh_foto_sesudah = 'assets/dataPemeriksaan/kwh/sesudah/' . $imageName;
+            $kwh_foto_sesudahName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sesudah/' . $kwh_foto_sesudahName . $request->kwh_foto_sesudah->getClientOriginalExtension(), $request->kwh_foto_sesudah);
+
+            if ($new_image) {
+                $locate_kwh_foto_sesudah = 'assets/dataPemeriksaan/kwh/sesudah/' . $kwh_foto_sesudahName;
             }
         }
+
 
         if (empty($form_pemeriksaan_kwh)) {
             $form_pemeriksaan_kwh = FormLangsungPemeriksaanKwhMeter::create([
@@ -430,33 +417,28 @@ class NewFormLangsungController extends Controller
         //Terminal
         $form_pemeriksaan_terminal = FormLangsungPemeriksaanTerminal::where('forms_id', $form->id)->first();
 
-        $locate_terminal_foto_sebelum = "";
-        if ($request->terminal_foto_sebelum !== 'null' && $request->terminal_foto_sebelum != NULL) {
-            $image_64 = $request->terminal_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_terminal_foto_sebelum = 'assets/dataPemeriksaan/terminal/sebelum/' . $imageName;
+        $locate_terminal_foto_sebelum = "";
+        if ($request->terminal_foto_sebelum) {
+
+            $terminal_foto_sebelumName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $terminal_foto_sebelumName . $request->terminal_foto_sebelum->getClientOriginalExtension(), $request->terminal_foto_sebelum);
+
+            if ($new_image) {
+                $locate_terminal_foto_sebelum = 'assets/dataPemeriksaan/terminal/sebelum/' . $terminal_foto_sebelumName;
             }
         }
 
         $locate_terminal_foto_sesudah = "";
-        if ($request->terminal_foto_sesudah !== 'null' && $request->terminal_foto_sesudah != NULL) {
-            $image_64 = $request->terminal_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $imageName, base64_decode($image));
+        if ($request->terminal_foto_sesudah) {
 
-            if ($file) {
-                $locate_terminal_foto_sesudah = 'assets/dataPemeriksaan/terminal/sesudah/' . $imageName;
+            $terminal_foto_sesudahName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $terminal_foto_sesudahName . $request->terminal_foto_sesudah->getClientOriginalExtension(), $request->terminal_foto_sesudah);
+
+            if ($new_image) {
+                $locate_terminal_foto_sesudah = 'assets/dataPemeriksaan/terminal/sesudah/' . $terminal_foto_sesudahName;
             }
         }
 
@@ -491,33 +473,28 @@ class NewFormLangsungController extends Controller
         // Pemeriksaan Pelindung KWH Meter
         $form_pemeriksaan_pelindung_kwh = FormLangsungPemeriksaanPelindungKwh::where('forms_id', $form->id)->first();
 
-        $locate_pelindung_kwh_foto_sebelum = "";
-        if ($request->pelindung_kwh_foto_sebelum !== 'null' && $request->pelindung_kwh_foto_sebelum != NULL) {
-            $image_64 = $request->pelindung_kwh_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sebelum/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_pelindung_kwh_foto_sebelum = 'assets/dataPemeriksaan/pelindungkwh/sebelum/' . $imageName;
+        $locate_pelindung_kwh_foto_sebelum = "";
+        if ($request->pelindung_kwh_foto_sebelum) {
+
+            $pelindung_kwh_foto_sebelumName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sebelum/' . $pelindung_kwh_foto_sebelumName . $request->pelindung_kwh_foto_sebelum->getClientOriginalExtension(), $request->pelindung_kwh_foto_sebelum);
+
+            if ($new_image) {
+                $locate_pelindung_kwh_foto_sebelum = 'assets/dataPemeriksaan/pelindungkwh/sebelum/' . $pelindung_kwh_foto_sebelumName;
             }
         }
 
         $locate_pelindung_kwh_foto_sesudah = "";
-        if ($request->pelindung_kwh_foto_sesudah !== 'null' && $request->pelindung_kwh_foto_sesudah != NULL) {
-            $image_64 = $request->pelindung_kwh_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sesudah/' . $imageName, base64_decode($image));
+        if ($request->pelindung_kwh_foto_sesudah) {
 
-            if ($file) {
-                $locate_pelindung_kwh_foto_sesudah = 'assets/dataPemeriksaan/pelindungkwh/sesudah/' . $imageName;
+            $pelindung_kwh_foto_sesudahName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sesudah/' . $pelindung_kwh_foto_sesudahName . $request->pelindung_kwh_foto_sesudah->getClientOriginalExtension(), $request->pelindung_kwh_foto_sesudah);
+
+            if ($new_image) {
+                $locate_pelindung_kwh_foto_sesudah = 'assets/dataPemeriksaan/pelindungkwh/sesudah/' . $pelindung_kwh_foto_sesudahName;
             }
         }
 
@@ -552,38 +529,33 @@ class NewFormLangsungController extends Controller
         // Pemeriksaan Pelindung Busbar
         $form_pemeriksaan_pelindung_busbar = FormLangsungPemeriksaanPelindungBusBar::where('forms_id', $form->id)->first();
 
-        $locate_busbar_foto_sebelum = "";
-        if ($request->busbar_foto_sebelum !== 'null' && $request->busbar_foto_sebelum != NULL) {
-            $image_64 = $request->busbar_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sebelum/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_busbar_foto_sebelum = 'assets/dataPemeriksaan/busbar/sebelum/' . $imageName;
+        $locate_busbar_foto_sebelum = "";
+        if ($request->busbar_foto_sebelum) {
+
+            $busbar_foto_sebelumName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sebelum/' . $busbar_foto_sebelumName . $request->busbar_foto_sebelum->getClientOriginalExtension(), $request->busbar_foto_sebelum);
+
+            if ($new_image) {
+                $locate_busbar_foto_sebelum = 'assets/dataPemeriksaan/busbar/sebelum/' . $busbar_foto_sebelumName;
             }
         }
 
         $locate_busbar_foto_sesudah = "";
-        if ($request->busbar_foto_sesudah !== 'null' && $request->busbar_foto_sesudah != NULL) {
-            $image_64 = $request->busbar_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sesudah/' . $imageName, base64_decode($image));
+        if ($request->busbar_foto_sesudah) {
 
-            if ($file) {
-                $locate_busbar_foto_sesudah = 'assets/dataPemeriksaan/busbar/sesudah/' . $imageName;
+            $busbar_foto_sesudahName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sesudah/' . $busbar_foto_sesudahName . $request->busbar_foto_sesudah->getClientOriginalExtension(), $request->busbar_foto_sesudah);
+
+            if ($new_image) {
+                $locate_busbar_foto_sesudah = 'assets/dataPemeriksaan/busbar/sesudah/' . $busbar_foto_sesudahName;
             }
         }
 
         if (empty($form_pemeriksaan_pelindung_busbar)) {
-            $form_pemeriksaan_pelindung_busbar = FormLangsungPemeriksaanPelindungKwh::create([
+            $form_pemeriksaan_pelindung_busbar = FormLangsungPemeriksaanPelindungBusBar::create([
                 'forms_id' => $form->id,
                 'peralatan' => $request->busbar_peralatan,
                 'segel' => $request->busbar_segel,
@@ -614,37 +586,32 @@ class NewFormLangsungController extends Controller
         $form_pemeriksaan_papan_ok = FormLangsungPemeriksaanPapanOk::where('forms_id', $form->id)->first();
 
         $locate_papan_ok_foto_sebelum = "";
-        if ($request->papan_ok_foto_sebelum !== 'null' && $request->papan_ok_foto_sebelum != NULL) {
-            $image_64 = $request->papan_ok_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $imageName, base64_decode($image));
+        if ($request->papan_ok_foto_sebelum) {
 
-            if ($file) {
-                $locate_papan_ok_foto_sebelum = 'assets/dataPemeriksaan/papan/sebelum/' . $imageName;
+            $papan_ok_foto_sebelumName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $papan_ok_foto_sebelumName . $request->papan_ok_foto_sebelum->getClientOriginalExtension(), $request->papan_ok_foto_sebelum);
+
+            if ($new_image) {
+                $locate_papan_ok_foto_sebelum = 'assets/dataPemeriksaan/papan/sebelum/' . $papan_ok_foto_sebelumName;
             }
         }
 
         $locate_papan_ok_foto_sesudah = "";
-        if ($request->papan_ok_foto_sesudah !== 'null' && $request->papan_ok_foto_sesudah != NULL) {
-            $image_64 = $request->papan_ok_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName, base64_decode($image));
+        if ($request->papan_ok_foto_sesudah) {
 
-            if ($file) {
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName . $request->papan_ok_foto_sesudah->getClientOriginalExtension(), $request->papan_ok_foto_sesudah);
+
+            if ($new_image) {
                 $locate_papan_ok_foto_sesudah = 'assets/dataPemeriksaan/papan/sesudah/' . $imageName;
             }
         }
 
+
         if (empty($form_pemeriksaan_papan_ok)) {
-            $form_pemeriksaan_papan_ok = FormLangsungPemeriksaanPelindungKwh::create([
+            $form_pemeriksaan_papan_ok = FormLangsungPemeriksaanPapanOk::create([
                 'forms_id' => $form->id,
                 'peralatan' => $request->papan_ok_peralatan,
                 'segel' => $request->papan_ok_segel,
@@ -674,35 +641,31 @@ class NewFormLangsungController extends Controller
         // Pemeriksaan MCB
         $form_pemeriksaan_mcb = FormLangsungPemeriksaanPenutupMcb::where('forms_id', $form->id)->first();
 
-        $locate_mcb_foto_sebelum = "";
-        if ($request->mcb_foto_sebelum !== 'null' && $request->mcb_foto_sebelum != NULL) {
-            $image_64 = $request->mcb_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sebelum/' . $imageName, base64_decode($image));
 
-            if ($file) {
-                $locate_mcb_foto_sebelum = 'assets/dataPemeriksaan/mcb/sebelum/' . $imageName;
+        $locate_mcb_foto_sebelum = "";
+        if ($request->mcb_foto_sebelum) {
+
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sebelum/' . $imageName . $request->mcb_foto_sebelum->getClientOriginalExtension(), $request->mcb_foto_sebelum);
+
+            if ($new_image) {
+                $locate_papan_ok_foto_sebelum = 'assets/dataPemeriksaan/mcb/sebelum/' . $imageName;
             }
         }
 
         $locate_mcb_foto_sesudah = "";
-        if ($request->mcb_foto_sesudah !== 'null' && $request->mcb_foto_sesudah != NULL) {
-            $image_64 = $request->mcb_foto_sesudah;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sesudah/' . $imageName, base64_decode($image));
+        if ($request->mcb_foto_sesudah) {
 
-            if ($file) {
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sesudah/' . $imageName . $request->mcb_foto_sesudah->getClientOriginalExtension(), $request->mcb_foto_sesudah);
+
+            if ($new_image) {
                 $locate_mcb_foto_sesudah = 'assets/dataPemeriksaan/mcb/sesudah/' . $imageName;
             }
         }
+
 
         if (empty($form_pemeriksaan_mcb)) {
             $form_pemeriksaan_mcb = FormLangsungPemeriksaanPenutupMcb::create([
@@ -741,16 +704,13 @@ class NewFormLangsungController extends Controller
         $form_pemeriksaan_pengukuran = FormLangsungPemeriksaanPengukuran::where('forms_id', $form->id)->first();
 
         $locate_pemeriksaan_foto_sebelum = "";
-        if ($request->pemeriksaan_foto_sebelum !== 'null' && $request->pemeriksaan_foto_sebelum != NULL) {
-            $image_64 = $request->pemeriksaan_foto_sebelum;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/dataPemeriksaan/pengukuran/' . $imageName, base64_decode($image));
+        if ($request->pemeriksaan_foto_sebelum) {
 
-            if ($file) {
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pengukuran/' . $imageName . $request->pemeriksaan_foto_sebelum->getClientOriginalExtension(), $request->pemeriksaan_foto_sebelum);
+
+            if ($new_image) {
                 $locate_pemeriksaan_foto_sebelum = 'assets/dataPemeriksaan/pengukuran/' . $imageName;
             }
         }
@@ -801,16 +761,13 @@ class NewFormLangsungController extends Controller
         $form_wiring_app = FormLangsungWiringApp::where('forms_id', $form->id)->first();
 
         $locate_wiring_foto = "";
-        if ($request->wiring_foto !== 'null' && $request->wiring_foto != NULL) {
-            $image_64 = $request->wiring_foto;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/datawiringapp/' . $imageName, base64_decode($image));
+        if ($request->wiring_foto) {
 
-            if ($file) {
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/datawiringapp' . $imageName . $request->wiring_foto->getClientOriginalExtension(), $request->wiring_foto);
+
+            if ($new_image) {
                 $locate_wiring_foto = 'assets/datawiringapp/' . $imageName;
             }
         }
@@ -854,16 +811,13 @@ class NewFormLangsungController extends Controller
         $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
 
         $locate_akhir_foto_barang_bukti = "";
-        if ($request->akhir_foto_barang_bukti !== 'null' && $request->akhir_foto_barang_bukti != NULL) {
-            $image_64 = $request->akhir_foto_barang_bukti;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/hasilakhir/' . $imageName, base64_decode($image));
+        if ($request->akhir_foto_barang_bukti) {
 
-            if ($file) {
+            $imageName = Str::random(10);
+
+            $new_image = Storage::disk('public')->put('assets/hasilakhir/' . $imageName . $request->akhir_foto_barang_bukti->getClientOriginalExtension(), $request->akhir_foto_barang_bukti);
+
+            if ($new_image) {
                 $locate_akhir_foto_barang_bukti = 'assets/hasilakhir/' . $imageName;
             }
         }
@@ -880,7 +834,7 @@ class NewFormLangsungController extends Controller
                 'kesimpulan' => $request->akhir_kesimpulan,
                 'tindakan' => $request->akhir_tindakan,
                 'barang_bukti' => $request->akhir_barang_bukti,
-                'tanggal_penyelesaian' => $request->akhir_tanggal_penyelesaian,
+                'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
                 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
             ]);
         } else {
