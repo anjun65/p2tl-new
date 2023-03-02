@@ -767,6 +767,7 @@ class NewFormLangsungController extends Controller
         // Wiring APP
         $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
 
+        return "yes";
         $locate_akhir_foto_barang_bukti = "";
         if ($request->akhir_foto_barang_bukti) {
 
