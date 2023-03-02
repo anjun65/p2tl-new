@@ -99,19 +99,19 @@ class WorkOrderController extends Controller
         $videoName = Str::random(10) . '.' . $request->video->getClientOriginalExtension();
 
         if ($request->video) {
-            $new_video = Storage::disk('public')->put('assets/TO/video/' . $videoName . $request->video->getClientOriginalExtension(), $request->video);
+            $new_video = Storage::disk('public')->put('assets/TO/video/', $request->video);
 
             if ($new_video) {
-                $locate_video = 'assets/TO/video/' . $videoName;
+                $locate_video = $new_video
             }
         }
 
         if ($request->image) {
 
-            $new_image = Storage::disk('public')->put('assets/TO/image/' . $imageName . $request->image->getClientOriginalExtension(), $request->image);
+            $new_image = Storage::disk('public')->put('assets/TO/image/', $request->image);
 
             if ($new_image) {
-                $locate_image = 'assets/TO/image/' . $imageName;
+                $locate_image = 'assets/TO/image/' . $new_image;
             }
         }
 
