@@ -768,14 +768,14 @@ class NewFormLangsungController extends Controller
         $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
 
 
-        $locate_akhir_foto_barang_bukti = "";
-        if ($request->akhir_foto_barang_bukti) {
-            $new_image = Storage::disk('public')->put('assets/hasilakhir', $request->akhir_foto_barang_bukti);
+        // $locate_akhir_foto_barang_bukti = "";
+        // if ($request->akhir_foto_barang_bukti) {
+        //     $new_image = Storage::disk('public')->put('assets/hasilakhir', $request->akhir_foto_barang_bukti);
 
-            if ($new_image) {
-                $locate_akhir_foto_barang_bukti = $new_image;
-            }
-        }
+        //     if ($new_image) {
+        //         $locate_akhir_foto_barang_bukti = $new_image;
+        //     }
+        // }
 
 
         $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
@@ -792,7 +792,7 @@ class NewFormLangsungController extends Controller
                 'tindakan' => $request->akhir_tindakan,
                 'barang_bukti' => $request->akhir_barang_bukti,
                 'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
-                'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
+                // 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
             ]);
         } else {
             $form_hasil_pemeriksaan->forms_id = $form->id;
