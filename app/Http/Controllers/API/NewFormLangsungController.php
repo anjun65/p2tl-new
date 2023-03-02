@@ -767,7 +767,6 @@ class NewFormLangsungController extends Controller
         // Hasil Pemeriksaan
         $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
 
-        return $request->akhir_foto_barang_bukti;
 
         $locate_akhir_foto_barang_bukti = "";
         if ($request->wiring_foto) {
@@ -777,6 +776,7 @@ class NewFormLangsungController extends Controller
                 $locate_akhir_foto_barang_bukti = $new_image;
             }
         }
+
 
         $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
         if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
