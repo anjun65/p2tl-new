@@ -764,21 +764,19 @@ class NewFormLangsungController extends Controller
             $form_wiring_app->save();
         }
 
-        // Wiring APP
+        // Hasil Pemeriksaan
         $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::where('forms_id', $form->id)->first();
 
+        return $request->akhir_foto_barang_bukti;
 
         $locate_akhir_foto_barang_bukti = "";
-        if ($request->akhir_foto_barang_bukti) {
-
+        if ($request->wiring_foto) {
             $new_image = Storage::disk('public')->put('assets/hasilakhir', $request->akhir_foto_barang_bukti);
 
             if ($new_image) {
                 $locate_akhir_foto_barang_bukti = $new_image;
             }
         }
-
-        return "no";
 
         $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
         if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
