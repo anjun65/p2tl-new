@@ -801,7 +801,7 @@ class NewFormLangsungController extends Controller
             $form_hasil_pemeriksaan->tindakan = $request->tindakan;
             $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
             $form_hasil_pemeriksaan->tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
-            $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
+            // $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
 
             $form_hasil_pemeriksaan->save();
         }
