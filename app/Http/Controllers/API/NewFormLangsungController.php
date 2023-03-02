@@ -172,7 +172,7 @@ class NewFormLangsungController extends Controller
 
             $identitasName = Str::random(10);
 
-            $new_image = Storage::disk('public')->put('assets/TO/image/' . $identitasName . $request->file_nomor_identitas->getClientOriginalExtension(), $request->file_nomor_identitas);
+            $new_image = Storage::disk('public')->put('assets/saksi/' . $identitasName . $request->file_nomor_identitas->getClientOriginalExtension(), $request->file_nomor_identitas);
 
             if ($new_image) {
                 $locate_file_nomor_identitas = 'assets/saksi/' . $identitasName;
