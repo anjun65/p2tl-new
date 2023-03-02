@@ -95,8 +95,6 @@ class WorkOrderController extends Controller
 
         $new_image = '';
         $new_video = '';
-        $imageName = Str::random(10) . '.' . $request->image->getClientOriginalExtension();
-        $videoName = Str::random(10) . '.' . $request->video->getClientOriginalExtension();
 
         if ($request->video) {
             $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
