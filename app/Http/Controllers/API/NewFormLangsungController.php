@@ -170,7 +170,7 @@ class NewFormLangsungController extends Controller
 
         if ($request->file_nomor_identitas) {
 
-            $identitasName = Str::random(10);
+            $identitasName = Str::random(10) . $request->file_nomor_identitas->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/saksi/' . $identitasName . $request->file_nomor_identitas->getClientOriginalExtension(), $request->file_nomor_identitas);
 
@@ -183,7 +183,7 @@ class NewFormLangsungController extends Controller
 
         if ($request->data_lama_foto_kwh_meter) {
 
-            $data_lama_foto_kwh_meterName = Str::random(10);
+            $data_lama_foto_kwh_meterName = Str::random(10) . $request->data_lama_foto_kwh_meter->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataAppLama/kwh/' . $data_lama_foto_kwh_meterName . $request->data_lama_foto_kwh_meter->getClientOriginalExtension(), $request->data_lama_foto_kwh_meter);
 
@@ -196,7 +196,7 @@ class NewFormLangsungController extends Controller
 
         if ($request->data_lama_foto_pembatas) {
 
-            $data_lama_foto_pembatasName = Str::random(10);
+            $data_lama_foto_pembatasName = Str::random(10) . $request->data_lama_foto_pembatas->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataAppLama/pembatas/' . $data_lama_foto_pembatasName . $request->data_lama_foto_pembatas->getClientOriginalExtension(), $request->data_lama_foto_pembatas);
 
@@ -210,7 +210,7 @@ class NewFormLangsungController extends Controller
 
         if ($request->data_baru_foto_kwh_meter) {
 
-            $data_baru_foto_kwh_meterName = Str::random(10);
+            $data_baru_foto_kwh_meterName = Str::random(10) . $request->data_baru_foto_kwh_meter->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataAppBaru/kwh/' . $data_baru_foto_kwh_meterName . $request->data_baru_foto_kwh_meter->getClientOriginalExtension(), $request->data_baru_foto_kwh_meter);
 
@@ -223,7 +223,7 @@ class NewFormLangsungController extends Controller
 
         if ($request->data_baru_foto_pembatas) {
 
-            $data_baru_foto_pembatasName = Str::random(10);
+            $data_baru_foto_pembatasName = Str::random(10) . $request->data_baru_foto_pembatas->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataAppBaru/pembatas/' . $data_baru_foto_pembatasName . $request->data_baru_foto_pembatas->getClientOriginalExtension(), $request->data_baru_foto_pembatas);
 
@@ -363,7 +363,7 @@ class NewFormLangsungController extends Controller
         $locate_kwh_foto_sebelum = "";
         if ($request->kwh_foto_sebelum) {
 
-            $kwh_foto_sebelumName = Str::random(10);
+            $kwh_foto_sebelumName = Str::random(10) . $request->kwh_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sebelum/' . $kwh_foto_sebelumName . $request->kwh_foto_sebelum->getClientOriginalExtension(), $request->kwh_foto_sebelum);
 
@@ -376,7 +376,7 @@ class NewFormLangsungController extends Controller
         $locate_kwh_foto_sesudah = "";
         if ($request->kwh_foto_sesudah) {
 
-            $kwh_foto_sesudahName = Str::random(10);
+            $kwh_foto_sesudahName = Str::random(10) . $request->kwh_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/kwh/sesudah/' . $kwh_foto_sesudahName . $request->kwh_foto_sesudah->getClientOriginalExtension(), $request->kwh_foto_sesudah);
 
@@ -421,7 +421,7 @@ class NewFormLangsungController extends Controller
         $locate_terminal_foto_sebelum = "";
         if ($request->terminal_foto_sebelum) {
 
-            $terminal_foto_sebelumName = Str::random(10);
+            $terminal_foto_sebelumName = Str::random(10) . $request->terminal_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sebelum/' . $terminal_foto_sebelumName . $request->terminal_foto_sebelum->getClientOriginalExtension(), $request->terminal_foto_sebelum);
 
@@ -433,7 +433,7 @@ class NewFormLangsungController extends Controller
         $locate_terminal_foto_sesudah = "";
         if ($request->terminal_foto_sesudah) {
 
-            $terminal_foto_sesudahName = Str::random(10);
+            $terminal_foto_sesudahName = Str::random(10) . $request->terminal_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/terminal/sesudah/' . $terminal_foto_sesudahName . $request->terminal_foto_sesudah->getClientOriginalExtension(), $request->terminal_foto_sesudah);
 
@@ -477,7 +477,7 @@ class NewFormLangsungController extends Controller
         $locate_pelindung_kwh_foto_sebelum = "";
         if ($request->pelindung_kwh_foto_sebelum) {
 
-            $pelindung_kwh_foto_sebelumName = Str::random(10);
+            $pelindung_kwh_foto_sebelumName = Str::random(10) . $request->pelindung_kwh_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sebelum/' . $pelindung_kwh_foto_sebelumName . $request->pelindung_kwh_foto_sebelum->getClientOriginalExtension(), $request->pelindung_kwh_foto_sebelum);
 
@@ -489,7 +489,7 @@ class NewFormLangsungController extends Controller
         $locate_pelindung_kwh_foto_sesudah = "";
         if ($request->pelindung_kwh_foto_sesudah) {
 
-            $pelindung_kwh_foto_sesudahName = Str::random(10);
+            $pelindung_kwh_foto_sesudahName = Str::random(10) . $request->pelindung_kwh_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pelindungkwh/sesudah/' . $pelindung_kwh_foto_sesudahName . $request->pelindung_kwh_foto_sesudah->getClientOriginalExtension(), $request->pelindung_kwh_foto_sesudah);
 
@@ -533,7 +533,7 @@ class NewFormLangsungController extends Controller
         $locate_busbar_foto_sebelum = "";
         if ($request->busbar_foto_sebelum) {
 
-            $busbar_foto_sebelumName = Str::random(10);
+            $busbar_foto_sebelumName = Str::random(10) . $request->busbar_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sebelum/' . $busbar_foto_sebelumName . $request->busbar_foto_sebelum->getClientOriginalExtension(), $request->busbar_foto_sebelum);
 
@@ -545,7 +545,7 @@ class NewFormLangsungController extends Controller
         $locate_busbar_foto_sesudah = "";
         if ($request->busbar_foto_sesudah) {
 
-            $busbar_foto_sesudahName = Str::random(10);
+            $busbar_foto_sesudahName = Str::random(10) . $request->busbar_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/busbar/sesudah/' . $busbar_foto_sesudahName . $request->busbar_foto_sesudah->getClientOriginalExtension(), $request->busbar_foto_sesudah);
 
@@ -588,7 +588,7 @@ class NewFormLangsungController extends Controller
         $locate_papan_ok_foto_sebelum = "";
         if ($request->papan_ok_foto_sebelum) {
 
-            $papan_ok_foto_sebelumName = Str::random(10);
+            $papan_ok_foto_sebelumName = Str::random(10) . $request->papan_ok_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sebelum/' . $papan_ok_foto_sebelumName . $request->papan_ok_foto_sebelum->getClientOriginalExtension(), $request->papan_ok_foto_sebelum);
 
@@ -600,7 +600,7 @@ class NewFormLangsungController extends Controller
         $locate_papan_ok_foto_sesudah = "";
         if ($request->papan_ok_foto_sesudah) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->papan_ok_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/papan/sesudah/' . $imageName . $request->papan_ok_foto_sesudah->getClientOriginalExtension(), $request->papan_ok_foto_sesudah);
 
@@ -645,19 +645,19 @@ class NewFormLangsungController extends Controller
         $locate_mcb_foto_sebelum = "";
         if ($request->mcb_foto_sebelum) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->mcb_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sebelum/' . $imageName . $request->mcb_foto_sebelum->getClientOriginalExtension(), $request->mcb_foto_sebelum);
 
             if ($new_image) {
-                $locate_papan_ok_foto_sebelum = 'assets/dataPemeriksaan/mcb/sebelum/' . $imageName;
+                $locate_mcb_foto_sebelum = 'assets/dataPemeriksaan/mcb/sebelum/' . $imageName;
             }
         }
 
         $locate_mcb_foto_sesudah = "";
         if ($request->mcb_foto_sesudah) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->mcb_foto_sesudah->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/mcb/sesudah/' . $imageName . $request->mcb_foto_sesudah->getClientOriginalExtension(), $request->mcb_foto_sesudah);
 
@@ -706,7 +706,7 @@ class NewFormLangsungController extends Controller
         $locate_pemeriksaan_foto_sebelum = "";
         if ($request->pemeriksaan_foto_sebelum) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->pemeriksaan_foto_sebelum->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/dataPemeriksaan/pengukuran/' . $imageName . $request->pemeriksaan_foto_sebelum->getClientOriginalExtension(), $request->pemeriksaan_foto_sebelum);
 
@@ -763,7 +763,7 @@ class NewFormLangsungController extends Controller
         $locate_wiring_foto = "";
         if ($request->wiring_foto) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->wiring_foto->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/datawiringapp' . $imageName . $request->wiring_foto->getClientOriginalExtension(), $request->wiring_foto);
 
@@ -813,7 +813,7 @@ class NewFormLangsungController extends Controller
         $locate_akhir_foto_barang_bukti = "";
         if ($request->akhir_foto_barang_bukti) {
 
-            $imageName = Str::random(10);
+            $imageName = Str::random(10) . $request->akhir_foto_barang_bukti->getClientOriginalExtension();
 
             $new_image = Storage::disk('public')->put('assets/hasilakhir/' . $imageName . $request->akhir_foto_barang_bukti->getClientOriginalExtension(), $request->akhir_foto_barang_bukti);
 
@@ -826,6 +826,7 @@ class NewFormLangsungController extends Controller
         if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
             $akhir_tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
         }
+
 
         if (empty($form_hasil_pemeriksaan)) {
             $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::create([
