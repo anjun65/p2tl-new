@@ -769,7 +769,7 @@ class NewFormLangsungController extends Controller
 
 
         $locate_akhir_foto_barang_bukti = "";
-        if ($request->wiring_foto) {
+        if ($request->akhir_foto_barang_bukti) {
             $new_image = Storage::disk('public')->put('assets/hasilakhir', $request->akhir_foto_barang_bukti);
 
             if ($new_image) {
