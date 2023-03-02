@@ -95,8 +95,8 @@ class WorkOrderController extends Controller
 
         $new_image = '';
         $new_video = '';
-        $imageName = Str::random(10);
-        $videoName = Str::random(10);
+        $imageName = Str::random(10) . '.' . $request->image->getClientOriginalExtension();
+        $videoName = Str::random(10) . '.' . $request->video->getClientOriginalExtension();
 
         if ($request->video) {
             $new_video = Storage::disk('public')->put('assets/TO/video/' . $videoName . $request->video->getClientOriginalExtension(), $request->video);
@@ -132,7 +132,7 @@ class WorkOrderController extends Controller
 
         $workorder->update([
             'keterangan_p2tl' => $request->keterangan_p2tl,
-            'image' => $new_image,
+            'image' => $locate_image,
             'video' => $locate_video,
         ]);
 
