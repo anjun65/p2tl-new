@@ -153,7 +153,7 @@ class NewFormTidakLangsungController extends Controller
             // 'pintu_peralatan' => ['required'],
             // 'pintu_segel' => ['required'],
             // 'pintu_nomor_tahun_kode_segel' => ['required'],
-            'pintu_keterangan' => ['required'],
+            // 'pintu_keterangan' => ['required'],
             'pintu_foto_sebelum' => ['required'],
             // 'pintu_post_peralatan' => ['required'],
             // 'pintu_post_segel' => ['required'],
