@@ -30,29 +30,36 @@ class BarangBuktiController extends Controller
             'alamat_saksi' => ['nullable'],
             'nomor_identitas' => ['nullable'],
             'no_telpon_saksi' => ['nullable'],
-            'file_identitas' => ['nullable', 'image'],
-            'jenis_kabel' => ['nullable'],
-            'panjang_kabel' => ['nullable'],
-            'tera' => ['nullable'],
-            'terminal_kwh_meter' => ['nullable'],
-            'box_ok' => ['nullable'],
-            'box_app' => ['nullable'],
-            'alat_pembatas' => ['nullable'],
-            'alat_bantu_ukur' => ['nullable'],
-            'file_barang_bukti' => ['nullable', 'image'],
+            'foto_identitas' => ['nullable', 'image'],
+            'kabel_jenis' => ['nullable'],
+            'kabel_panjang' => ['nullable'],
+            'segel_tera' => ['nullable'],
+            'segel_terminal' => ['nullable'],
+            'segel_box_ok' => ['nullable'],
+            'segel_box_app' => ['nullable'],
+            'segel_alat_pembatas' => ['nullable'],
+            'segel_alat_bantu_ukur' => ['nullable'],
+            'segel_foto' => ['nullable', 'image'],
         ]);
 
         $form = BarangBukti::where('works_id', $request->works_id)->first();
 
-        $new_file_identitas = '';
-        $new_file_barang_bukti = '';
+        $new_file_identitas = "";
+        if ($request->foto_identitas) {
+            $new_image = Storage::disk('public')->put('assets/pengambilan-bb/identitas', $request->foto_identitas);
 
-        if ($request->file_identitas) {
-            $new_file_identitas = Storage::putFileAs('public/assets/barang-bukti', $request->file_identitas, 'identitas_' . $request->nama_saksi . '|' . $request->identitas_saksi . '.' . $request->file_identitas->getClientOriginalExtension());
+            if ($new_image) {
+                $new_file_identitas = $new_image;
+            }
         }
 
-        if ($request->file_barang_bukti) {
-            $new_file_barang_bukti = Storage::putFileAs('public/assets/barang-bukti', $request->file_barang_bukti, 'foto_barang_bukti_' . $request->works_id . '.' . $request->file_barang_bukti->getClientOriginalExtension());
+        $new_segel_foto = "";
+        if ($request->segel_foto) {
+            $new_image = Storage::disk('public')->put('assets/pengambilan-bb/barang-bukti', $request->segel_foto);
+
+            if ($new_image) {
+                $new_segel_foto = $new_image;
+            }
         }
 
 
@@ -64,15 +71,15 @@ class BarangBuktiController extends Controller
                 'nomor_identitas' => $request->nomor_identitas,
                 'no_telpon_saksi' => $request->no_telpon_saksi,
                 'file_identitas' => $new_file_identitas,
-                'jenis_kabel' => $request->jenis_kabel,
-                'panjang_kabel' => $request->panjang_kabel,
-                'tera' => $request->tera,
-                'terminal_kwh_meter' => $request->terminal_kwh_meter,
-                'box_ok' => $request->box_ok,
-                'box_app' => $request->box_app,
-                'alat_pembatas' => $request->alat_pembatas,
-                'alat_bantu_ukur' => $request->alat_bantu_ukur,
-                'file_barang_bukti' => $new_file_barang_bukti,
+                'jenis_kabel' => $request->kabel_jenis,
+                'panjang_kabel' => $request->kabel_panjang,
+                'tera' => $request->segel_tera,
+                'terminal_kwh_meter' => $request->segel_terminal,
+                'box_ok' => $request->segel_box_ok,
+                'box_app' => $request->segel_box_app,
+                'alat_pembatas' => $request->segel_alat_pembatas,
+                'alat_bantu_ukur' => $request->segel_alat_bantu_ukur,
+                'file_barang_bukti' => $new_segel_foto,
             ]);
         } else {
             $form->works_id = $request->works_id;
@@ -81,15 +88,15 @@ class BarangBuktiController extends Controller
             $form->nomor_identitas = $request->nomor_identitas;
             $form->no_telpon_saksi = $request->no_telpon_saksi;
             $form->file_identitas = $new_file_identitas;
-            $form->jenis_kabel = $request->jenis_kabel;
-            $form->panjang_kabel = $request->panjang_kabel;
-            $form->tera = $request->tera;
-            $form->terminal_kwh_meter = $request->terminal_kwh_meter;
-            $form->box_ok = $request->box_ok;
-            $form->box_app = $request->box_app;
-            $form->alat_pembatas = $request->alat_pembatas;
-            $form->alat_bantu_ukur = $request->alat_bantu_ukur;
-            $form->file_barang_bukti = $new_file_barang_bukti;
+            $form->jenis_kabel = $request->kabel_jenis;
+            $form->panjang_kabel = $request->kabel_panjang;
+            $form->tera = $request->segel_tera;
+            $form->terminal_kwh_meter = $request->segel_terminal;
+            $form->box_ok = $request->segel_box_ok;
+            $form->box_app = $request->segel_box_app;
+            $form->alat_pembatas = $request->segel_alat_pembatas;
+            $form->alat_bantu_ukur = $request->segel_alat_bantu_ukur;
+            $form->file_barang_bukti = $new_segel_foto;
             $form->save();
         }
 

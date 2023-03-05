@@ -129,3 +129,4 @@ Route::get('labor/work-order', [WorkOrderController::class, 'labor']);
 
 Route::post('new-form-langsung', [NewFormLangsungController::class, 'store']);
 Route::post('new-form-tidak-langsung', [NewFormTidakLangsungController::class, 'store']);
+Route::post('new-kalibrasi', [KalibrasiKwhMeterController::class, 'store']);

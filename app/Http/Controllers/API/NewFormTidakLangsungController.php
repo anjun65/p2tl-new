@@ -20,7 +20,7 @@ use App\Models\FormTidakLangsungPemeriksaanPengukuran;
 use App\Models\FormTidakLangsungWiringApp;
 use App\Models\WorkOrder;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 
 class NewFormTidakLangsungController extends Controller
 {
@@ -218,12 +218,10 @@ class NewFormTidakLangsungController extends Controller
 
         if ($request->file_nomor_identitas) {
 
-            $identitasName = Str::random(10);
-
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/saksi/' . $identitasName . $request->file_nomor_identitas->getClientOriginalExtension(), $request->file_nomor_identitas);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/saksi', $request->file_nomor_identitas);
 
             if ($new_image) {
-                $locate_file_nomor_identitas = 'assets/tidaklangsung/saksi/' . $identitasName;
+                $locate_file_nomor_identitas = $new_image;
             }
         }
 
@@ -283,12 +281,10 @@ class NewFormTidakLangsungController extends Controller
 
         if ($request->pembatas_foto_pembatas) {
 
-            $imageName = Str::random(10);
-
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pembatas/' . $imageName . $request->pembatas_foto_pembatas->getClientOriginalExtension(), $request->pembatas_foto_pembatas);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pembatas', $request->pembatas_foto_pembatas);
 
             if ($new_image) {
-                $locate_pembatas_foto_pembatas = 'assets/tidaklangsung/dataapp/pembatas/' . $imageName;
+                $locate_pembatas_foto_pembatas = $new_image;
             }
         }
 
@@ -296,53 +292,49 @@ class NewFormTidakLangsungController extends Controller
 
         if ($request->kwh_foto) {
 
-            $imageName = Str::random(10);
-
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/kwh/' . $imageName . $request->kwh_foto->getClientOriginalExtension(), $request->kwh_foto);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/kwh', $request->kwh_foto);
 
             if ($new_image) {
-                $locate_kwh_foto = 'assets/tidaklangsung/dataapp/kwh/' . $imageName;
+                $locate_kwh_foto = $new_image;
             }
         }
 
 
         $locate_ct_foto = "";
         if ($request->ct_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/ct/' . $imageName . $request->ct_foto->getClientOriginalExtension(), $request->ct_foto);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/ct', $request->ct_foto);
 
             if ($new_image) {
-                $locate_ct_foto = 'assets/tidaklangsung/dataapp/ct/' . $imageName;
+                $locate_ct_foto = $new_image;
             }
         }
 
         $locate_pt_foto = "";
         if ($request->pt_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pt/' . $imageName . $request->pt_foto->getClientOriginalExtension(), $request->pt_foto);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/pt', $request->pt_foto);
 
             if ($new_image) {
-                $locate_pt_foto = 'assets/tidaklangsung/dataapp/pt/' . $imageName;
+                $locate_pt_foto = $new_image;
             }
         }
 
         $locate_kubikel_foto = "";
         if ($request->kubikel_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/kubikel/' . $imageName . $request->kubikel_foto->getClientOriginalExtension(), $request->kubikel_foto);
+
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/kubikel', $request->kubikel_foto);
 
             if ($new_image) {
-                $locate_kubikel_foto = 'assets/tidaklangsung/dataapp/kubikel/' . $imageName;
+                $locate_kubikel_foto = $new_image;
             }
         }
 
         $locate_box_app_foto = "";
         if ($request->box_app_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/box_app/' . $imageName . $request->box_app_foto->getClientOriginalExtension(), $request->box_app_foto);
+
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/dataapp/box_app', $request->box_app_foto);
 
             if ($new_image) {
-                $locate_box_app_foto = 'assets/tidaklangsung/dataapp/box_app/' . $imageName;
+                $locate_box_app_foto = $new_image;
             }
         }
 
@@ -446,22 +438,20 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_pelindung_kwh_foto_sebelum = "";
         if ($request->pelindung_kwh_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungkwh/sebelum/' . $imageName . $request->pelindung_kwh_foto_sebelum->getClientOriginalExtension(), $request->pelindung_kwh_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungkwh/sebelum', $request->pelindung_kwh_foto_sebelum);
 
             if ($new_image) {
-                $locate_pelindung_kwh_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/pelindungkwh/sebelum/' . $imageName;
+                $locate_pelindung_kwh_foto_sebelum = $new_image;
             }
         }
 
 
         $locate_pelindung_kwh_foto_sesudah = "";
         if ($request->pelindung_kwh_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungkwh/sesudah/' . $imageName . $request->pelindung_kwh_foto_sesudah->getClientOriginalExtension(), $request->pelindung_kwh_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungkwh/sesudah', $request->pelindung_kwh_foto_sesudah);
 
             if ($new_image) {
-                $locate_pelindung_kwh_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/pelindungkwh/sesudah/' . $imageName;
+                $locate_pelindung_kwh_foto_sesudah = $new_image;
             }
         }
 
@@ -502,22 +492,20 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_pelindung_ct_foto_sebelum = "";
         if ($request->pelindung_ct_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungct/sebelum/' . $imageName . $request->pelindung_ct_foto_sebelum->getClientOriginalExtension(), $request->pelindung_ct_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungct/sebelum', $request->pelindung_ct_foto_sebelum);
 
             if ($new_image) {
-                $locate_pelindung_ct_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/pelindungct/sebelum/' . $imageName;
+                $locate_pelindung_ct_foto_sebelum = $new_image;
             }
         }
 
 
         $locate_pelindung_ct_foto_sesudah = "";
         if ($request->pelindung_ct_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungct/sesudah/' . $imageName . $request->pelindung_ct_foto_sesudah->getClientOriginalExtension(), $request->pelindung_ct_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pelindungct/sesudah', $request->pelindung_ct_foto_sesudah);
 
             if ($new_image) {
-                $locate_pelindung_ct_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/pelindungct/sesudah/' . $imageName;
+                $locate_pelindung_ct_foto_sesudah = $new_image;
             }
         }
 
@@ -557,22 +545,20 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_segel_foto_sebelum = "";
         if ($request->segel_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/segel/sebelum/' . $imageName . $request->segel_foto_sebelum->getClientOriginalExtension(), $request->segel_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/segel/sebelum', $request->segel_foto_sebelum);
 
             if ($new_image) {
-                $locate_segel_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/segel/sebelum/' . $imageName;
+                $locate_segel_foto_sebelum = $new_image;
             }
         }
 
 
         $locate_segel_foto_sesudah = "";
         if ($request->segel_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/segel/sesudah/' . $imageName . $request->segel_foto_sesudah->getClientOriginalExtension(), $request->segel_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/segel/sesudah', $request->segel_foto_sesudah);
 
             if ($new_image) {
-                $locate_segel_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/segel/sesudah/' . $imageName;
+                $locate_segel_foto_sesudah = $new_image;
             }
         }
 
@@ -612,22 +598,21 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_tutup_terminal_foto_sebelum = "";
         if ($request->tutup_terminal_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminal/sebelum/' . $imageName . $request->tutup_terminal_foto_sebelum->getClientOriginalExtension(), $request->tutup_terminal_foto_sebelum);
+
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminal/sebelum', $request->tutup_terminal_foto_sebelum);
 
             if ($new_image) {
-                $locate_tutup_terminal_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/terminal/sebelum/' . $imageName;
+                $locate_tutup_terminal_foto_sebelum = $new_image;
             }
         }
 
 
         $locate_tutup_terminal_foto_sesudah = "";
         if ($request->tutup_terminal_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminal/sesudah/' . $imageName . $request->tutup_terminal_foto_sesudah->getClientOriginalExtension(), $request->tutup_terminal_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminal/sesudah', $request->tutup_terminal_foto_sesudah);
 
             if ($new_image) {
-                $locate_tutup_terminal_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/terminal/sesudah/' . $imageName;
+                $locate_tutup_terminal_foto_sesudah = $new_image;
             }
         }
 
@@ -667,21 +652,19 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_amr_foto_sebelum = "";
         if ($request->amr_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/amr/sebelum/' . $imageName . $request->amr_foto_sebelum->getClientOriginalExtension(), $request->amr_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/amr/sebelum', $request->amr_foto_sebelum);
 
             if ($new_image) {
-                $locate_amr_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/amr/sebelum/' . $imageName;
+                $locate_amr_foto_sebelum = $new_image;
             }
         }
 
         $locate_amr_foto_sesudah = "";
         if ($request->amr_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/amr/sesudah/' . $imageName . $request->amr_foto_sesudah->getClientOriginalExtension(), $request->amr_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/amr/sesudah', $request->amr_foto_sesudah);
 
             if ($new_image) {
-                $locate_amr_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/amr/sesudah/' . $imageName;
+                $locate_amr_foto_sesudah = $new_image;
             }
         }
 
@@ -721,21 +704,19 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_terminal_vt_foto_sebelum = "";
         if ($request->terminal_vt_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sebelum/' . $imageName . $request->terminal_vt_foto_sebelum->getClientOriginalExtension(), $request->terminal_vt_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sebelum', $request->terminal_vt_foto_sebelum);
 
             if ($new_image) {
-                $locate_terminal_vt_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/kubikel/sebelum/' . $imageName;
+                $locate_terminal_vt_foto_sebelum = $new_image;
             }
         }
 
         $locate_terminal_vt_foto_sesudah = "";
         if ($request->terminal_vt_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sesudah/' . $imageName . $request->terminal_vt_foto_sesudah->getClientOriginalExtension(), $request->terminal_vt_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/kubikel/sesudah', $request->terminal_vt_foto_sesudah);
 
             if ($new_image) {
-                $locate_terminal_vt_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/kubikel/sesudah/' . $imageName;
+                $locate_terminal_vt_foto_sesudah = $new_image;
             }
         }
 
@@ -776,21 +757,19 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_ct_foto_sebelum = "";
         if ($request->terminal_ct_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sebelum/' . $imageName . $request->terminal_ct_foto_sebelum->getClientOriginalExtension(), $request->terminal_ct_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sebelum', $request->terminal_ct_foto_sebelum);
 
             if ($new_image) {
-                $locate_ct_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/terminalct/sebelum/' . $imageName;
+                $locate_ct_foto_sebelum = $new_image;
             }
         }
 
         $locate_ct_foto_sesudah = "";
         if ($request->terminal_ct_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sesudah/' . $imageName . $request->terminal_ct_foto_sesudah->getClientOriginalExtension(), $request->terminal_ct_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/terminalct/sesudah', $request->terminal_ct_foto_sesudah);
 
             if ($new_image) {
-                $locate_ct_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/terminalct/sesudah/' . $imageName;
+                $locate_ct_foto_sesudah = $new_image;
             }
         }
 
@@ -829,21 +808,19 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_pintu_foto_sebelum = "";
         if ($request->pintu_foto_sebelum) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pintu/sebelum/' . $imageName . $request->pintu_foto_sebelum->getClientOriginalExtension(), $request->pintu_foto_sebelum);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pintu/sebelum', $request->pintu_foto_sebelum);
 
             if ($new_image) {
-                $locate_pintu_foto_sebelum = 'assets/tidaklangsung/pemeriksaan/pintu/sebelum/' . $imageName;
+                $locate_pintu_foto_sebelum = $new_image;
             }
         }
 
         $locate_pintu_foto_sesudah = "";
         if ($request->pintu_foto_sesudah) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pintu/sesudah/' . $imageName . $request->pintu_foto_sesudah->getClientOriginalExtension(), $request->pintu_foto_sesudah);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pemeriksaan/pintu/sesudah', $request->pintu_foto_sesudah);
 
             if ($new_image) {
-                $locate_pintu_foto_sesudah = 'assets/tidaklangsung/pemeriksaan/pintu/sesudah/' . $imageName;
+                $locate_pintu_foto_sesudah = $new_image;
             }
         }
 
@@ -884,21 +861,19 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_wiring_diagram = "";
         if ($request->wiring_diagram) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/wiring/diagram/' . $imageName . $request->wiring_diagram->getClientOriginalExtension(), $request->wiring_diagram);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/wiring/diagram', $request->wiring_diagram);
 
             if ($new_image) {
-                $locate_wiring_diagram = 'assets/tidaklangsung/wiring/diagram/' . $imageName;
+                $locate_wiring_diagram = $new_image;
             }
         }
 
         $locate_wiring_foto = "";
         if ($request->wiring_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/wiring/foto/' . $imageName . $request->wiring_foto->getClientOriginalExtension(), $request->wiring_foto);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/wiring/foto', $request->wiring_foto);
 
             if ($new_image) {
-                $locate_wiring_foto = 'assets/tidaklangsung/wiring/foto/' . $imageName;
+                $locate_wiring_foto = $new_image;
             }
         }
 
@@ -946,11 +921,10 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_pengukuran_foto = "";
         if ($request->pengukuran_foto) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pengukuran/' . $imageName . $request->pengukuran_foto->getClientOriginalExtension(), $request->pengukuran_foto);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/pengukuran', $request->pengukuran_foto);
 
             if ($new_image) {
-                $locate_pengukuran_foto = 'assets/tidaklangsung/pengukuran/' . $imageName;
+                $locate_pengukuran_foto = $new_image;
             }
         }
 
@@ -1020,12 +994,16 @@ class NewFormTidakLangsungController extends Controller
 
         $locate_akhir_foto_barang_bukti = "";
         if ($request->akhir_foto_barang_bukti) {
-            $imageName = Str::random(10);
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/hasil/' . $imageName . $request->akhir_foto_barang_bukti->getClientOriginalExtension(), $request->akhir_foto_barang_bukti);
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/hasil', $request->akhir_foto_barang_bukti);
 
             if ($new_image) {
-                $locate_akhir_foto_barang_bukti = 'assets/tidaklangsung/hasil/' . $imageName;
+                $locate_akhir_foto_barang_bukti = $new_image;
             }
+        }
+
+        $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
+        if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
+            $akhir_tanggal_penyelesaian = Carbon::parse($request->akhir_tanggal_penyelesaian)->format('Y-m-d');
         }
 
         if (empty($form_hasil_pemeriksaan)) {
@@ -1035,7 +1013,7 @@ class NewFormTidakLangsungController extends Controller
                 'kesimpulan' => $request->akhir_kesimpulan,
                 'tindakan' => $request->akhir_tindakan,
                 'barang_bukti' => $request->akhir_barang_bukti,
-                'tanggal_penyelesaian' => $request->akhir_tanggal_penyelesaian,
+                'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
                 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
 
             ]);
@@ -1045,10 +1023,10 @@ class NewFormTidakLangsungController extends Controller
             $form_hasil_pemeriksaan->kesimpulan = $request->akhir_kesimpulan;
             $form_hasil_pemeriksaan->tindakan = $request->akhir_tindakan;
             $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
-            $form_hasil_pemeriksaan->tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
+            $form_hasil_pemeriksaan->tanggal_penyelesaian = $akhir_tanggal_penyelesaian;
             $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
 
-            $form_pemeriksaan_pengukuran->save();
+            $form_hasil_pemeriksaan->save();
         }
 
 
