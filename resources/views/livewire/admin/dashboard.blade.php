@@ -15,8 +15,19 @@
         <x-datepicker wire:model="filters.max_tanggal_inspeksi" id="filter-max_tanggal_inspeksi">
         </x-datepicker>
 
-        <x-button wire:click="resetFilters" class="right-0 bottom-0 p-4">Reset Filters</x-button>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <x-button wire:click="daily" class="right-0 bottom-0 p-4">Daily</x-button>
+                <x-button wire:click="monthly" class="right-0 bottom-0 p-4">Monthly</x-button>
+            </div>
+            <div class="justify-items-end">
+                <x-button wire:click="resetFilters" class="items-end right-0 bottom-0 p-4">Reset Filters</x-button>
+            </div>
+        </div>
 
+        
+
+        
 
         <div class="flex-col space-y-4">
             <x-table>
@@ -118,6 +129,8 @@
                     ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
                     ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
                     ->count();
+
+                
                 
                 $count_diperiksa = App\Models\WorkOrder::query()
                     ->where("regus_id", $regu->id)
@@ -133,10 +146,8 @@
                     ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) =>$query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
                     ->count();
                 
-                @endphp
-                
-                
-                            @push('addon-script')
+                    @endphp
+                    @push('addon-script')
                 
                             <script>
                                 var ctx = document.getElementById('myChart{{ $regu->id }}').getContext('2d');
@@ -181,8 +192,8 @@
                                     });
                             </script>
                 
-                            @endpush
-                            @endforeach
+                    @endpush
+                @endforeach
         </div>
     </div>
 </div>

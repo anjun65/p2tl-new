@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Regu;
+use Illuminate\Support\Carbon;
 
 class Dashboard extends Component
 {
@@ -17,6 +18,23 @@ class Dashboard extends Component
     {
         $this->reset('filters');
     }
+
+    public function daily()
+    {
+        $this->filters['min_tanggal_inspeksi'] = now();
+        $this->filters['max_tanggal_inspeksi'] = now();
+    }
+
+    public function monthly()
+    {
+
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now()->endOfMonth();
+
+        $this->filters['min_tanggal_inspeksi'] = $start->toDateString();
+        $this->filters['max_tanggal_inspeksi'] = $end->toDateString();
+    }
+
 
     public function render()
     {
