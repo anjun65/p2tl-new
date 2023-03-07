@@ -12,7 +12,6 @@ class FormLangsungController extends Controller
     {
         $item = FormLangsung::where('works_id', $id)->get();
 
-
         return view('admin.form-langsung', [
             'item' => $item,
         ]);
