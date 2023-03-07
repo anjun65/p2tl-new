@@ -1439,7 +1439,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nama_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nama_saksi ?? '' }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1449,7 +1449,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->alamat_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->alamat_saksi  ?? ''}}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1459,7 +1459,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nomor_identitas }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->nomor_identitas ?? '' }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1470,7 +1470,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->no_telpon_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->no_telpon_saksi ?? '' }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
@@ -1480,7 +1480,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                           <label class="block text-sm font-medium text-gray-700">Pekerjaan Saksi</label>
                                           <div class="mt-1 flex rounded-md shadow-sm">
-                                            <input type="text" disabled value="{{ $item->work->kalibrasi->pekerjaan_saksi }}"
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->pekerjaan_saksi ?? '' }}"
                                               class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                           </div>
                                         </div>
