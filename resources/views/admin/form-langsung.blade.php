@@ -1411,7 +1411,7 @@
                               @endif
                                {{-- Data Hasil Pemeriksaan App --}}
                               
-                                @if ($item->work->kalibrasi)
+                              @if ($item->work->kalibrasi)
                                   
                                 
                               <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
@@ -1953,6 +1953,217 @@
                                 </div>
                               </div>
                               {{-- Data Uji Akurasi--}}
+                              @endif
+
+                              @if ($item->work->barangBukti)
+                              
+                              
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                                <div class="md:col-span-1">
+                                  <div class="px-4 sm:px-0">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Data Barang Bukti</h3>
+                                    <p class="mt-1 text-sm text-gray-600"></p>
+                                  </div>
+                                </div>
+                                <div class="mt-5 md:col-span-2 md:mt-0">
+                              
+                                </div>
+                              </div>
+                              
+                              {{-- Data saksi --}}
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                                <div class="md:col-span-1">
+                                  <div class="px-4 sm:px-0">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Detail Saksi</h3>
+                                    <p class="mt-1 text-sm text-gray-600"></p>
+                                  </div>
+                                </div>
+                                <div class="mt-5 md:col-span-2 md:mt-0">
+                              
+                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                      <div class="grid grid-cols-2 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Nama Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->nama_saksi ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Alamat Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->alamat_saksi  ?? ''}}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Nomor Identitas Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->nomor_identitas ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Nomor Telpon Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->no_telpon_saksi ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Pekerjaan Saksi</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->kalibrasi->pekerjaan_saksi ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      @if ($item->work->kalibrasi->file_identitas)
+                                      <div>
+                                        <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
+                                        <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                          <div class="space-y-1 text-center">
+                                            <img src="{{ Storage::url($item->work->kalibrasi->file_identitas) }}" />
+                              
+                              
+                                          </div>
+                                        </div>
+                                      </div>
+                                      @endif
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {{-- Data Saksi --}}
+
+                              
+                              {{-- Data Barang Bukti --}}
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                                <div class="md:col-span-1">
+                                  <div class="px-4 sm:px-0">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Detail Barang Bukti</h3>
+                                    <p class="mt-1 text-sm text-gray-600"></p>
+                                  </div>
+                                </div>
+                                <div class="mt-5 md:col-span-2 md:mt-0">
+                              
+                                  <div class="shadow sm:overflow-hidden sm:rounded-md">
+                                    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+                                      <div class="grid grid-cols-2 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Jenis Kabel</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->jenis_kabel ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Panjang Kabel</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->panjang_kabel  ?? ''}}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Tera</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->tera ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Terminal Kwh Meter</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->terminal_kwh_meter ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+                              
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Box OK</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->box_ok ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Box APP</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->box_app ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Alat Pembatas</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->alat_pembatas ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      <div class="grid grid-cols-3 gap-6">
+                                        <div class="col-span-3 sm:col-span-2">
+                                          <label class="block text-sm font-medium text-gray-700">Alat Bantu Ukur</label>
+                                          <div class="mt-1 flex rounded-md shadow-sm">
+                                            <input type="text" disabled value="{{ $item->work->barangBukti->alat_bantu_ukur ?? '' }}"
+                                              class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                      @if ($item->work->barangBukti->file_barang_bukti)
+                                      <div>
+                                        <label class="block text-sm font-medium text-gray-700">Foto Barang Bukti</label>
+                                        <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                                          <div class="space-y-1 text-center">
+                                            <img src="{{ Storage::url($item->work->barangBukti->file_barang_bukti) }}" />
+                                      
+                                      
+                                          </div>
+                                        </div>
+                                      </div>
+                                      @endif
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {{-- Data Barang Bukti --}}
+
                               @endif
                         </div>
                     </div>
