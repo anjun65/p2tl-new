@@ -23,7 +23,7 @@
                               </div>
                             </div>
                             {{-- Data Saksi --}}
-                            {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                            <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                               <div class="md:col-span-1">
                                 <div class="px-4 sm:px-0">
                                   <h3 class="text-lg font-medium leading-6 text-gray-900">Detail Saksi</h3>
@@ -84,7 +84,7 @@
                                     </div>
                                   </div>
                               </div>
-                            </div> --}}
+                            </div>
                             {{-- Data Saksi --}}
 
                             {{-- Data App LAma --}}
