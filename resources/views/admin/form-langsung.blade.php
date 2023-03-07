@@ -1411,7 +1411,7 @@
                               @endif
                                {{-- Data Hasil Pemeriksaan App --}}
                               
-                                {{-- @if ($item->work->kalibrasi)
+                                @if ($item->work->kalibrasi)
                                   
                                 
                               <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
@@ -1424,10 +1424,10 @@
                                 <div class="mt-5 md:col-span-2 md:mt-0">
                               
                                 </div>
-                              </div> --}}
+                              </div>
 
                               {{-- Data saksi --}}
-                              {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
                                     <h3 class="text-lg font-medium leading-6 text-gray-900">Detail Saksi</h3>
@@ -1504,11 +1504,11 @@
                                     </div>
                                   </div>
                                 </div>
-                              </div> --}}
+                              </div>
                               {{-- Data Saksi --}}
 
                               {{-- Data kWh Meter --}}
-                              {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
                                     <h3 class="text-lg font-medium leading-6 text-gray-900">Data kWh Meter</h3>
@@ -1636,11 +1636,11 @@
                                     </div>
                                   </div>
                                 </div>
-                              </div> --}}
+                              </div>
                               {{-- Data kWh Meter --}}
 
                               {{-- Data kWh Meter Lanjutan--}}
-                              {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
                                     <h3 class="text-lg font-medium leading-6 text-gray-900">Data kWh Meter Lanjutan</h3>
@@ -1760,11 +1760,11 @@
                                     </div>
                                   </div>
                                 </div>
-                              </div> --}}
+                              </div>
                               {{-- Data kWh Meter Lanjutan--}}
 
                               {{-- Data Uji Akurasi--}}
-                              {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
+                              <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                                 <div class="md:col-span-1">
                                   <div class="px-4 sm:px-0">
                                     <h3 class="text-lg font-medium leading-6 text-gray-900">Data Uji Akurasi</h3>
@@ -1951,9 +1951,9 @@
                                     </div>
                                   </div>
                                 </div>
-                              </div> --}}
+                              </div>
                               {{-- Data Uji Akurasi--}}
-                              {{-- @endif --}}
+                              @endif
                         </div>
                     </div>
                     </div>
