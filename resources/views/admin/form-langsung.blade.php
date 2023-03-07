@@ -1411,7 +1411,7 @@
                               @endif
                                {{-- Data Hasil Pemeriksaan App --}}
                               
-                                @if ($item->work->kalibrasi)
+                                {{-- @if ($item->work->kalibrasi)
                                   
                                 
                               <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
@@ -1953,7 +1953,7 @@
                                 </div>
                               </div>
                               {{-- Data Uji Akurasi--}}
-                              @endif
+                              @endif --}}
                         </div>
                     </div>
                     </div>
