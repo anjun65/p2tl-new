@@ -216,6 +216,7 @@ class WorkOrderController extends Controller
             'image' => $locate_image,
             'video' => $locate_video,
             'status' => 'Open',
+            'is_luar' => 1,
         ]);
 
         return ResponseFormatter::success($workorder, 'Berhasil ditambahkan');
