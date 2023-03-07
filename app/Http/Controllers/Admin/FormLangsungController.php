@@ -12,6 +12,7 @@ class FormLangsungController extends Controller
     {
         $item = FormLangsung::findorFail($id);
 
+        dd($item);
         // $item = FormLangsung::where('works_id', $id)->get();
 
         // dd($item);
