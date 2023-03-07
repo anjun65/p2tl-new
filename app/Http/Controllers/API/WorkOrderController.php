@@ -169,30 +169,23 @@ class WorkOrderController extends Controller
         ]);
 
 
-        $locate_image = "";
-        if ($request->image !== 'null' && $request->image != NULL) {
-            $image_64 = $request->image;
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1];
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = Str::random(10) . '.' . $extension;
-            $file = Storage::disk('public')->put('assets/TO/image/' . $imageName, base64_decode($image));
+        $new_image = '';
+        $new_video = '';
 
-            if ($file) {
-                $locate_image = 'assets/TO/image/' . $imageName;
+        if ($request->image) {
+
+            $new_image = Storage::disk('public')->put('assets/TO/image', $request->image);
+
+            if ($new_image) {
+                $locate_image = $new_image;
             }
         }
 
-        $locate_video = "";
         if ($request->video) {
-
-            $videoName = Str::random(10) . '.' . $request->video->getClientOriginalExtension();
-
-            $new_video = Storage::disk('public')->put('assets/TO/video/' . $videoName, $request->video);
+            $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
 
             if ($new_video) {
-                $locate_video = 'assets/TO/video/' . $videoName;
+                $locate_video = $new_video;
             }
         }
 
