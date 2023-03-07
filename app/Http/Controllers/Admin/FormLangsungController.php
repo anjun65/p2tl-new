@@ -10,9 +10,8 @@ class FormLangsungController extends Controller
 {
     public function show($id)
     {
-        $item = FormLangsung::where('works_id', $id);
+        $item = FormLangsung::where('works_id', $id)->get();
 
-        dd($item);
 
         return view('admin.form-langsung', [
             'item' => $item,
