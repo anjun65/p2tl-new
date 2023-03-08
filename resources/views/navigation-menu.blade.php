@@ -12,21 +12,32 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    @if ( Auth::user()->roles == 'ADMIN')
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
+                        
+                        <x-jet-nav-link href="{{ route('admin-wo') }}" :active="request()->routeIs('admin-wo')">
+                            {{ __('Target Operasi') }}
+                        </x-jet-nav-link>
+                        
+                        <x-jet-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
+                            {{ __('Manajemen Tim') }}
+                        </x-jet-nav-link>
+                    @endif
+                    
+                    @if ( Auth::user()->roles == 'ANEV')
+                        <x-jet-nav-link href="{{ route('annev-wo') }}" :active="request()->routeIs('annev-wo')">
+                            {{ __('Target Operasi') }}
+                        </x-jet-nav-link>
+                    @endif
+
+
+                    @if ( Auth::user()->roles == 'Struktural')
+                    <x-jet-nav-link href="{{ route('struktural-dashboard') }}" :active="request()->routeIs('struktural-dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-
-                    <x-jet-nav-link href="{{ route('admin-wo') }}" :active="request()->routeIs('admin-wo')">
-                        {{ __('Target Operasi') }}
-                    </x-jet-nav-link>
-
-                    {{-- <x-jet-nav-link href="{{ route('admin-pelanggaran') }}" :active="request()->routeIs('admin-pelanggaran')">
-                        {{ __('Berita Acara') }}
-                    </x-jet-nav-link> --}}
-
-                    <x-jet-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
-                        {{ __('Manajemen Tim') }}
-                    </x-jet-nav-link>
+                    @endif
 
                     
                 </div>
@@ -151,21 +162,37 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('admin-wo') }}" :active="request()->routeIs('admin-wo')">
-                {{ __('Target Operasi') }}
-            </x-jet-responsive-nav-link>
 
-            {{-- <x-jet-responsive-nav-link href="{{ route('admin-pelanggaran') }}" :active="request()->routeIs('admin-pelanggaran')">
-                {{ __('Berita Acara') }}
-            </x-jet-responsive-nav-link> --}}
+            @if ( Auth::user()->roles == 'ADMIN')
+                <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-jet-responsive-nav-link>
+                
+                <x-jet-responsive-nav-link href="{{ route('admin-wo') }}" :active="request()->routeIs('admin-wo')">
+                    {{ __('Target Operasi') }}
+                </x-jet-responsive-nav-link>
+                
+                <x-jet-responsive-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
+                    {{ __('Manajemen Tim') }}
+                </x-jet-responsive-nav-link>
+            @endif
+            
+            @if ( Auth::user()->roles == 'ANEV')
 
-            <x-jet-responsive-nav-link href="{{ route('admin-user') }}" :active="request()->routeIs('admin-user')">
-                {{ __('Manajemen Tim') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('annev-wo') }}" :active="request()->routeIs('annev-wo')">
+                    {{ __('Target Operasi') }}
+                </x-jet-responsive-nav-link>
+            @endif
+            
+            
+            @if ( Auth::user()->roles == 'Struktural')
+                <x-jet-responsive-nav-link href="{{ route('struktural-dashboard') }}" :active="request()->routeIs('struktural-dashboard')">
+                    {{ __('Dashboard') }}
+                </x-jet-responsive-nav-link>
+            @endif
+
+            
             
         </div>
 
