@@ -11,7 +11,7 @@ class FormLangsungController extends Controller
 {
     public function show($id)
     {
-        $item = FormLangsung::findorFail($id);
+        $item = FormLangsung::where('works_id', $id)->first();
 
         return view('annev.form-langsung', [
             'item' => $item,

@@ -73,6 +73,8 @@ Route::middleware([
 
     Route::get('/admin/form-langsung/{id}', [FormLangsungController::class, 'show'])->name('admin-form-langsung');
 
+    Route::get('/admin/form-tidak-langsung/{id}', [TidakLangsungController::class, 'show'])->name('admin-form-tidak-langsung');
+
     Route::get('/admin/serah-terima/{id}', [SerahTerimaController::class, 'show'])->name('admin-serah-terima');
 
     Route::post('/admin/serah-terima/new/{id}', [SerahTerimaController::class, 'store'])->name('serah-terima-post');

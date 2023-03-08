@@ -211,7 +211,15 @@
                                         </x-table.cell>
                 
                                         <x-table.cell>
-                                            <span class="text-gray-900 font-medium"><a href="{{ route('admin-form-langsung', $item->id) }}">Lihat BA</a></span>
+                                            <span class="text-gray-900 font-medium">
+                                                @if ($item->jenis_p2tl == "3TL")
+                                                    <a href="{{ route('admin-form-tidak-langsung', $item->id) }}">Lihat BA</a>
+                                                @else
+                                                    <a href="{{ route('admin-form-langsung', $item->id) }}">Lihat BA</a>
+                                                @endif
+                                                
+                                        
+                                            </span>
                                         </x-table.cell>
                 
                                         <x-table.cell>

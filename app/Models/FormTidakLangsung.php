@@ -26,58 +26,64 @@ class FormTidakLangsung extends Model
         return $this->belongsTo(WorkOrder::class, 'works_id', 'id');
     }
 
-    public function data_lama()
+    public function data_app()
     {
-        return $this->hasOne(FormLangsungDataAppLama::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataApp::class, 'forms_id', 'id');
     }
 
-    public function data_baru()
+    public function pelindung_kwh()
     {
-        return $this->hasOne(FormLangsungDataAppBaru::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanPelindungKwh::class, 'forms_id', 'id');
     }
 
-    public function kwh_meter()
+    public function pelindung_ct()
     {
-        return $this->hasOne(FormLangsungPemeriksaanKwhMeter::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanPelindungCt::class, 'forms_id', 'id');
     }
-    
+
+    public function segel()
+    {
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanSegelMetrologi::class, 'forms_id', 'id');
+    }
+
     public function terminal()
     {
-        return $this->hasOne(FormLangsungPemeriksaanTerminal::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanTutupTerminal::class, 'forms_id', 'id');
     }
 
-    public function pelindungkwh()
+    public function amr()
     {
-        return $this->hasOne(FormLangsungPemeriksaanPelindungKwh::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanBoxAmr::class, 'forms_id', 'id');
     }
 
-    public function pelindung_busbar()
+    public function kubikel()
     {
-        return $this->hasOne(FormLangsungPemeriksaanPelindungBusBar::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanKubikel::class, 'forms_id', 'id');
     }
 
-    public function papan_ok()
+    public function terminal_ct()
     {
-        return $this->hasOne(FormLangsungPemeriksaanPapanOk::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanTerminalCt::class, 'forms_id', 'id');
     }
 
-    public function penutup_mcb()
+    public function pintu_gardu()
     {
-        return $this->hasOne(FormLangsungPemeriksaanPenutupMcb::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungDataPemeriksaanPintuGardu::class, 'forms_id', 'id');
     }
+
 
     public function pemeriksaan_pengukuran()
     {
-        return $this->hasOne(FormLangsungPemeriksaanPengukuran::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungPemeriksaanPengukuran::class, 'forms_id', 'id');
     }
 
     public function wiring_app()
     {
-        return $this->hasOne(FormLangsungWiringApp::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungWiringApp::class, 'forms_id', 'id');
     }
 
     public function hasil_pemeriksaan()
     {
-        return $this->hasOne(FormLangsungHasilPemeriksaan::class, 'forms_id', 'id');
+        return $this->hasOne(FormTidakLangsungHasilPemeriksaan::class, 'forms_id', 'id');
     }
 }
