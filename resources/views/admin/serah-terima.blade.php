@@ -10,6 +10,20 @@
             <div class="overflow-hidden sm:rounded-lg">
                 <div class="py-4 space-y-4">
                     <div class="flex-col space-y-4">
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div></div>
+                            <div class="justify-self-end">
+                                @if ($serah != null)
+                            
+                                <a class="items-end py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500"
+                                    href="{{ route('serah-terima-pdf', $serah->works_id) }}" style="margin-left:4px;margin-right:4px;"> Lihat PDF
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                        
+
                         <div>
                             {{-- Detail saksi --}}
                             {{-- <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
@@ -199,48 +213,46 @@
                                     <div class="shadow sm:overflow-hidden sm:rounded-md">
                                         <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                                             
-
                                             <div class="grid grid-cols-2 gap-6">
                                                 <div class="col-span-3 sm:col-span-2">
-                                                    {{-- @if (($serah->isEmpty())) --}}
+                                                    @if ($serah == null)
                                                         <form action="{{ route('serah-terima-post', $id)  }}" method="POST">
                                                             @csrf
                                                             
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
                                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                                {{-- <x-datepicker2 name='tanggal_serah_terima' id='tanggal_serah_terima'>
-                                                                </x-datepicker2> --}}
+                                                                <x-datepicker2>
+                                                                </x-datepicker2>
 
-                                                                <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima }}"
-                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                                                {{-- <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima ?? '' }}"
+                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"> --}}
                                                             </div>
                                                         
                                                             <x-button type="submit" class="mt-5">
-                                                                Save now
+                                                                Simpan
                                                             </x-button>
                                                         </form>
-                                                    {{-- @else
+                                                    @else
                                                         <form action="{{ route('serah-terima-update', $id) }}" method="POST" enctype="multipart/form-data">
                                                             @method('PUT')
                                                             @csrf
                                                             
                                                         
                                                             <label class="mt-1 block text-sm font-medium text-gray-700">Tanggal Serah Terima</label>
-                                                            <div class="mt-1 flex rounded-md shadow-sm"> --}}
-                                                                {{-- <x-datepicker2 name='tanggal_serah_terima'>
-                                                                </x-datepicker2> --}}
+                                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                                <x-datepicker2 name='tanggal_serah_terima'>
+                                                                </x-datepicker2>
 
-                                                                {{-- <input type="text" name="tanggal_serah_terima" value="{{ $serah->tanggal_serah_terima }}"
-                                                                    class="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                            
                                                             </div>
                                                         
                                                             <x-button type="submit" class="mt-5">
-                                                                Save now
+                                                                Simpan
                                                             </x-button>
                                                         
                                                         </form>
-                                                    @endif --}}
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>

@@ -39,7 +39,7 @@ class FormLangsung extends Model
     {
         return $this->hasOne(FormLangsungPemeriksaanKwhMeter::class, 'forms_id', 'id');
     }
-    
+
     public function terminal()
     {
         return $this->hasOne(FormLangsungPemeriksaanTerminal::class, 'forms_id', 'id');

@@ -17,5 +17,6 @@ class FormTidakLangsungHasilPemeriksaan extends Model
         'barang_bukti',
         'tanggal_penyelesaian',
         'foto_barang_bukti',
+        'kesimpulan_video',
     ];
 }

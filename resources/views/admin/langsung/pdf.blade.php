@@ -120,12 +120,16 @@
         'Desember'];
 
         $tanggal = \Illuminate\Support\Carbon::parse($item->tanggal_serah_terima);
+        $tanggal_pemeriksaan = \Illuminate\Support\Carbon::parse($item->form->hasil_pemeriksaan->tanggal_penyelesaian);
 
         $hari = $tanggal->dayOfWeek;
+        $hari_pemeriksaan = $tanggal->dayOfWeek;
         $bulan = $tanggal->month;
 
         $indonesianDay = trans($day_name[$hari]);
         $indonesianMonth = trans($month_name[$bulan-1]);
+
+        $indonesianDay_pemeriksaan = trans($day_name[$hari_pemeriksaan]);
 
         // $now = \Illuminate\Support\Carbon::now()->locale('id');
 
@@ -139,7 +143,7 @@
         <tr>
             <td colspan="12" class="px-3">
                 Pada hari ini, {{ $indonesianDay }} Tanggal {{ $tanggal_only }} Bulan {{ $indonesianMonth }} Tahun {{
-                $tahun }} <br/>Kami yang bertanda tangan dibawah ini :
+                $tahun }}, Kami yang bertanda tangan dibawah ini :
             </td>
         </tr>
         
@@ -149,9 +153,12 @@
         @endphp
         
         @foreach ($users as $user)
+        @php
+            $i = 1;
+        @endphp
         <tr>
             <td colspan="2">
-                <div class="pl-5">1. Nama</div>
+                <div class="pl-5">Nama</div>
             </td>
             <td colspan="10">
                 : {{ $user->name }}
@@ -164,7 +171,7 @@
                 <div class="pl-5">Nomor Induk</div>
             </td>
             <td colspan="10">
-                : {{ $user->nip ?? "-" }}
+                : {{ $user->NIP ?? "-" }}
             </td>
         </tr>
         
@@ -178,31 +185,76 @@
                 : {{ $user->jabatan ?? "-" }}
             </td>
         </tr>
-        
-        
+        <br/>
         @endforeach
 
-        <tr>
-            <td colspan="3" class="pl-5">
-                Nama Pelanggan
-            </td>
-            <td colspan="3">
-                : 
-            </td>
-
-            <td colspan="3" class="pl-5">
-                ID Pelanggan
-            </td>
-            <td colspan="3">
-                : 
-            </td>
-        </tr>
+        
 
         <tr>
             <td colspan="12" class="px-3">
-                Masing-masing sebagai Petugas Pelaksana Lapangan P2TL, berdasarkan Surat Tugas Nomor : ........ tanggal: ........
+                Masing-masing sebagai Petugas Pelaksana Lapangan P2TL, berdasarkan Surat Tugas Nomor: 
             </td>
         </tr>
+
+        <tr>
+            <td colspan="6" class="pl-3">
+                Nomor : {{ str_pad($item->surat_tugas_p2tl, 5, '0', STR_PAD_LEFT); }}
+            </td>
+        
+            <td colspan="6" class="pl-5">
+                Tanggal : {{ $item->tanggal_surat_tugas_p2tl}}
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="12" class="px-3">
+                Dengan didampingi oleh petugas dari TNI, POLRI berdasarkan Surat Tugas dari : {{ $item->surat_dari }}
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="6" class="pl-3">
+                Nomor : {{ str_pad($item->surat_tugas_p2tl, 5, '0', STR_PAD_LEFT); }}
+            </td>
+        
+            <td colspan="6" class="pl-5">
+                Tanggal : {{ $item->tanggal_surat_tugas_p2tl}}
+            </td>
+        </tr>
+        <br />
+
+        @php
+            $pendamping1 = \App\Models\Pendamping::where('id', $item->pendamping1_id)->first();
+        @endphp
+
+        <tr>
+            <td colspan="2">
+                <div class="pl-5">Nama</div>
+            </td>
+            <td colspan="10">
+                : @if ($pendamping1) {{ $pendamping1->name }} @endif
+            </td>
+        </tr>
+        
+        <tr>
+        
+            <td colspan="2">
+                <div class="pl-5">Nomor Induk</div>
+            </td>
+            <td colspan="10">
+                : @if ($pendamping1) {{ $pendamping1->nip }} @endif
+            </td>
+        </tr>
+        
+            <tr>
+                <td colspan="2">
+                    <div class="pl-5">Jabatan</div>
+                </td>
+                <td colspan="10">
+                    : @if ($pendamping1) {{ $pendamping1->jabatan }} @endif
+                </td>
+            </tr>
+        <br />
 
         <tr>
             <td colspan="12" class="px-3">
@@ -216,7 +268,7 @@
                 <div class="pl-5">- Nama</div>
             </td>
             <td colspan="10">
-                : 
+                :  {{ $item->nama_pelanggan }}
             </td>
         </tr>
 
@@ -226,7 +278,7 @@
                 <div class="pl-5">- Alamat Pelanggan</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->alamat }}
             </td>
         </tr>
 
@@ -236,7 +288,7 @@
                 <div class="pl-5">- IDPEL</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->id_pelanggan }}
             </td>
         </tr>
 
@@ -246,7 +298,7 @@
                 <div class="pl-5">- Tarif / Daya</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->tarif }} / {{ $item->daya }}
             </td>
         </tr>
 
@@ -262,7 +314,7 @@
                 <div class="pl-5">Nama</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->form->nama_saksi }}
             </td>
         </tr>
         
@@ -272,7 +324,7 @@
                 <div class="pl-5">Alamat</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->form->alamat_saksi }}
             </td>
         </tr>
         
@@ -282,26 +334,17 @@
                 <div class="pl-5">Nomor KTP/SIM</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->form->nomor_identitas }}
             </td>
         </tr>
         
-        
-        <tr>
-            <td colspan="2">
-                <div class="pl-5">Pekerjaan</div>
-            </td>
-            <td colspan="10">
-                :
-            </td>
-        </tr>
 
         <tr>
             <td colspan="2">
                 <div class="pl-5">Nomor Telp./HP</div>
             </td>
             <td colspan="10">
-                :
+                : {{ $item->form->no_telpon_saksi }}	
             </td>
         </tr>
 
@@ -426,7 +469,7 @@
                         </td>
                     
                         <td colspan="4">
-                    
+                            
                         </td>
                     
                         <td colspan="2" class="pl-3" style="border-left: 1px solid black">
@@ -434,172 +477,108 @@
                         </td>
                     
                         <td colspan="4" class="pr-3">
-                    
+                            
                         </td>
                     </tr>
 
 
                     <tr>
-                        <td colspan="2" class="pl-3">
-                            Merk/Type
+                        <td colspan="6" class="pl-4">
+                            Merk/Type : {{ $item->form->data_lama->merk }}
                         </td>
                     
-                        <td colspan="4">
-                            :
+                    
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Merk/Type : {{ $item->form->data_baru->merk }}
                         </td>
                     
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Merk/Type
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
-                        </td>
                     </tr>
 
 
                     <tr>
-                        <td colspan="2" class="pl-3">
-                            No. Register
+                        <td colspan="6" class="pl-4">
+                            No. Register : {{ $item->form->data_lama->no_reg }}
                         </td>
                     
-                        <td colspan="4">
-                            :
-                        </td>
                     
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            No. Register
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            No. Register : {{ $item->form->data_baru->no_reg }}
                         </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                    </tr>
+
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            No. Seri : {{ $item->form->data_lama->no_seri }}
+                        </td>
+                        
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            No. Seri : {{ $item->form->data_baru->no_seri }}
+                        </td>
+                    </tr>
+
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Tahun Pembuatan : {{ $item->form->data_lama->tahun_pembuatan }}
+                        </td>
+                        
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Tahun Pembuatan : {{ $item->form->data_baru->tahun_pembuatan }}
+                        </td>
+                    </tr>
+
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Class : {{ $item->form->data_lama->class }}
+                        </td>
+                        
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Class : {{ $item->form->data_baru->class }}
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" class="pl-3">
-                            No. Seri
+                        <td colspan="6" class="pl-4">
+                            Konstanta : {{ $item->form->data_lama->konstanta }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            No. Seri
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Tahun Prmbuatan
-                        </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Tahun Prmbuatan
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Konstanta : {{ $item->form->data_baru->konstanta }}
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" class="pl-3">
-                            Class
+                        <td colspan="6" class="pl-4">
+                            Rating Arus (ln) : {{ $item->form->data_lama->rating_arus }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Rating Arus (ln) : {{ $item->form->data_baru->rating_arus }}
                         </td>
+                    </tr>
                     
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Class
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Tegangan Nomimal : {{ $item->form->data_lama->tegangan_nominal }}
                         </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Tegangan Nomimal : {{ $item->form->data_baru->tegangan_nominal }}
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" class="pl-3">
-                            Konstanta
+                        <td colspan="6" class="pl-4">
+                            Stand kWh Meter : {{ $item->form->data_lama->stand_kwh_meter }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Konstanta
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Stand kWh Meter : {{ $item->form->data_baru->stand_kwh_meter }}
                         </td>
                     </tr>
 
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Rating Arus (ln)
-                        </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Rating Arus (ln)
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Tegangan Nomimal
-                        </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Tegangan Nomimal
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Stand kWh Meter
-                        </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Stand kWh Meter
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
-                        </td>
-                    </tr>
 
 
                     <tr>
@@ -621,57 +600,33 @@
                     </tr>
 
 
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Jenis pembatas
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Jenis pembatas : {{ $item->form->data_lama->jenis_pembatas }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Jenis pembatas
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Jenis pembatas : {{ $item->form->data_baru->jenis_pembatas }}
                         </td>
                     </tr>
 
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Merk/Type
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Merk/Type : {{ $item->form->data_lama->alat_pembatas_merk }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Merk/Type
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Merk/Type : {{ $item->form->data_baru->alat_pembatas_merk }}
                         </td>
                     </tr>
                 
-                    <tr>
-                        <td colspan="2" class="pl-3">
-                            Rating Arus (ln)
+                    <tr>                    
+                        <td colspan="6" class="pl-4">
+                            Rating Arus (ln) : {{ $item->form->data_lama->rating_arus_2 }}
                         </td>
-                    
-                        <td colspan="4">
-                            :
-                        </td>
-                    
-                        <td colspan="2" class="pl-3" style="border-left: 1px solid black">
-                            Rating Arus (ln)
-                        </td>
-                    
-                        <td colspan="4" class="pr-3">
-                            :
+                        
+                        <td colspan="6" class="pl-4" style="border-left: 1px solid black">
+                            Rating Arus (ln) : {{ $item->form->data_baru->rating_arus_2 }}
                         </td>
                     </tr>
                 </table>
@@ -716,11 +671,11 @@
                             <b>Yang Diperiksa</b>
                         </td>
         
-                        <td colspan="5" class="px-1" style="border: 1px solid black">
+                        <td colspan="5" class="px-1 text-center" style="border: 1px solid black">
                             <b>Kondisi Ketika Pemeriksaan</b>
                         </td>
         
-                        <td colspan="4" class="px-1" style="border: 1px solid black">
+                        <td colspan="4" class="px-1 text-center" style="border: 1px solid black">
                             <b>Kondisi Setelah Pemeriksaan</b>
                         </td>
                     </tr>
@@ -761,29 +716,29 @@
                         </td>
         
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->kwh_meter->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->kwh_meter->peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->kwh_meter->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->kwh_meter->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->kwh_meter->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->kwh_meter->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->kwh_meter->post_peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->kwh_meter->post_peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->kwh_meter->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->kwh_meter->post_segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->kwh_meter->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
@@ -798,29 +753,29 @@
                         </td>
         
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->terminal->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->terminal->peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->terminal->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->terminal->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->terminal->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->terminal->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->terminal->post_peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->terminal->post_peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->terminal->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->terminal->post_segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->terminal->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
@@ -836,29 +791,29 @@
                         </td>
         
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindungkwh->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindungkwh->peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindungkwh->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindungkwh->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindungkwh->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindungkwh->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindungkwh->post_peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindungkwh->post_peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindungkwh->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindungkwh->post_segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindungkwh->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
@@ -874,29 +829,30 @@
                         </td>
         
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->peralatan == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindung_busbar->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindung_busbar->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->post_peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->post_peralatan == "Tidak Ada") checked="true" @endif> Tidak
+                            Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->pelindung_busbar->post_segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->pelindung_busbar->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
@@ -908,31 +864,36 @@
                         <td colspan="2" class="px-1" style="border: 1px solid black">
                             Papan OK
                         </td>
-        
+                        
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->papan_ok->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->papan_ok->peralatan == "Tidak Ada") checked="true" @endif> Tidak
+                            Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->papan_ok->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->papan_ok->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->papan_ok->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->papan_ok->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->papan_ok->post_peralatan == "Ada") checked="true" @endif> Ada
+                            <br />
+                            <input type="checkbox" @if ($item->form->papan_ok->post_peralatan == "Tidak Ada") checked="true" @endif>
+                            Tidak
+                            Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->papan_ok->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->papan_ok->post_segel == "Tidak Ada") checked="true" @endif> Tidak
+                            Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->papan_ok->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
@@ -947,35 +908,40 @@
                         </td>
         
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->penutup_mcb->peralatan == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->penutup_mcb->peralatan == "Tidak Ada") checked="true" @endif> Tidak
+                            Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->penutup_mcb->segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->penutup_mcb->segel == "Tidak Ada") checked="true" @endif> Tidak Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->penutup_mcb->nomor_tahun_kode_segel }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->penutup_mcb->keterangan }}
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->penutup_mcb->post_peralatan == "Ada") checked="true" @endif> Ada
+                            <br />
+                            <input type="checkbox" @if ($item->form->penutup_mcb->post_peralatan == "Tidak Ada") checked="true" @endif>
+                            Tidak
+                            Ada
                         </td>
                         <td colspan="1" class="px-1" style="border: 1px solid black">
-                            <input type="checkbox"> Ada <br />
-                            <input type="checkbox"> Tidak Ada
+                            <input type="checkbox" @if ($item->form->penutup_mcb->post_segel == "Ada") checked="true" @endif> Ada <br />
+                            <input type="checkbox" @if ($item->form->penutup_mcb->post_segel == "Tidak Ada") checked="true" @endif> Tidak
+                            Ada
                         </td>
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-        
+                            {{ $item->form->penutup_mcb->post_nomor_tahun_kode_segel }}
                         </td>
                     </tr>
         
                     <tr>
                         <td colspan="12" class="px-1">
-                            Keterangan :
+                            Keterangan : {{ $item->form->penutup_mcb->all_keterangan }}
                         </td>
                     </tr>
         
@@ -1040,19 +1006,19 @@
                         </td>
                     
                         <td class="px-1" colspan="3" style="border: 1px solid black">
-                            
+                            {{ $item->form->pemeriksaan_pengukuran->arus_1 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                            
+                            {{ $item->form->pemeriksaan_pengukuran->arus_2 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                            
+                            {{ $item->form->pemeriksaan_pengukuran->arus_3 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                            
+                            {{ $item->form->pemeriksaan_pengukuran->arus_netral }}
                         </td>
                     </tr>
 
@@ -1062,19 +1028,19 @@
                         </td>
                     
                         <td class="px-1" colspan="3" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_netral_1 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_netral_2 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_netral_3 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            
                         </td>
                     </tr>
                     
@@ -1084,15 +1050,15 @@
                         </td>
                     
                         <td class="px-1" colspan="3" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_phase_1 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_phase_2 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->voltase_phase_3 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
@@ -1106,15 +1072,15 @@
                         </td>
                     
                         <td class="px-1" colspan="3" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->cos_1 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->cos_2 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
-                    
+                            {{ $item->form->pemeriksaan_pengukuran->cos_3 }}
                         </td>
                     
                         <td colspan="2" class="px-1" style="border: 1px solid black">
@@ -1124,7 +1090,7 @@
 
                     <tr>
                         <td class="px-1" colspan="12" style="border: 1px solid black">
-                            <b>Akurasi pengukuran kWh Meter :</b> 
+                            <b>Akurasi pengukuran kWh Meter : {{ $item->form->pemeriksaan_pengukuran->akurasi }}</b> 
                         </td>
                     </tr>
                     <tr>
@@ -1163,7 +1129,7 @@
                                     </td>
 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal1 }}
                                     </td>
                             
                                 </tr>
@@ -1178,7 +1144,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal2 }}
                                     </td>
                                 
                                 </tr>
@@ -1193,7 +1159,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal3 }}
                                     </td>
                                 
                                 </tr>
@@ -1208,7 +1174,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal4 }}
                                     </td>
                                 
                                 </tr>
@@ -1222,7 +1188,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal5 }}
                                     </td>
                                 
                                 </tr>
@@ -1236,7 +1202,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal6 }}
                                     </td>
                                 
                                 </tr>
@@ -1250,7 +1216,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal7 }}
                                     </td>
                                 
                                 </tr>
@@ -1264,7 +1230,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal8 }}
                                     </td>
                                 
                                 </tr>
@@ -1279,7 +1245,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal9 }}
                                     </td>
                                 
                                 </tr>
@@ -1293,7 +1259,7 @@
                                     </td>
                                 
                                     <td class="px-3" style="border-bottom: 1px solid black" colspan="4">
-                                        ...........
+                                        {{ $item->form->wiring_app->terminal11 }}
                                     </td>
                                 
                                 </tr>
@@ -1305,7 +1271,7 @@
 
                     <tr>
                         <td class="px-4 pb-3" colspan="12">
-                            Keterangan :
+                            Keterangan : {{ $item->form->wiring_app->keterangan_wiring_app }}
                         </td>
                     
                     </tr>
@@ -1382,7 +1348,7 @@
 
         <tr>
             <td colspan="12" class="px-4">
-                ......................................................
+                {{ $item->form->hasil_pemeriksaan->hasil_pemeriksaan }}
             </td>
         </tr>
 
@@ -1394,7 +1360,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                ......................................................
+                {{ $item->form->hasil_pemeriksaan->kesimpulan }}
             </td>
         </tr>
 
@@ -1407,7 +1373,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                ......................................................
+                {{ $item->form->hasil_pemeriksaan->tindakan }}
             </td>
         </tr>
 
@@ -1420,7 +1386,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                ......................................................
+                {{ $item->form->hasil_pemeriksaan->barang_bukti }}
             </td>
         </tr>
 
@@ -1444,7 +1410,7 @@
             </td>
 
             <td colspan="10">
-                :
+                : {{ $indonesianDay_pemeriksaan }}
             </td>
         </tr>
 
@@ -1454,7 +1420,7 @@
             </td>
         
             <td colspan="10">
-                :
+                : {{ $item->form->hasil_pemeriksaan->tanggal_penyelesaian }}
             </td>
         
         </tr>

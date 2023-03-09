@@ -13,7 +13,7 @@ class TidakLangsungController extends Controller
     public function generatePDF($id)
     {
 
-        $item = WorkOrder::where('id', 44)->first();
+        $item = WorkOrder::where('id', $id)->first();
 
         view()->share([
             'item' => $item,

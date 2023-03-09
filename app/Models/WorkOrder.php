@@ -51,6 +51,7 @@ class WorkOrder extends Model
         'labor',
         'is_luar',
         'is_temuan',
+        'surat_dari',
     ];
 
     const Keterangan = [
@@ -80,9 +81,24 @@ class WorkOrder extends Model
         return $this->belongsTo(Regu::class, 'regus_id', 'id');
     }
 
+    public function pendamping()
+    {
+        return $this->belongsTo(Pendamping::class, 'pendamping1_id', 'id');
+    }
+
+    public function pendamping2()
+    {
+        return $this->belongsTo(Pendamping::class, 'pendamping2_id', 'id');
+    }
+
     public function form()
     {
         return $this->hasOne(FormLangsung::class, 'works_id', 'id');
+    }
+
+    public function tidak_langsung()
+    {
+        return $this->hasOne(FormTidakLangsung::class, 'works_id', 'id');
     }
 
     public function kalibrasi()

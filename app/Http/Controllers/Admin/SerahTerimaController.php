@@ -17,6 +17,7 @@ class SerahTerimaController extends Controller
 
         $serah = SerahTerima::where('works_id', $id)->first();
 
+
         return view('admin.serah-terima', [
             'item' => $item,
             'serah' => $serah,
@@ -50,7 +51,7 @@ class SerahTerimaController extends Controller
 
     public function generatePDF($id)
     {
-        $item = SerahTerima::with('work')->where('id', $id)->first();
+        $item = SerahTerima::with('work')->where('works_id', $id)->first();
 
         // return view('admin.serah-terima.pdf', [
         //     'item' => $item,

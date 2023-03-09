@@ -11,6 +11,26 @@
                 <div class="py-4 space-y-4">
                     <div class="flex-col space-y-4">
                         <div>
+                            <div class="grid grid-cols-2 gap-4">
+                              <div></div>
+                              <div class="justify-self-end py-2">
+                                @if ($item->work->jenis_p2tl == "3TL")
+                                  
+                                  <a class="items-end py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500"
+                                    href="{{ route('anev-tidak-langsung-pdf', $item->work->id) }}" style="margin-left:4px;margin-right:4px;">
+                                    Lihat PDF
+                                  </a>
+                                @endif
+
+                                @if ($item->work->jenis_p2tl == "1L" || $item->work->jenis_p2tl == "3L")
+                                  <a class="items-end py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500"
+                                    href="{{ route('anev-langsung-pdf', $item->work->id) }}" style="margin-left:4px;margin-right:4px;"> Lihat PDF
+                                  </a>
+                                  
+                                @endif
+                                
+                              </div>
+                            </div>
                             {{-- Data Saksi --}}
                             <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
                               <div class="md:col-span-1">

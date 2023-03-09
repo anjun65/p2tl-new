@@ -20,8 +20,8 @@
                 <x-button wire:click="daily" class="right-0 bottom-0 p-4">Daily</x-button>
                 <x-button wire:click="monthly" class="right-0 bottom-0 p-4">Monthly</x-button>
             </div>
-            <div class="justify-items-end">
-                <x-button wire:click="resetFilters" class="items-end right-0 bottom-0 p-4">Reset Filters</x-button>
+            <div class="justify-self-end">
+                <x-button wire:click="resetFilters" class="right-0 bottom-0 p-4">Reset Filters</x-button>
             </div>
 
         </div>
@@ -50,6 +50,13 @@
                                         ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
                                         ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
                                         ->count();
+
+                            $count_luar = App\Models\WorkOrder::query()
+                                        ->where("regus_id", $regu->id)
+                                        ->where("is_luar", 1)
+                                        ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                                        ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                                        ->count();
                                         
                             $count_diperiksa = App\Models\WorkOrder::query()
                                         ->where("regus_id", $regu->id)
@@ -65,6 +72,20 @@
                                         ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
                                         ->count();
 
+                            $count_rp = App\Models\WorkOrder::query()
+                                        ->where("regus_id", $regu->id)
+                                        ->whereIn('status_pelanggaran', ['P1','P2','P3','P4','K1','K2','K3',])
+                                        ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                                        ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                                        ->sum('jumlah_ts_rp');
+
+                            $count_kwh = App\Models\WorkOrder::query()
+                                        ->where("regus_id", $regu->id)
+                                        ->whereIn('status_pelanggaran', ['P1','P2','P3','P4','K1','K2','K3',])
+                                        ->when($this->filters['max_tanggal_inspeksi'], fn($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                                        ->when($this->filters['min_tanggal_inspeksi'], fn($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                                        ->sum('jumlah_ts_kwh');
+
                         @endphp
 
                     <x-table.row wire:loading.class.delay="opacity-50" >       
@@ -77,7 +98,7 @@
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">0 </span>
+                            <span class="text-cool-gray-900 font-medium">{{ $count_luar }} </span>
                         </x-table.cell>
         
                         <x-table.cell>
@@ -89,11 +110,11 @@
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">0</span>
+                            <span class="text-cool-gray-900 font-medium">{{ $count_rp }}</span>
                         </x-table.cell>
 
                         <x-table.cell>
-                            <span class="text-cool-gray-900 font-medium">0</span>
+                            <span class="text-cool-gray-900 font-medium">{{ $count_kwh }}</span>
                         </x-table.cell>
                     </x-table.row>
 
@@ -107,6 +128,39 @@
                         </x-table.cell>
                     </x-table.row>
                     @endforelse
+                </x-slot>
+            </x-table>
+        </div>
+
+
+        <div class="flex-col space-y-4">
+            <x-table>
+                <x-slot name="head">
+                    <x-table.heading>Jumlah TO Keseluruhan</x-table.heading>
+                    <x-table.heading>Jumlah Temuan</x-table.heading>
+                    <x-table.heading>Jumlah TS (Rp)</x-table.heading>
+                    <x-table.heading>Jumlah TS (kWh)</x-table.heading>
+                </x-slot>
+        
+                <x-slot name="body">
+                    <x-table.row wire:loading.class.delay="opacity-50" class="text-center">       
+                    
+                        <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">{{ $all_wo }} </span>
+                        </x-table.cell>
+
+                        <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">{{ $all_temuan }} </span>
+                        </x-table.cell>
+
+                        <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">{{ $all_rp }} </span>
+                        </x-table.cell>
+
+                        <x-table.cell>
+                            <span class="text-cool-gray-900 font-medium">{{ $all_kwh }} </span>
+                        </x-table.cell>
+                    </x-table.row>
                 </x-slot>
             </x-table>
         </div>
@@ -266,10 +320,10 @@
         
     }
 
-    Livewire.on('berhasilUpdate', event => {
-        var chartData = JSON.parse(event.data);
-        console.log(chartData);
-    });
+    // Livewire.on('berhasilUpdate', event => {
+    //     var chartData = JSON.parse(event.data);
+    //     console.log(chartData);
+    // });
     
     
 </script>

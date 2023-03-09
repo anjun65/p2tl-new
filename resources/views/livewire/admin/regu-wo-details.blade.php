@@ -539,6 +539,14 @@
                                     <x-input.text wire:model="editing.surat_tugas_p2tl" id="surat_tugas_p2tl" Placeholder="Surat Tugas P2TL">
                                     </x-input.text>
                                 </x-input.group>
+
+                                <x-input.group for="surat_dari" label="Surat Dari" :error="$errors->first('editing.surat_dari')">
+                                    <x-input.select wire:model="editing.surat_dari" id="surat_dari">
+                                        <option value="">Pilih Surat Dari</option>
+                                        <option value="TNI">TNI</option>
+                                        <option value="Polri">Polri</option>
+                                    </x-input.select>
+                                </x-input.group>
                 
                                 <x-input.group for="tanggal_surat_tugas_p2tl" label="Tanggal Surat Tugas P2TL" :error="$errors->first('editing.tanggal_surat_tugas_p2tl')">
                                     <x-datepicker wire:model="editing.tanggal_surat_tugas_p2tl" id="tanggal_surat_tugas_p2tl" Placeholder="Tanggal Surat Tugas P2TL">
@@ -598,7 +606,7 @@
                             <x-slot name="footer">
 
                                 @if ($this->editing->labor == 1)
-                                    <a class="py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500" href="{{ route('admin-serah-terima', $this->editing->id) }}">Tambah BA Serah Terima</a>
+                                    <a class="py-2 px-4 border rounded-md text-sm leading-5 font-medium focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-150 ease-in-out border-gray-300 text-gray-700 active:bg-gray-50 active:text-gray-800 hover:text-gray-500" href="{{ route('admin-serah-terima', $this->editing->id) }}" style="margin-left:4px;margin-right:4px;"> Tambah BA Serah Terima</a>
                                 @endif
 
                                 <x-button.secondary wire:click="$set('showEditModal', false)">Cancel</x-button.secondary>

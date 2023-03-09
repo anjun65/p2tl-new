@@ -230,8 +230,14 @@
                                     </x-table.cell>
 
                                     <x-table.cell>
-                                        <span class="text-gray-900 font-medium"><a
-                                                href="{{ route('annev-form-langsung', $item->id) }}">Lihat BA</a></span>
+                                        <span class="text-gray-900 font-medium">
+                                            @if ($item->jenis_p2tl == "3TL")
+                                                <a href="{{ route('annev-form-tidak-langsung', $item->id) }}">Lihat BA</a>
+                                            @else
+                                                <a href="{{ route('annev-form-langsung', $item->id) }}">Lihat BA</a>
+                                            @endif
+                                            
+                                        </span>
                                     </x-table.cell>
 
                                     {{-- <x-table.cell>
@@ -634,22 +640,22 @@
                             </x-input.group>
 
                             @if(!empty($editing->status_pelanggaran))
-                            @if($editing->status_pelanggaran != 'Normal')
+                                @if($editing->status_pelanggaran != 'Normal')
 
-                            <x-input.group for="jumlah_ts_rp" label="Jumlah TS (Rp)"
-                                :error="$errors->first('editing.jumlah_ts_rp')">
-                                <x-input.text wire:model="editing.jumlah_ts_rp" id="no_ba" Placeholder="Jumlah TS (Rp)">
-                                </x-input.text>
-                            </x-input.group>
+                                <x-input.group for="jumlah_ts_rp" label="Jumlah TS (Rp)"
+                                    :error="$errors->first('editing.jumlah_ts_rp')">
+                                    <x-input.text wire:model="editing.jumlah_ts_rp" id="no_ba" Placeholder="Jumlah TS (Rp)">
+                                    </x-input.text>
+                                </x-input.group>
 
-                            <x-input.group for="jumlah_ts_kwh" label="Jumlah TS (kWh)"
-                                :error="$errors->first('editing.jumlah_ts_kwh')">
-                                <x-input.text wire:model="editing.jumlah_ts_kwh" id="no_ba"
-                                    Placeholder="Jumlah TS (kWh)">
-                                </x-input.text>
-                            </x-input.group>
+                                <x-input.group for="jumlah_ts_kwh" label="Jumlah TS (kWh)"
+                                    :error="$errors->first('editing.jumlah_ts_kwh')">
+                                    <x-input.text wire:model="editing.jumlah_ts_kwh" id="no_ba"
+                                        Placeholder="Jumlah TS (kWh)">
+                                    </x-input.text>
+                                </x-input.group>
 
-                            @endif
+                                @endif
                             @endif
                         </x-slot>
 

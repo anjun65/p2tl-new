@@ -49,6 +49,15 @@ Route::middleware([
         })->name('annev-wo');
         Route::get('/anev/form-langsung/{id}', [annev::class, 'show'])->name('annev-form-langsung');
         Route::put('/anev/form-langsung/{id}/edit', [annev::class, 'update'])->name('annev-edit-form-langsung');
+
+        Route::get('/anev/form-tidak-langsung/{id}', [annev::class, 'tidakShow'])->name('annev-form-tidak-langsung');
+        Route::put('/anev/form-tidak-langsung/{id}/edit', [annev::class, 'tidakUpdate'])->name('annev-edit-form-tidak-langsung');
+
+        Route::get('/anev/pembukaan-barang-bukti/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('anev-pembukaan-pdf');
+        Route::get('/anev/pengambilan-barang-bukti/pdf/{id}', [PengambilanBarangBukti::class, 'generatePDF'])->name('anev-pengambilan-pdf');
+        Route::get('/anev/kalibrasi/pdf/{id}', [Kalibrasi::class, 'generatePDF'])->name('anev-kalibrasi-pdf');
+        Route::get('/anev/langsung/pdf/{id}', [LangsungController::class, 'generatePDF'])->name('anev-langsung-pdf');
+        Route::get('/anev/tidak-langsung/pdf/{id}', [TidakLangsungController::class, 'generatePDF'])->name('anev-tidak-langsung-pdf');
     }
 );
 
@@ -76,11 +85,8 @@ Route::middleware([
     Route::get('/admin/form-tidak-langsung/{id}', [TidakLangsungController::class, 'show'])->name('admin-form-tidak-langsung');
 
     Route::get('/admin/serah-terima/{id}', [SerahTerimaController::class, 'show'])->name('admin-serah-terima');
-
     Route::post('/admin/serah-terima/new/{id}', [SerahTerimaController::class, 'store'])->name('serah-terima-post');
     Route::put('/admin/serah-terima/update/{id}', [SerahTerimaController::class, 'update'])->name('serah-terima-update');
-
-
     Route::get('/admin/serah-terima/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('serah-terima-pdf');
 
     Route::get('/admin/pembukaan-barang-bukti/pdf/{id}', [SerahTerimaController::class, 'generatePDF'])->name('pembukaan-pdf');
@@ -91,7 +97,7 @@ Route::middleware([
 
     Route::get('/admin/langsung/pdf/{id}', [LangsungController::class, 'generatePDF'])->name('langsung-pdf');
 
-    Route::get('/admin/tidak-langsung/pdf/{id}', [TidakLangsungController::class, 'generatePDF'])->name('langsung-pdf');
+    Route::get('/admin/tidak-langsung/pdf/{id}', [TidakLangsungController::class, 'generatePDF'])->name('tidak-langsung-pdf');
 
     Route::get('/admin/pelanggaran', function () {
         return view('admin.pelanggaran');

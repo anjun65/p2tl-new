@@ -208,6 +208,7 @@ class NewFormTidakLangsungController extends Controller
             // 'akhir_tanggal_penyelesaian' => ['required'],
             // 'akhir_foto_barang_bukti' => ['required'],
             // 'akhir_labor' => ['required'],
+            // 'kesimpulan_video' => ['nullable'],
         ]);
 
         //Saksi
@@ -1001,6 +1002,15 @@ class NewFormTidakLangsungController extends Controller
             }
         }
 
+        $locate_kesimpulan_video = "";
+        if ($request->kesimpulan_video) {
+            $new_image = Storage::disk('public')->put('assets/tidaklangsung/hasil/video', $request->kesimpulan_video);
+
+            if ($new_image) {
+                $locate_kesimpulan_video = $new_image;
+            }
+        }
+
         $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
         if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
             $akhir_tanggal_penyelesaian = Carbon::parse($request->akhir_tanggal_penyelesaian)->format('Y-m-d');
@@ -1015,6 +1025,7 @@ class NewFormTidakLangsungController extends Controller
                 'barang_bukti' => $request->akhir_barang_bukti,
                 'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
                 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
+                'kesimpulan_video' => $locate_kesimpulan_video,
 
             ]);
         } else {
@@ -1025,6 +1036,7 @@ class NewFormTidakLangsungController extends Controller
             $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
             $form_hasil_pemeriksaan->tanggal_penyelesaian = $akhir_tanggal_penyelesaian;
             $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
+            $form_hasil_pemeriksaan->kesimpulan_video = $locate_kesimpulan_video;
 
             $form_hasil_pemeriksaan->save();
         }
@@ -1035,8 +1047,14 @@ class NewFormTidakLangsungController extends Controller
             $akhir_labor = 1;
         }
 
+        $akhir_temuan = 0;
+        if ($request->akhir_temuan == 1) {
+            $akhir_temuan = 1;
+        }
+
         $work = WorkOrder::where('id', $form->works_id)->first();
         $work->labor = $akhir_labor;
+        $work->is_temuan = $akhir_temuan;
         $work->save();
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');

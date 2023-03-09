@@ -118,6 +118,12 @@
             $tanggal_only = $tanggal->day;
             $tahun = $tanggal->year;
 
+            if ($item->work->jenis_p2tl == "3TL"){
+                $ba_id = str_pad($item->work->tidak_langsung->id, 5, '0', STR_PAD_LEFT);
+            } else {
+                $ba_id = str_pad($item->work->form->id, 5, '0', STR_PAD_LEFT);
+            }
+            
         @endphp
         <tr>
             <td colspan="12" class="px-3" >
@@ -125,7 +131,7 @@
                 hasil
                 dan
                 kesimpulan pemeriksaan yang dilakukan oleh Tim P2TL sebagaimana tercantum dalam Berita Acara
-                Hasil Pemeriksaan P2TL Nomor ............ Tanggal .............................. Dilakukan pengambilan Barang
+                Hasil Pemeriksaan P2TL Nomor {{ $ba_id ?? '' }} Tanggal {{  $item->work->barangBukti->created_at->format('Y-m-d') ?? '-'}} Dilakukan pengambilan Barang
                 Bukti
                 berupa peralatan hasil temuan P2TL oleh Penyidik P2TL/Petugas P2TL atas :
             </td>
@@ -152,7 +158,7 @@
                     <b class="pl-5">NIP</b>
                 </td>
                 <td colspan="11">
-                    : {{ $user->nip ?? "-" }}
+                    : {{ $user->NIP ?? "-" }}
                 </td>
             </tr>
             
@@ -211,7 +217,7 @@
             </td>
 
             <td colspan="9">
-               : {{ $item->id }}
+               : {{ $ba_id }}
             </td>
         </tr>
 
