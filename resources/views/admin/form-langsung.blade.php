@@ -1489,7 +1489,7 @@
                                         </div>
                                       </div>
                               
-                                      @if ($item->work->kalibrasi->file_nomor_identitas)
+                                      {{-- @if ($item->work->kalibrasi->file_nomor_identitas)
                                       <div>
                                         <label class="block text-sm font-medium text-gray-700">Foto Identitas</label>
                                         <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
@@ -1500,7 +1500,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                      @endif
+                                      @endif --}}
                                     </div>
                                   </div>
                                 </div>
