@@ -120,16 +120,16 @@
         'Desember'];
 
         $tanggal = \Illuminate\Support\Carbon::parse($item->tanggal_serah_terima);
-        $tanggal_pemeriksaan = \Illuminate\Support\Carbon::parse($item->form->hasil_pemeriksaan->tanggal_penyelesaian);
+        // $tanggal_pemeriksaan = \Illuminate\Support\Carbon::parse($item->form->hasil_pemeriksaan->tanggal_penyelesaian);
 
         $hari = $tanggal->dayOfWeek;
-        $hari_pemeriksaan = $tanggal->dayOfWeek;
+        // $hari_pemeriksaan = $tanggal->dayOfWeek;
         $bulan = $tanggal->month;
 
         $indonesianDay = trans($day_name[$hari]);
         $indonesianMonth = trans($month_name[$bulan-1]);
 
-        $indonesianDay_pemeriksaan = trans($day_name[$hari_pemeriksaan]);
+        // $indonesianDay_pemeriksaan = trans($day_name[$hari_pemeriksaan]);
 
         // $now = \Illuminate\Support\Carbon::now()->locale('id');
 
@@ -1409,9 +1409,9 @@
                 Hari 
             </td>
 
-            <td colspan="10">
+            {{-- <td colspan="10">
                 : {{ $indonesianDay_pemeriksaan }}
-            </td>
+            </td> --}}
         </tr>
 
         <tr>
