@@ -819,6 +819,7 @@ class NewFormLangsungController extends Controller
             $form_hasil_pemeriksaan->save();
         }
 
+        return $request->akhir_labor;
         $akhir_labor = 0;
         if ($request->akhir_labor == 1) {
             $akhir_labor = 1;

@@ -260,7 +260,7 @@
 </div>
 
 
-@push('addon-script')
+{{-- @push('addon-script')
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -329,7 +329,7 @@
 </script>
 
 
-@endpush
+@endpush --}}
 
 {{-- @push('addon-script')
 
