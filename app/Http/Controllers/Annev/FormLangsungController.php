@@ -23,10 +23,7 @@ class FormLangsungController extends Controller
     {
         $status_pelanggaran = $request->status_pelanggaran;
 
-
         $item = FormLangsung::find($id);
-
-        dd($item);
 
         $work = WorkOrder::where('id', $item->works_id)->first();
 
@@ -53,7 +50,7 @@ class FormLangsungController extends Controller
     {
         $status_pelanggaran = $request->status_pelanggaran;
 
-        $item = FormTidakLangsung::find($id)->first();
+        $item = FormTidakLangsung::find($id);
 
         $work = WorkOrder::where('id', $item->works_id)->first();
 
