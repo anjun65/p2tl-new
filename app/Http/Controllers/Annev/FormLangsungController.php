@@ -23,6 +23,8 @@ class FormLangsungController extends Controller
     {
         $status_pelanggaran = $request->status_pelanggaran;
 
+        dd($id);
+
         $item = FormLangsung::find($id)->first();
 
         dd($item);
