@@ -273,7 +273,7 @@
                         </x-input.select>
                     </x-input.group>
 
-                    <x-input.group for="tanggal_surat_tugas_tni" label="Tanggal Surat Tugas TNI" :error="$errors->first('fieldColumnMap.tanggal_surat_tugas_tni')">
+                    <x-input.group for="tanggal_surat_tugas_tni" label="Tanggal Surat Tugas TNI/Polri" :error="$errors->first('fieldColumnMap.tanggal_surat_tugas_tni')">
                         <x-input.select wire:model="fieldColumnMap.tanggal_surat_tugas_tni" id="tanggal_surat_tugas_tni">
                             <option value="" disabled>Pilih Kolom</option>
                             @foreach ($columns as $column)
