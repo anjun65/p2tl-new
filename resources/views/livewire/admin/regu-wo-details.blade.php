@@ -588,14 +588,19 @@
                 
                                  @if(!empty($editing->status_pelanggaran))
                                     @if($editing->status_pelanggaran != 'Normal')
-                    
+
+                                    <x-input.group for="status_pelanggaran" label="Status Pelanggaran" :error="$errors->first('editing.status_pelanggaran')">
+                                        <x-input.text wire:model="editing.status_pelanggaran" id="status_pelanggaran" Placeholder="Status Pelanggaran">
+                                        </x-input.text>
+                                    </x-input.group>
+
                                     <x-input.group for="jumlah_ts_rp" label="Jumlah TS (Rp)" :error="$errors->first('editing.jumlah_ts_rp')">
-                                        <x-input.text wire:model="editing.jumlah_ts_rp" id="no_ba" Placeholder="Jumlah TS (Rp)">
+                                        <x-input.text wire:model="editing.jumlah_ts_rp" id="jumlah_ts_rp" Placeholder="Jumlah TS (Rp)">
                                         </x-input.text>
                                     </x-input.group>
                 
                                     <x-input.group for="jumlah_ts_kwh" label="Jumlah TS (kWh)" :error="$errors->first('editing.jumlah_ts_kwh')">
-                                        <x-input.text wire:model="editing.jumlah_ts_kwh" id="no_ba" Placeholder="Jumlah TS (kWh)">
+                                        <x-input.text wire:model="editing.jumlah_ts_kwh" id="jumlah_ts_kwh" Placeholder="Jumlah TS (kWh)">
                                         </x-input.text>
                                     </x-input.group>
                 
