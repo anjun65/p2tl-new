@@ -53,6 +53,7 @@ class Dashboard extends Component
             ->count();
 
         $all_temuan = WorkOrder::query()
+            ->where('is_temuan', 1)
             ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
             ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
             ->count();
@@ -157,8 +158,18 @@ class Dashboard extends Component
 
         $all_regu = Regu::all();
 
+        $all_wo = $this->all_wo;
+        $all_temuan = $this->all_temuan;
+        $all_rp = $this->all_rp;
+        $all_kwh = $this->all_kwh;
+
         return view('livewire.admin.dashboard', [
             'all_regu' => $all_regu,
+            'all_wo' => $all_wo,
+            'all_temuan' => $all_temuan,
+            'all_rp' => $all_rp,
+            'all_kwh' => $all_kwh,
+
         ]);
     }
 }
