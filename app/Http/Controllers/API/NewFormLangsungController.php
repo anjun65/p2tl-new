@@ -819,7 +819,6 @@ class NewFormLangsungController extends Controller
             $form_hasil_pemeriksaan->save();
         }
 
-        return $request->akhir_labor;
         $akhir_labor = 0;
         if ($request->akhir_labor == 1) {
             $akhir_labor = 1;
@@ -833,9 +832,10 @@ class NewFormLangsungController extends Controller
 
 
         $work = WorkOrder::where('id', $form->works_id)->first();
-        $work->labor = $akhir_labor;
-        $work->is_temuan = $akhir_temuan;
-        $work->save();
+        $work->update([
+            'labor' => $akhir_labor,
+            'is_temuan' => $akhir_temuan,
+        ]);
 
         return ResponseFormatter::success($form, 'Berhasil ditambahkan');
     }
