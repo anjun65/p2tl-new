@@ -1348,7 +1348,7 @@
 
         <tr>
             <td colspan="12" class="px-4">
-                {{ $item->form->hasil_pemeriksaan->hasil_pemeriksaan }}
+                {{-- {{ $item->form->hasil_pemeriksaan->hasil_pemeriksaan }} --}}
             </td>
         </tr>
 
@@ -1360,7 +1360,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                {{ $item->form->hasil_pemeriksaan->kesimpulan }}
+                {{-- {{ $item->form->hasil_pemeriksaan->kesimpulan }} --}}
             </td>
         </tr>
 
@@ -1373,7 +1373,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                {{ $item->form->hasil_pemeriksaan->tindakan }}
+                {{-- {{ $item->form->hasil_pemeriksaan->tindakan }} --}}
             </td>
         </tr>
 
@@ -1386,7 +1386,7 @@
         
         <tr>
             <td colspan="12" class="px-4">
-                {{ $item->form->hasil_pemeriksaan->barang_bukti }}
+                {{-- {{ $item->form->hasil_pemeriksaan->barang_bukti }} --}}
             </td>
         </tr>
 
@@ -1420,7 +1420,7 @@
             </td>
         
             <td colspan="10">
-                : {{ $item->form->hasil_pemeriksaan->tanggal_penyelesaian }}
+                {{-- : {{ $item->form->hasil_pemeriksaan->tanggal_penyelesaian }} --}}
             </td>
         
         </tr>
