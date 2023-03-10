@@ -87,6 +87,9 @@ class ReguWoDetails extends Component
             'editing.P10' => 'nullable',
             'editing.komentar' => 'nullable',
             'editing.surat_dari' => 'nullable',
+            'editing.jumlah_ts_rp' => 'nullable',
+            'editing.jumlah_ts_kwh' => 'nullable',
+            'editing.status_pelanggaran' => 'nullable',
         ];
     }
 
