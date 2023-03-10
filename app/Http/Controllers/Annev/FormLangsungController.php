@@ -25,8 +25,11 @@ class FormLangsungController extends Controller
 
         $item = FormLangsung::find($id)->first();
 
+        dd($item);
+
         $work = WorkOrder::where('id', $item->works_id)->first();
-        dd($item->works_id);
+
+
         $work->update([
             'status_pelanggaran' => $status_pelanggaran,
             'jumlah_ts_rp' => $request->jumlah_ts_rp,
