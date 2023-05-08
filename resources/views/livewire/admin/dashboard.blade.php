@@ -134,6 +134,31 @@
 
 
         <div class="flex-col space-y-4">
+            @php
+                $all_wo = App\Models\WorkOrder::query()
+                    ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->count();
+
+                $all_temuan = App\Models\WorkOrder::query()
+                    ->where('is_temuan', 1)
+                    ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->count();
+
+                $all_rp = App\Models\WorkOrder::query()
+                    ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
+                    ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->sum('jumlah_ts_rp');
+
+                $all_kwh = App\Models\WorkOrder::query()
+                    ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
+                    ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+                    ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+                    ->sum('jumlah_ts_kwh');
+
+            @endphp
             <x-table>
                 <x-slot name="head">
                     <x-table.heading>Jumlah TO Keseluruhan</x-table.heading>
