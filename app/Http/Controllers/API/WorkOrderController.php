@@ -179,8 +179,6 @@ class WorkOrderController extends Controller
 
             $new_image = Storage::disk('public')->put('assets/TO/image', $request->image);
 
-            dd($new_image);
-
             if ($new_image) {
                 $locate_image = $new_image;
             }
@@ -188,6 +186,8 @@ class WorkOrderController extends Controller
 
         if ($request->video) {
             $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
+
+            dd($new_video);
 
             if ($new_video) {
                 $locate_video = $new_video;
