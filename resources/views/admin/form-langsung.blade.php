@@ -1955,7 +1955,7 @@
                               {{-- Data Uji Akurasi--}}
                               @endif
 
-                              @if ($item->work->barangBukti)
+                              @if (isset($item->work->barangBukti))
                               
                               
                               <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
