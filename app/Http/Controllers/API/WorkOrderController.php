@@ -141,39 +141,42 @@ class WorkOrderController extends Controller
     public function petugas(Request $request)
     {
 
-        // $request->validate([
-        //     'id_pelanggan' => ['required'],
-        //     'regus_id' => ['required'],
-        //     'nama_pelanggan' => ['required', 'string', 'max:255'],
-        //     'keterangan_p2tl' => ['required', 'string', 'max:255'],
-        //     'alamat' => ['required', 'string', 'max:255'],
-        //     'latitude' => ['required', 'string', 'max:255'],
-        //     'longitude' => ['required', 'string', 'max:255'],
-        //     'jenis_p2tl' => ['required', 'string'],
-        //     'tarif' => ['required', 'string'],
-        //     'daya' => ['required', 'string'],
-        //     'rbm' => ['required', 'string'],
-        //     'lgkh' => ['required', 'string'],
-        //     'fkm' => ['required', 'string'],
-        //     // 'P1' => ['nullable', 'string'],
-        //     // 'P2' => ['nullable', 'string'],
-        //     // 'P3' => ['nullable', 'string'],
-        //     // 'P4' => ['nullable', 'string'],
-        //     // 'P5' => ['nullable', 'string'],
-        //     // 'P6' => ['nullable', 'string'],
-        //     // 'P7' => ['nullable', 'string'],
-        //     // 'P8' => ['nullable', 'string'],
-        //     // 'P9' => ['nullable', 'string'],
-        //     // 'P10' => ['nullable', 'string'],
-        //     // 'image' => ['required'],
-        //     // 'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
-        // ]);
+        $request->validate([
+            'id_pelanggan' => ['required'],
+            'regus_id' => ['required'],
+            'nama_pelanggan' => ['required', 'string', 'max:255'],
+            'keterangan_p2tl' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'latitude' => ['required', 'string', 'max:255'],
+            'longitude' => ['required', 'string', 'max:255'],
+            'jenis_p2tl' => ['required', 'string'],
+            'tarif' => ['required', 'string'],
+            'daya' => ['required', 'string'],
+            'rbm' => ['required', 'string'],
+            'lgkh' => ['required', 'string'],
+            'fkm' => ['required', 'string'],
+            'P1' => ['nullable', 'string'],
+            'P2' => ['nullable', 'string'],
+            'P3' => ['nullable', 'string'],
+            'P4' => ['nullable', 'string'],
+            'P5' => ['nullable', 'string'],
+            'P6' => ['nullable', 'string'],
+            'P7' => ['nullable', 'string'],
+            'P8' => ['nullable', 'string'],
+            'P9' => ['nullable', 'string'],
+            'P10' => ['nullable', 'string'],
+            'image' => ['required'],
+            // 'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
+        ]);
 
 
 
 
         $new_image = '';
         $new_video = '';
+
+        $locate_image = '';
+        $locate_video = '';
 
         if ($request->image) {
 
@@ -219,7 +222,7 @@ class WorkOrderController extends Controller
             'P9' => $request->P9,
             'P10' => $request->P10,
             'image' => $locate_image,
-            // 'video' => $locate_video,
+            'video' => $locate_video,
             'status' => 'Open',
             'is_luar' => 1,
         ]);
