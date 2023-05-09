@@ -183,16 +183,16 @@ class WorkOrderController extends Controller
                 $locate_image = $new_image;
             }
         }
-        dd($request->video);
-        if ($request->video) {
-            $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
+
+        // if ($request->video) {
+        //     $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
 
 
 
-            if ($new_video) {
-                $locate_video = $new_video;
-            }
-        }
+        //     if ($new_video) {
+        //         $locate_video = $new_video;
+        //     }
+        // }
 
         $workorder = WorkOrder::create([
             'id_pelanggan' => $request->id_pelanggan,
@@ -219,7 +219,7 @@ class WorkOrderController extends Controller
             'P9' => $request->P9,
             'P10' => $request->P10,
             'image' => $locate_image,
-            'video' => $locate_video,
+            // 'video' => $locate_video,
             'status' => 'Open',
             'is_luar' => 1,
         ]);
