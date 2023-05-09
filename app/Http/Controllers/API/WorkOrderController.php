@@ -168,6 +168,8 @@ class WorkOrderController extends Controller
             'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
+        dd($request->all());
+
 
         $new_image = '';
         $new_video = '';
