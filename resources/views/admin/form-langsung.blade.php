@@ -1411,7 +1411,7 @@
                               @endif
                                {{-- Data Hasil Pemeriksaan App --}}
                               
-                              @if ($item->work->kalibrasi)
+                              @if (isset($item->work->kalibrasi))
                                   
                                 
                               <div class="md:grid md:grid-cols-3 md:gap-6 mb-4">
