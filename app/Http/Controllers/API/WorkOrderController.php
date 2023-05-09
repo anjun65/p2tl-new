@@ -140,6 +140,8 @@ class WorkOrderController extends Controller
 
     public function petugas(Request $request)
     {
+        dd($request->all());
+
         $request->validate([
             'id_pelanggan' => ['required'],
             'regus_id' => ['required'],
@@ -168,7 +170,7 @@ class WorkOrderController extends Controller
             'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
         ]);
 
-        dd($request->all());
+
 
 
         $new_image = '';
