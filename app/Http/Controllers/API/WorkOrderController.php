@@ -141,33 +141,33 @@ class WorkOrderController extends Controller
     public function petugas(Request $request)
     {
 
-        // $request->validate([
-        //     'id_pelanggan' => ['required'],
-        //     'regus_id' => ['required'],
-        //     'nama_pelanggan' => ['required', 'string', 'max:255'],
-        //     'keterangan_p2tl' => ['required', 'string', 'max:255'],
-        //     'alamat' => ['required', 'string', 'max:255'],
-        //     'latitude' => ['required', 'string', 'max:255'],
-        //     'longitude' => ['required', 'string', 'max:255'],
-        //     'jenis_p2tl' => ['required', 'string'],
-        //     'tarif' => ['required', 'string'],
-        //     'daya' => ['required', 'string'],
-        //     'rbm' => ['required', 'string'],
-        //     'lgkh' => ['required', 'string'],
-        //     'fkm' => ['required', 'string'],
-        //     'P1' => ['nullable', 'string'],
-        //     'P2' => ['nullable', 'string'],
-        //     'P3' => ['nullable', 'string'],
-        //     'P4' => ['nullable', 'string'],
-        //     'P5' => ['nullable', 'string'],
-        //     'P6' => ['nullable', 'string'],
-        //     'P7' => ['nullable', 'string'],
-        //     'P8' => ['nullable', 'string'],
-        //     'P9' => ['nullable', 'string'],
-        //     'P10' => ['nullable', 'string'],
-        //     'image' => ['required'],
-        //     'video' => ['required'],
-        // ]);
+        $request->validate([
+            'id_pelanggan' => ['required'],
+            'regus_id' => ['required'],
+            'nama_pelanggan' => ['required', 'string', 'max:255'],
+            'keterangan_p2tl' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
+            'latitude' => ['required', 'string', 'max:255'],
+            'longitude' => ['required', 'string', 'max:255'],
+            'jenis_p2tl' => ['required', 'string'],
+            'tarif' => ['required', 'string'],
+            'daya' => ['required', 'string'],
+            'rbm' => ['required', 'string'],
+            'lgkh' => ['required', 'string'],
+            'fkm' => ['required', 'string'],
+            'P1' => ['nullable', 'string'],
+            'P2' => ['nullable', 'string'],
+            'P3' => ['nullable', 'string'],
+            'P4' => ['nullable', 'string'],
+            'P5' => ['nullable', 'string'],
+            'P6' => ['nullable', 'string'],
+            'P7' => ['nullable', 'string'],
+            'P8' => ['nullable', 'string'],
+            'P9' => ['nullable', 'string'],
+            'P10' => ['nullable', 'string'],
+            'image' => ['required'],
+            'video' => ['required'],
+        ]);
 
 
 
@@ -187,15 +187,15 @@ class WorkOrderController extends Controller
             }
         }
 
-        // if ($request->video) {
-        //     $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
+        if ($request->video) {
+            $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
 
 
 
-        //     if ($new_video) {
-        //         $locate_video = $new_video;
-        //     }
-        // }
+            if ($new_video) {
+                $locate_video = $new_video;
+            }
+        }
 
         $workorder = WorkOrder::create([
             'id_pelanggan' => $request->id_pelanggan,
