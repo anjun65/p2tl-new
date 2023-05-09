@@ -141,7 +141,7 @@ class WorkOrderController extends Controller
     public function petugas(Request $request)
     {
 
-        dd($request->validate([
+        $request->validate([
             'id_pelanggan' => ['required'],
             'regus_id' => ['required'],
             'nama_pelanggan' => ['required', 'string', 'max:255'],
@@ -155,19 +155,19 @@ class WorkOrderController extends Controller
             'rbm' => ['required', 'string'],
             'lgkh' => ['required', 'string'],
             'fkm' => ['required', 'string'],
-            'P1' => ['nullable', 'string'],
-            'P2' => ['nullable', 'string'],
-            'P3' => ['nullable', 'string'],
-            'P4' => ['nullable', 'string'],
-            'P5' => ['nullable', 'string'],
-            'P6' => ['nullable', 'string'],
-            'P7' => ['nullable', 'string'],
-            'P8' => ['nullable', 'string'],
-            'P9' => ['nullable', 'string'],
-            'P10' => ['nullable', 'string'],
+            // 'P1' => ['nullable', 'string'],
+            // 'P2' => ['nullable', 'string'],
+            // 'P3' => ['nullable', 'string'],
+            // 'P4' => ['nullable', 'string'],
+            // 'P5' => ['nullable', 'string'],
+            // 'P6' => ['nullable', 'string'],
+            // 'P7' => ['nullable', 'string'],
+            // 'P8' => ['nullable', 'string'],
+            // 'P9' => ['nullable', 'string'],
+            // 'P10' => ['nullable', 'string'],
             'image' => ['required'],
             'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
-        ]));
+        ]);
 
 
 
