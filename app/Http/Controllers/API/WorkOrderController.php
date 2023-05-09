@@ -166,7 +166,7 @@ class WorkOrderController extends Controller
             'P9' => ['nullable', 'string'],
             'P10' => ['nullable', 'string'],
             'image' => ['required'],
-            // 'video' => ['required', 'mimes:mp4,mov,ogg,qt'],
+            'video' => ['required'],
         ]);
 
 
@@ -187,15 +187,15 @@ class WorkOrderController extends Controller
             }
         }
 
-        // if ($request->video) {
-        //     $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
+        if ($request->video) {
+            $new_video = Storage::disk('public')->put('assets/TO/video', $request->video);
 
 
 
-        //     if ($new_video) {
-        //         $locate_video = $new_video;
-        //     }
-        // }
+            if ($new_video) {
+                $locate_video = $new_video;
+            }
+        }
 
         $workorder = WorkOrder::create([
             'id_pelanggan' => $request->id_pelanggan,
