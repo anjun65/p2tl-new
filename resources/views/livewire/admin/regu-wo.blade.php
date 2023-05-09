@@ -16,7 +16,7 @@
                     </x-input.select>
                 </x-input.group>
 
-                <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary>
+                {{-- <x-button.primary wire:click="create"><x-icon.plus/> New</x-button.primary> --}}
             </div>
         </div>
 
