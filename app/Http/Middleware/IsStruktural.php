@@ -17,7 +17,7 @@ class IsStruktural
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->roles == 'Struktural') {
+        if (Auth::user() &&  Auth::user()->roles == 'STRUKTURAL') {
             return $next($request);
         }
 
