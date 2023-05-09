@@ -179,6 +179,8 @@ class WorkOrderController extends Controller
 
             $new_image = Storage::disk('public')->put('assets/TO/image', $request->image);
 
+            dd($new_image);
+
             if ($new_image) {
                 $locate_image = $new_image;
             }
