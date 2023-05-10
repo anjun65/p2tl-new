@@ -9,6 +9,8 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+        <link rel="icon" type="image/png" href="/img/favicon.ico" />
+        <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 
         
         <!-- Scripts -->

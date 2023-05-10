@@ -781,19 +781,19 @@ class NewFormLangsungController extends Controller
 
 
         $akhir_tanggal_penyelesaian = Carbon::now()->format('Y-m-d');
-        if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != Null) {
+
+        if ($request->akhir_tanggal_penyelesaian !== 'null' || $request->akhir_tanggal_penyelesaian != null) {
             $akhir_tanggal_penyelesaian = Carbon::parse($request->akhir_tanggal_penyelesaian)->format('Y-m-d');
         }
 
         $locate_kesimpulan_video = "";
         if ($request->kesimpulan_video) {
-            $new_image = Storage::disk('public')->put('assets/tidaklangsung/hasil/video', $request->kesimpulan_video);
+            $new_image = Storage::disk('public')->put('assets/langsung/hasil/video', $request->kesimpulan_video);
 
             if ($new_image) {
                 $locate_kesimpulan_video = $new_image;
             }
         }
-
 
         if (empty($form_hasil_pemeriksaan)) {
             $form_hasil_pemeriksaan = FormLangsungHasilPemeriksaan::create([
@@ -804,7 +804,7 @@ class NewFormLangsungController extends Controller
                 'barang_bukti' => $request->akhir_barang_bukti,
                 'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
                 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
-                'kesimpulan_video' => $locate_kesimpulan_video,
+                'video_kesimpulan' => $locate_kesimpulan_video,
             ]);
         } else {
             $form_hasil_pemeriksaan->forms_id = $form->id;
@@ -814,7 +814,7 @@ class NewFormLangsungController extends Controller
             $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
             $form_hasil_pemeriksaan->tanggal_penyelesaian = $request->akhir_tanggal_penyelesaian;
             $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
-            $form_hasil_pemeriksaan->kesimpulan_video = $locate_kesimpulan_video;
+            $form_hasil_pemeriksaan->video_kesimpulan = $locate_kesimpulan_video;
 
             $form_hasil_pemeriksaan->save();
         }

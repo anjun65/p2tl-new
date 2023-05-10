@@ -1025,8 +1025,7 @@ class NewFormTidakLangsungController extends Controller
                 'barang_bukti' => $request->akhir_barang_bukti,
                 'tanggal_penyelesaian' => $akhir_tanggal_penyelesaian,
                 'foto_barang_bukti' => $locate_akhir_foto_barang_bukti,
-                'kesimpulan_video' => $locate_kesimpulan_video,
-
+                'video_kesimpulan' => $locate_kesimpulan_video,
             ]);
         } else {
             $form_hasil_pemeriksaan->forms_id = $form->id;
@@ -1036,7 +1035,7 @@ class NewFormTidakLangsungController extends Controller
             $form_hasil_pemeriksaan->barang_bukti = $request->akhir_barang_bukti;
             $form_hasil_pemeriksaan->tanggal_penyelesaian = $akhir_tanggal_penyelesaian;
             $form_hasil_pemeriksaan->foto_barang_bukti = $locate_akhir_foto_barang_bukti;
-            $form_hasil_pemeriksaan->kesimpulan_video = $locate_kesimpulan_video;
+            $form_hasil_pemeriksaan->video_kesimpulan = $locate_kesimpulan_video;
 
             $form_hasil_pemeriksaan->save();
         }
