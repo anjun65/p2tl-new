@@ -196,14 +196,16 @@ class ReguWoDetails extends Component
     {
         $berkas = WorkOrder::find($id);
 
-        return Storage::download($berkas->image);
+        // return Storage::download($berkas->image);
+        return response()->download(asset(Storage::url($berkas->image)));
     }
 
     public function download_video($id)
     {
         $berkas = WorkOrder::find($id);
 
-        return Storage::download($berkas->video);
+        // return response()->download(Storage::url($berkas->video));
+        return response()->download(asset(Storage::url($berkas->video)));
     }
 
     public function render()
