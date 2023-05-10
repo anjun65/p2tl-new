@@ -197,7 +197,8 @@ class ReguWoDetails extends Component
         $berkas = WorkOrder::find($id);
 
         // return Storage::download($berkas->image);
-        return response()->download(asset(Storage::url($berkas->image)));
+        // return response()->download(asset(Storage::url($berkas->image)));
+        return redirect(asset(Storage::url($berkas->image)));
     }
 
     public function download_video($id)
@@ -205,7 +206,8 @@ class ReguWoDetails extends Component
         $berkas = WorkOrder::find($id);
 
         // return response()->download(Storage::url($berkas->video));
-        return response()->download(asset(Storage::url($berkas->video)));
+        // return response()->download(asset(Storage::url($berkas->video)));
+        return redirect(asset(Storage::url($berkas->video)));
     }
 
     public function render()
