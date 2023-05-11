@@ -29,7 +29,11 @@ class Dashboard extends Component
 
     public function daily()
     {
-        $this->filters['min_tanggal_inspeksi'] = now();
+        $start = Carbon::now();
+        $end = Carbon::now();
+
+        $this->filters['min_tanggal_inspeksi'] = $start->toDateString();
+        $this->filters['max_tanggal_inspeksi'] = $end->toDateString();
     }
 
 
