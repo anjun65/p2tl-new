@@ -30,7 +30,6 @@ class Dashboard extends Component
     public function daily()
     {
         $this->filters['min_tanggal_inspeksi'] = now();
-        $this->filters['max_tanggal_inspeksi'] = now();
     }
 
 

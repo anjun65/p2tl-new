@@ -216,7 +216,7 @@
             </td>
 
             <td colspan="9">
-                : 
+                : @if ($item->barangBukti->nama_saksi) {{ $item->barangBukti->nama_saksi }} @endif
             </td>
         </tr>
 
@@ -226,7 +226,7 @@
             </td>
 
             <td colspan="9">
-                : 
+                : @if ($item->barangBukti->alamat_saksi) {{ $item->barangBukti->alamat_saksi }} @endif
             </td>
         </tr>
 
@@ -236,7 +236,7 @@
             </td>
 
             <td colspan="9">
-                : 
+                : @if ($item->barangBukti->nomor_identitas) {{ $item->barangBukti->nomor_identitas }} @endif
             </td>
         </tr>
 
@@ -246,7 +246,7 @@
             </td>
         
             <td colspan="9">
-                :
+                : @if ($item->barangBukti->no_telpon_saksi) {{ $item->barangBukti->no_telpon_saksi }} @endif
             </td>
         </tr>
 
@@ -256,7 +256,7 @@
             </td>
         
             <td colspan="9">
-                :
+                : @if ($item->id_pelanggan) {{ $item->id_pelanggan }} @endif
             </td>
         </tr>
 
@@ -311,11 +311,16 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Merk/Type : 
+                Merk/Type :
+                 @if ($item->jenis_p2tl == '3TL') 
+                    {{ $item->tidak_langsung->data_app->kwh_merk }} 
+                 @else
+                    {{ $item->form->data_lama->merk }}
+                 @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Jenis Kabel : 
+                Jenis Kabel : @if ($item->barangBukti->jenis_kabel) {{ $item->barangBukti->jenis_kabel }} @endif
             </td>
         
             <td colspan="1">
@@ -331,11 +336,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                No. Register :
+                No. Register : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_no_reg }}
+                @else
+                {{ $item->form->data_lama->no_reg }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Panjang Kabel :
+                Panjang Kabel : @if ($item->barangBukti->panjang_kabel) {{ $item->barangBukti->panjang_kabel }} @endif
             </td>
         
             <td colspan="1">
@@ -350,7 +359,11 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                No. Seri :
+                No. Seri : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_no_seri }}
+                @else
+                {{ $item->form->data_lama->no_seri }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
@@ -369,7 +382,11 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Tahun Pembuatan:
+                Tahun Pembuatan: @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_tahun_buat }}
+                @else
+                {{ $item->form->data_lama->tahun_pembuatan }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
@@ -388,11 +405,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Class :
+                Class : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_class }}
+                @else
+                {{ $item->form->data_lama->class }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Tera :
+                Tera : @if ($item->barangBukti->tera) {{ $item->barangBukti->tera }} @endif
             </td>
         
             <td colspan="1">
@@ -408,11 +429,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Konstanta :
+                Konstanta : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_konstanta }}
+                @else
+                {{ $item->form->data_lama->konstanta }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Terminal kWh Meter :
+                Terminal kWh Meter : @if ($item->barangBukti->terminal_kwh_meter) {{ $item->barangBukti->terminal_kwh_meter }} @endif
             </td>
         
             <td colspan="1">
@@ -428,11 +453,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Rating Arus (ln) :
+                Rating Arus (ln) : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_rating_arus }}
+                @else
+                {{ $item->form->data_lama->rating_arus }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Box OK :
+                Box OK : @if ($item->barangBukti->box_ok) {{ $item->barangBukti->box_ok }} @endif
             </td>
         
             <td colspan="1">
@@ -447,11 +476,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Tegangan Nomimal :
+                Tegangan Nomimal : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_tegangan_nominal }}
+                @else
+                {{ $item->form->data_lama->tegangan_nominal }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Box APP :
+                Box APP : @if ($item->barangBukti->box_app) {{ $item->barangBukti->box_app }} @endif
             </td>
         
             <td colspan="1">
@@ -466,11 +499,15 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Stand kWh Meter :
+                Stand kWh Meter : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_stand_total }}
+                @else
+                {{ $item->form->data_lama->stand_kwh_meter }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Alat Pembatas:
+                Alat Pembatas: @if ($item->barangBukti->alat_pembatas) {{ $item->barangBukti->alat_pembatas }} @endif
             </td>
         
             <td colspan="1">
@@ -489,7 +526,7 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
-                Alat Bantu Ukur
+                Alat Bantu Ukur : @if ($item->barangBukti->alat_bantu_ukur) {{ $item->barangBukti->alat_bantu_ukur }} @endif
             </td>
         
             <td colspan="1">
@@ -504,7 +541,11 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Jenis pembatas :
+                Jenis pembatas : @if ($item->jenis_p2tl == '3TL')
+                {{ $item->tidak_langsung->data_app->kwh_stand_total }}
+                @else
+                {{ $item->form->data_lama->jenis_pembatas }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
@@ -523,7 +564,11 @@
             </td>
         
             <td colspan="5" class="px-3" style="border-left:1px solid black">
-                Merk/Type :
+                Merk/Type : @if ($item->jenis_p2tl == '3TL')
+                    {{ $item->tidak_langsung->data_app->merk }}
+                @else
+                    {{ $item->form->data_lama->alat_pembatas_merk }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3" style="border-right:1px solid black;border-left:1px solid black">
@@ -543,7 +588,11 @@
             </td>
         
             <td colspan="5" class="px-3 pb-2" style="border:1px solid black;border-top:0px solid black">
-                Rating Arus (ln) : 
+                Rating Arus (ln) : @if ($item->jenis_p2tl == '3TL')
+                    {{ $item->tidak_langsung->data_app->rating_arus }}
+                @else
+                {{ $item->form->data_lama->rating_arus_2 }}
+                @endif
             </td>
         
             <td colspan="5" class="px-3 pb-2" style="border:1px solid black;border-top:0px solid black">
