@@ -33,6 +33,18 @@ class Dashboard extends Component
         $this->filters['max_tanggal_inspeksi'] = now();
     }
 
+
+    public function weekly()
+    {
+
+        $start = Carbon::now()->startOfWeek();
+        $end = Carbon::now()->endOfWeek();
+
+        $this->filters['min_tanggal_inspeksi'] = $start->toDateString();
+        $this->filters['max_tanggal_inspeksi'] = $end->toDateString();
+    }
+
+
     public function monthly()
     {
 
@@ -47,28 +59,28 @@ class Dashboard extends Component
     {
         $regus = Regu::latest()->get();
 
-        $all_wo = WorkOrder::query()
-            ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
-            ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
-            ->count();
+        // $all_wo = WorkOrder::query()
+        //     ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
+        //     ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
+        //     ->count();
 
-        $all_temuan = WorkOrder::query()
-            ->where('is_temuan', 1)
-            ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
-            ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
-            ->count();
+        // $all_temuan = WorkOrder::query()
+        //     ->where('is_temuan', 1)
+        //     ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Carbon::parse($max_tanggal_inspeksi)))
+        //     ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Carbon::parse($min_tanggal_inspeksi)))
+        //     ->count();
 
-        $all_rp = WorkOrder::query()
-            ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
-            ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
-            ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
-            ->sum('jumlah_ts_rp');
+        // $all_rp = WorkOrder::query()
+        //     ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
+        //     ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+        //     ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+        //     ->sum('jumlah_ts_rp');
 
-        $all_kwh = WorkOrder::query()
-            ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
-            ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
-            ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
-            ->sum('jumlah_ts_kwh');
+        // $all_kwh = WorkOrder::query()
+        //     ->whereIn('status_pelanggaran', ['P1', 'P2', 'P3', 'P4', 'K1', 'K2', 'K3',])
+        //     ->when($this->filters['max_tanggal_inspeksi'], fn ($query, $max_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '<=', Illuminate\Support\Carbon::parse($max_tanggal_inspeksi)))
+        //     ->when($this->filters['min_tanggal_inspeksi'], fn ($query, $min_tanggal_inspeksi) => $query->where('tanggal_inspeksi', '>=', Illuminate\Support\Carbon::parse($min_tanggal_inspeksi)))
+        //     ->sum('jumlah_ts_kwh');
 
         foreach ($regus as $regu) {
             $i = 0;
@@ -103,10 +115,10 @@ class Dashboard extends Component
         }
         $this->regus = json_encode($data);
 
-        $this->all_wo = $all_wo;
-        $this->all_temuan = $all_temuan;
-        $this->all_rp = $all_rp;
-        $this->all_kwh = $all_kwh;
+        // $this->all_wo = $all_wo;
+        // $this->all_temuan = $all_temuan;
+        // $this->all_rp = $all_rp;
+        // $this->all_kwh = $all_kwh;
     }
 
 
@@ -158,17 +170,17 @@ class Dashboard extends Component
 
         $all_regu = Regu::all();
 
-        $all_wo = $this->all_wo;
-        $all_temuan = $this->all_temuan;
-        $all_rp = $this->all_rp;
-        $all_kwh = $this->all_kwh;
+        // $all_wo = $this->all_wo;
+        // $all_temuan = $this->all_temuan;
+        // $all_rp = $this->all_rp;
+        // $all_kwh = $this->all_kwh;
 
         return view('livewire.admin.dashboard', [
             'all_regu' => $all_regu,
-            'all_wo' => $all_wo,
-            'all_temuan' => $all_temuan,
-            'all_rp' => $all_rp,
-            'all_kwh' => $all_kwh,
+            // 'all_wo' => $all_wo,
+            // 'all_temuan' => $all_temuan,
+            // 'all_rp' => $all_rp,
+            // 'all_kwh' => $all_kwh,
 
         ]);
     }

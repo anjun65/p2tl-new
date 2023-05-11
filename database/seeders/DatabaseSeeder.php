@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123123123'),
             'regus_id' => 1,
             'roles' => 'Struktural',
-            'Jabatan' => 'Struktural',
+            'Jabatan' => 'STRUKTURAL',
             'NIP' => '99898989',
         ]);
 
