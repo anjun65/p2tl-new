@@ -580,10 +580,10 @@
                                 </x-datepicker>
                             </x-input.group>
 
-                            <x-input.group for="surat_tugas_tni" label="Surat Tugas TNI"
+                            <x-input.group for="surat_tugas_tni" label="Surat Tugas TNI/Polri"
                                 :error="$errors->first('editing.surat_tugas_tni')">
                                 <x-input.text wire:model="editing.surat_tugas_tni" id="surat_tugas_tni"
-                                    Placeholder="Surat Tugas TNI">
+                                    Placeholder="Surat Tugas TNI/Polri">
                                 </x-input.text>
                             </x-input.group>
 

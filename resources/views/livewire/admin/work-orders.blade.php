@@ -377,14 +377,14 @@
                     </x-datepicker>
                 </x-input.group>
 
-                <x-input.group for="surat_tugas_tni" label="Surat Tugas TNI" :error="$errors->first('editing.surat_tugas_tni')">
-                    <x-input.text wire:model="editing.surat_tugas_tni" id="surat_tugas_tni" Placeholder="Surat Tugas TNI">
+                <x-input.group for="surat_tugas_tni" label="Surat Tugas TNI/Polri" :error="$errors->first('editing.surat_tugas_tni')">
+                    <x-input.text wire:model="editing.surat_tugas_tni" id="surat_tugas_tni" Placeholder="Surat Tugas TNI/Polri">
                     </x-input.text>
                 </x-input.group>
 
 
                 <x-input.group for="tanggal_surat_tugas_tni" label="Tanggal Surat Tugas TNI/Polri" :error="$errors->first('editing.tanggal_surat_tugas_tni')">
-                    <x-datepicker wire:model="editing.tanggal_surat_tugas_tni" id="surat_tugas_p2tl" Placeholder="Tanggal Surat Tugas P2TL">
+                    <x-datepicker wire:model="editing.tanggal_surat_tugas_tni" id="tanggal_surat_tugas_tni" Placeholder="Tanggal Surat Tugas P2TL">
                     </x-datepicker>
                 </x-input.group>
 
