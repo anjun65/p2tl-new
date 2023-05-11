@@ -150,14 +150,14 @@
                 Nama Pelanggan
             </td>
             <td colspan="3">
-                : 
+                : {{ $item->nama_pelanggan }}
             </td>
 
             <td colspan="3" class="pl-5">
                 ID Pelanggan
             </td>
             <td colspan="3">
-                : 
+                : {{ $item->id_pelanggan }}
             </td>
         </tr>
 
@@ -166,14 +166,14 @@
                 Alamat Instalasi
             </td>
             <td colspan="3">
-                :
+                : {{ $item->alamat }}
             </td>
         
             <td colspan="3" class="pl-5">
                 Tarif / Daya
             </td>
             <td colspan="3">
-                :
+                : {{ $item->tarif }} /  {{ $item->daya }}
             </td>
         </tr>
 
@@ -189,14 +189,14 @@
                 Nama
             </td>
             <td colspan="3">
-                :
+                : @if ($item->kalibrasi->nama_saksi) {{ $item->kalibrasi->nama_saksi }} @endif
             </td>
         
             <td colspan="3" class="pl-5">
                 Pekerjaan
             </td>
             <td colspan="3">
-                :
+                : @if ($item->kalibrasi->pekerjaan_saksi) {{ $item->kalibrasi->pekerjaan_saksi }} @endif
             </td>
         </tr>
         <tr>
@@ -204,14 +204,14 @@
                 Alamat
             </td>
             <td colspan="3">
-                :
+                : @if ($item->kalibrasi->alamat_saksi) {{ $item->kalibrasi->alamat_saksi }} @endif
             </td>
         
             <td colspan="3" class="pl-5">
                 No. Telp./HP
             </td>
             <td colspan="3">
-                :
+                : @if ($item->kalibrasi->no_telp_saksi) {{ $item->kalibrasi->no_telp_saksi }} @endif
             </td>
         </tr>
 
@@ -220,7 +220,7 @@
                 Nomor KTP/SIM
             </td>
             <td colspan="3">
-                :
+                : @if ($item->kalibrasi->nomor_identitas_saksi) {{ $item->kalibrasi->nomor_identitas_saksi }} @endif
             </td>
         
             <td colspan="3" class="pl-5">
@@ -271,7 +271,7 @@
                         </td>
 
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->merk) {{ $item->kalibrasi->data_kwh->merk }} @endif
                         </td>
 
                         <td colspan="2" class="pl-3">
@@ -279,7 +279,7 @@
                         </td>
                         
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->konstanta) {{ $item->kalibrasi->data_kwh->konstanta }} @endif
                         </td>
                     </tr>
 
@@ -289,7 +289,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->no_register) {{ $item->kalibrasi->data_kwh->no_register }} @endif
                         </td>
                     
                         <td colspan="2" class="pl-3">
@@ -297,7 +297,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->rating_arus) {{ $item->kalibrasi->data_kwh->rating_arus }} @endif
                         </td>
                     </tr>
 
@@ -307,7 +307,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->no_seri) {{ $item->kalibrasi->data_kwh->no_seri }} @endif
                         </td>
                     
                         <td colspan="2" class="pl-3">
@@ -315,7 +315,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->tegangan_nominal) {{ $item->kalibrasi->data_kwh->tegangan_nominal }} @endif
                         </td>
                     </tr>
 
@@ -326,7 +326,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->tahun_pembuatan) {{ $item->kalibrasi->data_kwh->tahun_pembuatan }} @endif
                         </td>
                     
                         <td colspan="2" class="pl-3">
@@ -334,7 +334,7 @@
                         </td>
                     
                         <td colspan="4" class="pl-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->stand_kwh_meter) {{ $item->kalibrasi->data_kwh->stand_kwh_meter }} @endif
                         </td>
                     </tr>
 
@@ -345,7 +345,7 @@
                         </td>
                     
                         <td colspan="4" class="px-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->class) {{ $item->kalibrasi->data_kwh->class }} @endif
                         </td>
                     
                         <td colspan="2" class="pl-3">
@@ -353,7 +353,7 @@
                         </td>
                     
                         <td colspan="4" class="px-3">
-                            :
+                            : @if ($item->kalibrasi->data_kwh->keterangan) {{ $item->kalibrasi->data_kwh->keterangan }} @endif
                         </td>
                     </tr>
                 
@@ -409,15 +409,15 @@
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                            
+                            @if ($item->kalibrasi->data_kwh_lanjutan->atas_a) {{ $item->kalibrasi->data_kwh_lanjutan->atas_a }} @endif
                         </td>
                     
                         <td colspan="3" class="px-3" style="border:1px solid black;">
-                            
+                            @if ($item->kalibrasi->data_kwh_lanjutan->atas_b) {{ $item->kalibrasi->data_kwh_lanjutan->atas_b }} @endif
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                            
+                            @if ($item->kalibrasi->data_kwh_lanjutan->atas_keterangan) {{ $item->kalibrasi->data_kwh_lanjutan->atas_keterangan }} @endif
                         </td>
                     
                     </tr>
@@ -428,15 +428,18 @@
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kanan_a) {{ $item->kalibrasi->data_kwh_lanjutan->kanan_a }}
+                            @endif
                         </td>
                     
                         <td colspan="3" class="px-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kanan_b) {{ $item->kalibrasi->data_kwh_lanjutan->kanan_b }}
+                            @endif
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kanan_keterangan) {{ $item->kalibrasi->data_kwh_lanjutan->kanan_keterangan }}
+                            @endif
                         </td>
                     
                     </tr>
@@ -447,15 +450,18 @@
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kiri_a) {{ $item->kalibrasi->data_kwh_lanjutan->kiri_a }}
+                            @endif
                         </td>
                     
                         <td colspan="3" class="px-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kiri_b) {{ $item->kalibrasi->data_kwh_lanjutan->kiri_b }}
+                            @endif
                         </td>
                     
                         <td colspan="3" class="pl-3" style="border:1px solid black;">
-                    
+                            @if ($item->kalibrasi->data_kwh_lanjutan->kiri_keterangan) {{ $item->kalibrasi->data_kwh_lanjutan->kiri_keterangan }}
+                            @endif
                         </td>
                     
                     </tr>
@@ -505,40 +511,63 @@
                     </tr>
 
                     <tr>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_100_tegangan) {{ $item->kalibrasi->data_uji_akurasi->beban_100_tegangan }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">50</td>
                         <td colspan="2" style="border:1px solid black;">100</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_100_arus) {{ $item->kalibrasi->data_uji_akurasi->beban_100_arus
+                        }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">1</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_100_akurasi) {{ $item->kalibrasi->data_uji_akurasi->beban_100_akurasi
+                        }} @endif</td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_100_keterangan) {{ $item->kalibrasi->data_uji_akurasi->beban_100_keterangan
+                        }} @endif</td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_50_tegangan) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_50_tegangan }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">50</td>
                         <td colspan="2" style="border:1px solid black;">50</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_50_arus) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_50_arus
+                            }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">1</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_50_akurasi) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_50_akurasi
+                            }} @endif</td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_50_keterangan) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_50_keterangan
+                            }} @endif</td>
                     </tr>
 
                     <tr>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_5_tegangan) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_5_tegangan }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">50</td>
                         <td colspan="2" style="border:1px solid black;">5</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_5_arus) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_5_arus
+                            }} @endif</td>
                         <td colspan="1" style="border:1px solid black;">1</td>
-                        <td colspan="2" style="border:1px solid black;"></td>
-                        <td colspan="2" style="border:1px solid black;"></td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_5_akurasi) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_5_akurasi
+                            }} @endif</td>
+                        <td colspan="2" style="border:1px solid black;">@if ($item->kalibrasi->data_uji_akurasi->beban_5_keterangan) {{
+                            $item->kalibrasi->data_uji_akurasi->beban_5_keterangan
+                            }} @endif</td>
                     </tr>
 
                     <tr>
                         <td colspan="3">Alat Uji</td>
-                        <td colspan="3">Merk :</td>
-                        <td colspan="3">Type : </td>
-                        <td colspan="3">No. Seri: </td>
+                        <td colspan="3">Merk : @if ($item->kalibrasi->data_uji_akurasi->alat_uji_merk) {{
+                        $item->kalibrasi->data_uji_akurasi->alat_uji_merk
+                        }} @endif</td>
+                        <td colspan="3">Type : @if ($item->kalibrasi->data_uji_akurasi->alat_uji_type) {{
+                        $item->kalibrasi->data_uji_akurasi->alat_uji_type
+                        }} @endif</td>
+                        <td colspan="3">No. Seri: @if ($item->kalibrasi->data_uji_akurasi->alat_uji_no_seri) {{
+                        $item->kalibrasi->data_uji_akurasi->alat_uji_no_seri
+                        }} @endif</td>
                     </tr>
                     
                 </table>
@@ -553,7 +582,11 @@
 
         <tr>
             <td colspan="12" class="px-3">
-                <br/>
+                
+                @if ($item->kalibrasi->data_uji_akurasi->kesimpulan) {{
+                $item->kalibrasi->data_uji_akurasi->kesimpulan
+                }} @endif
+                <br />
             </td>
         </tr>
 
